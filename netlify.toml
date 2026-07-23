@@ -7,6 +7,16 @@
 [build]
   publish = "."
   command = "node scripts/generate-sitemaps.js && node scripts/check-internal-links.js"
+  functions = "functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Dynamic affiliate PDPs: /memory-catcher/:slug injects franchisee data into
+# memory-catcher.html. Unknown/inactive slug -> memory-catcher-404.html.
+[[edge_functions]]
+  path = "/memory-catcher/:slug"
+  function = "memory-catcher"
 
 # Security + caching headers
 [[headers]]

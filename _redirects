@@ -59,7 +59,11 @@
 /post/the-perfect-gift-for-new-mums-and-dads   /post-the-perfect-gift-for-new-mums-and-dads.html   200   # Stories | The Perfect Gift for New Mums and Dads
 /post/tiny-hands-big-emotions-captured-forever   /post-tiny-hands-big-emotions-captured-forever.html   200   # Stories | Tiny Hands, Big Emotions Captured Forever
 /post/why-foil-prints-make-the-ultimate-baby-gift   /post-why-foil-prints-make-the-ultimate-baby-gift.html   200   # Stories | Why Foil Prints Make the Ultimate Baby Gift
-/memory-catcher/salamata-bah   /memory-catcher-salamata-bah.html   200   # util | Memory Catcher PDP (Salamata)
+# Affiliate PDPs are served by netlify/edge-functions/memory-catcher.js
+# (/memory-catcher/:slug). Do NOT add static /memory-catcher/<slug> redirects here.
+/memory-catcher.html           /memory-catcher.html   200   # exclude | Affiliate template (edge injects data; not for direct SEO)
+/wallet-test.html              /wallet-test.html      200   # exclude | Stripe wallet diagnostic
+/memory-catcher-404.html       /memory-catcher-404.html 200 # exclude | Affiliate unknown-slug 404
 /upload-portal-thank-you   /upload-portal-thank-you.html   200   # util | Upload Portal - Thank You
 /franchise-success   /franchise-success.html   200   # util | Franchise - Success
 /memory-catcher-enquiry   /memory-catcher-enquiry.html   200   # util | Memory Catcher - Enquiry Form
