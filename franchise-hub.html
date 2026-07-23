@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Memory Catcher™ Franchise Hub | Bespoke Foil Company</title>
+<meta name="description" content="Everything you need to explore the Memory Catcher™ Franchise in one place - the opportunity, the earnings calculator, the regional map, region search and how to find your local Memory Catcher.">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/franchise-hub">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/shared/styles.css?v=10">
+<style>
+/* ===== FRANCHISE HUB page-specific ===== */
+
+/* light-page header (no dark hero) - matches privacy-policy / franchise-success */
+.light-scope header{position:absolute;background:var(--porcelain);box-shadow:0 2px 14px -8px rgba(0,0,0,.16)}
+.light-scope header.scrolled{box-shadow:0 8px 28px -16px rgba(0,0,0,.28)}
+.light-scope .logotype img{filter:none}
+.light-scope .cart-btn{color:var(--ink)}
+.light-scope .cta.nav-cta{color:var(--ink);border-color:var(--ink)}
+.light-scope .burger span{background:var(--ink)}
+.hub-top-space{height:96px}
+
+/* --- hero / intro --- */
+.hub-hero{max-width:920px;margin:0 auto;padding:56px 40px 8px;text-align:center}
+.hub-hero .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-text);margin-bottom:18px}
+.hub-hero h1{font-family:var(--serif);font-weight:340;font-size:clamp(34px,5vw,54px);letter-spacing:-.02em;line-height:1.04;margin-bottom:8px}
+.hub-hero h1 .accent{display:block;font-family:var(--script);font-weight:400;color:var(--stone-text);font-size:1.02em;letter-spacing:0;margin-top:2px}
+.hub-hero .hub-lede{font-family:var(--sans);font-size:clamp(16px,2vw,18px);line-height:1.65;color:var(--ink-soft);max-width:620px;margin:18px auto 0}
+
+/* --- tile grid --- */
+.hub-wrap{max-width:1120px;margin:0 auto;padding:40px 40px 72px}
+.hub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+/* first tile (the flagship franchise opportunity) spans full width */
+.hub-grid .hub-tile.is-feature{grid-column:1 / -1}
+
+.hub-tile{
+  position:relative;
+  display:flex;flex-direction:column;
+  background:var(--white);
+  border:1px solid var(--hairline);
+  border-radius:var(--r-img);
+  padding:30px 30px 28px;
+  transition:transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease, border-color .25s ease;
+}
+.hub-tile:hover{transform:translateY(-3px);box-shadow:0 18px 44px -24px rgba(0,0,0,.3);border-color:rgba(0,0,0,.18)}
+
+.hub-tile .hub-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--porcelain);
+  display:grid;place-items:center;
+  margin-bottom:20px;
+}
+.hub-tile.is-feature .hub-icon{background:var(--stone)}
+.hub-tile .hub-icon svg{width:26px;height:26px;stroke:var(--ink);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.hub-tile h2{font-family:var(--serif);font-weight:420;font-size:clamp(21px,2.4vw,25px);letter-spacing:-.01em;line-height:1.15;margin-bottom:10px}
+.hub-tile.is-feature h2{font-size:clamp(24px,3vw,30px)}
+.hub-tile p{font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:22px}
+
+/* push the button to the bottom so uneven blurbs stay aligned */
+.hub-tile .hub-cta{margin-top:auto;align-self:flex-start}
+/* all tile buttons are solid black so they read clearly on the white tiles
+   (the base .cta is white, which was invisible on a white card) */
+.hub-tile .hub-cta{background:var(--ink);color:var(--white)}
+.hub-tile .hub-cta .sq{background:var(--stone)}
+.hub-tile .hub-cta .sq svg{stroke:var(--ink)}
+.hub-tile .hub-cta:hover{background:var(--white);color:var(--ink)}
+
+/* make the whole tile clickable while keeping the visible pill */
+.hub-tile .hub-stretch{position:absolute;inset:0;border-radius:inherit;z-index:1}
+.hub-tile .hub-icon,
+.hub-tile h2,
+.hub-tile p,
+.hub-tile .hub-cta{position:relative;z-index:2}
+
+/* feature tile: icon + copy left, button sits inline on desktop */
+@media(min-width:781px){
+  .hub-tile.is-feature{padding:34px 36px 32px}
+}
+
+@media(max-width:780px){
+  .hub-grid{grid-template-columns:1fr;gap:16px}
+  .hub-grid .hub-tile.is-feature{grid-column:auto}
+  .hub-wrap{padding:28px 18px 56px}
+  .hub-hero{padding:40px 18px 4px}
+  .hub-tile{padding:26px 24px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- INTERIM NAV MENU -->
+<nav class="nav-menu" id="navMenu" aria-hidden="true">
+  <div class="nav-menu-inner">
+    <div class="nav-menu-top">
+      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+        <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+      </a>
+      <div class="nav-menu-top-right">
+        <a class="nav-menu-order" href="/our-kit">
+          <span>Order Your Kit</span>
+          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+        <div class="nav-menu-links">
+      <a href="/" data-page="home">Home</a>
+      <a href="/our-story" data-page="our-story">Our Story</a>
+      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+      <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+      <a href="/our-kit" data-page="our-kit">Order Your Kit</a>
+      <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+      <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+      <a href="/faq" data-page="faq">FAQ</a>
+      <a href="/contact" data-page="contact">Contact</a>
+    </div>
+
+    <div class="nav-menu-cta">
+      <div class="nav-menu-cta-head">
+        <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
+        <span class="nav-menu-cta-sub">Run it, or find one near you</span>
+      </div>
+      <div class="nav-menu-cards">
+        <a class="nav-menu-card" href="/franchise" data-page="franchise">
+          <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
+          <span class="nav-menu-card-label">
+            <span>Become a Memory Catcher</span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
+          <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
+          <span class="nav-menu-card-label">
+            <span>Find a Memory Catcher</span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="announce">
+  <img src="/assets/tp-stars.svg" alt="Rated Excellent on Trustpilot">
+  <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
+</div>
+
+<div class="light-scope">
+<header>
+  <div class="nav-row">
+    <button class="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
+      <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+    </a>
+    <div class="nav-right">
+      <a class="cta nav-cta on-dark" href="/our-kit">
+        <span class="lbl">Order Your Kit</span>
+        <span class="lbl-short">Order Kit</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <button class="cart-btn" aria-label="Basket">
+        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+</div><!-- /light-scope -->
+<div class="hub-top-space"></div>
+
+<!-- ============ FRANCHISE HUB HERO ============ -->
+<section class="hub-hero">
+  <p class="eyebrow">Memory Catcher&trade; Franchise</p>
+  <h1>Everything you need, <span class="accent">all in one place.</span></h1>
+  <p class="hub-lede">Whether you're weighing up the opportunity, sizing up the numbers or looking for a Memory Catcher near you, start here and pick your path.</p>
+</section>
+
+<!-- ============ TILES ============ -->
+<div class="hub-wrap">
+  <div class="hub-grid">
+
+    <!-- 1. Flagship: the franchise opportunity (feature) -->
+    <article class="hub-tile is-feature">
+      <a class="hub-stretch" href="/franchise" aria-label="Explore the Memory Catcher Franchise"></a>
+      <div class="hub-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 20v-8l8-6 8 6v8"/><path d="M9 20v-5h6v5"/></svg>
+      </div>
+      <h2>Memory Catcher&trade; Franchise</h2>
+      <p>Turn a warm, meaningful experience into a business of your own. Discover how the Memory Catcher&trade; Franchise works, what's included and why families across the UK love it.</p>
+      <a class="cta dark hub-cta" href="/franchise">
+        <span class="lbl">Explore the opportunity</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </article>
+
+    <!-- 2. Earnings calculator -->
+    <article class="hub-tile">
+      <a class="hub-stretch" href="/memory-catcher-earnings-calculator" aria-label="Open the Franchise Earnings Calculator"></a>
+      <div class="hub-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg>
+      </div>
+      <h2>Franchise Earnings Calculator</h2>
+      <p>Play with the numbers and see what a Memory Catcher&trade; territory could earn, based on sessions, spend and your own pace.</p>
+      <a class="cta hub-cta" href="/memory-catcher-earnings-calculator">
+        <span class="lbl">Estimate your earnings</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </article>
+
+    <!-- 3. The Memory Catcher Hub (franchisee command centre) -->
+    <article class="hub-tile">
+      <a class="hub-stretch" href="/memory-catcher-hub" aria-label="Explore the Memory Catcher Hub"></a>
+      <div class="hub-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+      </div>
+      <h2>The Memory Catcher&trade; Hub</h2>
+      <p>The command centre for every Memory Catcher - live commissions, training, your referral tools and a roadmap of tech we keep building for you.</p>
+      <a class="cta hub-cta" href="/memory-catcher-hub">
+        <span class="lbl">Explore the Hub</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </article>
+
+    <!-- 4. Regional map -->
+    <article class="hub-tile">
+      <a class="hub-stretch" href="/memory-catcher-region-map" aria-label="View the Franchise Regional Map"></a>
+      <div class="hub-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>
+      </div>
+      <h2>View Franchise Regional Map</h2>
+      <p>See the Memory Catcher&trade; regions across the UK at a glance, and spot which areas are still open to claim.</p>
+      <a class="cta hub-cta" href="/memory-catcher-region-map">
+        <span class="lbl">Open the map</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </article>
+
+    <!-- 5. Search regions -->
+    <article class="hub-tile">
+      <a class="hub-stretch" href="/franchise-region" aria-label="Search Franchise Regions"></a>
+      <div class="hub-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </div>
+      <h2>Search Franchise Regions</h2>
+      <p>Look up a specific town or postcode to check availability and see the territory details for the area you have in mind.</p>
+      <a class="cta hub-cta" href="/franchise-region">
+        <span class="lbl">Search regions</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </article>
+
+    <!-- 6. Find your local Memory Catcher -->
+    <article class="hub-tile">
+      <a class="hub-stretch" href="/find-a-memory-catcher" aria-label="Find Your Local Memory Catcher"></a>
+      <div class="hub-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      </div>
+      <h2>Find Your Local Memory Catcher</h2>
+      <p>Already a parent, not a franchisee? Find a Memory Catcher near you and book an in-person baby keepsake experience.</p>
+      <a class="cta hub-cta" href="/find-a-memory-catcher">
+        <span class="lbl">Find one near you</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </article>
+
+  </div>
+</div>
+
+<!-- ============ COMMUNITY (shared) ============ -->
+<section class="community">
+  <div class="community-inner">
+    <div>
+      <h2>Join our community</h2>
+      <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
+    </div>
+    <div class="community-form">
+      <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
+      <button id="communityJoin">Join</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-col foot-contact">
+      <h4>Contact</h4>
+      <p>Tel: 07506 998934</p>
+      <p>Email: hello@thebespokefoilcompany.co.uk</p>
+      <div class="foot-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
+      </div>
+      <p class="f-label">Find Us</p>
+      <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
+      <p class="f-label">Opening Hours</p>
+      <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
+    </div>
+
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/our-kit">Order Your Kit</a></li>
+        <li><a href="/our-story">Our Story</a></li>
+        <li><a href="/premium-frames">Premium Frames</a></li>
+        <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
+        <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
+        <li><a href="/eco-friendly">Eco-Friendly</a></li>
+        <li><a href="/tommys-charity">Tommy's Charity</a></li>
+        <li><a href="/upload-portal">Uploading Your Prints</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/faq">FAQ's</a></li>
+        <li><a href="/blog">Stories &amp; Inspiration</a></li>
+        <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
+        <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
+      </ul>
+      <h4>Franchise</h4>
+      <ul>
+        <li><a href="/franchise-hub">Franchise Hub</a></li>
+        <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
+        <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
+        <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
+        <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
+        <li><a href="/franchise-region">Search Franchise Regions</a></li>
+        <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/sitemap">Sitemap</a></li>
+      </ul>
+      <div class="foot-right" style="margin-top:26px">
+        <a class="cta on-dark foot-order" href="#order">
+          <span class="lbl">Order Your Kit</span>
+          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <div class="foot-pay" aria-label="Accepted payment methods">
+          <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
+          <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
+          <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
+          <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
+          <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
+          <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+        </div>
+        <div class="foot-tp">
+          <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+          <span class="tp-meta">TrustScore 4.9 &middot; 65 reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-legal">
+    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID: GB419408687.</p>
+    <p style="margin-top:6px"><a href="https://www.mywixdesigner.com/">Website by My Wix Designer</a></p>
+  </div>
+
+  <div class="foot-watermark" aria-hidden="true">
+    <img src="/assets/bfc-logo.svg" alt="">
+  </div>
+</footer>
+
+<script>
+/* sticky header (shared behaviour) */
+(function(){
+  const header = document.querySelector('header');
+  if(!header) return;
+  const ST=60, HIDE=260, D=6;
+  let lastY=window.scrollY, acc=0, tick=false;
+  function up(){
+    const y=window.scrollY, diff=y-lastY;
+    if(y>ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+    if(Math.abs(diff)>D){
+      if(diff>0){ acc+=diff; if(acc>HIDE && y>ST) header.classList.add('header-hidden'); }
+      else { header.classList.remove('header-hidden'); acc=0; }
+      lastY=y;
+    }
+    tick=false;
+  }
+  window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});
+  up();
+})();
+</script>
+<script>
+/* interim nav menu toggle */
+(function(){
+  const menu=document.getElementById('navMenu');
+  const burger=document.querySelector('.burger');
+  const closeBtn=document.getElementById('navMenuClose');
+  if(!menu||!burger)return;
+  function open(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}
+  function close(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}
+  burger.addEventListener('click',open);
+  if(closeBtn)closeBtn.addEventListener('click',close);
+  menu.addEventListener('click',e=>{if(e.target===menu)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+</script>
+</body>
+</html>

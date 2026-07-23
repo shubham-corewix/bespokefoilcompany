@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Region map</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+:root{
+  --taupe:#B9A394; --taupe-600:#A68D7C; --taupe-300:#D2C4B9; --taupe-100:#EFE8E2;
+  --ink:#1E1E1E; --warm-grey:#5A5650; --grey:#777; --sand:#ECE8E4; --mist:#E6E2DB;
+  --paper:#F5F5F2; --white:#fff; --line:#E4DED6;
+  --font-display:'Fraunces','Times New Roman',Georgia,serif;
+  --font-sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%; margin:0}
+body{font-family:var(--font-sans); color:var(--ink); background:var(--paper)}
+#stage{position:relative; width:100%; height:100vh; min-height:320px; overflow:hidden; touch-action:pan-y}
+svg{display:block; width:100%; height:100%; cursor:grab}
+svg.grabbing{cursor:grabbing}
+
+.land{fill:var(--white); fill-rule:evenodd}
+.cell{fill:var(--sand); stroke:var(--taupe); stroke-width:.9px; stroke-opacity:.55; vector-effect:non-scaling-stroke; transition:fill .15s ease}
+.cell.active{fill:var(--taupe); stroke:var(--taupe-600); stroke-width:1.2px; stroke-opacity:1}
+.cell.tapped{fill:var(--taupe-300)}
+@media (hover:hover){
+  .cell:hover{fill:var(--taupe-300)}
+  .cell.active:hover{fill:var(--taupe)}
+}
+.coast{fill:none; stroke:var(--taupe-600); stroke-width:1.4px; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none}
+.dot{fill:var(--taupe-600); pointer-events:none}
+.dot.active{fill:var(--ink)}
+
+#activelbl{
+  position:absolute; z-index:6; pointer-events:none; transform:translate(-50%,-140%);
+  background:var(--ink); color:var(--white); font-family:var(--font-sans);
+  font-size:12.5px; font-weight:500; padding:6px 11px; border-radius:7px;
+  white-space:nowrap; max-width:260px;
+}
+#activelbl::after{
+  content:""; position:absolute; left:50%; top:100%; transform:translateX(-50%);
+  border:5px solid transparent; border-top-color:var(--ink);
+}
+#tip{
+  position:absolute; z-index:8; pointer-events:none; opacity:0;
+  transform:translate(-50%,-140%); transition:opacity .12s ease;
+  background:var(--ink); color:var(--white); font-size:12.5px; font-weight:500;
+  padding:6px 11px; border-radius:7px; white-space:nowrap; max-width:260px;
+}
+#tip::after{
+  content:""; position:absolute; left:50%; top:100%; transform:translateX(-50%);
+  border:5px solid transparent; border-top-color:var(--ink);
+}
+#controls{position:absolute; right:14px; bottom:14px; z-index:7; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--white); box-shadow:0 6px 18px rgba(90,86,80,.14)}
+.zbtn{width:38px; height:38px; border:0; background:var(--white); color:var(--ink); font-size:17px; cursor:pointer; font-family:var(--font-sans)}
+.zbtn+.zbtn{border-top:1px solid var(--line)}
+.zbtn:hover{background:var(--taupe-100)}
+#hint{
+  position:absolute; left:50%; bottom:14px; transform:translateX(-50%); z-index:7;
+  background:rgba(30,30,30,.82); color:var(--white); font-size:12px; padding:7px 13px;
+  border-radius:999px; opacity:0; transition:opacity .25s ease; pointer-events:none; white-space:nowrap;
+}
+#hint.show{opacity:1}
+#loading{position:absolute; inset:0; display:grid; place-items:center; z-index:9; background:var(--paper); transition:opacity .4s ease}
+#loading.gone{opacity:0; pointer-events:none}
+#loading .l{font-family:var(--font-display); font-style:italic; font-size:18px; color:var(--taupe-600)}
+#err{display:none; position:absolute; inset:0; place-items:center; text-align:center; padding:24px; z-index:9; background:var(--paper)}
+#err.show{display:grid}
+#err p{max-width:360px; font-size:14px; color:var(--warm-grey); line-height:1.5}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="map" preserveAspectRatio="xMidYMid meet"></svg>
+  <div id="activelbl"></div>
+  <div id="tip"></div>
+  <div id="controls">
+    <button class="zbtn" id="zin" aria-label="Zoom in">+</button>
+    <button class="zbtn" id="zout" aria-label="Zoom out">&minus;</button>
+  </div>
+  <div id="hint">Use two fingers to move the map</div>
+  <div id="loading"><div class="l">Loading map&hellip;</div></div>
+  <div id="err"><p id="errmsg">Map unavailable.</p></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const svg = d3.select('#map');
+  const tip = document.getElementById('tip');
+  const activeLbl = document.getElementById('activelbl');
+  const hint = document.getElementById('hint');
+
+  const UK_SOURCES = [
+    'https://cdn.jsdelivr.net/npm/world-geojson@3.1.0/countries/united_kingdom.json',
+    'https://cdn.jsdelivr.net/npm/world-geojson/countries/united_kingdom.json',
+    'https://raw.githubusercontent.com/georgique/world-geojson/develop/countries/united_kingdom.json'
+  ];
+  const KEEP = {lon0:-8.9, lon1:2.2, lat0:49.7, lat1:59.05};
+  function within(ring){
+    let x=0,y=0,n=ring.length;
+    for(const p of ring){x+=p[0];y+=p[1];}
+    x/=n; y/=n;
+    return x>=KEEP.lon0 && x<=KEEP.lon1 && y>=KEEP.lat0 && y<=KEEP.lat1;
+  }
+  function normalize(gj){
+    const polys=[];
+    const push=(geom)=>{
+      if(!geom) return;
+      if(geom.type==='Polygon') polys.push(geom.coordinates);
+      else if(geom.type==='MultiPolygon') geom.coordinates.forEach(p=>polys.push(p));
+    };
+    if(gj.type==='FeatureCollection') gj.features.forEach(f=>push(f.geometry));
+    else if(gj.type==='Feature') push(gj.geometry);
+    else push(gj);
+    return polys;
+  }
+  async function loadUK(){
+    for(const url of UK_SOURCES){
+      try{
+        const r = await fetch(url);
+        if(!r.ok) continue;
+        const gj = await r.json();
+        const polys = normalize(gj).filter(p=>within(p[0]));
+        if(polys.length) return {type:'Feature', properties:{}, geometry:{type:'MultiPolygon', coordinates:polys}};
+      }catch(e){ /* try next */ }
+    }
+    return null;
+  }
+
+  const inBox = (lon,lat,b)=> lon>=b[0] && lon<=b[1] && lat>=b[2] && lat<=b[3];
+  const BOX_NI  = [-8.3,-5.3, 53.9,55.5];
+  const BOX_IOM = [-4.9,-4.25, 54.0,54.45];
+  const BOX_IOW = [-1.62,-1.08, 50.55,50.78];
+  function groupOf(lon,lat){
+    if(inBox(lon,lat,BOX_IOM)) return 'iom';
+    if(inBox(lon,lat,BOX_IOW)) return 'iow';
+    if(inBox(lon,lat,BOX_NI))  return 'ni';
+    return 'gb';
+  }
+  const GROUP_KEYS = ['gb','ni','iow','iom'];
+
+  function slugFromRegion(r){
+    return (r.link||'').replace(/^.*\/franchises\//,'').replace(/\/+$/,'').toLowerCase();
+  }
+  function labelText(r){
+    return r.region.replace(/^London:\s*/,'').trim();
+  }
+
+  let W=0,H=0, regions=[], land=null, projection, landD='', pts=[], groups=null;
+  let zoom, gRoot, curT=d3.zoomIdentity, targetIdx=-1, tipIdx=-1;
+
+  function fail(msg){
+    document.getElementById('errmsg').textContent = msg;
+    document.getElementById('err').classList.add('show');
+    document.getElementById('loading').classList.add('gone');
+  }
+
+  function computeZoom(cellD){
+    const nums = (cellD.match(/-?\d+(\.\d+)?/g)||[]).map(Number);
+    let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+    for(let i=0;i+1<nums.length;i+=2){
+      const x=nums[i], y=nums[i+1];
+      if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y;
+    }
+    if(!isFinite(x0)) return {k:1, tx:0, ty:0};
+    const bw=Math.max(1,x1-x0), bh=Math.max(1,y1-y0), cx=(x0+x1)/2, cy=(y0+y1)/2;
+    const pad=2.6;
+    let k = 0.9*Math.min(W/(bw*pad), H/(bh*pad));
+    k = Math.max(1, Math.min(4, k));
+    return {k, tx: W/2 - k*cx, ty: H/2 - k*cy};
+  }
+
+  function positionActiveLabel(){
+    if(targetIdx<0) return;
+    const p = pts[targetIdx];
+    const x = p[0]*curT.k + curT.x;
+    const y = p[1]*curT.k + curT.y;
+    activeLbl.style.left = x + 'px';
+    activeLbl.style.top  = y + 'px';
+    activeLbl.style.opacity = (x>-60 && x<W+60 && y>-30 && y<H+30) ? 1 : 0;
+  }
+  function positionPinnedTip(){
+    if(tipIdx<0) return;
+    const p = pts[tipIdx];
+    tip.style.left = (p[0]*curT.k + curT.x) + 'px';
+    tip.style.top  = (p[1]*curT.k + curT.y) + 'px';
+  }
+  function hideTip(){ tipIdx=-1; tip.style.opacity=0; if(gRoot) gRoot.selectAll('path.cell').classed('tapped', false); }
+  function sizeDots(){
+    if(gRoot) gRoot.selectAll('circle.dot').attr('r', function(){
+      return (this.classList.contains('active') ? 3.2 : 1.6)/curT.k;
+    });
+  }
+
+  function build(){
+    const rect = stage.getBoundingClientRect();
+    W = rect.width || 800; H = rect.height || 500;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+
+    projection = d3.geoMercator().scale(1).translate([0,0]);
+    let mnx=Infinity,mxx=-Infinity,mny=Infinity,mxy=-Infinity;
+    land.geometry.coordinates.forEach(poly=>poly[0].forEach(p=>{
+      if(p[0]<mnx)mnx=p[0]; if(p[0]>mxx)mxx=p[0];
+      if(p[1]<mny)mny=p[1]; if(p[1]>mxy)mxy=p[1];
+    }));
+    const X0=20, Y0=20, aw=(W-20)-X0, ah=(H-20)-Y0;
+    let p0=projection([mnx,mxy]), p1=projection([mxx,mny]);
+    const s=Math.min(aw/(p1[0]-p0[0]), ah/(p1[1]-p0[1]));
+    projection.scale(s);
+    p0=projection([mnx,mxy]); p1=projection([mxx,mny]);
+    projection.translate([ X0+(aw-(p1[0]-p0[0]))/2-p0[0], Y0+(ah-(p1[1]-p0[1]))/2-p0[1] ]);
+
+    landD='';
+    land.geometry.coordinates.forEach(poly=>{
+      poly.forEach(ring=>{
+        for(let i=0;i<ring.length;i++){ const q=projection(ring[i]); landD += (i?'L':'M') + q[0].toFixed(1) + ',' + q[1].toFixed(1); }
+        landD += 'Z';
+      });
+    });
+
+    pts = regions.map(r=>projection([r.lon, r.lat]));
+
+    groups = {}; GROUP_KEYS.forEach(k=>groups[k]={idx:[], clipD:''});
+    regions.forEach((r,i)=>{ groups[groupOf(r.lon,r.lat)].idx.push(i); });
+
+    const centroid=(ring)=>{let x=0,y=0;for(const p of ring){x+=p[0];y+=p[1];}return [x/ring.length,y/ring.length];};
+    land.geometry.coordinates.forEach(poly=>{
+      const c=centroid(poly[0]);
+      const gk=groupOf(c[0],c[1]);
+      poly.forEach(ring=>{
+        let d='';
+        for(let i=0;i<ring.length;i++){ const q=projection(ring[i]); d += (i?'L':'M') + q[0].toFixed(1) + ',' + q[1].toFixed(1); }
+        groups[gk].clipD += d + 'Z';
+      });
+    });
+
+    GROUP_KEYS.forEach(gk=>{
+      const idx=groups[gk].idx;
+      if(!idx.length) return;
+      if(idx.length===1){ regions[idx[0]]._cellD = 'M0,0H'+W.toFixed(1)+'V'+H.toFixed(1)+'H0Z'; return; }
+      const gpts=idx.map(i=>pts[i]);
+      const vor=d3.Delaunay.from(gpts).voronoi([0,0,W,H]);
+      idx.forEach((ri,k)=>{ regions[ri]._cellD = vor.renderCell(k); });
+    });
+
+    render();
+  }
+
+  function render(){
+    svg.selectAll('*').remove();
+    const defs = svg.append('defs');
+    GROUP_KEYS.forEach(gk=>{
+      defs.append('clipPath').attr('id','clip-'+gk).append('path').attr('d', groups[gk].clipD).attr('clip-rule','evenodd');
+    });
+
+    gRoot = svg.append('g');
+    gRoot.append('path').attr('class','land').attr('d', landD);
+
+    GROUP_KEYS.forEach(gk=>{
+      if(!groups[gk].idx.length) return;
+      const cellsG = gRoot.append('g').attr('clip-path', `url(#clip-${gk})`);
+      cellsG.selectAll('path.cell')
+        .data(groups[gk].idx.map(i=>i)).enter().append('path')
+        .attr('class', i => i===targetIdx ? 'cell active' : 'cell')
+        .attr('d', i => regions[i]._cellD)
+        .on('pointerenter', function(ev,i){
+          if(ev.pointerType!=='mouse') return;
+          if(i!==targetIdx){ hideTip(); tip.textContent = labelText(regions[i]); tip.style.opacity=1; }
+        })
+        .on('pointermove', (ev)=>{
+          if(ev.pointerType!=='mouse' || tipIdx>=0) return;
+          const r = stage.getBoundingClientRect();
+          tip.style.left = (ev.clientX - r.left) + 'px';
+          tip.style.top  = (ev.clientY - r.top) + 'px';
+        })
+        .on('pointerleave', (ev)=>{ if(ev.pointerType==='mouse') tip.style.opacity=0; })
+        .on('pointerup', function(ev,i){
+          if(ev.pointerType==='mouse' || !ev.isPrimary) return;
+          ev.stopPropagation();
+          if(i===targetIdx || i===tipIdx){ hideTip(); return; }
+          tipIdx=i; tip.textContent = labelText(regions[i]);
+          gRoot.selectAll('path.cell').classed('tapped', d=>d===i);
+          positionPinnedTip(); tip.style.opacity=1;
+        });
+    });
+
+    gRoot.append('path').attr('class','coast').attr('d', landD);
+
+    gRoot.append('g').selectAll('circle.dot')
+      .data(regions.map((r,i)=>i)).enter().append('circle')
+      .attr('class', i => i===targetIdx ? 'dot active' : 'dot')
+      .attr('cx', i => pts[i][0]).attr('cy', i => pts[i][1]);
+
+    activeLbl.textContent = labelText(regions[targetIdx]);
+
+    // zoom behaviour: two-finger touch, drag pan on mouse, no wheel (buttons instead)
+    zoom = d3.zoom().scaleExtent([1, 12])
+      .translateExtent([[0,0],[W,H]]).extent([[0,0],[W,H]])
+      .filter(ev=>{
+        if(ev.type==='wheel') return false;
+        if(ev.touches){
+          if(ev.touches.length<2){ hint.classList.add('show'); clearTimeout(hint._t); hint._t=setTimeout(()=>hint.classList.remove('show'),1600); return false; }
+          return true;
+        }
+        return !ev.button;
+      })
+      .on('zoom', (ev)=>{ curT=ev.transform; gRoot.attr('transform', curT); sizeDots(); positionActiveLabel(); positionPinnedTip(); });
+    svg.call(zoom).on('dblclick.zoom', null);
+    svg.on('pointerup.dismiss', (ev)=>{ if(ev.pointerType!=='mouse') hideTip(); });
+
+    // initial framing on the target region
+    const z = computeZoom(regions[targetIdx]._cellD);
+    svg.call(zoom.transform, d3.zoomIdentity.translate(z.tx, z.ty).scale(z.k));
+
+    svg.on('mousedown', ()=>svg.classed('grabbing',true));
+    window.addEventListener('mouseup', ()=>svg.classed('grabbing',false));
+
+    document.getElementById('zin').onclick  = ()=>svg.transition().duration(250).call(zoom.scaleBy, 1.5);
+    document.getElementById('zout').onclick = ()=>svg.transition().duration(250).call(zoom.scaleBy, 1/1.5);
+
+    sizeDots(); positionActiveLabel();
+    document.getElementById('loading').classList.add('gone');
+  }
+
+  async function init(){
+    const params = new URLSearchParams(location.search);
+    const wanted = (params.get('region')||'').trim().toLowerCase();
+    if(!wanted){ return fail('No region specified.'); }
+
+    try{
+      regions = await (await fetch('regions.json')).json();
+    }catch(e){ return fail('Could not load region data.'); }
+
+    targetIdx = regions.findIndex(r => slugFromRegion(r) === wanted);
+    if(targetIdx < 0){ return fail('Region "'+wanted+'" not found.'); }
+
+    land = await loadUK();
+    if(!land){ return fail('Could not load the UK outline. Please refresh.'); }
+
+    land.geometry.coordinates.push([[
+      [-1.595,50.665],[-1.50,50.705],[-1.30,50.765],[-1.16,50.735],
+      [-1.07,50.685],[-1.15,50.628],[-1.30,50.575],[-1.45,50.635],[-1.595,50.665]
+    ]]);
+
+    build();
+    let t; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(build, 200); });
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

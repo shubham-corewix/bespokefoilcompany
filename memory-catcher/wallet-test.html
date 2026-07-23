@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Wallet diagnostic - BFC keepsake</title>
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+  body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+       margin:0;padding:20px;background:#F6F6F4;color:#000}
+  .wrap{max-width:460px;margin:0 auto}
+  h1{font-size:19px;margin:0 0 4px}
+  .sub{color:#666;font-size:13px;margin:0 0 20px}
+  .card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;
+        border:1px solid rgba(0,0,0,.1)}
+  .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;
+       border-bottom:1px solid rgba(0,0,0,.06);font-size:13px}
+  .row:last-child{border-bottom:0}
+  .row b{font-weight:600}
+  .ok{color:#0a7d2e;font-weight:600}
+  .bad{color:#b3261e;font-weight:600}
+  .warn{color:#8a6100;font-weight:600}
+  pre{background:#111;color:#0f0;padding:12px;border-radius:8px;
+      font-size:11px;overflow:auto;max-height:260px;white-space:pre-wrap}
+  .verdict{padding:14px;border-radius:10px;margin-bottom:14px;font-size:14px}
+  .v-ok{background:#e6f4ea;border:1px solid #0a7d2e}
+  .v-bad{background:#fce8e6;border:1px solid #b3261e}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Wallet diagnostic</h1>
+  <p class="sub">Tests whether Stripe will render Apple Pay / Google Pay on THIS
+  device. Nothing is charged. Not linked from anywhere.</p>
+
+  <div id="verdict" class="verdict">Running…</div>
+
+  <div class="card">
+    <div class="row"><span>Publishable key</span><b id="r-key">…</b></div>
+    <div class="row"><span>Key mode</span><b id="r-mode">…</b></div>
+    <div class="row"><span>PaymentIntent</span><b id="r-pi">…</b></div>
+    <div class="row"><span>Secure context (HTTPS)</span><b id="r-https">…</b></div>
+    <div class="row"><span>Browser reports Apple Pay</span><b id="r-apple">…</b></div>
+    <div class="row"><span>Stripe: available methods</span><b id="r-avail">…</b></div>
+  </div>
+
+  <div class="card">
+    <p style="margin:0 0 10px;font-size:13px;color:#666">
+      Live Express Checkout Element, same config as the real drawer:</p>
+    <div id="ece"></div>
+  </div>
+
+  <div class="card">
+    <p style="margin:0 0 8px;font-size:13px;color:#666">Log</p>
+    <pre id="log"></pre>
+  </div>
+</div>
+
+<script>
+const log = (m) => {
+  document.getElementById('log').textContent += m + '\n';
+  console.log('[wallet-test]', m);
+};
+const set = (id, txt, cls) => {
+  const el = document.getElementById(id);
+  el.textContent = txt;
+  if (cls) el.className = cls;
+};
+
+function verdict(html, ok){
+  const v = document.getElementById('verdict');
+  v.innerHTML = html;
+  v.className = 'verdict ' + (ok ? 'v-ok' : 'v-bad');
+}
+
+(async function(){
+  set('r-https', window.isSecureContext ? 'yes' : 'NO', window.isSecureContext ? 'ok' : 'bad');
+  if (!window.isSecureContext) log('WARNING: not a secure context. Wallets require HTTPS.');
+
+  // Does the browser itself claim Apple Pay?
+  const applePossible = !!(window.ApplePaySession && window.ApplePaySession.canMakePayments
+                           && window.ApplePaySession.canMakePayments());
+  set('r-apple', applePossible ? 'yes' : 'no', applePossible ? 'ok' : 'warn');
+  log('ApplePaySession present: ' + !!window.ApplePaySession);
+
+  // 1. Publishable key
+  let pk = '';
+  try {
+    const r = await fetch('/.netlify/functions/config', { cache: 'no-store' });
+    const j = await r.json();
+    pk = j.publishableKey || '';
+  } catch (e) {
+    log('config function failed: ' + e.message);
+  }
+  if (!pk) {
+    set('r-key','MISSING','bad');
+    verdict('<b>STRIPE_PUBLISHABLE_KEY is not set in Netlify.</b><br>' +
+            'Nothing can render until this env var exists and the site is redeployed.', false);
+    return;
+  }
+  set('r-key','present','ok');
+  const mode = pk.startsWith('pk_live') ? 'LIVE' : (pk.startsWith('pk_test') ? 'test' : 'unknown');
+  set('r-mode', mode, mode === 'unknown' ? 'bad' : 'ok');
+  log('key mode: ' + mode);
+
+  // 2. PaymentIntent
+  let data;
+  try {
+    const res = await fetch('/.netlify/functions/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sku: 'BFC-KIT-FRAMED', qty: 1 })
+    });
+    data = await res.json();
+    if (!data.clientSecret) throw new Error(data.error || 'no clientSecret');
+    set('r-pi','ok','ok');
+    log('PaymentIntent total: £' + (data.breakdown.total/100).toFixed(2));
+  } catch (e) {
+    set('r-pi','FAILED','bad');
+    verdict('<b>create-payment-intent failed.</b><br>' + e.message +
+            '<br>Usually a missing STRIPE_SECRET_KEY, or the site was deployed by ' +
+            'drag-and-drop so node_modules (the stripe package) is absent.', false);
+    log('PI error: ' + e.message);
+    return;
+  }
+
+  // 3. Express Checkout Element - identical options to the real drawer
+  const stripe = Stripe(pk);
+  const elements = stripe.elements({
+    clientSecret: data.clientSecret,
+    appearance: { theme: 'stripe' }
+  });
+  const ece = elements.create('expressCheckout', {
+    buttonHeight: 50,
+    emailRequired: true,
+    shippingAddressRequired: true,
+    allowedShippingCountries: ['GB'],
+    shippingRates: [{
+      id: 'rm-next',
+      displayName: 'Royal Mail next working day',
+      amount: data.breakdown.postage
+    }]
+  });
+
+  ece.on('ready', (e) => {
+    const avail = e && e.availablePaymentMethods;
+    log('ready fired. availablePaymentMethods = ' + JSON.stringify(avail));
+    if (avail) {
+      const names = Object.keys(avail).filter(k => avail[k]);
+      set('r-avail', names.join(', ') || 'none', 'ok');
+      verdict('<b>Wallets will render.</b><br>Stripe reports: ' +
+              names.join(', ') + '. The real drawer will show these too.', true);
+    } else {
+      set('r-avail','none','bad');
+      verdict('<b>No wallets available on this device.</b><br>' +
+              'Most likely: the Payment Method Domain is not registered in Stripe ' +
+              'for this domain, or this browser has no card saved. ' +
+              'Test on Safari/iOS with a card in Wallet.', false);
+    }
+  });
+  ece.on('loaderror', (e) => {
+    log('LOADERROR: ' + JSON.stringify(e && e.error ? e.error : e));
+    set('r-avail','load error','bad');
+    verdict('<b>Express Checkout Element failed to load.</b><br>See the log below. ' +
+            'An IntegrationError here means the element options are rejected by Stripe.', false);
+  });
+
+  try {
+    ece.mount('#ece');
+    log('mounted, waiting for ready…');
+  } catch (err) {
+    log('mount threw: ' + err.message);
+    verdict('<b>Mount threw.</b> ' + err.message, false);
+  }
+
+  setTimeout(() => {
+    if (document.getElementById('r-avail').textContent === '…') {
+      set('r-avail','no response','bad');
+      verdict('<b>Stripe never fired ready.</b><br>' +
+              'Check the browser console for an IntegrationError.', false);
+    }
+  }, 8000);
+})();
+</script>
+</body>
+</html>

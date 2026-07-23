@@ -1,0 +1,102 @@
+# _redirects - single source of truth for BFC routing AND sitemap metadata.
+#
+# Clean-URL rewrites (status 200). The inline comment after each 200 rule feeds
+# the discovery-file generator (sitemap.xml / sitemap.html / robots.txt / llms.txt):
+#
+#     /path   /path.html   200   # Category | Label | optional note for llms.txt
+#
+# Netlify ignores everything from '#' onward, so these comments are safe.
+# Rules:
+#   - "Category | Label"  -> nice label, filed under that category heading.
+#   - third " | note"      -> extra sentence used only in llms.txt (optional).
+#   - "# exclude"          -> live route, but kept OUT of all discovery files
+#                             (e.g. the sitemap page itself).
+#   - no comment           -> label derived from the URL, filed under "Other".
+# Category display order is set in scripts/generate-sitemaps.js (CATEGORY_ORDER).
+
+# Homepage: serve home.html at the site root
+/                       /home.html            200   # Main | Home | Homepage
+
+# Clean URLs -> serve the .html files without the extension
+/our-kit                /our-kit.html         200   # Explore | Order Your Kit | Buy a foil handprint & footprint keepsake kit
+/our-story              /our-story.html       200   # Explore | Our Story
+/premium-frames         /premium-frames.html  200   # Explore | Premium Frames
+/print-quality-guarantee /print-quality-guarantee.html 200   # Explore | Print Quality Guarantee
+/foil-fusion-technology /foil-fusion-technology.html   200   # Explore | Foil Fusion Technology
+/eco-friendly           /eco-friendly.html    200   # Explore | Eco-Friendly
+/upload-portal          /upload-portal.html   200   # Explore | Uploading Your Prints
+/tommys-charity         /tommys-charity.html  200   # Explore | Tommy's Charity | £1 from every kit funds Tommy's pregnancy research charity
+/kit-walkthrough-video  /kit-walkthrough-video.html   200   # Resources | Kit Walkthrough Video | Watch Ashley walk you through the whole process
+/bespoke-baby-gallery   /bespoke-baby-gallery.html   200   # Resources | Bespoke Baby Gallery | A growing wall of customer baby keepsake photos
+/faq                    /faq.html             200   # Resources | FAQ
+/find-a-memory-catcher  /find-a-memory-catcher.html 200   # Resources | Find a Memory Catcher | Directory of local in-person Memory Catcher experiences
+/franchise              /franchise.html       200   # Franchise | Memory Catcher™ Franchise | Franchise opportunity - run local baby keepsake experiences
+/franchise-hub          /franchise-hub.html   200   # Franchise | Franchise Hub | One place to explore the opportunity, calculator, map, region search and local finder
+/memory-catcher-hub     /memory-catcher-hub.html   200   # Franchise | The Memory Catcher™ Hub | The franchisee command centre - live commissions, training, tools and an evolving roadmap
+/franchisee-login       /franchisee-login.html   200   # exclude
+/component-library      /component-library.html   200   # exclude
+/franchise-region       /franchise-region.html 200   # Franchise | Search Franchise Regions
+/memory-catcher-earnings-calculator   /memory-catcher-earnings-calculator.html   200   # Franchise | Franchise Earnings Calculator | Estimate potential Memory Catcher franchise earnings
+/memory-catcher-region-map   /memory-catcher-region-map.html   200   # Franchise | Franchise Regional Map | Interactive map of available Memory Catcher regions across the UK
+/memory-catcher-region-map-embed   /memory-catcher-region-map-embed.html   200   # exclude
+/franchises/norfolk-west   /franchise-region-west-norfolk-kings-lynn.html   200   # Franchise Regions | Norfolk West | Region page template - Dixit wires remaining 108 CMS routes to /franchises/<wix-slug>
+/franchises-bio/ashley-eccleston   /franchise-bio-ashley-eccleston.html   200   # Memory Catchers | Ashley Eccleston | Founder Memory Catcher - Wigan, St Helens & Bolton
+/contact                /contact.html         200   # Contact | Contact Us
+/privacy-policy         /privacy-policy.html  200   # Contact | Privacy Policy
+/blog                   /blog.html            200   # Resources | Stories & Inspiration | Heartfelt stories, parenting tips and behind-the-scenes moments
+/post/why-every-parent-needs-a-baby-footprint-keepsake   /post-why-every-parent-needs-a-baby-footprint-keepsake.html   200   # Stories | Why Every Parent Needs a Baby Footprint Keepsake
+/post/baby-wont-open-hand-for-handprints   /post-baby-wont-open-hand-for-handprints.html   200   # Stories | Baby Won't Open Their Hand for Handprints
+/post/can-you-use-paint-for-baby-handprints   /post-can-you-use-paint-for-baby-handprints.html   200   # Stories | Can You Use Paint for Baby Handprints
+/post/capture-baby-s-first-touch-with-foil-prints   /post-capture-baby-s-first-touch-with-foil-prints.html   200   # Stories | Capture Baby's First Touch with Foil Prints
+/post/create-lasting-memories-with-one-tiny-touch   /post-create-lasting-memories-with-one-tiny-touch.html   200   # Stories | Create Lasting Memories with One Tiny Touch
+/post/don-t-let-your-memories-fade-away   /post-don-t-let-your-memories-fade-away.html   200   # Stories | Don't Let Your Memories Fade Away
+/post/foil-fusion-the-future-of-baby-keepsakes   /post-foil-fusion-the-future-of-baby-keepsakes.html   200   # Stories | Foil Fusion: The Future of Baby Keepsakes
+/post/foil-fusion-vs-toner-foiling-the-real-difference   /post-foil-fusion-vs-toner-foiling-the-real-difference.html   200   # Stories | Foil Fusion vs Toner Foiling
+/post/handprints-or-footprints-newborn   /post-handprints-or-footprints-newborn.html   200   # Stories | Handprints or Footprints for Newborns
+/post/how-to-take-your-babys-handprints-neatly   /post-how-to-take-your-babys-handprints-neatly.html   200   # Stories | How to Take Your Baby's Handprints Neatly
+/post/step-by-step-guide-to-a-beautiful-baby-keepsake   /post-step-by-step-guide-to-a-beautiful-baby-keepsake.html   200   # Stories | Step-by-Step Guide to a Beautiful Baby Keepsake
+/post/the-must-have-handprint-kit-for-new-parents   /post-the-must-have-handprint-kit-for-new-parents.html   200   # Stories | The Must-Have Handprint Kit for New Parents
+/post/the-perfect-gift-for-new-mums-and-dads   /post-the-perfect-gift-for-new-mums-and-dads.html   200   # Stories | The Perfect Gift for New Mums and Dads
+/post/tiny-hands-big-emotions-captured-forever   /post-tiny-hands-big-emotions-captured-forever.html   200   # Stories | Tiny Hands, Big Emotions Captured Forever
+/post/why-foil-prints-make-the-ultimate-baby-gift   /post-why-foil-prints-make-the-ultimate-baby-gift.html   200   # Stories | Why Foil Prints Make the Ultimate Baby Gift
+/memory-catcher/salamata-bah   /memory-catcher-salamata-bah.html   200   # util | Memory Catcher PDP (Salamata)
+/upload-portal-thank-you   /upload-portal-thank-you.html   200   # util | Upload Portal - Thank You
+/franchise-success   /franchise-success.html   200   # util | Franchise - Success
+/memory-catcher-enquiry   /memory-catcher-enquiry.html   200   # util | Memory Catcher - Enquiry Form
+/slot-reservation-form   /slot-reservation-form.html   200   # util | Slot Reservation Form
+/upload-portal-form   /upload-portal-form.html   200   # util | Upload Portal - Form
+/sitemap                /sitemap.html         200   # exclude
+
+
+# ============ SEO 301s: live Wix URLs -> new locations (from 17/07/2026 crawl) ============
+# These preserve equity at cutover. Do not remove.
+/supporting-tommy        /tommys-charity          301
+/being-eco-friendly      /eco-friendly            301
+/instruction-video       /kit-walkthrough-video   301
+/customer-content        /bespoke-baby-gallery    301
+/frames                  /premium-frames          301
+/prints                  /print-quality-guarantee 301
+/old-franchise           /franchise               301
+/category/all-products   /our-kit                 301
+/product-page/foil-handprint-footprint-kit-baby-keepsake   /our-kit   301
+/members-area/*          /                        301
+/franchise-region/west-norfolk-kings-lynn   /franchises/norfolk-west   301
+/franchise-bio/ashley-eccleston   /franchises-bio/ashley-eccleston   301
+
+# Redirect any accidental .html visits to the clean URL (SEO tidy)
+/our-story.html              /our-story              301
+/contact.html                /contact                301
+/foil-fusion-technology.html /foil-fusion-technology 301
+/franchise.html              /franchise              301
+/our-kit.html                /our-kit                301
+/faq.html                    /faq                    301
+/eco-friendly.html           /eco-friendly           301
+/franchise-region.html       /franchise-region       301
+/premium-frames.html         /premium-frames         301
+/print-quality-guarantee.html /print-quality-guarantee 301
+
+# NOTE: to add a page, add ONE 200 line above with a "# Category | Label" comment.
+# The generator picks it up on the next deploy - no other file to edit.
+#
+# Example:
+# /tommys-charity         /tommys-charity.html    200   # Explore | Tommy's Charity | £1 from every kit funds Tommy's charity

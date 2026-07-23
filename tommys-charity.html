@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tommy’s Charity – Bespoke Foil Company Giving Back</title>
+<meta name="description" content="Every keepsake kit helps support families through loss. £1 from each order goes to Tommy’s, funding vital research and care for parents who need it most.">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/tommys-charity">
+<link rel="preload" as="image" href="/assets/charity-215-1600.webp" imagesrcset="/assets/charity-215-800.webp 800w, /assets/charity-215-1200.webp 1200w, /assets/charity-215-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/shared/styles.css?v=10">
+<style>
+/* ===== TOMMY'S CHARITY page-specific ===== */
+
+/* --- dark hero with background photo --- */
+.tc-hero{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden;background:#161412}
+.tc-hero-bg{position:absolute;inset:0;z-index:0}
+.tc-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+.tc-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,14,12,.9) 0%,rgba(16,14,12,.66) 44%,rgba(16,14,12,.34) 100%)}
+.tc-hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:150px 40px 110px;width:100%}
+.tc-hero .eyebrow{font-family:var(--sans);font-size:14px;color:rgba(255,255,255,.72);margin-bottom:20px}
+.tc-hero h1{font-family:var(--serif);font-weight:340;font-size:clamp(34px,5vw,54px);line-height:1.1;letter-spacing:-.02em;color:#fff;max-width:18ch;margin-bottom:22px}
+.tc-hero p{font-family:var(--sans);font-size:16px;line-height:1.7;color:rgba(255,255,255,.85);max-width:52ch}
+
+/* --- intro / £1 statement --- */
+.tc-intro{max-width:760px;margin:0 auto;padding:72px 40px 8px;text-align:center}
+.tc-pound{font-family:var(--serif);font-weight:340;font-size:clamp(48px,9vw,92px);line-height:1;letter-spacing:-.03em;color:var(--stone-text);margin-bottom:12px}
+.tc-intro h2{font-family:var(--serif);font-weight:340;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.015em;margin-bottom:20px}
+.tc-intro p{font-family:var(--sans);font-size:16px;line-height:1.8;color:var(--ink-soft);margin-bottom:18px}
+.tc-intro p:last-child{margin-bottom:0}
+
+/* --- who is Tommy's band --- */
+.tc-who{background:var(--porcelain);margin-top:64px;padding:72px 40px}
+.tc-who-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.tc-who img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-img);background:var(--bone)}
+.tc-who h2{font-family:var(--serif);font-weight:340;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.015em;margin-bottom:16px}
+.tc-who p{font-family:var(--sans);font-size:15.5px;line-height:1.8;color:var(--ink-soft);margin-bottom:16px}
+.tc-who p:last-child{margin-bottom:0}
+.tc-who a.tc-link{color:var(--stone-text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone)}
+
+/* --- why it matters to us (with signature) --- */
+.tc-why{max-width:760px;margin:0 auto;padding:72px 40px}
+.tc-why h2{font-family:var(--serif);font-weight:340;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.015em;margin-bottom:20px}
+.tc-why p{font-family:var(--sans);font-size:16px;line-height:1.8;color:var(--ink);margin-bottom:18px}
+.tc-sign{margin-top:32px;padding-bottom:72px}
+.tc-sign .sign-name{font-family:var(--script);font-size:28px;color:var(--ink);line-height:1.1;margin-bottom:2px}
+.tc-sign .sign-role{font-family:var(--sans);font-size:14px;color:var(--ink-soft)}
+
+/* --- closing CTA band --- */
+.tc-cta{background:var(--stone);text-align:center;padding:64px 40px}
+.tc-cta h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.015em;color:var(--ink);margin-bottom:16px}
+.tc-cta p{font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--ink);max-width:52ch;margin:0 auto 28px}
+
+@media(max-width:760px){
+  .tc-who-inner{grid-template-columns:1fr;gap:28px}
+  .tc-who-inner img{order:-1}
+}
+@media(max-width:600px){
+  .tc-hero{min-height:460px}
+  .tc-hero-inner{padding:120px 18px 72px}
+  .tc-hero-bg::after{background:linear-gradient(180deg,rgba(16,14,12,.6) 0%,rgba(16,14,12,.55) 55%,rgba(16,14,12,.82) 100%)}
+  .tc-intro{padding:48px 18px 8px}
+  .tc-who,.tc-why,.tc-cta{padding-left:18px;padding-right:18px}
+  .tc-sign{padding-bottom:56px}
+}
+</style>
+</head>
+<body>
+
+<!-- INTERIM NAV MENU -->
+<nav class="nav-menu" id="navMenu" aria-hidden="true">
+  <div class="nav-menu-inner">
+    <div class="nav-menu-top">
+      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+        <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+      </a>
+      <div class="nav-menu-top-right">
+        <a class="nav-menu-order" href="/our-kit">
+          <span>Order Your Kit</span>
+          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+        <div class="nav-menu-links">
+      <a href="/" data-page="home">Home</a>
+      <a href="/our-story" data-page="our-story">Our Story</a>
+      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+      <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+      <a href="/our-kit" data-page="our-kit">Order Your Kit</a>
+      <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+      <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+      <a href="/faq" data-page="faq">FAQ</a>
+      <a href="/contact" data-page="contact">Contact</a>
+    </div>
+
+    <div class="nav-menu-cta">
+      <div class="nav-menu-cta-head">
+        <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
+        <span class="nav-menu-cta-sub">Run it, or find one near you</span>
+      </div>
+      <div class="nav-menu-cards">
+        <a class="nav-menu-card" href="/franchise" data-page="franchise">
+          <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
+          <span class="nav-menu-card-label">
+            <span>Become a Memory Catcher</span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
+          <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
+          <span class="nav-menu-card-label">
+            <span>Find a Memory Catcher</span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="announce">
+  <img src="/assets/tp-stars.svg" alt="Rated Excellent on Trustpilot">
+  <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
+</div>
+
+<div class="hero-scope">
+<header>
+  <div class="nav-row">
+    <button class="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
+      <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+    </a>
+    <div class="nav-right">
+      <a class="cta nav-cta on-dark" href="/our-kit">
+        <span class="lbl">Order Your Kit</span>
+        <span class="lbl-short">Order Kit</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <button class="cart-btn" aria-label="Basket">
+        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ DARK HERO WITH PHOTO ============ -->
+<section class="tc-hero">
+  <div class="tc-hero-bg">
+    <!-- IMAGE PLACEHOLDER: warm family / baby moment (dark) - charity-215 -->
+    <img src="/assets/charity-215-1600.webp"
+         srcset="/assets/charity-215-800.webp 800w, /assets/charity-215-1200.webp 1200w, /assets/charity-215-1600.webp 1600w"
+         sizes="100vw" width="1600" height="1067" fetchpriority="high"
+         alt="A parent holding their newborn baby's tiny hand">
+  </div>
+  <div class="tc-hero-inner">
+    <p class="eyebrow">Giving Back</p>
+    <h1>Every keepsake helps bring more babies home</h1>
+    <p>For every kit we sell, we donate &pound;1 to Tommy's, the leading charity funding pregnancy research in the UK. A small gesture on its own, but together, it adds up to something that matters.</p>
+  </div>
+</section>
+</div><!-- /hero-scope -->
+
+<!-- ============ THE £1 STATEMENT ============ -->
+<section class="tc-intro">
+  <div class="tc-pound">&pound;1</div>
+  <h2>From every single kit, to a cause close to our hearts</h2>
+  <p>We started this business to help families hold onto the moments that pass far too quickly. So it felt only right that our work should also help the families who don't get to make those memories.</p>
+  <p>That's why &pound;1 from every kit we sell goes straight to Tommy's. You don't have to do anything extra, it's simply part of every order, our way of turning your keepsake into a little bit of good.</p>
+</section>
+
+<!-- ============ WHO ARE TOMMY'S ============ -->
+<section class="tc-who">
+  <div class="tc-who-inner">
+    <div>
+      <h2>Who are Tommy's?</h2>
+      <p>Tommy's is the pregnancy and baby charity, and the leading charity funding pregnancy research in the UK. Their mission is to stop the heartbreak and devastation of baby loss, and to make pregnancy and birth safe for everyone.</p>
+      <p>They fund ground-breaking research into the causes of miscarriage, stillbirth and premature birth, and provide expert, midwife-led information and support for families at every stage of their journey.</p>
+      <p>You can learn more about their work at <a class="tc-link" href="https://www.tommys.org" target="_blank" rel="noopener">tommys.org</a>.</p>
+    </div>
+    <!-- IMAGE PLACEHOLDER: gentle parent-and-baby moment - founders-074 -->
+    <img src="/assets/founders-074-1000.webp" alt="A family holding their newborn">
+  </div>
+</section>
+
+<!-- ============ WHY IT MATTERS TO US ============ -->
+<section class="tc-why">
+  <h2>Why it matters to us</h2>
+  <p>As parents ourselves, we know how precious those early days are, and we know that not every family gets to keep them. That truth sits with us in everything we make.</p>
+  <p>When you order a kit, you're not just preserving your own memory. You're helping fund the research and the care that gives other families the chance to make theirs. It's the part of what we do that we're most proud of.</p>
+  <p>Thank you for being part of it.</p>
+  <div class="tc-sign">
+    <p class="sign-name">Ashley &amp; Ryan</p>
+    <p class="sign-role">Co-founders, The Bespoke Foil Company</p>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="tc-cta">
+  <h2>Make a memory, make a difference</h2>
+  <p>Every kit you order helps preserve your own moments, and helps make pregnancy and birth safer for families everywhere.</p>
+  <a class="cta dark" href="https://www.thebespokefoilcompany.co.uk/product-page/foil-handprint-footprint-kit-baby-keepsake">
+    <span class="lbl">Order Your Kit</span>
+    <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+</section>
+
+<!-- ============ COMMUNITY (shared) ============ -->
+<section class="community">
+  <div class="community-inner">
+    <div>
+      <h2>Join our community</h2>
+      <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
+    </div>
+    <div class="community-form">
+      <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
+      <button id="communityJoin">Join</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-col foot-contact">
+      <h4>Contact</h4>
+      <p>Tel: 07506 998934</p>
+      <p>Email: hello@thebespokefoilcompany.co.uk</p>
+      <div class="foot-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
+      </div>
+      <p class="f-label">Find Us</p>
+      <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
+      <p class="f-label">Opening Hours</p>
+      <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
+    </div>
+
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/our-kit">Order Your Kit</a></li>
+        <li><a href="/our-story">Our Story</a></li>
+        <li><a href="/premium-frames">Premium Frames</a></li>
+        <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
+        <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
+        <li><a href="/eco-friendly">Eco-Friendly</a></li>
+        <li><a href="/tommys-charity">Tommy's Charity</a></li>
+        <li><a href="/upload-portal">Uploading Your Prints</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/faq">FAQ's</a></li>
+        <li><a href="/blog">Stories &amp; Inspiration</a></li>
+        <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
+        <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
+      </ul>
+      <h4>Franchise</h4>
+      <ul>
+        <li><a href="/franchise-hub">Franchise Hub</a></li>
+        <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
+        <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
+        <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
+        <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
+        <li><a href="/franchise-region">Search Franchise Regions</a></li>
+        <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/sitemap">Sitemap</a></li>
+      </ul>
+      <div class="foot-right" style="margin-top:26px">
+        <a class="cta on-dark foot-order" href="#order">
+          <span class="lbl">Order Your Kit</span>
+          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <div class="foot-pay" aria-label="Accepted payment methods">
+          <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
+          <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
+          <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
+          <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
+          <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
+          <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+        </div>
+        <div class="foot-tp">
+          <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+          <span class="tp-meta">TrustScore 4.9 &middot; 65 reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-legal">
+    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID: GB419408687.</p>
+    <p style="margin-top:6px"><a href="https://www.mywixdesigner.com/">Website by My Wix Designer</a></p>
+  </div>
+
+  <div class="foot-watermark" aria-hidden="true">
+    <img src="/assets/bfc-logo.svg" alt="">
+  </div>
+</footer>
+
+<script>
+/* sticky header (shared behaviour) */
+(function(){
+  const header = document.querySelector('header');
+  if(!header) return;
+  const ST=60, HIDE=260, D=6;
+  let lastY=window.scrollY, acc=0, tick=false;
+  function up(){
+    const y=window.scrollY, diff=y-lastY;
+    if(y>ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+    if(Math.abs(diff)>D){
+      if(diff>0){ acc+=diff; if(acc>HIDE && y>ST) header.classList.add('header-hidden'); }
+      else { header.classList.remove('header-hidden'); acc=0; }
+      lastY=y;
+    }
+    tick=false;
+  }
+  window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});
+  up();
+})();
+
+/* (no page-specific JS needed on the Tommy's Charity page) */
+</script>
+<script>
+/* interim nav menu toggle */
+(function(){
+  const menu=document.getElementById('navMenu');
+  const burger=document.querySelector('.burger');
+  const closeBtn=document.getElementById('navMenuClose');
+  if(!menu||!burger)return;
+  function open(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}
+  function close(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}
+  burger.addEventListener('click',open);
+  if(closeBtn)closeBtn.addEventListener('click',close);
+  menu.addEventListener('click',e=>{if(e.target===menu)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+</script>
+</body>
+</html>

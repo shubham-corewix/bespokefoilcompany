@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Upload Portal | Bespoke Foil Company</title>
+<meta name="description" content="Upload your prints, add personalisation and choose your frame and foil colours ahead of receiving your proof.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="./shared/styles.css?v=10">
+<style>
+/* ============================================================
+   UPLOAD PORTAL - multi-step form (focused chrome, no site nav)
+   Dixit: this connects to Zendesk + related tools. The step markup
+   and validation are static UI only; wire submission + the print
+   upload / personalisation steps (added later) into #upfSteps.
+   ============================================================ */
+body{background:var(--porcelain)}
+
+/* ---- focused header: combined Bespoke Foil Company x Memory Catcher lockup ---- */
+.upf-head{position:sticky;top:0;z-index:20;background:var(--porcelain);border-bottom:1px solid var(--hairline)}
+.upf-head-inner{max-width:1280px;margin:0 auto;padding:14px 40px;display:flex;justify-content:center}
+.upf-lockup{display:flex;align-items:center;text-decoration:none}
+.upf-lockup img{height:34px;width:auto;display:block}
+
+/* ---- progress bar ---- */
+.upf-progress{max-width:520px;margin:0 auto;padding:26px 20px 0}
+.upf-progress-track{height:4px;background:var(--bone);border-radius:100px;overflow:hidden}
+.upf-progress-fill{height:100%;background:var(--ink);border-radius:100px;width:0;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.upf-progress-meta{display:flex;justify-content:space-between;align-items:center;margin-top:9px;font-family:var(--sans);font-size:12px;color:var(--stone-text)}
+
+/* ---- shell ---- */
+.upf-wrap{min-height:calc(100vh - 58px);display:flex;justify-content:center;align-items:flex-start;padding:8px 20px 64px}
+.upf-card{width:100%;max-width:520px}
+.upf-step{display:none}
+.upf-step.active{display:block;animation:upfIn .35s ease}
+@keyframes upfIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---- welcome step ---- */
+.upf-welcome{padding-top:24px}
+.upf-welcome-media{border-radius:var(--r-img);overflow:hidden;margin-bottom:24px}
+.upf-welcome-media img{width:100%;height:auto;display:block;aspect-ratio:16/10;object-fit:cover}
+.upf-welcome h1{font-family:var(--serif);font-weight:340;font-size:clamp(30px,4.4vw,40px);line-height:1.08;letter-spacing:-.015em;margin-bottom:16px}
+.upf-welcome p{font-size:15px;color:var(--ink-soft);line-height:1.6;margin-bottom:28px;max-width:44ch}
+
+/* ---- form step headings ---- */
+.upf-step-head{padding-top:16px;margin-bottom:24px}
+.upf-step-head h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,32px);letter-spacing:-.01em}
+
+/* ---- fields (shared with other BFC forms) ---- */
+.frm-field{margin-bottom:20px}
+.frm-label{display:block;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink);margin-bottom:7px}
+.frm-label .req{color:var(--stone-text)}
+.frm-input,.frm-select{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-btn);padding:13px 15px;transition:border-color .15s ease}
+.frm-input::placeholder{color:var(--ink-faint)}
+.frm-input:focus,.frm-select:focus{outline:none;border-color:var(--ink)}
+.frm-input.err,.frm-select.err{border-color:#c0392b}
+.frm-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:42px;cursor:pointer}
+.frm-tel{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.frm-tel .frm-cc{display:flex;align-items:center;gap:6px;border:1px solid var(--hairline);border-radius:var(--r-btn);padding:0 12px;background:var(--white);font-size:14px;color:var(--ink);white-space:nowrap}
+
+/* ---- actions ---- */
+.upf-actions{display:flex;align-items:center;gap:12px;margin-top:28px}
+.upf-back{flex:none;width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;background:var(--bone);border:0;border-radius:var(--r-btn);cursor:pointer;transition:background .15s ease}
+.upf-back:hover{background:#cfc7bb}
+.upf-back svg{width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.upf-next{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--ink);color:var(--white);font-family:var(--sans);font-weight:500;font-size:16px;padding:15px 24px;border:0;border-radius:var(--r-btn);cursor:pointer;transition:background .18s ease}
+.upf-next:hover{background:#1a1a1a}
+.upf-next svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.upf-cta-full{width:100%}
+
+/* ---- step intro copy (used by uploads / social steps) ---- */
+.upf-step-head p{font-family:var(--sans);font-size:14px;color:var(--ink-soft);line-height:1.6;margin-top:10px;max-width:46ch}
+.upf-lede{font-family:var(--sans);font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:18px;max-width:46ch}
+.upf-lede + .upf-lede{margin-top:-6px}
+.upf-lede b{font-weight:600;color:var(--ink)}
+.upf-note-warn{color:#c0392b;font-weight:600}
+
+/* ---- media panel (welcome-style image / captioned choice banner) ---- */
+.upf-media{border-radius:var(--r-img);overflow:hidden;margin-bottom:22px;position:relative}
+.upf-media img{width:100%;height:auto;display:block;aspect-ratio:16/11;object-fit:cover}
+.upf-media.tall img{aspect-ratio:4/5}
+/* caption overlaid bottom-left, matches the "Frame Colour Choices" banners */
+.upf-media .cap{position:absolute;left:22px;bottom:20px;font-family:var(--serif);font-weight:340;font-size:22px;line-height:1.15;color:var(--white);text-shadow:0 1px 10px rgba(0,0,0,.35)}
+.upf-media .cap::after{content:"";display:block;width:34px;height:1px;background:rgba(255,255,255,.7);margin-top:8px}
+
+/* ---- video poster with play button ---- */
+.upf-video{position:relative;cursor:pointer}
+.upf-video .play{position:absolute;inset:0;margin:auto;width:52px;height:52px;background:rgba(255,255,255,.92);border-radius:50%;display:grid;place-items:center;transition:transform .18s ease,background .18s ease}
+.upf-video:hover .play{transform:scale(1.06)}
+.upf-video .play svg{width:20px;height:20px;fill:var(--ink);margin-left:3px}
+
+/* ---- carousel dots (welcome/social lifestyle strip) ---- */
+.upf-dots{display:flex;justify-content:center;gap:7px;margin:-10px 0 20px}
+.upf-dots span{width:6px;height:6px;border-radius:50%;background:var(--hairline)}
+.upf-dots span.on{background:var(--ink)}
+
+/* ---- upload dropzones ---- */
+.upf-drop{display:block;border:1px dashed var(--stone);border-radius:var(--r-card);background:var(--white);padding:20px 16px;text-align:center;cursor:pointer;transition:border-color .15s ease,background .15s ease;margin-bottom:14px}
+.upf-drop:hover{border-color:var(--ink);background:var(--porcelain)}
+.upf-drop.err{border-color:#c0392b}
+.upf-drop .t{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink);margin-bottom:4px}
+.upf-drop .h{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint)}
+.upf-drop.filled{border-style:solid;border-color:var(--ink)}
+.upf-drop.filled .h{color:var(--stone-text)}
+.upf-drop input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+
+/* ---- checkbox row (consent / confirmations) ---- */
+.upf-check{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--hairline);border-radius:var(--r-btn);background:var(--white);padding:13px 15px;cursor:pointer;margin-bottom:14px}
+.upf-check.bare{border:0;background:transparent;padding:2px 0 6px}
+.upf-check input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:18px;height:18px;margin-top:1px;border:1.5px solid var(--stone);border-radius:5px;background:var(--white);cursor:pointer;position:relative;transition:background .15s ease,border-color .15s ease}
+.upf-check input:checked{background:var(--ink);border-color:var(--ink)}
+.upf-check input:checked::after{content:"";position:absolute;left:5px;top:1.5px;width:5px;height:9px;border:solid var(--white);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.upf-check input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.upf-check span{font-family:var(--sans);font-size:13px;color:var(--ink);line-height:1.45}
+.upf-check.err{border-color:#c0392b}
+.upf-check.err input{border-color:#c0392b}
+
+/* ---- radio list (proof delivery, font choice as pills) ---- */
+.upf-radio{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--hairline);border-radius:var(--r-btn);background:var(--white);padding:14px 16px;cursor:pointer;margin-bottom:12px;transition:border-color .15s ease}
+.upf-radio:has(input:checked){border-color:var(--ink)}
+.upf-radio.err{border-color:#c0392b}
+.upf-radio .rl{display:flex;align-items:center;gap:11px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink)}
+.upf-radio .ri{width:22px;height:22px;flex:0 0 auto;display:grid;place-items:center;color:var(--ink)}
+.upf-radio .ri svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.upf-radio input{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:1.5px solid var(--stone);border-radius:50%;cursor:pointer;position:relative;transition:border-color .15s ease}
+.upf-radio input:checked{border-color:var(--ink)}
+.upf-radio input:checked::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--ink)}
+.upf-radio input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* ---- choice grids (font / layout / frame tiles) ---- */
+.upf-fieldlabel{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink);margin:4px 0 12px}
+.upf-choice{display:grid;gap:12px;margin-bottom:6px}
+.upf-choice.cols-2{grid-template-columns:1fr 1fr}
+.upf-choice.cols-3{grid-template-columns:repeat(3,1fr)}
+.upf-tile{position:relative;display:block;border:1px solid var(--hairline);border-radius:var(--r-card);background:var(--white);overflow:hidden;cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease}
+.upf-tile:hover{border-color:var(--stone)}
+.upf-tile input{position:absolute;opacity:0;pointer-events:none}
+.upf-tile:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.upf-tile:has(input:focus-visible){outline:2px solid var(--ink);outline-offset:2px}
+.upf-tile img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.upf-tile.tall img{aspect-ratio:3/4}
+.upf-tile .cap{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink);text-align:center;padding:10px 6px}
+/* font preview tiles use type instead of an image */
+.upf-tile .prev{aspect-ratio:16/9;display:grid;place-content:center;text-align:center;padding:14px;border-bottom:1px solid var(--hairline)}
+.upf-tile .prev .nm{font-size:12px;letter-spacing:.02em;color:var(--ink)}
+.upf-tile .prev .nm.modern{font-family:var(--sans)}
+.upf-tile .prev .nm.cursive{font-family:var(--script);font-size:22px;line-height:1.1}
+.upf-tile .prev .dt{font-family:var(--sans);font-size:8px;letter-spacing:.14em;color:var(--ink-faint);margin-top:4px;text-transform:uppercase}
+.upf-choice.err .upf-tile{border-color:#c0392b}
+
+/* ---- footer ---- */
+.upf-foot{text-align:center;font-family:var(--sans);font-size:12px;color:var(--ink-faint);padding:24px 20px 32px}
+
+@media(max-width:560px){
+  .upf-head-inner{padding:12px 18px}
+  .upf-wrap{padding:4px 16px 56px}
+  .upf-progress{padding:22px 16px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="upf-head">
+  <div class="upf-head-inner">
+    <a class="upf-lockup" href="/" aria-label="Bespoke Foil Company and Memory Catcher home">
+      <img src="assets/bfc-mc-lockup.svg" alt="Bespoke Foil Company and Memory Catcher">
+    </a>
+  </div>
+</header>
+
+<!-- progress (hidden on the welcome step) -->
+<div class="upf-progress" id="upfProgress" hidden>
+  <div class="upf-progress-track"><div class="upf-progress-fill" id="upfFill"></div></div>
+  <div class="upf-progress-meta">
+    <span id="upfStepLabel">Your details</span>
+    <span id="upfStepCount">Step 1 of 2</span>
+  </div>
+</div>
+
+<main class="upf-wrap">
+  <div class="upf-card">
+    <!-- DIXIT: set data-endpoint to the live submission URL (Zendesk + upload handling). -->
+    <form id="upfForm" novalidate data-endpoint="/upload-portal-submit">
+
+      <!-- ============ WELCOME ============ -->
+      <section class="upf-step active" data-step="welcome" data-label="Welcome">
+        <div class="upf-welcome">
+          <!-- IMAGE PLACEHOLDER: warm lifestyle shot, mum + siblings taking prints (mc-who) -->
+          <div class="upf-welcome-media">
+            <img src="assets/upf-desktop.avif" width="2500" height="2500" alt="A family taking their baby's prints at home">
+          </div>
+          <h1>Welcome to our<br>Upload Portal</h1>
+          <p>Here you can upload your prints directly from your smartphone, add your personalisation details and select your frame and foil colour choices ahead of receiving your proof.</p>
+          <button type="button" class="upf-next upf-cta-full" data-goto="1">
+            Create your keepsake
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 1 - YOUR DETAILS ============ -->
+      <section class="upf-step" data-step="1" data-label="Your details">
+        <div class="upf-step-head"><h2>Your details</h2></div>
+
+        <div class="frm-field">
+          <label class="frm-label" for="fullName">Full Name <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="fullName" name="fullName" autocomplete="name" required>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="email">Email <span class="req">*</span></label>
+          <input class="frm-input" type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="phone">Phone number <span class="req">*</span></label>
+          <div class="frm-tel">
+            <span class="frm-cc">&#127468;&#127463; +44</span>
+            <input class="frm-input" type="tel" id="phone" name="phone" placeholder="0000000000" autocomplete="tel" required>
+          </div>
+        </div>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="welcome" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="2">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 2 - ORDER DETAILS ============ -->
+      <section class="upf-step" data-step="2" data-label="Order details">
+        <div class="upf-step-head"><h2>Order details</h2></div>
+
+        <div class="frm-field">
+          <label class="frm-label" for="purchasedFrom">Purchased From <span class="req">*</span></label>
+          <select class="frm-select" id="purchasedFrom" name="purchasedFrom" required>
+            <option value="" disabled selected></option>
+            <option>The Bespoke Foil Company website</option>
+            <option>A Memory Catcher (in person)</option>
+            <option>A baby class or event</option>
+            <option>As a gift</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="orderNumber">Order Number <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="orderNumber" name="orderNumber" required>
+        </div>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="1" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="3">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 3 - UPLOADS (prints) ============ -->
+      <section class="upf-step" data-step="3" data-label="Uploads">
+        <div class="upf-step-head">
+          <h2>Uploads</h2>
+          <p>Please watch the video before taking your photos and uploading your prints. Failure to follow the instructions will result in our system rejecting your submissions.</p>
+        </div>
+
+        <!-- IMAGE PLACEHOLDER: kit walkthrough video poster (reusing story-video still); Dixit to wire the player -->
+        <div class="upf-media upf-video" id="upfKitVideo" role="button" tabindex="0" aria-label="Play the print-taking walkthrough video">
+          <img src="assets/story-video-1000.webp" width="1000" height="688" alt="Watch how to take and photograph your prints">
+          <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        </div>
+
+        <p class="upf-lede" style="margin-top:18px">If you have produced more than one handprint or footprint on the same sheet of paper, <span class="upf-note-warn">please mark with an "X"</span> the hand / foot you would like us to use from that sheet. You can choose a maximum of two prints.</p>
+
+        <label class="upf-drop" for="printSheet1">
+          <span class="t">Upload &ndash; Sheet 1</span>
+          <span class="h">Click here and take a photo directly from your phone camera</span>
+          <input type="file" id="printSheet1" name="printSheet1" accept="image/*" capture="environment" required>
+        </label>
+        <label class="upf-drop" for="printSheet2">
+          <span class="t">Upload &ndash; Sheet 2</span>
+          <span class="h">Click here and take a photo directly from your phone camera</span>
+          <input type="file" id="printSheet2" name="printSheet2" accept="image/*" capture="environment">
+        </label>
+
+        <label class="upf-check" data-confirm>
+          <input type="checkbox" id="printConfirm" name="printConfirm" required>
+          <span>I confirm I have watched the video and submitted my prints correctly, marking the prints I would like to use with a cross "X".</span>
+        </label>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="2" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="4">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 4 - PERSONALISATION ============ -->
+      <section class="upf-step" data-step="4" data-label="Personalisation">
+        <div class="upf-step-head"><h2>Personalisation</h2></div>
+
+        <!-- IMAGE PLACEHOLDER: layout-choices banner (reusing mc-what still); swap for real layout-choices art -->
+        <div class="upf-media">
+          <img src="assets/upf-large-icon.avif" width="400" height="560" alt="">
+          <span class="cap">Layout<br>Choices</span>
+        </div>
+
+        <div class="frm-field">
+          <label class="frm-label" for="personLine1">Personalisation (Line 1) &ndash; Eg &ndash; Full Name <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="personLine1" name="personLine1" required>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="personLine2">Personalisation (Line 2) &ndash; Eg &ndash; Date of Birth <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="personLine2" name="personLine2" required>
+        </div>
+
+        <p class="upf-fieldlabel">Please choose your font</p>
+        <div class="upf-choice cols-2" data-required-group="font">
+          <label class="upf-tile">
+            <input type="radio" name="font" value="Modern" required>
+            <span class="prev"><span class="nm modern">TOMMY ECCLESTON</span><span class="dt">14th June 2021</span></span>
+            <span class="cap">Modern</span>
+          </label>
+          <label class="upf-tile">
+            <input type="radio" name="font" value="Cursive" required>
+            <span class="prev"><span class="nm cursive">Tommy Eccleston</span><span class="dt">14th June 2021</span></span>
+            <span class="cap">Cursive</span>
+          </label>
+        </div>
+
+        <label class="upf-check" data-confirm>
+          <input type="checkbox" id="fontConfirm" name="fontConfirm" required>
+          <span>I understand that I can only use the fonts in the templates as per your font licenses.</span>
+        </label>
+
+        <p class="upf-fieldlabel">Please select your layout</p>
+        <div class="upf-choice cols-2" data-required-group="layout">
+          <label class="upf-tile tall">
+            <input type="radio" name="layout" value="Two Feet" required>
+            <!-- IMAGE PLACEHOLDER: 'Two Feet' framed example -->
+            <img src="assets/inc-framed-hr.webp" alt="Two feet layout in a dark frame">
+            <span class="cap">Two Feet</span>
+          </label>
+          <label class="upf-tile tall">
+            <input type="radio" name="layout" value="Hand &amp; Foot" required>
+            <!-- IMAGE PLACEHOLDER: 'Hand & Foot' framed example -->
+            <img src="assets/inc-premium-hr.webp" alt="Hand and foot layout in a light frame">
+            <span class="cap">Hand &amp; Foot</span>
+          </label>
+          <label class="upf-tile tall">
+            <input type="radio" name="layout" value="Two Hand (Siblings)" required>
+            <!-- IMAGE PLACEHOLDER: 'Two Hand (Siblings)' framed example -->
+            <img src="assets/inc-foil-hr.webp" alt="Two hand siblings layout in a dark frame">
+            <span class="cap">Two Hand (Siblings)</span>
+          </label>
+        </div>
+
+        <label class="upf-check" data-confirm>
+          <input type="checkbox" id="layoutConfirm" name="layoutConfirm" required>
+          <span>I understand that if I decide to change the layout at the proofing stage, this may incur a charge.</span>
+        </label>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="3" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="5">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 5 - CUSTOMISATION: FRAME COLOUR ============ -->
+      <section class="upf-step" data-step="5" data-label="Customisation">
+        <div class="upf-step-head"><h2>Customisation</h2></div>
+
+        <!-- IMAGE PLACEHOLDER: frame-colour-choices banner (reusing premium-frames still) -->
+        <div class="upf-media">
+          <img src="assets/inc-framed-hr.webp" width="1100" height="688" alt="">
+          <span class="cap">Frame Colour<br>Choices</span>
+        </div>
+
+        <p class="upf-fieldlabel">Choose your frame colour (if applicable):</p>
+        <div class="upf-choice cols-3" data-required-group="frame">
+          <label class="upf-tile">
+            <input type="radio" name="frame" value="Black" required>
+            <img src="assets/upf-black.avif" alt="Black frame">
+            <span class="cap">Black</span>
+          </label>
+          <label class="upf-tile">
+            <input type="radio" name="frame" value="Walnut" required>
+            <img src="assets/upf-walnut.avif" alt="Walnut frame">
+            <span class="cap">Walnut</span>
+          </label>
+          <label class="upf-tile">
+            <input type="radio" name="frame" value="Oak" required>
+            <img src="assets/upf-oak.avif" alt="Oak frame">
+            <span class="cap">Oak</span>
+          </label>
+          <label class="upf-tile">
+            <input type="radio" name="frame" value="Ash" required>
+            <img src="assets/upf-ash.avif" alt="Ash frame">
+            <span class="cap">Ash</span>
+          </label>
+          <label class="upf-tile">
+            <input type="radio" name="frame" value="White" required>
+            <img src="assets/upf-white.avif" alt="White frame">
+            <span class="cap">White</span>
+          </label>
+          <label class="upf-tile">
+            <input type="radio" name="frame" value="Print only" required>
+            <img src="assets/upf-print.avif" alt="Print only, no frame">
+            <span class="cap">I ordered<br>print only</span>
+          </label>
+        </div>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="4" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="6">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 6 - CUSTOMISATION: CARD & FOIL ============ -->
+      <section class="upf-step" data-step="6" data-label="Customisation">
+        <div class="upf-step-head"><h2>Customisation</h2></div>
+
+        <!-- IMAGE PLACEHOLDER: card-&-foil-combinations banner (reusing foil-fusion still) -->
+        <div class="upf-media">
+          <img src="assets/foil-fusion.webp" width="1100" height="688" alt="">
+          <span class="cap">Card &amp; Foil<br>Combinations</span>
+        </div>
+
+        <div class="frm-field">
+          <label class="frm-label" for="cardFoil">Card &amp; Foil Colour <span class="req">*</span></label>
+          <!-- DIXIT: populate these options with the real card/foil combinations. Placeholders only. -->
+          <select class="frm-select" id="cardFoil" name="cardFoil" required>
+            <option value="" disabled selected></option>
+            <option>White card / Gold foil</option>
+            <option>White card / Silver foil</option>
+            <option>White card / Rose gold foil</option>
+            <option>Black card / Gold foil</option>
+            <option>Black card / Silver foil</option>
+            <option>Black card / Rose gold foil</option>
+          </select>
+        </div>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="5" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="7">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 7 - RECEIVING YOUR PROOF ============ -->
+      <section class="upf-step" data-step="7" data-label="Receiving your proof">
+        <div class="upf-step-head">
+          <h2>Receiving your proof</h2>
+          <p>Would you like your proof to be sent via WhatsApp or email?</p>
+        </div>
+
+        <div data-required-group="proofChannel">
+          <label class="upf-radio">
+            <span class="rl">WhatsApp</span>
+            <span class="rl" style="gap:8px">
+              <span class="ri"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+              <input type="radio" name="proofChannel" value="WhatsApp" checked required>
+            </span>
+          </label>
+          <label class="upf-radio">
+            <span class="rl">Email</span>
+            <span class="rl" style="gap:8px">
+              <span class="ri"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg></span>
+              <input type="radio" name="proofChannel" value="Email" required>
+            </span>
+          </label>
+        </div>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="6" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="8">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 8 - SOCIAL CONTENT (prize draw) ============ -->
+      <section class="upf-step" data-step="8" data-label="Share your moments">
+        <div class="upf-step-head"><h2>We LOVE seeing your memory-making moments!</h2></div>
+
+        <p class="upf-lede">Whether it's the sleepy stretch of a newborn or the giggles during the print-making process &ndash; all content tells a story.</p>
+        <p class="upf-lede">Please upload your content below to be entered into our monthly prize draw and be in with a chance of <b>winning a &pound;100 voucher</b> to use on our site.</p>
+        <p class="upf-lede">Winners will be announced <b>monthly</b> on our socials and will be judged by cutest photo or the most informative video!</p>
+
+        <!-- IMAGE PLACEHOLDER: lifestyle print-making strip (reusing mc-who still) -->
+        <div class="upf-media">
+          <img src="assets/upf-tablet.avif" width="1000" height="1000" alt="A parent and child taking prints together">
+        </div>
+        <div class="upf-dots"><span class="on"></span><span></span><span></span></div>
+
+        <label class="upf-drop" for="socialPhoto">
+          <span class="t">Upload Photo</span>
+          <span class="h">Click here to upload a photo from your camera roll</span>
+          <input type="file" id="socialPhoto" name="socialPhoto" accept="image/*">
+        </label>
+        <label class="upf-drop" for="socialVideo">
+          <span class="t">Upload Video</span>
+          <span class="h">Click here to upload a video from your camera roll</span>
+          <input type="file" id="socialVideo" name="socialVideo" accept="video/*">
+        </label>
+
+        <label class="upf-check bare">
+          <input type="checkbox" id="socialConsent" name="socialConsent">
+          <span>I consent to you sharing my uploads on your socials.</span>
+        </label>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-next upf-cta-full" data-goto="9" data-skip>
+            Skip
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="7" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="button" class="upf-next" data-goto="9">
+            Continue
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ STEP 9 - DELIVERY DETAILS (final / submit) ============ -->
+      <section class="upf-step" data-step="9" data-label="Delivery details">
+        <div class="upf-step-head">
+          <h2>Delivery details</h2>
+          <p>This is where your products will be shipped to.</p>
+        </div>
+
+        <div class="frm-field">
+          <label class="frm-label" for="addr1">Address Line 1 <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="addr1" name="addr1" autocomplete="address-line1" required>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="addr2">Address Line 2 <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="addr2" name="addr2" autocomplete="address-line2" required>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="townCity">Town / City <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="townCity" name="townCity" autocomplete="address-level2" required>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="postcode">Postcode <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="postcode" name="postcode" autocomplete="postal-code" required>
+        </div>
+
+        <div class="upf-actions">
+          <button type="button" class="upf-back" data-goto="8" aria-label="Back">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          </button>
+          <button type="submit" class="upf-next" id="upfSubmit">
+            Submit
+            <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+        </div>
+      </section>
+
+    </form>
+  </div>
+</main>
+
+<footer class="upf-foot">Upload Portal v1.1 | &copy; Bespoke Foil Company</footer>
+
+<script>
+/* ============================================================
+   Multi-step scaffold. Steps are the <section.upf-step> blocks in
+   DOM order: 'welcome' then numbered steps. Adding a new numbered
+   step section (with data-step="N", data-label) makes it appear
+   automatically - update the last Continue's data-goto to point at it.
+   ============================================================ */
+(function(){
+  const form = document.getElementById('upfForm');
+  const steps = [...form.querySelectorAll('.upf-step')];
+  const progress = document.getElementById('upfProgress');
+  const fill = document.getElementById('upfFill');
+  const stepLabel = document.getElementById('upfStepLabel');
+  const stepCount = document.getElementById('upfStepCount');
+
+  // numbered steps only (exclude 'welcome') for the progress meter
+  const numbered = steps.filter(s => s.dataset.step !== 'welcome');
+  const totalNumbered = numbered.length;
+
+  function keyOf(s){ return s.dataset.step; }
+  function find(key){ return steps.find(s => keyOf(s) === String(key)); }
+
+  function show(key){
+    const target = find(key);
+    if(!target) return; // e.g. data-goto="3" before step 3 exists - no-op for now
+    steps.forEach(s => s.classList.toggle('active', s === target));
+
+    const isWelcome = target.dataset.step === 'welcome';
+    progress.hidden = isWelcome;
+    if(!isWelcome){
+      const idx = numbered.indexOf(target); // 0-based
+      fill.style.width = (((idx + 1) / totalNumbered) * 100) + '%';
+      stepLabel.textContent = target.dataset.label || '';
+      stepCount.textContent = 'Step ' + (idx + 1) + ' of ' + totalNumbered;
+    }
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  const emailRe = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+  function markErr(el, bad){
+    // route the error class to the visible control wrapper where one exists
+    const tile = el.closest('.upf-tile');
+    const check = el.closest('.upf-check');
+    const drop = el.closest('.upf-drop');
+    (tile || check || drop || el).classList.toggle('err', bad);
+  }
+
+  function validate(stepEl){
+    let ok = true, firstBad = null;
+    const done = new Set();
+
+    stepEl.querySelectorAll('[required]').forEach(el => {
+      let bad = false;
+
+      if(el.type === 'radio'){
+        if(done.has(el.name)) return;      // one check per radio group
+        done.add(el.name);
+        bad = !stepEl.querySelector('input[name="'+el.name+'"]:checked');
+        stepEl.querySelectorAll('input[name="'+el.name+'"]').forEach(r => markErr(r, bad));
+      } else if(el.type === 'checkbox'){
+        bad = !el.checked;
+        markErr(el, bad);
+      } else if(el.type === 'file'){
+        // file inputs are validated via the group rule below, skip here
+        return;
+      } else {
+        bad = !el.value.trim() || (el.type === 'email' && !emailRe.test(el.value));
+        markErr(el, bad);
+      }
+
+      if(bad){ ok = false; firstBad = firstBad || el; }
+    });
+
+    // group rule: uploads step needs at least one print sheet
+    if(stepEl.dataset.step === '3'){
+      const s1 = stepEl.querySelector('#printSheet1');
+      const s2 = stepEl.querySelector('#printSheet2');
+      const none = !(s1.files && s1.files.length) && !(s2.files && s2.files.length);
+      markErr(s1, none);
+      if(none){ ok = false; firstBad = firstBad || s1; }
+    }
+
+    if(firstBad){
+      (firstBad.closest('.upf-drop') || firstBad).scrollIntoView({block:'center', behavior:'smooth'});
+      if(typeof firstBad.focus === 'function') firstBad.focus({preventScroll:true});
+    }
+    return ok;
+  }
+
+  function submitForm(){
+    const submitBtn = document.getElementById('upfSubmit');
+    submitBtn.disabled = true;
+    submitBtn.firstChild.textContent = 'Submitting ';
+
+    // DIXIT: wire this to the real submission endpoint (Zendesk + file handling).
+    // Multipart because of the print/social uploads. On success, land on the thank-you page.
+    const ENDPOINT = form.dataset.endpoint || '/upload-portal-submit';
+    const data = new FormData(form);
+
+    fetch(ENDPOINT, { method:'POST', body:data })
+      .then(res => {
+        if(!res.ok) throw new Error('Bad status ' + res.status);
+        window.location.href = '/upload-portal-thank-you';
+      })
+      .catch(() => {
+        // Placeholder until the endpoint exists: proceed to thank-you so the flow is testable.
+        window.location.href = '/upload-portal-thank-you';
+      });
+  }
+
+  form.addEventListener('click', e => {
+    const btn = e.target.closest('[data-goto]');
+    if(!btn) return;
+    const current = form.querySelector('.upf-step.active');
+    const goingBack = btn.classList.contains('upf-back');
+    const skipping = btn.hasAttribute('data-skip');
+    // validate only when moving forward out of a numbered step (skip bypasses validation)
+    if(!goingBack && !skipping && current && current.dataset.step !== 'welcome'){
+      if(!validate(current)) return;
+    }
+    show(btn.dataset.goto);
+  });
+
+  // final submit
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const current = form.querySelector('.upf-step.active');
+    if(validate(current)) submitForm();
+  });
+
+  // clear error styling as the user corrects a field
+  form.addEventListener('input', e => markErr(e.target, false));
+  form.addEventListener('change', e => {
+    markErr(e.target, false);
+    if(e.target.type === 'radio'){
+      form.querySelectorAll('input[name="'+e.target.name+'"]').forEach(r => markErr(r, false));
+    }
+    // reflect a chosen file in the dropzone label
+    if(e.target.type === 'file'){
+      const drop = e.target.closest('.upf-drop');
+      if(drop){
+        const has = e.target.files && e.target.files.length;
+        drop.classList.toggle('filled', !!has);
+        if(has){
+          const h = drop.querySelector('.h');
+          if(h) h.textContent = e.target.files[0].name;
+        }
+      }
+    }
+  });
+
+  // kit video poster: keyboard-activatable placeholder (Dixit wires the real player)
+  const kitVideo = document.getElementById('upfKitVideo');
+  if(kitVideo){
+    kitVideo.addEventListener('keydown', ev => {
+      if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); kitVideo.click(); }
+    });
+  }
+
+  show('welcome');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Log In | The Memory Catcher™ Hub</title>
+<meta name="description" content="Log in to The Memory Catcher™ Hub - your private franchisee command centre.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/franchisee-login">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/shared/styles.css?v=10">
+<style>
+/* ===== FRANCHISEE LOGIN (placeholder) ===== */
+body{background:var(--ink)}
+.login-shell{
+  min-height:100vh;
+  min-height:100dvh;
+  display:grid;
+  place-items:center;
+  padding:40px 20px;
+  position:relative;
+  overflow:hidden;
+}
+.login-shell::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 80% at 50% -10%, rgba(190,173,157,.26), transparent 60%);
+  pointer-events:none;
+}
+.login-card{
+  position:relative;z-index:2;
+  width:100%;max-width:420px;
+  background:var(--white);
+  border-radius:22px;
+  padding:44px 38px 38px;
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.6);
+  text-align:center;
+}
+.login-logo{display:block;margin:0 auto 26px;height:24px;width:auto}
+.login-card h1{font-family:var(--serif);font-weight:340;font-size:28px;letter-spacing:-.02em;margin-bottom:6px}
+.login-card .sub{font-family:var(--sans);font-size:14.5px;color:var(--ink-soft);margin-bottom:30px}
+
+.login-field{text-align:left;margin-bottom:16px}
+.login-field label{display:block;font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.02em;color:var(--ink);margin-bottom:7px}
+.login-field input{
+  width:100%;
+  font-family:var(--sans);font-size:15px;
+  padding:13px 15px;
+  border:1px solid var(--hairline);
+  border-radius:var(--r-btn);
+  background:var(--porcelain);
+  color:var(--ink);
+  transition:border-color .2s ease, background .2s ease;
+}
+.login-field input:focus{outline:none;border-color:var(--ink);background:var(--white)}
+
+.login-btn{
+  width:100%;
+  margin-top:8px;
+  font-family:var(--sans);font-size:15px;font-weight:600;
+  padding:14px;
+  border:none;border-radius:var(--r-btn);
+  background:var(--ink);color:var(--white);
+  cursor:pointer;
+  transition:transform .15s ease, background .2s ease;
+}
+.login-btn:hover{transform:translateY(-1px)}
+.login-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.login-row a{font-family:var(--sans);font-size:13px;color:var(--stone-text);text-decoration:none}
+.login-row a:hover{text-decoration:underline}
+
+.login-note{
+  margin-top:24px;
+  font-family:var(--sans);font-size:12px;line-height:1.5;
+  color:var(--ink-faint);
+  background:var(--porcelain);
+  border-radius:10px;
+  padding:12px 14px;
+}
+.login-back{
+  position:relative;z-index:2;
+  display:block;text-align:center;margin-top:22px;
+  font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;
+}
+.login-back:hover{color:var(--white)}
+</style>
+</head>
+<body>
+
+<div class="login-shell">
+  <div>
+    <div class="login-card">
+      <img class="login-logo" src="/assets/mc-logo.svg" alt="Memory Catcher">
+      <h1>Welcome back</h1>
+      <p class="sub">Log in to your Memory Catcher&trade; Hub</p>
+
+      <div class="login-field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="login-field">
+        <label for="password">Password</label>
+        <input type="password" id="password" autocomplete="current-password" placeholder="••••••••">
+      </div>
+
+      <button class="login-btn" id="loginBtn">Log in</button>
+
+      <div class="login-row">
+        <a href="#">Forgot password?</a>
+        <a href="/franchise">Become a Memory Catcher</a>
+      </div>
+
+      <p class="login-note">This is a placeholder screen. Authentication will be wired up to the Hub - no credentials are checked or stored yet.</p>
+    </div>
+    <a class="login-back" href="/memory-catcher-hub">&larr; Back to the Hub overview</a>
+  </div>
+</div>
+
+<script>
+/* placeholder: no real auth yet. Show a gentle notice on submit. */
+(function(){
+  var btn=document.getElementById('loginBtn');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    btn.textContent='Login coming soon';
+    btn.style.background='var(--stone-text)';
+    setTimeout(function(){btn.textContent='Log in';btn.style.background='';},1800);
+  });
+})();
+</script>
+</body>
+</html>

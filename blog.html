@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog – Stories and Inspiration for New Parents</title>
+<meta name="description" content="Explore heartfelt stories, parenting tips, and behind the scenes moments. Find inspiration and connection on your journey through parenthood and memories.">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/blog">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bespoke Foil Company">
+<meta property="og:title" content="Blog – Stories and Inspiration for New Parents">
+<meta property="og:description" content="Explore heartfelt stories, parenting tips, and behind the scenes moments. Find inspiration and connection on your journey through parenthood and memories.">
+<meta property="og:url" content="https://www.thebespokefoilcompany.co.uk/blog">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/shared/styles.css?v=10">
+<style>
+/* ===== BLOG HUB page-specific ===== */
+
+/* light-page header (no dark hero) */
+.light-scope header{position:absolute}
+.light-scope .logotype img{filter:none}
+.light-scope .cart-btn{color:var(--ink)}
+.light-scope .cta.nav-cta{color:var(--ink);border-color:var(--ink)}
+.light-scope .burger span{background:var(--ink)}
+.blog-top-space{height:96px}
+
+/* --- intro band --- */
+.blog-intro{background:var(--porcelain);text-align:center;padding:64px 40px 72px}
+.blog-intro h1{font-family:var(--serif);font-weight:340;font-size:clamp(34px,5vw,52px);letter-spacing:-.02em;margin-bottom:20px}
+.blog-intro p{font-family:var(--sans);font-size:16px;line-height:1.75;color:var(--ink-soft);max-width:60ch;margin:0 auto}
+
+/* --- search --- */
+.blog-search{max-width:1280px;margin:0 auto;padding:40px 40px 0}
+.blog-search input{width:100%;max-width:440px;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-btn);padding:13px 16px}
+.blog-search input:focus{outline:none;border-color:var(--stone)}
+
+/* --- featured post --- */
+.blog-featured{max-width:1280px;margin:0 auto;padding:44px 40px 8px}
+.bf-card{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;text-decoration:none;color:var(--ink)}
+.bf-card img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:var(--r-img);background:var(--bone)}
+.bf-eyebrow{font-family:var(--sans);font-size:13px;color:var(--stone-text);margin-bottom:14px;letter-spacing:.02em}
+.bf-body h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.4vw,38px);line-height:1.14;letter-spacing:-.015em;margin-bottom:16px}
+.bf-body p{font-family:var(--sans);font-size:15.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:18px}
+.bf-meta{font-family:var(--sans);font-size:13px;color:var(--ink-faint)}
+
+/* --- post grid --- */
+.blog-grid-wrap{max-width:1280px;margin:0 auto;padding:48px 40px 80px}
+.blog-grid{display:grid;gap:30px;grid-template-columns:repeat(3,1fr)}
+.bg-card{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);overflow:hidden;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
+.bg-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.08)}
+.bg-card img{width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--bone)}
+.bg-card-body{padding:20px 20px 24px;display:flex;flex-direction:column;flex:1}
+.bg-byline{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.bg-byline img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--bone)}
+.bg-byline .bg-meta{font-family:var(--sans);font-size:12px;color:var(--ink-faint);line-height:1.3}
+.bg-byline .bg-meta b{display:block;color:var(--ink);font-weight:500;font-size:12.5px}
+.bg-card-body h3{font-family:var(--serif);font-weight:340;font-size:19px;line-height:1.24;letter-spacing:-.01em;margin-bottom:10px}
+.bg-card-body p{font-family:var(--sans);font-size:14px;line-height:1.65;color:var(--ink-soft);margin:0}
+.blog-empty{text-align:center;font-family:var(--sans);color:var(--ink-faint);padding:60px 0}
+
+@media(max-width:980px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){
+  .bf-card{grid-template-columns:1fr;gap:22px}
+  .blog-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .blog-intro{padding:48px 18px 52px}
+  .blog-search,.blog-featured,.blog-grid-wrap{padding-left:18px;padding-right:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- INTERIM NAV MENU -->
+<nav class="nav-menu" id="navMenu" aria-hidden="true">
+  <div class="nav-menu-inner">
+    <div class="nav-menu-top">
+      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+        <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+      </a>
+      <div class="nav-menu-top-right">
+        <a class="nav-menu-order" href="/our-kit">
+          <span>Order Your Kit</span>
+          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+        <div class="nav-menu-links">
+      <a href="/" data-page="home">Home</a>
+      <a href="/our-story" data-page="our-story">Our Story</a>
+      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+      <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+      <a href="/our-kit" data-page="our-kit">Order Your Kit</a>
+      <a href="/blog" data-page="blog" class="current">Stories &amp; Inspiration</a>
+      <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+      <a href="/faq" data-page="faq">FAQ</a>
+      <a href="/contact" data-page="contact">Contact</a>
+    </div>
+
+    <div class="nav-menu-cta">
+      <div class="nav-menu-cta-head">
+        <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
+        <span class="nav-menu-cta-sub">Run it, or find one near you</span>
+      </div>
+      <div class="nav-menu-cards">
+        <a class="nav-menu-card" href="/franchise" data-page="franchise">
+          <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
+          <span class="nav-menu-card-label">
+            <span>Become a Memory Catcher</span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
+          <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
+          <span class="nav-menu-card-label">
+            <span>Find a Memory Catcher</span>
+            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="announce">
+  <img src="/assets/tp-stars.svg" alt="Rated Excellent on Trustpilot">
+  <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
+</div>
+
+<div class="light-scope">
+<header>
+  <div class="nav-row">
+    <button class="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
+      <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+    </a>
+    <div class="nav-right">
+      <a class="cta nav-cta on-dark" href="/our-kit">
+        <span class="lbl">Order Your Kit</span>
+        <span class="lbl-short">Order Kit</span>
+        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <button class="cart-btn" aria-label="Basket">
+        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+</div><!-- /light-scope -->
+<div class="blog-top-space"></div>
+
+<!-- ============ INTRO ============ -->
+<section class="blog-intro">
+  <h1>Stories &amp; Inspiration</h1>
+  <p>Every family has a story. In our blog, we share the moments that matter most, from heartfelt customer journeys to behind-the-scenes glimpses of how we lovingly craft each keepsake. Whether you're looking for inspiration, reassurance, or just a gentle reminder that you're not alone on this parenting journey, we hope you'll find something here that speaks to you.</p>
+</section>
+
+<!-- ============ SEARCH ============ -->
+<div class="blog-search">
+  <input type="search" id="blogSearch" placeholder="Search stories..." aria-label="Search stories">
+</div>
+
+<!-- ============ FEATURED (rendered from POSTS[0] / featured flag) ============ -->
+<section class="blog-featured" id="blogFeatured"></section>
+
+<!-- ============ POST GRID (CMS-driven; JS renders from POSTS array) ============ -->
+<div class="blog-grid-wrap">
+  <div class="blog-grid" id="blogGrid"></div>
+  <div class="blog-empty" id="blogEmpty" hidden>No stories match your search yet. Try another word.</div>
+</div>
+
+<!-- ============ COMMUNITY (shared) ============ -->
+<section class="community">
+  <div class="community-inner">
+    <div>
+      <h2>Join our community</h2>
+      <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
+    </div>
+    <div class="community-form">
+      <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
+      <button id="communityJoin">Join</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-col foot-contact">
+      <h4>Contact</h4>
+      <p>Tel: 07506 998934</p>
+      <p>Email: hello@thebespokefoilcompany.co.uk</p>
+      <div class="foot-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
+      </div>
+      <p class="f-label">Find Us</p>
+      <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
+      <p class="f-label">Opening Hours</p>
+      <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
+    </div>
+
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="/our-kit">Order Your Kit</a></li>
+        <li><a href="/our-story">Our Story</a></li>
+        <li><a href="/premium-frames">Premium Frames</a></li>
+        <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
+        <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
+        <li><a href="/eco-friendly">Eco-Friendly</a></li>
+        <li><a href="/tommys-charity">Tommy's Charity</a></li>
+        <li><a href="/upload-portal">Uploading Your Prints</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="/faq">FAQ's</a></li>
+        <li><a href="/blog">Stories &amp; Inspiration</a></li>
+        <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
+        <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
+      </ul>
+      <h4>Franchise</h4>
+      <ul>
+        <li><a href="/franchise-hub">Franchise Hub</a></li>
+        <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
+        <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
+        <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
+        <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
+        <li><a href="/franchise-region">Search Franchise Regions</a></li>
+        <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/sitemap">Sitemap</a></li>
+      </ul>
+      <div class="foot-right" style="margin-top:26px">
+        <a class="cta on-dark foot-order" href="#order">
+          <span class="lbl">Order Your Kit</span>
+          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <div class="foot-pay" aria-label="Accepted payment methods">
+          <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
+          <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
+          <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
+          <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
+          <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
+          <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+        </div>
+        <div class="foot-tp">
+          <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+          <span class="tp-meta">TrustScore 4.9 &middot; 65 reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-legal">
+    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID: GB419408687.</p>
+    <p style="margin-top:6px"><a href="https://www.mywixdesigner.com/">Website by My Wix Designer</a></p>
+  </div>
+
+  <div class="foot-watermark" aria-hidden="true">
+    <img src="/assets/bfc-logo.svg" alt="">
+  </div>
+</footer>
+
+<script>
+/* sticky header (shared behaviour) */
+(function(){
+  const header = document.querySelector('header');
+  if(!header) return;
+  const ST=60, HIDE=260, D=6;
+  let lastY=window.scrollY, acc=0, tick=false;
+  function up(){
+    const y=window.scrollY, diff=y-lastY;
+    if(y>ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+    if(Math.abs(diff)>D){
+      if(diff>0){ acc+=diff; if(acc>HIDE && y>ST) header.classList.add('header-hidden'); }
+      else { header.classList.remove('header-hidden'); acc=0; }
+      lastY=y;
+    }
+    tick=false;
+  }
+  window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});
+  up();
+})();
+
+/* =========================================================
+   BLOG HUB - CMS-driven post list.
+   When the CMS is wired, POSTS becomes the CMS feed (same shape).
+   Each item: {slug, title, excerpt, image, author, avatar, date, read,
+               featured?:true}. Order = newest first. One item may set
+               featured:true to appear in the large featured slot.
+   ========================================================= */
+const POSTS = [
+  {slug:"why-every-parent-needs-a-baby-footprint-keepsake", featured:true,
+   title:"Why Every Parent Needs a Baby Footprint Keepsake",
+   excerpt:"Nothing melts a parent's heart quite like their newborn's tiny feet. Those soft, wrinkled soles and delicate toes seem almost too perfect to be real. As parents, we're fascinated by how fast our baby's little feet grow.",
+   image:"/assets/founders-074-1400.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:5},
+
+  {slug:"handprints-or-footprints-newborn",
+   title:"Handprints or Footprints for Newborns: Which Should You Do First?",
+   excerpt:"When you're holding your brand-new baby in one arm and a keepsake kit in the other, a surprisingly tricky question pops up.",
+   image:"/assets/gallery-01-600.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"15 Jun 2025", read:4},
+
+  {slug:"baby-wont-open-hand-for-handprints",
+   title:"Baby Won't Open Their Hand for Handprints? Here's the Trick",
+   excerpt:"Megan, one of our hand and footprint kit customers, capturing her baby's handprints. You've got the kit ready, the paper laid out.",
+   image:"/assets/gallery-02.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"15 Jun 2025", read:5},
+
+  {slug:"can-you-use-paint-for-baby-handprints",
+   title:"Can You Use Paint for Baby Handprints? (Read This First)",
+   excerpt:"Thinking of using paint for your baby's handprints? Here's what's safe, what to avoid, and the mess-free alternative.",
+   image:"/assets/gallery-03.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"5 Jun 2025", read:4},
+
+  {slug:"how-to-take-your-babys-handprints-neatly",
+   title:"How to Take Your Baby's Handprints Neatly (No Paint, No Ink, No Mess)",
+   excerpt:"Struggling to get a clean print from a wriggly baby? Here's exactly how to take your baby's handprints neatly at home.",
+   image:"/assets/gallery-04.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"5 Jun 2025", read:4},
+
+  {slug:"don-t-let-your-memories-fade-away",
+   title:"Don't Let Your Memories Fade Away",
+   excerpt:"When our little ones arrive, life becomes a swirl of soft blankets, tiny yawns, and unforgettable firsts. The first time...",
+   image:"/assets/gallery-05.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"22 Sep 2025", read:3},
+
+  {slug:"foil-fusion-vs-toner-foiling-the-real-difference",
+   title:"Foil Fusion vs Toner Foiling - The Real Difference",
+   excerpt:"When you're capturing the delicate hand or footprint of your newborn baby, you're not just making a print, you're saving a moment.",
+   image:"/assets/gallery-06.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"22 Sep 2025", read:3},
+
+  {slug:"why-foil-prints-make-the-ultimate-baby-gift",
+   title:"Why Foil Prints Make the Ultimate Baby Gift",
+   excerpt:"New parents are often showered with practical baby gifts, which are undoubtedly useful. After all, every new parent...",
+   image:"/assets/gallery-07.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:6},
+
+  {slug:"tiny-hands-big-emotions-captured-forever",
+   title:"Tiny Hands, Big Emotions Captured Forever",
+   excerpt:"In the whirlwind of feeding, baby bonding, and sleepless nights, it's easy to overlook the little things, like just how small...",
+   image:"/assets/gallery-08.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:6},
+
+  {slug:"the-perfect-gift-for-new-mums-and-dads",
+   title:"The Perfect Gift for New Mums and Dads",
+   excerpt:"Finding the right gift for expecting parents can feel overwhelming. Walk into any store and you're confronted with...",
+   image:"/assets/gallery-09.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:6},
+
+  {slug:"the-must-have-handprint-kit-for-new-parents",
+   title:"The Must-Have Handprint Kit for New Parents",
+   excerpt:"There's something magical about watching your newborn's tiny hands wave in the air or grasp your thumb with surprising...",
+   image:"/assets/gallery-10.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:6},
+
+  {slug:"step-by-step-guide-to-a-beautiful-baby-keepsake",
+   title:"Step-by-Step Guide to a Beautiful Baby Keepsake",
+   excerpt:"Our foil print kits let you preserve your newborn's tiny hands and feet in a truly special way, creating a wonderful keepsake.",
+   image:"/assets/gallery-11.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:6},
+
+  {slug:"foil-fusion-the-future-of-baby-keepsakes",
+   title:"Foil Fusion: The Future of Baby Keepsakes",
+   excerpt:"The fleeting moments of a newborn's early days are precious, and parents often seek ways to preserve the delicate imprint...",
+   image:"/assets/gallery-12.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:7},
+
+  {slug:"create-lasting-memories-with-one-tiny-touch",
+   title:"Create Lasting Memories with One Tiny Touch",
+   excerpt:"A newborn's tiny hands and feet are precious, but they grow so fast. At The Bespoke Foil Company, we believe a keepsake...",
+   image:"/assets/gallery-13.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:5},
+
+  {slug:"capture-baby-s-first-touch-with-foil-prints",
+   title:"Capture Baby's First Touch with Foil Prints",
+   excerpt:"The first time your baby wraps its teeny fingers around yours is pure magic. You can't help but marvel at how something can...",
+   image:"/assets/gallery-01.webp", author:"Ashley Eccleston", avatar:"/assets/ff-ashley-700.webp", date:"14 Jul 2025", read:5}
+];
+
+(function(){
+  const grid = document.getElementById('blogGrid');
+  const feat = document.getElementById('blogFeatured');
+  const empty = document.getElementById('blogEmpty');
+  const search = document.getElementById('blogSearch');
+  if(!grid) return;
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  function cardHTML(p){
+    return `<a class="bg-card" href="/post/${esc(p.slug)}">
+      <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="400" height="267">
+      <div class="bg-card-body">
+        <div class="bg-byline">
+          <img src="${esc(p.avatar)}" alt="${esc(p.author)}" width="28" height="28">
+          <div class="bg-meta"><b>${esc(p.author)}</b>${esc(p.date)} &middot; ${p.read} min read</div>
+        </div>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.excerpt)}</p>
+      </div>
+    </a>`;
+  }
+
+  function featHTML(p){
+    return `<a class="bf-card" href="/post/${esc(p.slug)}">
+      <img src="${esc(p.image)}" alt="${esc(p.title)}" width="640" height="427" fetchpriority="high">
+      <div class="bf-body">
+        <p class="bf-eyebrow">Featured</p>
+        <h2>${esc(p.title)}</h2>
+        <p>${esc(p.excerpt)}</p>
+        <p class="bf-meta">${esc(p.author)} &middot; ${esc(p.date)} &middot; ${p.read} min read</p>
+      </div>
+    </a>`;
+  }
+
+  const featured = POSTS.find(p => p.featured) || POSTS[0];
+
+  function render(list){
+    // featured only shows when not searching (or if it matches)
+    const q = (search.value||'').trim().toLowerCase();
+    const showFeatured = !q && featured;
+    feat.innerHTML = showFeatured ? featHTML(featured) : '';
+    const rest = list.filter(p => !(showFeatured && p.slug===featured.slug));
+    grid.innerHTML = rest.map(cardHTML).join('');
+    empty.hidden = list.length > 0;
+  }
+
+  function filter(){
+    const q = (search.value||'').trim().toLowerCase();
+    if(!q){ render(POSTS); return; }
+    render(POSTS.filter(p =>
+      (p.title+' '+p.excerpt).toLowerCase().includes(q)));
+  }
+
+  search.addEventListener('input', filter);
+  render(POSTS);
+})();
+</script>
+<script>
+/* interim nav menu toggle */
+(function(){
+  const menu=document.getElementById('navMenu');
+  const burger=document.querySelector('.burger');
+  const closeBtn=document.getElementById('navMenuClose');
+  if(!menu||!burger)return;
+  function open(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}
+  function close(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}
+  burger.addEventListener('click',open);
+  if(closeBtn)closeBtn.addEventListener('click',close);
+  menu.addEventListener('click',e=>{if(e.target===menu)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+</script>
+</body>
+</html>
