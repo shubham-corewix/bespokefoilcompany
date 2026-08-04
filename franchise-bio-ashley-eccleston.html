@@ -1,431 +1,862 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ashley Eccleston: Baby Memory Catcher in Wigan, St Helens &amp; Bolton</title>
-<meta name="description" content="Meet Ashley Eccleston, your local baby Memory Catcher in Wigan, St Helens & Bolton. Capturing baby hand & footprints for lasting memories.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/shared/styles.css?v=10">
-<style>
-/* ===== MEMORY CATCHER BIO page-specific ===== */
+  <script src="/shared/analytics.js"></script>
+  <script src="/shared/trustpilot.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ashley Eccleston: Baby Memory Catcher in Wigan, St Helens &amp; Bolton</title>
+  <meta name="description"
+    content="Meet Ashley Eccleston, your local baby Memory Catcher in Wigan, St Helens & Bolton. Capturing baby hand & footprints for lasting memories.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <style>
+    /* ===== MEMORY CATCHER BIO page-specific ===== */
 
-/* body: sticky profile rail + right content (mirrors the region inner page) */
-.bio-body{max-width:1280px;margin:0 auto;padding:150px 40px 24px;display:grid;gap:56px;align-items:start}
-@media(min-width:920px){.bio-body{grid-template-columns:minmax(0,320px) 1fr;gap:64px}}
+    /* body: sticky profile rail + right content (mirrors the region inner page) */
+    .bio-body {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 150px 40px 24px;
+      display: grid;
+      gap: 56px;
+      align-items: start
+    }
 
-/* sticky profile card */
-.bio-rail{display:flex;flex-direction:column}
-@media(min-width:920px){.bio-rail{position:sticky;top:96px}}
-.bio-card{background:var(--porcelain);border:1px solid var(--hairline);border-radius:var(--r-card);overflow:hidden}
-.bio-photo{aspect-ratio:1/1;overflow:hidden;background:var(--bone)}
-.bio-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.bio-card-body{padding:24px 26px 28px}
-.bio-card h1{font-family:var(--serif);font-weight:420;font-size:24px;letter-spacing:-.01em;margin-bottom:6px}
-.bio-tagline{font-size:14px;line-height:1.5;color:var(--ink-soft);margin-bottom:16px}
-.bio-region{font-size:14.5px;color:var(--ink);margin-bottom:18px}
-.bio-region b{font-weight:600}
-.bio-social{display:flex;gap:12px;margin-bottom:22px}
-.bio-social a{width:34px;height:34px;border:1px solid var(--hairline);border-radius:50%;display:grid;place-items:center;transition:border-color .2s ease,background .2s ease}
-.bio-social a:hover{border-color:var(--stone);background:var(--stone)}
-.bio-social svg{width:16px;height:16px;fill:var(--ink-soft)}
-.bio-actions{display:flex;flex-direction:column;gap:10px}
-.bio-actions .cta{justify-content:flex-start}
-.bio-actions .cta.dark{background:var(--ink);color:var(--white)}
-.bio-actions .cta.dark .sq{background:var(--stone)}
-.bio-actions .cta.dark:hover{background:var(--stone);color:var(--ink)}
-.bio-actions .cta.ghost{background:transparent;border:1.5px solid var(--hairline);color:var(--ink);box-shadow:none}
-.bio-actions .cta.ghost .sq{display:none}
-.bio-actions .cta.ghost:hover{border-color:var(--ink);background:transparent;color:var(--ink)}
+    @media(min-width:920px) {
+      .bio-body {
+        grid-template-columns: minmax(0, 320px) 1fr;
+        gap: 64px
+      }
+    }
 
-/* right content */
-.bio-content{min-width:0}
-.bio-content section{margin-bottom:52px}
-.bio-content section:last-child{margin-bottom:0}
-.bio-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.bio-head .ic{flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:var(--stone);display:grid;place-items:center}
-.bio-head .ic svg{width:22px;height:22px;stroke:var(--ink);stroke-width:1.6;fill:none}
-.bio-head h2{font-family:var(--serif);font-weight:340;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.015em}
-.bio-content p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:14px}
-.bio-content p:last-child{margin-bottom:0}
-.bio-content p a{color:var(--stone-text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone)}
-.bio-lead{font-size:16.5px;line-height:1.7;color:var(--ink);margin-bottom:16px}
+    /* sticky profile card */
+    .bio-rail {
+      display: flex;
+      flex-direction: column
+    }
 
-/* areas I cover - pill tags on a soft panel */
-.bio-areas-panel{background:var(--porcelain);border:1px solid var(--hairline);border-radius:var(--r-card);padding:26px 28px;margin:6px 0 18px}
-.bio-areas-panel .cap{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--ink);margin-bottom:16px}
-.bio-areas-panel .cap svg{width:17px;height:17px;stroke:var(--stone-text);stroke-width:1.8;fill:none;flex:0 0 17px}
-.bio-tags{display:flex;flex-wrap:wrap;gap:10px}
-.bio-tag{display:inline-flex;align-items:center;gap:7px;background:var(--white);border:1px solid var(--hairline);border-radius:100px;padding:8px 16px;font-size:14.5px;color:var(--ink)}
-.bio-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--stone-text);flex:0 0 6px}
+    @media(min-width:920px) {
+      .bio-rail {
+        position: sticky;
+        top: 96px
+      }
+    }
 
-/* map embed (same as region pages) */
-.bio-map{border-radius:var(--r-img);overflow:hidden;border:1px solid var(--hairline);background:var(--bone);margin:20px 0 0}
-.bio-map iframe{width:100%;height:420px;border:0;display:block}
+    .bio-card {
+      background: var(--porcelain);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-card);
+      overflow: hidden
+    }
 
-/* closing "join our franchise" band */
-/* closing "join our franchise" band - boxed CTA card, distinct from the porcelain cards above */
-.bio-join{padding:20px 40px 80px}
-.bio-join-inner{
-  max-width:1280px;margin:0 auto;
-  display:grid;gap:0;align-items:stretch;
-  background:var(--stone);
-  border:1px solid var(--stone-text);
-  border-radius:var(--r-card);
-  overflow:hidden;
-}
-@media(min-width:920px){.bio-join-inner{grid-template-columns:1.05fr 1fr}}
-.bio-join-media{background:var(--bone);min-height:320px;overflow:hidden;order:-1}
-.bio-join-media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.bio-join-copy{padding:52px 48px;display:flex;flex-direction:column;justify-content:center}
-.bio-join-copy h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.015em;line-height:1.1;margin-bottom:14px;max-width:18ch;color:var(--ink)}
-.bio-join-copy p{font-size:15.5px;line-height:1.7;color:var(--ink);opacity:.82;margin-bottom:24px;max-width:40ch}
-.bio-join-copy .cta{align-self:flex-start;background:var(--ink);color:var(--white)}
-.bio-join-copy .cta .sq{background:var(--stone)}
-.bio-join-copy .cta:hover{background:var(--white);color:var(--ink)}
-.bio-join-copy .cta:hover .sq{background:var(--stone)}
+    .bio-photo {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: var(--bone)
+    }
 
-@media(max-width:600px){
-  .bio-body{padding:120px 18px 16px;gap:36px}
-  .bio-content section{margin-bottom:44px}
-  .bio-head .ic{flex-basis:38px;width:38px;height:38px}
-  .bio-map iframe{height:340px}
-  .bio-join{padding:16px 18px 56px}
-  .bio-join-copy{padding:36px 24px}
-  .bio-join-media{min-height:260px}
-}
-</style>
+    .bio-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block
+    }
+
+    .bio-card-body {
+      padding: 24px 26px 28px
+    }
+
+    .bio-card h1 {
+      font-family: var(--serif);
+      font-weight: 420;
+      font-size: 24px;
+      letter-spacing: -.01em;
+      margin-bottom: 6px
+    }
+
+    .bio-tagline {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin-bottom: 16px
+    }
+
+    .bio-region {
+      font-size: 14.5px;
+      color: var(--ink);
+      margin-bottom: 18px
+    }
+
+    .bio-region b {
+      font-weight: 600
+    }
+
+    .bio-social {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px
+    }
+
+    .bio-social a {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--hairline);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      transition: border-color .2s ease, background .2s ease
+    }
+
+    .bio-social a:hover {
+      border-color: var(--stone);
+      background: var(--stone)
+    }
+
+    .bio-social svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--ink-soft)
+    }
+
+    .bio-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .bio-actions .cta {
+      justify-content: space-between;
+    }
+
+    .bio-actions .cta.dark .sq {
+      background: var(--stone)
+    }
+
+    .bio-actions .cta.ghost {
+      background: transparent;
+      border: 1.5px solid var(--hairline);
+      color: var(--ink);
+      box-shadow: none
+    }
+
+    .bio-actions .cta.ghost .sq {
+      display: none
+    }
+
+    .bio-actions .cta.ghost:hover {
+      border-color: var(--ink);
+      background: transparent;
+      color: var(--ink)
+    }
+
+    /* right content */
+    .bio-content {
+      min-width: 0
+    }
+
+    .bio-content section {
+      margin-bottom: 52px
+    }
+
+    .bio-content section:last-child {
+      margin-bottom: 0
+    }
+
+    .bio-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px
+    }
+
+    .bio-head .ic {
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--stone);
+      display: grid;
+      place-items: center
+    }
+
+    .bio-head .ic svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--ink);
+      stroke-width: 1.6;
+      fill: none
+    }
+
+    .bio-head h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(24px, 3.4vw, 34px);
+      letter-spacing: -.015em
+    }
+
+    .bio-content p {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 14px
+    }
+
+    .bio-content p:last-child {
+      margin-bottom: 0
+    }
+
+    .bio-content p a {
+      color: var(--stone-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--stone)
+    }
+
+    .bio-lead {
+      font-size: 16.5px;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-bottom: 16px
+    }
+
+    /* areas I cover - pill tags on a soft panel */
+    .bio-areas-panel {
+      background: var(--porcelain);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-card);
+      padding: 26px 28px;
+      margin: 6px 0 18px
+    }
+
+    .bio-areas-panel .cap {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 14.5px;
+      color: var(--ink);
+      margin-bottom: 16px
+    }
+
+    .bio-areas-panel .cap svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--stone-text);
+      stroke-width: 1.8;
+      fill: none;
+      flex: 0 0 17px
+    }
+
+    .bio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .bio-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 14.5px;
+      color: var(--ink)
+    }
+
+    .bio-tag::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--stone-text);
+      flex: 0 0 6px
+    }
+
+    /* map embed (same as region pages) */
+    .bio-map {
+      border-radius: var(--r-img);
+      overflow: hidden;
+      border: 1px solid var(--hairline);
+      background: var(--bone);
+      margin: 20px 0 0
+    }
+
+    .bio-map iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+      display: block
+    }
+
+    /* closing "join our franchise" band */
+    /* closing "join our franchise" band - boxed CTA card, distinct from the porcelain cards above */
+    .bio-join {
+      /* 03/08: top padding raised 20 -> 80px to match the 80px below.
+         Ryan corrected his first note: double ABOVE only, not both. */
+      padding: 80px 40px 80px
+    }
+
+    .bio-join-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      gap: 0;
+      align-items: stretch;
+      background: var(--stone);
+      border: 1px solid var(--stone-text);
+      border-radius: var(--r-card);
+      overflow: hidden;
+    }
+
+    @media(min-width:920px) {
+      .bio-join-inner {
+        grid-template-columns: 1.05fr 1fr
+      }
+    }
+
+    .bio-join-media {
+      background: var(--bone);
+      min-height: 320px;
+      overflow: hidden;
+      order: -1
+    }
+
+    .bio-join-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block
+    }
+
+    .bio-join-copy {
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    .bio-join-copy h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.4vw, 38px);
+      letter-spacing: -.015em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      max-width: 18ch;
+      color: var(--ink)
+    }
+
+    .bio-join-copy p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--ink);
+      opacity: .82;
+      margin-bottom: 24px;
+      max-width: 40ch
+    }
+
+    .bio-join-copy .cta {
+      align-self: flex-start;
+      background: var(--ink);
+      color: var(--white)
+    }
+
+    .bio-join-copy .cta .sq {
+      background: var(--stone)
+    }
+
+    .bio-join-copy .cta:hover {
+      background: var(--white);
+      color: var(--ink)
+    }
+
+    .bio-join-copy .cta:hover .sq {
+      background: var(--stone)
+    }
+
+    @media(max-width:600px) {
+      .bio-body {
+        padding: 120px 18px 16px;
+        gap: 36px
+      }
+
+      .bio-content section {
+        margin-bottom: 44px
+      }
+
+      .bio-head .ic {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px
+      }
+
+      .bio-map iframe {
+        height: 340px
+      }
+
+      .bio-join-copy {
+        padding: 36px 24px
+      }
+
+      .bio-join-media {
+        min-height: 260px
+      }
+    }
+    @media(max-width:920px) {
+      .bio-actions {
+        flex-direction: row;
+        width: 100%;
+      }
+      .bio-actions .cta.dark, .bio-actions .cta.ghost {
+        width: 100%;
+      }
+    }
+  
+    @media(max-width:640px) {
+      .bio-join {
+        padding: 40px 18px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- INTERIM NAV MENU -->
-<nav class="nav-menu" id="navMenu" aria-hidden="true">
-  <div class="nav-menu-inner">
-    <div class="nav-menu-top">
-      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-        <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-      </a>
-      <div class="nav-menu-top-right">
-        <a class="nav-menu-order" href="/our-kit">
-          <span>Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  <!-- INTERIM NAV MENU -->
+  <nav class="nav-menu" id="navMenu" aria-hidden="true">
+    <div class="nav-menu-inner">
+      <div class="nav-menu-top">
+        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
         </a>
-        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
+        <div class="nav-menu-top-right">
+          <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span>Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
 
-        <div class="nav-menu-links">
-      <a href="/" data-page="home">Home</a>
-      <a href="/our-story" data-page="our-story">Our Story</a>
-      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
-      <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-      <a href="/our-kit" data-page="our-kit">Order Your Kit</a>
-      <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-      <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-      <a href="/faq" data-page="faq">FAQ</a>
-      <a href="/contact" data-page="contact">Contact</a>
-    </div>
+      <div class="nav-menu-links">
+        <a href="/" data-page="home">Home</a>
+        <a href="/our-story" data-page="our-story">Our Story</a>
+        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+        <a href="/faq" data-page="faq">FAQ</a>
+        <a href="/contact" data-page="contact">Contact</a>
+      </div>
 
-    <div class="nav-menu-cta">
-      <div class="nav-menu-cta-head">
-        <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
-        <span class="nav-menu-cta-sub">Run it, or find one near you</span>
-      </div>
-      <div class="nav-menu-cards">
-        <a class="nav-menu-card" href="/franchise" data-page="franchise">
-          <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
-          <span class="nav-menu-card-label">
-            <span>Become a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
-        </a>
-        <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
-          <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
-          <span class="nav-menu-card-label">
-            <span>Find a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
-        </a>
+      <div class="nav-menu-cta">
+        <div class="nav-menu-cta-head">
+          <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
+          <span class="nav-menu-cta-sub">Run it, or find one near you</span>
+        </div>
+        <div class="nav-menu-cards">
+          <a class="nav-menu-card" href="/franchise" data-page="franchise">
+            <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
+            <span class="nav-menu-card-label">
+              <span>Become a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
+          <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
+            <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
+            <span class="nav-menu-card-label">
+              <span>Find a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
+  </nav>
+
+
+  <div class="announce">
+    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
+    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
   </div>
-</nav>
 
-
-<div class="announce">
-  <img src="/assets/tp-stars.svg" alt="Rated Excellent on Trustpilot">
-  <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-</div>
-
-<header>
-  <div class="nav-row">
-    <button class="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-      <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-    </a>
-    <div class="nav-right">
-      <a class="cta nav-cta" href="/our-kit">
-        <span class="lbl">Order Your Kit</span>
-        <span class="lbl-short">Order Kit</span>
-        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <button class="cart-btn" aria-label="Basket">
-        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
-        <span class="cart-count">2</span>
+  <header>
+    <div class="nav-row">
+      <button class="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
+      <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
+        <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+      </a>
+      <div class="nav-right">
+        <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+          <span class="lbl">Order Your Kit</span>
+          <span class="lbl-short">Order Kit</span>
+          <span class="sq"><svg viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg></span>
+        </a>
+            </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- light header on this page: give it a solid bar since there's no dark hero -->
-<style>
-header{background:var(--porcelain);box-shadow:0 2px 14px -8px rgba(0,0,0,.16)}
-header.scrolled{box-shadow:0 8px 28px -16px rgba(0,0,0,.28)}
-.cart-btn{color:var(--ink)}
-@media(max-width:600px){
-  .nav-row .burger span{background:var(--ink)}
-  .cta.nav-cta{border-color:var(--ink);color:var(--ink)}
+  <!-- light header on this page: give it a solid bar since there's no dark hero -->
+  <style>
+    header {
+      background: var(--porcelain);
+      box-shadow: 0 2px 14px -8px rgba(0, 0, 0, .16)
+    }
+
+    header.scrolled {
+      box-shadow: 0 8px 28px -16px rgba(0, 0, 0, .28)
+    }
+
+    .cart-btn { 
+      color: var(--ink)
+    }
+
+    @media(max-width:600px) {
+      .nav-row .burger span {
+        background: var(--ink)
+      }
+      .bio-actions {
+        flex-direction: column;
+      }
+
+      .cta.nav-cta {
+        border-color: var(--ink);
+        color: var(--ink)
+      }
+    }
+  
+/* =============================================================================
+   MOBILE IMAGE RULES (added 03/08/2026, Ryan)
+
+   [06] Portrait crops eat the screen on a phone. Every portrait image container
+        becomes SQUARE below 600px, so a band is roughly a third shorter and the
+        copy underneath is reachable without a long scroll. Desktop is untouched.
+
+   [07] Where two bands stack, one ending on an image and the next starting with
+        one, mobile gets two pictures back to back and the content is pushed a
+        long way down. `.os-band + .os-band.img-left .os-media` hides only the
+        SECOND of such a pair, which is exactly the case Ryan described. Applied
+        with `display:none` rather than removing the markup so desktop keeps both.
+   ============================================================================= */
+@media(max-width:600px) {
+
+  .os-media,
+  .os-media.tall,
+  .eco-media,
+  .fr2-collage .im,
+  .fr2-collage .im.tall,
+  .fr2-collage .im.short,
+  .up-media,
+  .ff-media,
+  .pr-media,
+  .bio-join-media,
+  .mc-media,
+  .ri-media {
+    aspect-ratio: 1 / 1
+  }
+
+  /* second of two consecutive image-leading bands */
+  .os-band + .os-band.img-left > .inner > .os-media,
+  .os-band + .os-band.img-left .os-media {
+    display: none
+  }
 }
 </style>
 
-<!-- ============ BODY: STICKY PROFILE RAIL + CONTENT ============ -->
-<section class="bio-body">
+  <!-- ============ BODY: STICKY PROFILE RAIL + CONTENT ============ -->
+  <section class="bio-body">
 
-  <!-- STICKY PROFILE CARD -->
-  <aside class="bio-rail">
-    <div class="bio-card">
-      <!-- IMAGE PLACEHOLDER: Ashley portrait (mc-ashley) -->
-      <div class="bio-photo">
-        <img src="/assets/mc-ashley-1000.webp"
-             srcset="/assets/mc-ashley-700.webp 700w, /assets/mc-ashley-1000.webp 1000w"
-             sizes="(min-width:920px) 320px, 100vw" width="1000" height="1000" fetchpriority="high"
-             alt="Ashley Eccleston, co-founder and the original Memory Catcher">
-      </div>
-      <div class="bio-card-body">
-        <h1>Ashley Eccleston</h1>
-        <p class="bio-tagline">Mum of two, keepsake obsessive, and the original Memory Catcher.</p>
-        <p class="bio-region">Region: <b>Wigan, St Helens &amp; Bolton</b></p>
-        <div class="bio-social">
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
+    <!-- STICKY PROFILE CARD -->
+    <aside class="bio-rail">
+      <div class="bio-card">
+        <!-- IMAGE PLACEHOLDER: Ashley portrait (mc-ashley) -->
+        <div class="bio-photo">
+          <img src="/assets/img-461-sq-1000.webp" srcset="/assets/img-461-sq-700.webp 700w, /assets/img-461-sq-1000.webp 1000w" sizes="(min-width:900px) 320px, 60vw" width="1000" height="1000" alt="Ashley Eccleston, founder Memory Catcher">
         </div>
-        <div class="bio-actions">
-          <a class="cta dark" href="/contact">
-            <span class="lbl">Send Me a Message</span>
-            <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
-          <a class="cta ghost" href="mailto:hello@thebespokefoilcompany.co.uk">
-            <span class="lbl">Email Me</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- RIGHT CONTENT -->
-  <div class="bio-content">
-
-    <section>
-      <div class="bio-head">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-4.35-9-8.5C1.5 9.5 3 6 6.5 6 9 6 12 9 12 9s3-3 5.5-3C21 6 22.5 9.5 21 12.5 18.5 16.65 12 21 12 21z"/></svg></span>
-        <h2>Your Local Baby Memory Catcher</h2>
-      </div>
-      <p class="bio-lead">Hi, I'm Ashley - co-founder of The Bespoke Foil Company and the very first Memory Catcher.</p>
-      <p>I started this journey in 2017 after becoming a mum to my son Tommy. Like most new parents, I wanted to capture those tiny newborn moments before they disappeared, but every handprint kit I tried was messy, faded, or just didn't do the moment justice. So I created something better.</p>
-      <p>What began in our back bedroom in Wigan has grown into a business that's helped thousands of families preserve the moments that matter most. I still attend baby classes every week, kit in hand, because nothing beats seeing a parent's face when they hold their baby's perfect little prints for the first time.</p>
-      <p>When I'm not at classes, you'll usually find me chasing Tommy and Teddy around soft play or trying to drink a full cup of tea while it's still hot.</p>
-    </section>
-
-    <section>
-      <div class="bio-head">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg></span>
-        <h2>What I Offer</h2>
-      </div>
-      <p>Every Memory Catcher session is a relaxed, hands-on experience where we capture your baby's hand and footprints using our exclusive <a href="/foil-fusion-technology">Foil Fusion Technology</a>. No mess, no stress, just a beautiful keepsake that lasts a lifetime.</p>
-      <p>I offer sessions at local baby classes, private bookings, and special events across my area. Whether it's a newborn's first prints, siblings side by side, or a gift for grandparents, I'm here to help you hold onto these fleeting moments.</p>
-    </section>
-
-    <section>
-      <div class="bio-head">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        <h2>Areas I Cover</h2>
-      </div>
-      <div class="bio-areas-panel">
-        <p class="cap"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>I'm your local Memory Catcher covering:</p>
-        <div class="bio-tags">
-          <span class="bio-tag">Wigan</span>
-          <span class="bio-tag">St Helens</span>
-          <span class="bio-tag">Bolton</span>
-          <span class="bio-tag">Leigh</span>
-          <span class="bio-tag">Ashton-in-Makerfield</span>
+        <div class="bio-card-body">
+          <h1>Ashley Eccleston</h1>
+          <p class="bio-tagline">Mum of two, keepsake obsessive, and the original Memory Catcher.</p>
+          <p class="bio-region">Region: <b>Wigan, St Helens &amp; Bolton</b></p>
+          <div class="bio-social">
+            <a href="https://www.facebook.com/TheBespokeFoilCompany" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24">
+                <path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z" />
+              </svg></a>
+            <a href="https://www.instagram.com/thebespokefoilco/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
+              </svg></a>
+          </div>
+          <div class="bio-actions">
+            <a class="cta dark" href="/contact">
+              <span class="lbl">Send Me a Message</span>
+              <span class="sq"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </a>
+            <a class="cta ghost" href="mailto:hello@thebespokefoilcompany.co.uk">
+              <span class="lbl">Email Me</span>
+            </a>
+          </div>
         </div>
       </div>
-      <p>Not sure if I cover your area? Drop me a message and I'll point you in the right direction.</p>
+    </aside>
 
-      <!-- INTERACTIVE TERRITORY MAP: same live embed as the region pages, keyed to Ashley's founder region.
+    <!-- RIGHT CONTENT -->
+    <div class="bio-content">
+
+      <section>
+        <div class="bio-head">
+          <span class="ic"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 21s-6.5-4.35-9-8.5C1.5 9.5 3 6 6.5 6 9 6 12 9 12 9s3-3 5.5-3C21 6 22.5 9.5 21 12.5 18.5 16.65 12 21 12 21z" />
+            </svg></span>
+          <h2>Your Local Baby Memory Catcher</h2>
+        </div>
+        <p class="bio-lead">Hi, I'm Ashley - co-founder of The Bespoke Foil Company and the very first Memory Catcher.
+        </p>
+        <p>I started this journey in 2017 after becoming a mum to my son Tommy. Like most new parents, I wanted to
+          capture those tiny newborn moments before they disappeared, but every handprint kit I tried was messy, faded,
+          or just didn't do the moment justice. So I created something better.</p>
+        <p>What began in our back bedroom in Wigan has grown into a business that's helped thousands of families
+          preserve the moments that matter most. I still attend baby classes every week, kit in hand, because nothing
+          beats seeing a parent's face when they hold their baby's perfect little prints for the first time.</p>
+        <p>When I'm not at classes, you'll usually find me chasing Tommy and Teddy around soft play or trying to drink a
+          full cup of tea while it's still hot.</p>
+      </section>
+
+      <section>
+        <div class="bio-head">
+          <span class="ic"><svg viewBox="0 0 24 24">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z" />
+            </svg></span>
+          <h2>What I Offer</h2>
+        </div>
+        <p>Every Memory Catcher session is a relaxed, hands-on experience where we capture your baby's hand and
+          footprints using our exclusive <a href="/foil-fusion-technology">Foil Fusion Technology</a>. No mess, no
+          stress, just a beautiful keepsake that lasts a lifetime.</p>
+        <p>I offer sessions at local baby classes, private bookings, and special events across my area. Whether it's a
+          newborn's first prints, siblings side by side, or a gift for grandparents, I'm here to help you hold onto
+          these fleeting moments.</p>
+      </section>
+
+      <section>
+        <div class="bio-head">
+          <span class="ic"><svg viewBox="0 0 24 24">
+              <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg></span>
+          <h2>Areas I Cover</h2>
+        </div>
+        <div class="bio-areas-panel">
+          <p class="cap"><svg viewBox="0 0 24 24">
+              <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>I'm your local Memory Catcher covering:</p>
+          <div class="bio-tags">
+            <span class="bio-tag">Wigan</span>
+            <span class="bio-tag">St Helens</span>
+            <span class="bio-tag">Bolton</span>
+            <span class="bio-tag">Leigh</span>
+            <span class="bio-tag">Ashton-in-Makerfield</span>
+          </div>
+        </div>
+        <p>Not sure if I cover your area? Drop me a message and I'll point you in the right direction.</p>
+
+        <!-- INTERACTIVE TERRITORY MAP: same live embed as the region pages, keyed to Ashley's founder region.
            NOTE: Ashley's founder region (Wigan/St Helens/Bolton) is a permanently-held territory; using the
            closest map slug (bolton-wigan) until a dedicated founder-region slug is set. -->
-      <div class="bio-map">
-        <iframe src="/memory-catcher-region-map-embed?region=bolton-wigan"
-                title="Ashley's Memory Catcher area - Wigan, St Helens and Bolton"
-                loading="lazy"></iframe>
-      </div>
-    </section>
+        <div class="bio-map">
+          <iframe src="/memory-catcher-region-map-embed?region=bolton-wigan"
+            title="Ashley's Memory Catcher area - Wigan, St Helens and Bolton" loading="lazy"></iframe>
+        </div>
+      </section>
 
-  </div>
-</section>
-
-<!-- ============ JOIN OUR FRANCHISE ============ -->
-<section class="bio-join">
-  <div class="bio-join-inner">
-    <div class="bio-join-copy">
-      <h2>Interested in joining our Memory Catcher Franchise?</h2>
-      <p>Ashley started exactly where you might be now. If you'd love a flexible, family-friendly way to bring these moments to families in your area, see which regions are available.</p>
-      <a class="cta" href="/franchise-region">
-        <span class="lbl">View Regions</span>
-        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
     </div>
-    <div class="bio-join-media">
-      <!-- IMAGE PLACEHOLDER: founders on sofa -->
-      <img src="/assets/founders-074-1000.webp"
-           srcset="/assets/founders-074-700.webp 700w, /assets/founders-074-1000.webp 1000w, /assets/founders-074-1400.webp 1400w"
-           sizes="(min-width:920px) 50vw, 100vw" width="1400" height="1000" loading="lazy"
-           alt="Ashley and Ryan, co-founders of The Bespoke Foil Company">
-    </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="foot-top">
-    <div class="foot-col foot-contact">
-      <h4>Contact</h4>
-      <p>Tel: 07506 998934</p>
-      <p>Email: hello@thebespokefoilcompany.co.uk</p>
-      <div class="foot-social">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
-      </div>
-      <p class="f-label">Find Us</p>
-      <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
-      <p class="f-label">Opening Hours</p>
-      <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
-    </div>
-
-    <div class="foot-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="/our-kit">Order Your Kit</a></li>
-        <li><a href="/our-story">Our Story</a></li>
-        <li><a href="/premium-frames">Premium Frames</a></li>
-        <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
-        <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
-        <li><a href="/eco-friendly">Eco-Friendly</a></li>
-        <li><a href="/tommys-charity">Tommy's Charity</a></li>
-        <li><a href="/upload-portal">Uploading Your Prints</a></li>
-      </ul>
-    </div>
-
-    <div class="foot-col">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="/faq">FAQ's</a></li>
-        <li><a href="/blog">Stories &amp; Inspiration</a></li>
-        <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
-        <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
-      </ul>
-      <h4>Franchise</h4>
-      <ul>
-        <li><a href="/franchise-hub">Franchise Hub</a></li>
-        <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
-        <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
-        <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
-        <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
-        <li><a href="/franchise-region">Search Franchise Regions</a></li>
-        <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
-      </ul>
-    </div>
-
-    <div class="foot-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
-        <li><a href="/sitemap">Sitemap</a></li>
-      </ul>
-      <div class="foot-right" style="margin-top:26px">
-        <a class="cta on-dark foot-order" href="/our-kit">
-          <span class="lbl">Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  <!-- ============ JOIN OUR FRANCHISE ============ -->
+  <section class="bio-join">
+    <div class="bio-join-inner">
+      <div class="bio-join-copy">
+        <h2>Interested in joining our Memory Catcher Franchise?</h2>
+        <p>Ashley started exactly where you might be now. If you'd love a flexible, family-friendly way to bring these
+          moments to families in your area, see which regions are available.</p>
+        <a class="cta" href="/franchise-region">
+          <span class="lbl">View Regions</span>
+          <span class="sq"><svg viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg></span>
         </a>
-        <div class="foot-pay" aria-label="Accepted payment methods">
-          <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
-          <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
-          <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
-          <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
-          <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
-          <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+      </div>
+      <div class="bio-join-media">
+        <!-- IMAGE PLACEHOLDER: founders on sofa -->
+        <img src="/assets/img-458-1000.webp" srcset="/assets/img-458-700.webp 700w, /assets/img-458-1000.webp 1000w" sizes="(min-width:920px) 50vw, 100vw" width="1000" height="714" loading="lazy" alt="Ashley preparing keepsakes in the studio">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-top">
+      <div class="foot-col foot-contact">
+        <h4>Contact</h4>
+        <p>Tel: 07506 998934</p>
+        <p>Email: hello@thebespokefoilcompany.co.uk</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/TheBespokeFoilCompany" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z" />
+            </svg></a>
+          <a href="https://www.instagram.com/thebespokefoilco/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
+            </svg></a>
         </div>
-        <div class="foot-tp">
-          <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-          <span class="tp-meta">TrustScore 4.9 &middot; 65 reviews</span>
+        <p class="f-label">Find Us</p>
+        <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
+        <p class="f-label">Opening Hours</p>
+        <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
+          <li><a href="/our-story">Our Story</a></li>
+          <li><a href="/premium-frames">Premium Frames</a></li>
+          <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
+          <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
+          <li><a href="/eco-friendly">Eco-Friendly</a></li>
+          <li><a href="/tommys-charity">Tommy's Charity</a></li>
+          <li><a href="/upload-portal">Uploading Your Prints</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/faq">FAQ's</a></li>
+          <li><a href="/blog">Stories &amp; Inspiration</a></li>
+          <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
+          <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
+        </ul>
+        <h4>Franchise</h4>
+        <ul>
+          <li><a href="/franchise-hub">Franchise Hub</a></li>
+          <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
+          <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
+          <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
+          <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
+          <li><a href="/franchise-region">Search Franchise Regions</a></li>
+          <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/sitemap">Sitemap</a></li>
+        </ul>
+        <div class="foot-right" style="margin-top:26px">
+          <a class="cta on-dark foot-order" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span class="lbl">Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <div class="foot-pay" aria-label="Accepted payment methods">
+            <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
+            <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
+            <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
+            <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
+            <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
+            <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+          </div>
+          <div class="foot-tp">
+            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="foot-legal">
-    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID: GB419408687.</p>
-    <p style="margin-top:6px"><a href="https://www.mywixdesigner.com/">Website by My Wix Designer</a></p>
-  </div>
+    <div class="foot-legal">
+      <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
+        GB419408687.</p>
+      <p style="margin-top:6px"><a href="https://www.twinegrowth.com" target="_blank" rel="noopener">Website by Twine Growth</a></p>
+    </div>
 
-  <div class="foot-watermark" aria-hidden="true">
-    <img src="/assets/bfc-logo.svg" alt="">
-  </div>
-</footer>
+    <div class="foot-watermark" aria-hidden="true">
+      <img src="/assets/bfc-logo.svg" alt="">
+    </div>
+  </footer>
 
-<script>
-/* sticky header (shared behaviour) */
-(function(){
-  const header = document.querySelector('header');
-  if(!header) return;
-  const ST=60, HIDE=260, D=6;
-  let lastY=window.scrollY, acc=0, tick=false;
-  function up(){
-    const y=window.scrollY, diff=y-lastY;
-    if(y>ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-    if(Math.abs(diff)>D){
-      if(diff>0){ acc+=diff; if(acc>HIDE && y>ST) header.classList.add('header-hidden'); }
-      else { header.classList.remove('header-hidden'); acc=0; }
-      lastY=y;
-    }
-    tick=false;
-  }
-  window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});
-  up();
-})();
-</script>
-<script>
-/* interim nav menu toggle */
-(function(){
-  const menu=document.getElementById('navMenu');
-  const burger=document.querySelector('.burger');
-  const closeBtn=document.getElementById('navMenuClose');
-  if(!menu||!burger)return;
-  function open(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}
-  function close(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}
-  burger.addEventListener('click',open);
-  if(closeBtn)closeBtn.addEventListener('click',close);
-  menu.addEventListener('click',e=>{if(e.target===menu)close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-})();
-</script>
+  <script>
+    /* sticky header (shared behaviour) */
+    (function () {
+      const header = document.querySelector('header');
+      if (!header) return;
+      const ST = 60, HIDE = 260, D = 6;
+      let lastY = window.scrollY, acc = 0, tick = false;
+      function up() {
+        const y = window.scrollY, diff = y - lastY;
+        if (y > ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+        if (Math.abs(diff) > D) {
+          if (diff > 0) { acc += diff; if (acc > HIDE && y > ST) header.classList.add('header-hidden'); }
+          else { header.classList.remove('header-hidden'); acc = 0; }
+          lastY = y;
+        }
+        tick = false;
+      }
+      window.addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(up); tick = true; } }, { passive: true });
+      up();
+    })();
+  </script>
+  <script>
+    /* interim nav menu toggle */
+    (function () {
+      const menu = document.getElementById('navMenu');
+      const burger = document.querySelector('.burger');
+      const closeBtn = document.getElementById('navMenuClose');
+      if (!menu || !burger) return;
+      function open() { menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); document.body.classList.add('menu-open'); }
+      function close() { menu.classList.remove('open'); menu.setAttribute('aria-hidden', 'true'); document.body.classList.remove('menu-open'); }
+      burger.addEventListener('click', open);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      menu.addEventListener('click', e => { if (e.target === menu) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
+
 </html>

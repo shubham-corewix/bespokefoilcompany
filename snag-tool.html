@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <script src="/shared/analytics.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>BFC Snag Tool - internal</title>
+<link rel="stylesheet" href="/shared/styles.css?v=10">
+<style>
+  .snag-wrap{max-width:720px;margin:0 auto;padding:72px 24px 96px}
+  .snag-wrap h1{font-family:Fraunces,serif;font-size:clamp(32px,5vw,44px);margin:0 0 10px}
+  .snag-eyebrow{font-family:"Instrument Sans",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#666;margin-bottom:14px}
+  .snag-wrap p,.snag-wrap li{font-family:"Instrument Sans",Arial,sans-serif;font-size:16px;line-height:1.65;color:#222}
+  .snag-link{display:inline-block;background:#000;color:#F6F6F4;font-family:"Instrument Sans",Arial,sans-serif;font-weight:600;padding:16px 26px;border-radius:10px;text-decoration:none;margin:22px 0 8px;cursor:grab}
+  .snag-link:active{cursor:grabbing}
+  .snag-hint{font-size:13px;color:#777}
+  .snag-steps{background:#F6F6F4;border:1px solid #DDD6CE;border-radius:12px;padding:22px 26px;margin-top:30px}
+  .snag-steps ol{margin:0;padding-left:20px}
+  .snag-steps li{margin:8px 0}
+  kbd{background:#DDD6CE;border-radius:4px;padding:1px 6px;font-size:13px}
+</style>
+</head>
+<body>
+<main class="snag-wrap">
+  <div class="snag-eyebrow">Internal tool - not linked in navigation</div>
+  <h1>Snag Tool</h1>
+  <p>One-click snagging for design checks on the preview site. Drag the button below into your bookmarks bar (show it with <kbd>Cmd+Shift+B</kbd> in Chrome).</p>
+
+  <a class="snag-link" href="javascript:(function(){var KEY=&#x27;bfcSnags&#x27;;if(document.getElementById(&#x27;bfc-snag-panel&#x27;)){document.getElementById(&#x27;bfc-snag-panel&#x27;).remove();return;}var picking=false,lastEl=null;function load(){try{return JSON.parse(localStorage.getItem(KEY)||&#x27;[]&#x27;);}catch(e){return [];}}function save(a){localStorage.setItem(KEY,JSON.stringify(a));count.textContent=a.length;}function selector(el){if(el.id)return &#x27;#&#x27;+el.id;var parts=[];while(el&amp;&amp;el.nodeType===1&amp;&amp;parts.length&lt;5&amp;&amp;el.tagName!==&#x27;BODY&#x27;){var p=el.tagName.toLowerCase();if(el.className&amp;&amp;typeof el.className===&#x27;string&#x27;){var c=el.className.trim().split(/\s+/).slice(0,2).join(&#x27;.&#x27;);if(c)p+=&#x27;.&#x27;+c;}var parent=el.parentElement;if(parent){var same=[].filter.call(parent.children,function(x){return x.tagName===el.tagName;});if(same.length&gt;1)p+=&#x27;:nth-of-type(&#x27;+(same.indexOf(el)+1)+&#x27;)&#x27;;}parts.unshift(p);el=parent;}return parts.join(&#x27;&gt;&#x27;);}function endPick(){picking=false;document.body.style.cursor=&#x27;&#x27;;if(lastEl){lastEl.style.outline=&#x27;&#x27;;lastEl=null;}btn.textContent=&#x27;+Snag&#x27;;}document.addEventListener(&#x27;mouseover&#x27;,function(e){if(!picking||panel.contains(e.target))return;if(lastEl)lastEl.style.outline=&#x27;&#x27;;lastEl=e.target;lastEl.style.outline=&#x27;3px solid #E0472B&#x27;;},true);document.addEventListener(&#x27;click&#x27;,function(e){if(!picking||panel.contains(e.target))return;e.preventDefault();e.stopPropagation();var el=e.target;var note=prompt(&#x27;Snag note for this element:&#x27;);endPick();if(!note)return;var a=load();a.push({page:location.pathname,selector:selector(el),note:note,viewport:innerWidth+&#x27;x&#x27;+innerHeight,dpr:devicePixelRatio,text:(el.innerText||&#x27;&#x27;).trim().slice(0,90),when:new Date().toISOString()});save(a);},true);document.addEventListener(&#x27;keydown&#x27;,function(e){if(e.key===&#x27;Escape&#x27;&amp;&amp;picking)endPick();},true);var panel=document.createElement(&#x27;div&#x27;);panel.id=&#x27;bfc-snag-panel&#x27;;panel.style.cssText=&#x27;position:fixed;top:14px;right:14px;z-index:2147483647;background:#000;color:#F6F6F4;font:13px/1.4 Arial,sans-serif;padding:10px 12px;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.35);display:flex;gap:8px;align-items:center&#x27;;function mk(label,fn){var b=document.createElement(&#x27;button&#x27;);b.textContent=label;b.style.cssText=&#x27;background:#BEAD9D;border:0;color:#000;padding:5px 10px;border-radius:6px;cursor:pointer;font:inherit&#x27;;b.onclick=fn;panel.appendChild(b);return b;}var count=document.createElement(&#x27;b&#x27;);count.textContent=load().length;panel.appendChild(count);var btn=mk(&#x27;+Snag&#x27;,function(){picking=!picking;document.body.style.cursor=picking?&#x27;crosshair&#x27;:&#x27;&#x27;;btn.textContent=picking?&#x27;click element…&#x27;:&#x27;+Snag&#x27;;});mk(&#x27;Export&#x27;,function(){var blob=new Blob([JSON.stringify(load(),null,2)],{type:&#x27;application/json&#x27;});var a=document.createElement(&#x27;a&#x27;);a.href=URL.createObjectURL(blob);a.download=&#x27;bfc-snags-&#x27;+new Date().toISOString().slice(0,16).replace(/[:T]/g,&#x27;-&#x27;)+&#x27;.json&#x27;;a.click();});mk(&#x27;Clear&#x27;,function(){if(confirm(&#x27;Delete all stored snags?&#x27;))save([]);});mk(&#x27;×&#x27;,function(){endPick();panel.remove();});document.body.appendChild(panel);})();">🔖 BFC Snag Tool</a>
+  <p class="snag-hint">Drag me to your bookmarks bar - don't click me here.</p>
+
+  <div class="snag-steps">
+    <ol>
+      <li>Browse any page of the preview site, at any viewport size.</li>
+      <li>Click the bookmark - a small black panel appears top right.</li>
+      <li>Press <b>+ Snag</b>, then click the element that's wrong (it highlights as you hover). <kbd>Esc</kbd> cancels.</li>
+      <li>Type a short note - five words is plenty.</li>
+      <li>Repeat across as many pages as you like; the counter keeps score between pages.</li>
+      <li>Press <b>Export</b> to download the snag file, and drop it into the Claude thread.</li>
+    </ol>
+  </div>
+
+  <p style="margin-top:26px">Each snag records the page, an exact CSS selector, your note, the viewport size and a text preview of the element - so there's no ambiguity about which of three identical cards you meant. <b>Clear</b> wipes the list once a batch has been fixed. Snags are stored in this browser on this domain only.</p>
+</main>
+</body>
+</html>

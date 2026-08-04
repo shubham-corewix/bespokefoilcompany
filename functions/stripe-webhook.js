@@ -218,7 +218,7 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: 'Ignored' }; // only act on successful payment
   }
 
-  if(!stripeEvent.data.object.metadata.source || stripeEvent.data.object.metadata.source !== 'keepsake-landing') {
+  if(!stripeEvent.data.object.metadata.source || stripeEvent.data.object.metadata.source !== 'main-keepsake-landing') {
     return { statusCode: 200, body: 'Ignored' };  
   }
 
@@ -277,7 +277,7 @@ exports.handler = async (event) => {
     // create-payment-intent when the order came from /memory-catcher/<slug>.
     ...(m.affiliate_slug ? { tagIds: [], customField1: 'mc:' + m.affiliate_slug } : {}),
     advancedOptions: {
-      source: m.affiliate_slug ? ('memory-catcher:' + m.affiliate_slug) : 'keepsake-landing'
+      source: m.affiliate_slug ? ('memory-catcher:' + m.affiliate_slug) : 'main-keepsake-landing'
     },
   };
 

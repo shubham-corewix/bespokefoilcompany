@@ -1,135 +1,402 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<title>Pre-book Form | Memory Catcher | Bespoke Foil Company</title>
-<meta name="description" content="Pre-book your Memory Catcher slot with a £10 deposit and receive a free extra copy of your foil print.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/shared/styles.css?v=10">
-<style>
-/* ===== minimal focused chrome (logo only) ===== */
-.slot-head{position:sticky;top:0;z-index:20;background:var(--porcelain);border-bottom:1px solid var(--hairline)}
-.slot-head-inner{max-width:1280px;margin:0 auto;padding:16px 40px;display:flex;justify-content:center}
-.slot-head .logotype img{height:26px;width:auto;display:block}
-body{background:var(--porcelain)}
+  <script src="/shared/analytics.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pre-book Form | Memory Catcher | Bespoke Foil Company</title>
+  <meta name="description"
+    content="Pre-book your Memory Catcher slot with a £10 deposit and receive a free extra copy of your foil print.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <style>
+    /* ===== minimal focused chrome (logo only) ===== */
+    .slot-head {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--porcelain);
+      border-bottom: 1px solid var(--hairline)
+    }
 
-.slot-wrap{min-height:calc(100vh - 60px);display:flex;justify-content:center;align-items:flex-start;padding:40px 20px 72px}
-.slot-card{width:100%;max-width:460px}
-.slot-media{border-radius:var(--r-img);overflow:hidden;margin-bottom:22px}
-.slot-media img{width:100%;height:auto;display:block;aspect-ratio:16/10;object-fit:cover}
-.mc-lockup{font-family:var(--script);font-size:34px;line-height:.9;color:var(--stone-text);margin-bottom:6px}
-.mc-lockup small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.06em;color:var(--ink-faint);margin-top:5px}
-.slot-title{font-family:var(--script);font-size:26px;font-weight:400;color:var(--stone-text);margin:6px 0 16px}
-.slot-offer{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink);line-height:1.45;margin-bottom:12px}
-.slot-note{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-bottom:10px}
-.slot-note b{color:var(--ink);font-weight:600}
-.slot-form{margin-top:24px}
+    .slot-head-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: center
+    }
 
-.frm-field{margin-bottom:20px}
-.frm-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.frm-row .frm-field{margin-bottom:0}
-.frm-label{display:block;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink);margin-bottom:7px}
-.frm-label .req{color:var(--stone-text)}
-.frm-input,.frm-select,.frm-textarea{
-  width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--white);
-  border:1px solid var(--hairline);border-radius:var(--r-btn);padding:13px 15px;transition:border-color .15s ease;
-}
-.frm-input::placeholder,.frm-textarea::placeholder{color:var(--ink-faint)}
-.frm-input:focus,.frm-select:focus,.frm-textarea:focus{outline:none;border-color:var(--ink)}
-.frm-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:42px;cursor:pointer}
-.frm-textarea{min-height:110px;resize:vertical;line-height:1.5}
-.frm-help{font-size:12px;color:var(--stone-text);margin-top:6px}
-.frm-tel{display:grid;grid-template-columns:auto 1fr;gap:10px}
-.frm-tel .frm-cc{display:flex;align-items:center;gap:6px;border:1px solid var(--hairline);border-radius:var(--r-btn);padding:0 12px;background:var(--white);font-size:14px;color:var(--ink);white-space:nowrap}
-.frm-check-group{display:flex;flex-direction:column;gap:11px;margin-top:4px}
-.frm-check{display:flex;align-items:flex-start;gap:11px;cursor:pointer;font-size:14px;color:var(--ink);line-height:1.4}
-.frm-check input{appearance:none;-webkit-appearance:none;flex:none;width:20px;height:20px;border:1.5px solid var(--hairline);border-radius:5px;background:var(--white);margin-top:1px;cursor:pointer;position:relative;transition:border-color .15s,background .15s}
-.frm-check input:checked{background:var(--ink);border-color:var(--ink)}
-.frm-check input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.frm-submit{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--ink);color:var(--white);font-family:var(--sans);font-weight:500;font-size:16px;padding:17px 24px;border:0;border-radius:var(--r-btn);cursor:pointer;transition:background .18s ease}
-.frm-submit:hover{background:#1a1a1a}
-.frm-submit svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .slot-head .logotype img {
+      height: 26px;
+      width: auto;
+      display: block
+    }
 
-.slot-legal{text-align:center;font-size:12px;color:var(--ink-faint);margin-top:20px}
-@media(max-width:520px){
-  .slot-head-inner{padding:14px 18px}
-  .slot-wrap{padding:28px 16px 56px}
-}
-</style>
+    body {
+      background: var(--porcelain)
+    }
+
+    .slot-wrap {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px 72px
+    }
+
+    .slot-card {
+      width: 100%;
+      max-width: 460px
+    }
+
+    .slot-media {
+      border-radius: var(--r-img);
+      overflow: hidden;
+      margin-bottom: 22px
+    }
+
+    .slot-media img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover
+    }
+
+    .mc-lockup {
+      font-family: var(--script);
+      font-size: 34px;
+      line-height: .9;
+      color: var(--stone-text);
+      margin-bottom: 6px
+    }
+
+    .mc-lockup small {  
+      display: block;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: .06em;
+      color: var(--ink-faint);
+      margin-top: 18px;
+    }
+
+    .slot-title {
+      font-family: var(--script);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--stone-text);
+      margin: 6px 0 16px
+    }
+
+    .slot-offer {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.45;
+      margin-bottom: 12px
+    }
+
+    .slot-note {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 10px
+    }
+
+    .slot-note b {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .slot-form {
+      margin-top: 24px
+    }
+
+    .frm-field {
+      margin-bottom: 20px
+    }
+
+    .frm-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .frm-row .frm-field {
+      margin-bottom: 0
+    }
+
+    .frm-label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 7px
+    }
+
+    .frm-label .req {
+      color: var(--stone-text)
+    }
+
+    .frm-input,
+    .frm-select,
+    .frm-textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-btn);
+      padding: 13px 15px;
+      transition: border-color .15s ease;
+    }
+
+    .frm-input::placeholder,
+    .frm-textarea::placeholder {
+      color: var(--ink-faint)
+    }
+
+    .frm-input:focus,
+    .frm-select:focus,
+    .frm-textarea:focus {
+      outline: none;
+      border-color: var(--ink)
+    }
+
+    .frm-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 42px;
+      cursor: pointer
+    }
+
+    .frm-textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5
+    }
+
+    .frm-help {
+      font-size: 12px;
+      color: var(--stone-text);
+      margin-top: 6px
+    }
+
+    .frm-tel {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px
+    }
+
+    .frm-tel .frm-cc {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-btn);
+      padding: 0 12px;
+      background: var(--white);
+      font-size: 14px;
+      color: var(--ink);
+      white-space: nowrap
+    }
+
+    .frm-check-group {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-top: 4px
+    }
+
+    .frm-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.4
+    }
+
+    .frm-check input {
+      appearance: none;
+      -webkit-appearance: none;
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--hairline);
+      border-radius: 5px;
+      background: var(--white);
+      margin-top: 1px;
+      cursor: pointer;
+      position: relative;
+      transition: border-color .15s, background .15s
+    }
+
+    .frm-check input:checked {
+      background: var(--ink);
+      border-color: var(--ink)
+    }
+
+    .frm-check input:checked::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg)
+    }
+
+    .frm-submit {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 16px;
+      padding: 17px 24px;
+      border: 0;
+      border-radius: var(--r-btn);
+      cursor: pointer;
+      transition: background .18s ease
+    }
+
+    .frm-submit:hover {
+      background: #1a1a1a
+    }
+
+    .frm-submit svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .slot-legal {
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-faint);
+      margin-top: 20px
+    }
+
+    @media(max-width:520px) {
+      .slot-head-inner {
+        padding: 14px 18px
+      }
+
+      .slot-wrap {
+        padding: 28px 16px 56px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="slot-head">
-  <div class="slot-head-inner">
-    <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-      <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-    </a>
-  </div>
-</header>
-
-<main class="slot-wrap">
-  <div class="slot-card">
-    <!-- IMAGE PLACEHOLDER: warm lifestyle shot of a Memory Catcher taking prints (mc-what) -->
-    <div class="slot-media">
-      <img src="/assets/mc-what-1100.webp" width="1100" height="688" alt="A Memory Catcher taking a baby's prints">
+  <header class="slot-head">
+    <div class="slot-head-inner">
+      <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
+        <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+      </a>
     </div>
+  </header>
 
-    <!-- LOGO: text lockup stand-in until the Memory Catcher logo SVG is supplied -->
-    <div class="mc-lockup">Memory Catcher<small>BY BESPOKE FOIL COMPANY</small></div>
-    <h1 class="slot-title">Pre-book Form</h1>
-
-    <p class="slot-offer">Exclusive Memory Catcher offer: Pre-book today and get a free extra print - perfect for gifting to grandparents!</p>
-    <p class="slot-note">Secure your place with a <b>&pound;10 deposit</b> and receive a free additional copy of your Foil Hand &amp; Footprint (worth &pound;15).</p>
-    <p class="slot-note">Your deposit comes straight off your order total on the day, so you pay nothing extra, you're just saving your spot.</p>
-
-    <!-- Dixit: wire £10 deposit to Stripe + submission. Static UI only. -->
-    <form class="slot-form" id="slotForm" novalidate>
-      <div class="frm-field">
-        <label class="frm-label" for="name">Your name <span class="req">*</span></label>
-        <input class="frm-input" type="text" id="name" name="name" placeholder="e.g. Sophie Turner" autocomplete="name" required>
+  <main class="slot-wrap">
+    <div class="slot-card">
+      <!-- IMAGE PLACEHOLDER: warm lifestyle shot of a Memory Catcher taking prints (mc-what) -->
+      <div class="slot-media">
+        <img src="/assets/img-390-1100.webp" srcset="/assets/img-390-500.webp 500w, /assets/img-390-800.webp 800w, /assets/img-390-1100.webp 1100w" width="1100" height="733" alt="A family taking their baby's prints">
       </div>
 
-      <div class="frm-field">
-        <label class="frm-label" for="email">Email <span class="req">*</span></label>
-        <input class="frm-input" type="email" id="email" name="email" placeholder="sophie.turner@example.com" autocomplete="email" required>
-      </div>
+      <!-- LOGO: text lockup stand-in until the Memory Catcher logo SVG is supplied -->
+      <div class="mc-lockup">Memory Catcher<small>BY BESPOKE FOIL COMPANY</small></div>
+      <h1 class="slot-title">Pre-book Form</h1>
 
-      <div class="frm-field">
-        <label class="frm-label" for="phone">Phone number <span class="req">*</span></label>
-        <div class="frm-tel">
-          <span class="frm-cc">&#127468;&#127463; +44</span>
-          <input class="frm-input" type="tel" id="phone" name="phone" placeholder="0000000000" autocomplete="tel" required>
+      <p class="slot-offer">Exclusive Memory Catcher offer: Pre-book today and get a free extra print - perfect for
+        gifting to grandparents!</p>
+      <p class="slot-note">Secure your place with a <b>&pound;10 deposit</b> and receive a free additional copy of your
+        Foil Hand &amp; Footprint (worth &pound;15).</p>
+      <p class="slot-note">Your deposit comes straight off your order total on the day, so you pay nothing extra, you're
+        just saving your spot.</p>
+
+      <!-- Dixit: wire £10 deposit to Stripe + submission. Static UI only. -->
+      <form class="slot-form" id="slotForm" novalidate>
+        <div class="frm-field">
+          <label class="frm-label" for="name">Your name <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="name" name="name" placeholder="e.g. Sophie Turner"
+            autocomplete="name" required>
         </div>
-      </div>
 
-      <div class="frm-field">
-        <label class="frm-label" for="class">Baby class &amp; location <span class="req">*</span></label>
-        <input class="frm-input" type="text" id="class" name="class" placeholder="e.g. Baby Sensory, Standish" required>
-      </div>
+        <div class="frm-field">
+          <label class="frm-label" for="email">Email <span class="req">*</span></label>
+          <input class="frm-input" type="email" id="email" name="email" placeholder="sophie.turner@example.com"
+            autocomplete="email" required>
+        </div>
 
-      <div class="frm-field">
-        <label class="frm-label" for="babyName">Baby's name <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label>
-        <input class="frm-input" type="text" id="babyName" name="babyName" placeholder="e.g. Ava Marie Turner">
-      </div>
+        <div class="frm-field">
+          <label class="frm-label" for="phone">Phone number <span class="req">*</span></label>
+          <div class="frm-tel">
+            <span class="frm-cc">&#127468;&#127463; +44</span>
+            <input class="frm-input" type="tel" id="phone" name="phone" placeholder="0000000000" autocomplete="tel"
+              required>
+          </div>
+        </div>
 
-      <div class="frm-field">
-        <label class="frm-check">
-          <input type="checkbox" name="agree" required>
-          I understand the &pound;10 deposit is non-refundable and will be deducted from my order total on the day.
-        </label>
-      </div>
+        <div class="frm-field">
+          <label class="frm-label" for="class">Baby class &amp; location <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="class" name="class" placeholder="e.g. Baby Sensory, Standish"
+            required>
+        </div>
 
-      <button class="frm-submit" type="submit">Pay &pound;10 booking deposit</button>
-    </form>
+        <div class="frm-field">
+          <label class="frm-label" for="babyName">Baby's name <span
+              style="color:var(--ink-faint);font-weight:400">(optional)</span></label>
+          <input class="frm-input" type="text" id="babyName" name="babyName" placeholder="e.g. Ava Marie Turner">
+        </div>
 
-    <p class="slot-legal">&copy; Bespoke Foil Company | All payments are secure</p>
-  </div>
-</main>
+        <div class="frm-field">
+          <label class="frm-check">
+            <input type="checkbox" name="agree" required>
+            I understand the &pound;10 deposit is non-refundable and will be deducted from my order total on the day.
+          </label>
+        </div>
+
+        <button class="frm-submit" type="submit">Pay &pound;10 booking deposit</button>
+      </form>
+
+      <p class="slot-legal">&copy; Bespoke Foil Company | All payments are secure</p>
+    </div>
+  </main>
 
 </body>
+
 </html>

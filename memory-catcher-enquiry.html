@@ -1,420 +1,717 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<title>Register Your Interest | Memory Catcher Franchise | Bespoke Foil Company</title>
-<meta name="description" content="Register your interest in becoming a local Memory Catcher. No commitment, no hard sell - Ashley will get back to you personally.">
-<link rel="preload" as="image" href="/assets/mc-hero-1600.webp" imagesrcset="/assets/mc-hero-1200.webp 1200w, /assets/mc-hero-1600.webp 1600w, /assets/mc-hero-2000.webp 2000w" imagesizes="100vw" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/shared/styles.css?v=10">
-<style>
-/* ===== Memory Catcher enquiry: dark hero (mirrors franchise page) ===== */
-.mc-hero{position:relative;min-height:clamp(360px,52vh,520px);display:flex;align-items:flex-end;overflow:hidden}
-.mc-hero-bg{position:absolute;inset:0;z-index:0}
-.mc-hero-bg img{width:100%;height:100%;object-fit:cover}
-.mc-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,14,12,.28) 0%,rgba(16,14,12,.5) 60%,rgba(16,14,12,.72) 100%)}
-.mc-hero-inner{position:relative;z-index:1;width:100%;max-width:1280px;margin:0 auto;padding:0 40px 52px;color:#fff}
-.mc-lockup{font-family:var(--script);font-size:40px;line-height:.9;color:#fff;margin-bottom:20px}
-.mc-lockup small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.7);margin-top:6px}
-.mc-hero-inner .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:12px}
-.mc-hero-inner h1{font-family:var(--serif);font-weight:340;font-size:clamp(32px,4.6vw,50px);line-height:1.08;letter-spacing:-.015em}
+  <script src="/shared/analytics.js"></script>
+  <script src="/shared/trustpilot.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Register Your Interest | Memory Catcher Franchise | Bespoke Foil Company</title>
+  <meta name="description"
+    content="Register your interest in becoming a local Memory Catcher. No commitment, no hard sell - Ashley will get back to you personally.">
+  <link rel="preload" as="image" href="/assets/mc-hero-1600.webp"
+    imagesrcset="/assets/mc-hero-1200.webp 1200w, /assets/mc-hero-1600.webp 1600w, /assets/mc-hero-2000.webp 2000w"
+    imagesizes="100vw" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <style>
+    /* ===== Memory Catcher enquiry: dark hero (mirrors franchise page) ===== */
+    .mc-hero {
+      position: relative;
+      min-height: clamp(360px, 52vh, 520px);
+      display: flex;
+      /* 03/08: was flex-end, which pinned the copy to the bottom of the band. */
+      align-items: center;
+      overflow: hidden
+    }
 
-/* ===== enquiry form body ===== */
-.enq{max-width:900px;margin:0 auto;padding:56px 40px 72px}
-.enq h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.01em;margin-bottom:12px}
-.enq-intro{font-size:16px;color:var(--ink-soft);line-height:1.6;max-width:60ch;margin-bottom:36px}
+    .mc-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0
+    }
 
-.frm-field{margin-bottom:20px}
-.frm-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.frm-row .frm-field{margin-bottom:0}
-.frm-label{display:block;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink);margin-bottom:7px}
-.frm-label .req{color:var(--stone-text)}
-.frm-input,.frm-select,.frm-textarea{
-  width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--white);
-  border:1px solid var(--hairline);border-radius:var(--r-btn);padding:13px 15px;transition:border-color .15s ease;
-}
-.frm-input::placeholder,.frm-textarea::placeholder{color:var(--ink-faint)}
-.frm-input:focus,.frm-select:focus,.frm-textarea:focus{outline:none;border-color:var(--ink)}
-.frm-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:42px;cursor:pointer}
-.frm-textarea{min-height:110px;resize:vertical;line-height:1.5}
-.frm-help{font-size:12px;color:var(--stone-text);margin-top:6px}
-.frm-tel{display:grid;grid-template-columns:auto 1fr;gap:10px}
-.frm-tel .frm-cc{display:flex;align-items:center;gap:6px;border:1px solid var(--hairline);border-radius:var(--r-btn);padding:0 12px;background:var(--white);font-size:14px;color:var(--ink);white-space:nowrap}
-.frm-check-group{display:flex;flex-direction:column;gap:11px;margin-top:4px}
-.frm-check{display:flex;align-items:flex-start;gap:11px;cursor:pointer;font-size:14px;color:var(--ink);line-height:1.4}
-.frm-check input{appearance:none;-webkit-appearance:none;flex:none;width:20px;height:20px;border:1.5px solid var(--hairline);border-radius:5px;background:var(--white);margin-top:1px;cursor:pointer;position:relative;transition:border-color .15s,background .15s}
-.frm-check input:checked{background:var(--ink);border-color:var(--ink)}
-.frm-check input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.frm-submit{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--ink);color:var(--white);font-family:var(--sans);font-weight:500;font-size:16px;padding:17px 24px;border:0;border-radius:var(--r-btn);cursor:pointer;transition:background .18s ease}
-.frm-submit:hover{background:#1a1a1a}
-.frm-submit svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .mc-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
 
-@media(max-width:640px){
-  .mc-hero-inner{padding:0 18px 40px}
-  .mc-lockup{font-size:34px}
-  .enq{padding:40px 18px 56px}
-  .frm-row{grid-template-columns:1fr;gap:20px}
-}
-.light-scope header{position:absolute}
-.light-scope .logotype img{filter:none}
-.light-scope .cart-btn{color:var(--ink)}
-.light-scope .cta.nav-cta{color:var(--ink);border-color:var(--ink)}
-.light-scope .burger span{background:var(--ink)}
-</style>
+    .mc-hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(16, 14, 12, .28) 0%, rgba(16, 14, 12, .5) 60%, rgba(16, 14, 12, .72) 100%)
+    }
+
+    .mc-hero-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 40px;
+      color: #fff
+    }
+
+    .mc-lockup {
+      font-family: var(--script);
+      font-size: 40px;
+      line-height: .9;
+      color: #fff;
+      margin-bottom: 20px
+    }
+
+    .mc-lockup small {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .06em;
+      color: rgba(255, 255, 255, .7);
+      margin-top: 6px
+    }
+
+    .mc-hero-inner .eyebrow {
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .75);
+      margin-bottom: 12px
+    }
+
+    .mc-hero-inner h1 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(32px, 4.6vw, 50px);
+      line-height: 1.08;
+      letter-spacing: -.015em
+    }
+
+    /* ===== enquiry form body ===== */
+    .enq {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 40px 72px
+    }
+
+    .enq h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.4vw, 34px);
+      letter-spacing: -.01em;
+      margin-bottom: 12px
+    }
+
+    .enq-intro {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      max-width: 60ch;
+      margin-bottom: 36px
+    }
+
+    .frm-field {
+      margin-bottom: 20px
+    }
+
+    .frm-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .frm-row .frm-field {
+      margin-bottom: 0
+    }
+
+    .frm-label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 7px
+    }
+
+    .frm-label .req {
+      color: var(--stone-text)
+    }
+
+    .frm-input,
+    .frm-select,
+    .frm-textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-btn);
+      padding: 13px 15px;
+      transition: border-color .15s ease;
+    }
+
+    .frm-input::placeholder,
+    .frm-textarea::placeholder {
+      color: var(--ink-faint)
+    }
+
+    .frm-input:focus,
+    .frm-select:focus,
+    .frm-textarea:focus {
+      outline: none;
+      border-color: var(--ink)
+    }
+
+    .frm-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 42px;
+      cursor: pointer
+    }
+
+    .frm-textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5
+    }
+
+    .frm-help {
+      font-size: 12px;
+      color: var(--stone-text);
+      margin-top: 6px
+    }
+
+    .frm-tel {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px
+    }
+
+    .frm-tel .frm-cc {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-btn);
+      padding: 0 12px;
+      background: var(--white);
+      font-size: 14px;
+      color: var(--ink);
+      white-space: nowrap
+    }
+
+    .frm-check-group {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-top: 4px
+    }
+
+    .frm-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.4
+    }
+
+    .frm-check input {
+      appearance: none;
+      -webkit-appearance: none;
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--hairline);
+      border-radius: 5px;
+      background: var(--white);
+      margin-top: 1px;
+      cursor: pointer;
+      position: relative;
+      transition: border-color .15s, background .15s
+    }
+
+    .frm-check input:checked {
+      background: var(--ink);
+      border-color: var(--ink)
+    }
+
+    .frm-check input:checked::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg)
+    }
+
+    .frm-submit {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 16px;
+      padding: 17px 24px;
+      border: 0;
+      border-radius: var(--r-btn);
+      cursor: pointer;
+      transition: background .18s ease
+    }
+
+    .frm-submit:hover {
+      background: #1a1a1a
+    }
+
+    .frm-submit svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    @media(max-width:640px) {
+      .mc-hero-inner {
+        padding: 32px 18px
+      }
+
+      .mc-lockup {
+        font-size: 34px
+      }
+
+      .enq {
+        padding: 40px 18px 56px
+      }
+
+      .frm-row {
+        grid-template-columns: 1fr;
+        gap: 20px
+      }
+    }
+
+    .light-scope header {
+      position: absolute
+    }
+
+    .light-scope .logotype img {
+      filter: none
+    }
+
+    .light-scope .cart-btn {
+      color: var(--ink)
+    }
+
+    .light-scope .cta.nav-cta {
+      color: var(--ink);
+      border-color: var(--ink)
+    }
+
+    .light-scope .burger span {
+      background: var(--ink)
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- INTERIM NAV MENU -->
-<nav class="nav-menu" id="navMenu" aria-hidden="true">
-  <div class="nav-menu-inner">
-    <div class="nav-menu-top">
-      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-        <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-      </a>
-      <div class="nav-menu-top-right">
-        <a class="nav-menu-order" href="/our-kit">
-          <span>Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  <!-- INTERIM NAV MENU -->
+  <nav class="nav-menu" id="navMenu" aria-hidden="true">
+    <div class="nav-menu-inner">
+      <div class="nav-menu-top">
+        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
         </a>
-        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <div class="nav-menu-top-right">
+          <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span>Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-menu-links">
+        <a href="/" data-page="home">Home</a>
+        <a href="/our-story" data-page="our-story">Our Story</a>
+        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+        <a href="/faq" data-page="faq">FAQ</a>
+        <a href="/contact" data-page="contact">Contact</a>
+      </div>
+
+      <div class="nav-menu-cta">
+        <div class="nav-menu-cta-head">
+          <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
+          <span class="nav-menu-cta-sub">Run it, or find one near you</span>
+        </div>
+        <div class="nav-menu-cards">
+          <a class="nav-menu-card" href="/franchise" data-page="franchise">
+            <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
+            <span class="nav-menu-card-label">
+              <span>Become a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
+          <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
+            <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
+            <span class="nav-menu-card-label">
+              <span>Find a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="announce">
+    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
+    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
+  </div>
+
+
+  <div class="hero-scope">
+    <header>
+      <div class="nav-row">
+        <button class="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
         </button>
-      </div>
-    </div>
-
-        <div class="nav-menu-links">
-      <a href="/" data-page="home">Home</a>
-      <a href="/our-story" data-page="our-story">Our Story</a>
-      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
-      <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-      <a href="/our-kit" data-page="our-kit">Order Your Kit</a>
-      <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-      <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-      <a href="/faq" data-page="faq">FAQ</a>
-      <a href="/contact" data-page="contact">Contact</a>
-    </div>
-
-    <div class="nav-menu-cta">
-      <div class="nav-menu-cta-head">
-        <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
-        <span class="nav-menu-cta-sub">Run it, or find one near you</span>
-      </div>
-      <div class="nav-menu-cards">
-        <a class="nav-menu-card" href="/franchise" data-page="franchise">
-          <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
-          <span class="nav-menu-card-label">
-            <span>Become a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
+        <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
+          <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
         </a>
-        <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
-          <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
-          <span class="nav-menu-card-label">
-            <span>Find a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
-        </a>
+        <div class="nav-right">
+          <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span class="lbl">Order Your Kit</span>
+            <span class="lbl-short">Order Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+            </div>
       </div>
-    </div>
-  </div>
-</nav>
+    </header>
 
 
-<div class="announce">
-  <img src="/assets/tp-stars.svg" alt="Rated Excellent on Trustpilot">
-  <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-</div>
+    <!-- ============ DARK HERO ============ -->
+    <section class="mc-hero">
+      <div class="mc-hero-bg">
+        <img src="/assets/img-387-2000.webp" width="2000" height="1333" fetchpriority="high" alt="A parent and baby at a Memory Catcher session">
+      </div>
+      <div class="mc-hero-inner">
+        <!-- LOGO: text lockup stand-in until the Memory Catcher logo SVG is supplied -->
+        <div class="mc-lockup">Memory Catcher</div>
+        <p class="eyebrow">Our Memory Catcher&trade; Franchise</p>
+        <h1>Become a local Memory Catcher</h1>
+      </div>
+    </section>
+  </div><!-- /hero-scope -->
 
+  <!-- ============ REGISTER YOUR INTEREST FORM ============ -->
+  <main class="enq" id="register">
+    <h2>Register your interest</h2>
+    <p class="enq-intro">No commitment, no hard sell. Just a few quick questions so Ashley can get back to you
+      personally, whether that's a WhatsApp chat or a proper conversation, whatever suits you best.</p>
 
-<div class="hero-scope">
-<header>
-  <div class="nav-row">
-    <button class="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-      <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-    </a>
-    <div class="nav-right">
-      <a class="cta nav-cta on-dark" href="/our-kit">
-        <span class="lbl">Order Your Kit</span>
-        <span class="lbl-short">Order Kit</span>
-        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <button class="cart-btn" aria-label="Basket">
-        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
-        <span class="cart-count">2</span>
+    <!-- Dixit: wire submission (Netlify Forms / webhook to Ashley). Static UI only. -->
+    <form id="enquiryForm" novalidate>
+      <div class="frm-row">
+        <div class="frm-field">
+          <label class="frm-label" for="firstName">First name <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="lastName">Last name <span class="req">*</span></label>
+          <input class="frm-input" type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+        </div>
+      </div>
+
+      <div class="frm-field">
+        <label class="frm-label" for="location">Where are you based? (Town or city) <span class="req">*</span></label>
+        <input class="frm-input" type="text" id="location" name="location" required>
+        <p class="frm-help">We'll check if there's a territory available in your area.</p>
+      </div>
+
+      <div class="frm-field">
+        <label class="frm-label" for="situation">What's your current situation? <span class="req">*</span></label>
+        <select class="frm-select" id="situation" name="situation" required>
+          <option value="" disabled selected></option>
+          <option>On maternity leave</option>
+          <option>Stay-at-home parent</option>
+          <option>Working full-time</option>
+          <option>Working part-time</option>
+          <option>Self-employed / run my own business</option>
+          <option>Currently not working</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="frm-field">
+        <label class="frm-label" for="boughtBefore">Have you bought from The Bespoke Foil Company before? <span
+            class="req">*</span></label>
+        <select class="frm-select" id="boughtBefore" name="boughtBefore" required>
+          <option value="" disabled selected></option>
+          <option>Yes, I've ordered a kit</option>
+          <option>Yes, at a baby class or event</option>
+          <option>No, but I know the brand</option>
+          <option>No, this is new to me</option>
+        </select>
+      </div>
+
+      <div class="frm-field">
+        <label class="frm-label">What appeals to you most about this opportunity? <span class="req">*</span></label>
+        <div class="frm-check-group">
+          <label class="frm-check"><input type="checkbox" name="appeal" value="flexibility"> The flexibility around
+            family life</label>
+          <label class="frm-check"><input type="checkbox" name="appeal" value="ownership"> Building something that's
+            mine</label>
+          <label class="frm-check"><input type="checkbox" name="appeal" value="low-cost"> The low setup cost compared to
+            other franchises</label>
+          <label class="frm-check"><input type="checkbox" name="appeal" value="product"> I love the product and believe
+            in it</label>
+          <label class="frm-check"><input type="checkbox" name="appeal" value="earning"> The earning potential</label>
+          <label class="frm-check"><input type="checkbox" name="appeal" value="community"> Being part of a community of
+            like-minded women</label>
+        </div>
+      </div>
+
+      <div class="frm-row">
+        <div class="frm-field">
+          <label class="frm-label" for="drive">Do you drive? <span class="req">*</span></label>
+          <select class="frm-select" id="drive" name="drive" required>
+            <option value="" disabled selected></option>
+            <option>Yes, I have a car</option>
+            <option>Yes, but no car right now</option>
+            <option>No</option>
+          </select>
+        </div>
+        <div class="frm-field">
+          <label class="frm-label" for="contactPref">How would you like Ashley to get back to you? <span
+              class="req">*</span></label>
+          <select class="frm-select" id="contactPref" name="contactPref" required>
+            <option value="" disabled selected></option>
+            <option>WhatsApp message</option>
+            <option>Phone call</option>
+            <option>Email</option>
+            <option>Whatever's easiest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="frm-field">
+        <label class="frm-label" for="mobile">Mobile number <span class="req">*</span></label>
+        <div class="frm-tel">
+          <span class="frm-cc">&#127468;&#127463; +44</span>
+          <input class="frm-input" type="tel" id="mobile" name="mobile" autocomplete="tel" required>
+        </div>
+      </div>
+
+      <div class="frm-field">
+        <label class="frm-label" for="email">Email address <span class="req">*</span></label>
+        <input class="frm-input" type="email" id="email" name="email" autocomplete="email" required>
+      </div>
+
+      <div class="frm-field">
+        <label class="frm-label" for="notes">Anything else you'd like to say? <span
+            style="color:var(--ink-faint);font-weight:400">(Optional)</span></label>
+        <textarea class="frm-textarea" id="notes" name="notes"></textarea>
+        <p class="frm-help">Anything specific on your mind so Ashley can prepare.</p>
+      </div>
+
+      <button class="frm-submit" type="submit">
+        Send my details to Ashley
+        <svg viewBox="0 0 24 24">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
       </button>
-    </div>
-  </div>
-</header>
+    </form>
+  </main>
 
-
-<!-- ============ DARK HERO ============ -->
-<section class="mc-hero">
-  <div class="mc-hero-bg">
-    <img src="/assets/mc-hero-1600.webp" srcset="/assets/mc-hero-1200.webp 1200w, /assets/mc-hero-1600.webp 1600w, /assets/mc-hero-2000.webp 2000w" sizes="100vw" width="2000" height="1429" fetchpriority="high" alt="A Memory Catcher capturing a baby's prints">
-  </div>
-  <div class="mc-hero-inner">
-    <!-- LOGO: text lockup stand-in until the Memory Catcher logo SVG is supplied -->
-    <div class="mc-lockup">Memory Catcher<small>BY BESPOKE FOIL COMPANY</small></div>
-    <p class="eyebrow">Our Memory Catcher&trade; Franchise</p>
-    <h1>Become a local Memory Catcher</h1>
-  </div>
-</section>
-</div><!-- /hero-scope -->
-
-<!-- ============ REGISTER YOUR INTEREST FORM ============ -->
-<main class="enq" id="register">
-  <h2>Register your interest</h2>
-  <p class="enq-intro">No commitment, no hard sell. Just a few quick questions so Ashley can get back to you personally, whether that's a WhatsApp chat or a proper conversation, whatever suits you best.</p>
-
-  <!-- Dixit: wire submission (Netlify Forms / webhook to Ashley). Static UI only. -->
-  <form id="enquiryForm" novalidate>
-    <div class="frm-row">
-      <div class="frm-field">
-        <label class="frm-label" for="firstName">First name <span class="req">*</span></label>
-        <input class="frm-input" type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+  <!-- ============ JOIN OUR COMMUNITY ============ -->
+  <section class="community">
+    <div class="community-inner">
+      <div>
+        <h2>Join our community</h2>
+        <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
       </div>
-      <div class="frm-field">
-        <label class="frm-label" for="lastName">Last name <span class="req">*</span></label>
-        <input class="frm-input" type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+      <div class="community-form">
+        <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
+        <button id="communityJoin">Join</button>
       </div>
     </div>
-
-    <div class="frm-field">
-      <label class="frm-label" for="location">Where are you based? (Town or city) <span class="req">*</span></label>
-      <input class="frm-input" type="text" id="location" name="location" required>
-      <p class="frm-help">We'll check if there's a territory available in your area.</p>
-    </div>
-
-    <div class="frm-field">
-      <label class="frm-label" for="situation">What's your current situation? <span class="req">*</span></label>
-      <select class="frm-select" id="situation" name="situation" required>
-        <option value="" disabled selected></option>
-        <option>On maternity leave</option>
-        <option>Stay-at-home parent</option>
-        <option>Working full-time</option>
-        <option>Working part-time</option>
-        <option>Self-employed / run my own business</option>
-        <option>Currently not working</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <div class="frm-field">
-      <label class="frm-label" for="boughtBefore">Have you bought from The Bespoke Foil Company before? <span class="req">*</span></label>
-      <select class="frm-select" id="boughtBefore" name="boughtBefore" required>
-        <option value="" disabled selected></option>
-        <option>Yes, I've ordered a kit</option>
-        <option>Yes, at a baby class or event</option>
-        <option>No, but I know the brand</option>
-        <option>No, this is new to me</option>
-      </select>
-    </div>
-
-    <div class="frm-field">
-      <label class="frm-label">What appeals to you most about this opportunity? <span class="req">*</span></label>
-      <div class="frm-check-group">
-        <label class="frm-check"><input type="checkbox" name="appeal" value="flexibility"> The flexibility around family life</label>
-        <label class="frm-check"><input type="checkbox" name="appeal" value="ownership"> Building something that's mine</label>
-        <label class="frm-check"><input type="checkbox" name="appeal" value="low-cost"> The low setup cost compared to other franchises</label>
-        <label class="frm-check"><input type="checkbox" name="appeal" value="product"> I love the product and believe in it</label>
-        <label class="frm-check"><input type="checkbox" name="appeal" value="earning"> The earning potential</label>
-        <label class="frm-check"><input type="checkbox" name="appeal" value="community"> Being part of a community of like-minded women</label>
-      </div>
-    </div>
-
-    <div class="frm-row">
-      <div class="frm-field">
-        <label class="frm-label" for="drive">Do you drive? <span class="req">*</span></label>
-        <select class="frm-select" id="drive" name="drive" required>
-          <option value="" disabled selected></option>
-          <option>Yes, I have a car</option>
-          <option>Yes, but no car right now</option>
-          <option>No</option>
-        </select>
-      </div>
-      <div class="frm-field">
-        <label class="frm-label" for="contactPref">How would you like Ashley to get back to you? <span class="req">*</span></label>
-        <select class="frm-select" id="contactPref" name="contactPref" required>
-          <option value="" disabled selected></option>
-          <option>WhatsApp message</option>
-          <option>Phone call</option>
-          <option>Email</option>
-          <option>Whatever's easiest</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="frm-field">
-      <label class="frm-label" for="mobile">Mobile number <span class="req">*</span></label>
-      <div class="frm-tel">
-        <span class="frm-cc">&#127468;&#127463; +44</span>
-        <input class="frm-input" type="tel" id="mobile" name="mobile" autocomplete="tel" required>
-      </div>
-    </div>
-
-    <div class="frm-field">
-      <label class="frm-label" for="email">Email address <span class="req">*</span></label>
-      <input class="frm-input" type="email" id="email" name="email" autocomplete="email" required>
-    </div>
-
-    <div class="frm-field">
-      <label class="frm-label" for="notes">Anything else you'd like to say? <span style="color:var(--ink-faint);font-weight:400">(Optional)</span></label>
-      <textarea class="frm-textarea" id="notes" name="notes"></textarea>
-      <p class="frm-help">Anything specific on your mind so Ashley can prepare.</p>
-    </div>
-
-    <button class="frm-submit" type="submit">
-      Send my details to Ashley
-      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </button>
-  </form>
-</main>
-
-<!-- ============ JOIN OUR COMMUNITY ============ -->
-<section class="community">
-  <div class="community-inner">
-    <div>
-      <h2>Join our community</h2>
-      <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
-    </div>
-    <div class="community-form">
-      <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
-      <button id="communityJoin">Join</button>
-    </div>
-  </div>
-</section>
+  </section>
 
 
-<footer>
-  <div class="foot-top">
-    <div class="foot-col foot-contact">
-      <h4>Contact</h4>
-      <p>Tel: 07506 998934</p>
-      <p>Email: hello@thebespokefoilcompany.co.uk</p>
-      <div class="foot-social">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
-      </div>
-      <p class="f-label">Find Us</p>
-      <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
-      <p class="f-label">Opening Hours</p>
-      <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
-    </div>
-
-    <div class="foot-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="/our-kit">Order Your Kit</a></li>
-        <li><a href="/our-story">Our Story</a></li>
-        <li><a href="/premium-frames">Premium Frames</a></li>
-        <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
-        <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
-        <li><a href="/eco-friendly">Eco-Friendly</a></li>
-        <li><a href="/tommys-charity">Tommy's Charity</a></li>
-        <li><a href="/upload-portal">Uploading Your Prints</a></li>
-      </ul>
-    </div>
-
-    <div class="foot-col">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="/faq">FAQ's</a></li>
-        <li><a href="/blog">Stories &amp; Inspiration</a></li>
-        <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
-        <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
-      </ul>
-      <h4>Franchise</h4>
-      <ul>
-        <li><a href="/franchise-hub">Franchise Hub</a></li>
-        <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
-        <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
-        <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
-        <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
-        <li><a href="/franchise-region">Search Franchise Regions</a></li>
-        <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
-      </ul>
-    </div>
-
-    <div class="foot-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
-        <li><a href="/sitemap">Sitemap</a></li>
-      </ul>
-      <div class="foot-right" style="margin-top:26px">
-        <a class="cta on-dark foot-order" href="/our-kit">
-          <span class="lbl">Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <div class="foot-pay" aria-label="Accepted payment methods">
-          <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
-          <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
-          <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
-          <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
-          <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
-          <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+  <footer>
+    <div class="foot-top">
+      <div class="foot-col foot-contact">
+        <h4>Contact</h4>
+        <p>Tel: 07506 998934</p>
+        <p>Email: hello@thebespokefoilcompany.co.uk</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/TheBespokeFoilCompany" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z" />
+            </svg></a>
+          <a href="https://www.instagram.com/thebespokefoilco/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
+            </svg></a>
         </div>
-        <div class="foot-tp">
-          <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-          <span class="tp-meta">TrustScore 4.9 &middot; 65 reviews</span>
+        <p class="f-label">Find Us</p>
+        <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
+        <p class="f-label">Opening Hours</p>
+        <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
+          <li><a href="/our-story">Our Story</a></li>
+          <li><a href="/premium-frames">Premium Frames</a></li>
+          <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
+          <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
+          <li><a href="/eco-friendly">Eco-Friendly</a></li>
+          <li><a href="/tommys-charity">Tommy's Charity</a></li>
+          <li><a href="/upload-portal">Uploading Your Prints</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/faq">FAQ's</a></li>
+          <li><a href="/blog">Stories &amp; Inspiration</a></li>
+          <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
+          <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
+        </ul>
+        <h4>Franchise</h4>
+        <ul>
+          <li><a href="/franchise-hub">Franchise Hub</a></li>
+          <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
+          <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
+          <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
+          <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
+          <li><a href="/franchise-region">Search Franchise Regions</a></li>
+          <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/sitemap">Sitemap</a></li>
+        </ul>
+        <div class="foot-right" style="margin-top:26px">
+          <a class="cta on-dark foot-order" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span class="lbl">Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <div class="foot-pay" aria-label="Accepted payment methods">
+            <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
+            <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
+            <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
+            <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
+            <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
+            <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+          </div>
+          <div class="foot-tp">
+            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="foot-legal">
-    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID: GB419408687.</p>
-    <p style="margin-top:6px"><a href="https://www.mywixdesigner.com/">Website by My Wix Designer</a></p>
-  </div>
+    <div class="foot-legal">
+      <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
+        GB419408687.</p>
+      <p style="margin-top:6px"><a href="https://www.twinegrowth.com" target="_blank" rel="noopener">Website by Twine Growth</a></p>
+    </div>
 
-  <div class="foot-watermark" aria-hidden="true">
-    <img src="/assets/bfc-logo.svg" alt="">
-  </div>
-</footer>
+    <div class="foot-watermark" aria-hidden="true">
+      <img src="/assets/bfc-logo.svg" alt="">
+    </div>
+  </footer>
 
 
-<script>
-(function(){
-  const header = document.querySelector('header');
-  if(!header) return;
-  const ST=60, HIDE=260, D=6;
-  let lastY=window.scrollY, acc=0, tick=false;
-  function up(){
-    const y=window.scrollY, diff=y-lastY;
-    if(y>ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-    if(Math.abs(diff)>D){
-      if(diff>0){ acc+=diff; if(acc>HIDE && y>ST) header.classList.add('header-hidden'); }
-      else { header.classList.remove('header-hidden'); acc=0; }
-      lastY=y;
-    }
-    tick=false;
-  }
-  window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});
-  up();
-})();
-</script>
-<script>
-(function(){
-  const menu=document.getElementById('navMenu');
-  const burger=document.querySelector('.burger');
-  const closeBtn=document.getElementById('navMenuClose');
-  if(!menu||!burger)return;
-  function open(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}
-  function close(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}
-  burger.addEventListener('click',open);
-  if(closeBtn)closeBtn.addEventListener('click',close);
-  menu.addEventListener('click',e=>{if(e.target===menu)close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-})();
-</script>
+  <script>
+    (function () {
+      const header = document.querySelector('header');
+      if (!header) return;
+      const ST = 60, HIDE = 260, D = 6;
+      let lastY = window.scrollY, acc = 0, tick = false;
+      function up() {
+        const y = window.scrollY, diff = y - lastY;
+        if (y > ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+        if (Math.abs(diff) > D) {
+          if (diff > 0) { acc += diff; if (acc > HIDE && y > ST) header.classList.add('header-hidden'); }
+          else { header.classList.remove('header-hidden'); acc = 0; }
+          lastY = y;
+        }
+        tick = false;
+      }
+      window.addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(up); tick = true; } }, { passive: true });
+      up();
+    })();
+  </script>
+  <script>
+    (function () {
+      const menu = document.getElementById('navMenu');
+      const burger = document.querySelector('.burger');
+      const closeBtn = document.getElementById('navMenuClose');
+      if (!menu || !burger) return;
+      function open() { menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); document.body.classList.add('menu-open'); }
+      function close() { menu.classList.remove('open'); menu.setAttribute('aria-hidden', 'true'); document.body.classList.remove('menu-open'); }
+      burger.addEventListener('click', open);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      menu.addEventListener('click', e => { if (e.target === menu) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
+
 </html>

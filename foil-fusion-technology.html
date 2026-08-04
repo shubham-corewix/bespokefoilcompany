@@ -1,540 +1,1157 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Foil Fusion Technology – Bespoke Foil Keepsake Prints</title>
-<meta name="description" content="Discover Foil Fusion Technology, exclusive to Bespoke Foil Company. A flawless, lasting finish that preserves every detail of your baby’s precious memories.">
-<link rel="preload" as="image" href="/assets/ff-hero-1600.webp" imagesrcset="/assets/ff-hero-1200.webp 1200w, /assets/ff-hero-1600.webp 1600w, /assets/ff-hero-2000.webp 2000w" imagesizes="100vw" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/shared/styles.css?v=10">
-<style>
-/* ===== FOIL FUSION page-specific ===== */
-/* dark photo hero (same style as Contact) */
-.ff-hero{position:relative;min-height:600px;display:flex;align-items:center;overflow:hidden;background:#161412}
-.ff-hero-bg{position:absolute;inset:0;z-index:0}
-.ff-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
-.ff-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,14,12,.88) 0%,rgba(16,14,12,.62) 44%,rgba(16,14,12,.3) 100%)}
-.ff-hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:150px 40px 110px;width:100%}
-.ff-hero .eyebrow{font-family:var(--sans);font-size:14px;color:rgba(255,255,255,.72);margin-bottom:20px}
-.ff-hero h1{font-family:var(--serif);font-weight:340;font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:18ch;margin-bottom:24px}
-.ff-hero p{font-family:var(--sans);font-size:16px;line-height:1.7;color:rgba(255,255,255,.85);max-width:46ch}
+  <script src="/shared/analytics.js"></script>
+  <script src="/shared/trustpilot.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Foil Fusion Technology – Bespoke Foil Keepsake Prints</title>
+  <meta name="description"
+    content="Discover Foil Fusion Technology, exclusive to Bespoke Foil Company. A flawless, lasting finish that preserves every detail of your baby’s precious memories.">
+  <link rel="preload" as="image" href="/assets/ff-hero-1600.webp"
+    imagesrcset="/assets/ff-hero-1200.webp 1200w, /assets/ff-hero-1600.webp 1600w, /assets/ff-hero-2000.webp 2000w"
+    imagesizes="100vw" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <style>
+    /* ===== FOIL FUSION page-specific ===== */
+    /* dark photo hero (same style as Contact) */
+    .ff-hero {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #161412
+    }
 
-/* content bands */
-.ff-band{padding:64px 0}
-.ff-band .inner{max-width:1280px;margin:0 auto;padding:0 40px;display:grid;gap:56px;align-items:center}
-@media(min-width:920px){.ff-band .inner{grid-template-columns:1fr 1fr;gap:72px}.ff-band.img-left .ff-text{order:2}.ff-band.img-left .ff-media{order:1}}
-.ff-text h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.015em;margin-bottom:20px}
-.ff-text p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:16px;max-width:52ch}
-.ff-text .cta{margin-top:26px}
-.ff-media{border-radius:var(--r-img);overflow:hidden;aspect-ratio:1/1;background:var(--bone)}
-.ff-media img{width:100%;height:100%;object-fit:cover}
+    .ff-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0
+    }
 
-/* "what makes different" porcelain + bleeding image into stone "result" band */
-.ff-diff{background:var(--porcelain);padding:72px 40px 0;text-align:center}
-.ff-diff .inner{max-width:820px;margin:0 auto}
-.ff-diff h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.8vw,38px);letter-spacing:-.015em;margin-bottom:22px}
-.ff-diff p{font-size:15.5px;line-height:1.8;color:var(--ink-soft);margin-bottom:16px}
-.ff-bleed{max-width:1180px;margin:40px auto 0;padding:0 40px}
-.ff-bleed-img{border-radius:var(--r-img);overflow:hidden;aspect-ratio:16/9;background:var(--bone);position:relative;z-index:2}
-.ff-bleed-img img{width:100%;height:100%;object-fit:cover}
-.ff-result{background:var(--stone);color:#fff;text-align:center;padding:0 40px 72px;margin-top:-90px}
-.ff-result .inner{max-width:760px;margin:0 auto;padding-top:120px}
-.ff-result h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,36px);letter-spacing:-.015em;margin-bottom:20px;color:#fff}
-.ff-result p{font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.92);margin-bottom:24px}
+    .ff-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center
+    }
 
-/* why it matters - two overlapping images */
-.ff-why{padding:72px 0}
-.ff-why .inner{max-width:1280px;margin:0 auto;padding:0 40px;display:grid;gap:56px;align-items:center}
-@media(min-width:920px){.ff-why .inner{grid-template-columns:1fr 1fr;gap:72px}}
-.ff-why-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-.ff-why-imgs .a,.ff-why-imgs .b{border-radius:var(--r-img);overflow:hidden}
-.ff-why-imgs .a{aspect-ratio:3/4}
-.ff-why-imgs .b{aspect-ratio:3/4;margin-top:36px}
-.ff-why-imgs img{width:100%;height:100%;object-fit:cover}
-@media(max-width:919px){.ff-why-imgs .b{margin-top:0}}
-.ff-why-text h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.015em;margin-bottom:20px}
-.ff-why-text p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:16px;max-width:52ch}
+    .ff-hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(16, 14, 12, .88) 0%, rgba(16, 14, 12, .62) 44%, rgba(16, 14, 12, .3) 100%)
+    }
 
-/* difference you can feel - feature cards */
-.ff-feat{max-width:1180px;margin:0 auto;padding:24px 40px 80px;text-align:center}
-.ff-feat h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,36px);letter-spacing:-.015em;margin-bottom:40px}
-.ff-feat-grid{display:grid;gap:16px}
-@media(min-width:760px){.ff-feat-grid{grid-template-columns:repeat(3,1fr)}}
-.ff-feat-card{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);padding:36px 28px;text-align:center}
-.ff-feat-card .ic{width:48px;height:48px;margin:0 auto 18px;border-radius:50%;background:var(--stone);display:grid;place-items:center}
-.ff-feat-card .ic svg{width:22px;height:22px;stroke:var(--ink);stroke-width:1.6;fill:none}
-.ff-feat-card h3{font-family:var(--serif);font-weight:420;font-size:19px;margin-bottom:8px}
-.ff-feat-card p{font-size:13.5px;line-height:1.5;color:var(--ink-soft);max-width:26ch;margin:0 auto}
+    .ff-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 150px 40px 110px;
+      width: 100%
+    }
 
-/* why we keep it special + signature (porcelain) */
-.ff-special{background:var(--porcelain);padding:72px 40px}
-.ff-special .inner{max-width:1280px;margin:0 auto;display:grid;gap:56px;align-items:center}
-@media(min-width:920px){.ff-special .inner{grid-template-columns:1fr 1fr;gap:72px}}
-.ff-special-box{max-width:560px}
-.ff-special h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,36px);letter-spacing:-.015em;margin-bottom:20px}
-.ff-special p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:16px;max-width:52ch}
-.ff-special .off{font-size:15px;color:var(--ink);margin:24px 0 2px}
-.ff-special .sig{font-family:var(--script);font-size:34px;color:var(--stone-text);line-height:1;margin:6px 0}
-.ff-special .role{font-size:12.5px;letter-spacing:.04em;color:var(--ink-faint)}
-.ff-special-media{border-radius:var(--r-img);overflow:hidden;aspect-ratio:5/4;background:var(--bone)}
-.ff-special-media img{width:100%;height:100%;object-fit:cover}
-@media(max-width:919px){.ff-special-media{aspect-ratio:4/3;order:-1}}
+    .ff-hero .eyebrow {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: rgba(255, 255, 255, .72);
+      margin-bottom: 20px
+    }
 
-/* parent testimonial carousel */
-.ff-tst{max-width:1280px;margin:0 auto;padding:72px 40px 24px}
-.ff-tst-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px;flex-wrap:wrap}
-.ff-tst-head h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.015em}
-.ff-tst-head p{font-size:14px;color:var(--ink-soft);margin-top:6px}
-.ff-tst-nav{display:flex;gap:10px}
-.ff-tst-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}
-.ff-tst-track::-webkit-scrollbar{display:none}
-.ff-tst-card{flex:0 0 min(360px,82vw);scroll-snap-align:start;background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px -20px rgba(0,0,0,.25)}
-.ff-tst-card .ph{aspect-ratio:16/10;overflow:hidden;background:var(--bone)}
-.ff-tst-card .ph img{width:100%;height:100%;object-fit:cover}
-.ff-tst-card .body{padding:22px 24px 26px;background:var(--white)}
-.ff-tst-card .quote{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin-bottom:16px}
-.ff-tst-card .who{font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px}
-.ff-tst-card .who svg{width:14px;height:14px;fill:#00b67a}
-.ff-tst-card .rel{font-size:12.5px;color:var(--ink-faint);margin-top:2px}
+    .ff-hero h1 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      color: #fff;
+      max-width: 18ch;
+      margin-bottom: 24px
+    }
 
-@media(max-width:600px){
-  .ff-hero{min-height:460px}
-  .ff-hero-inner{padding:120px 18px 72px}
-  .ff-hero-bg::after{background:linear-gradient(180deg,rgba(16,14,12,.62) 0%,rgba(16,14,12,.55) 55%,rgba(16,14,12,.8) 100%)}
-  .ff-band{padding:40px 0}
-  .ff-band .inner,.ff-why .inner{padding:0 18px;gap:28px}
-  .ff-band.img-left .ff-media{order:-1}
-  .ff-diff{padding:48px 18px 0}
-  .ff-bleed{padding:0 18px}
-  .ff-result{padding:0 18px 48px}
-  .ff-why{padding:48px 0}
-  .ff-feat{padding:24px 18px 56px}
-  .ff-special{padding:48px 18px}
-  .ff-tst{padding:48px 18px 16px}
+    .ff-hero p {
+      font-family: var(--sans);
+      font-size: clamp(14px, 1vw + 12px, 16px);
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .85);
+      max-width: 46ch
+    }
+
+    /* content bands */
+    .ff-band {
+      padding: 64px 0
+    }
+
+    .ff-band .inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      gap: 56px;
+      align-items: center
+    }
+
+    @media(min-width:920px) {
+      .ff-band .inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 72px
+      }
+
+      .ff-band.img-left .ff-text {
+        order: 2
+      }
+
+      .ff-band.img-left .ff-media {
+        order: 1
+      }
+    }
+
+    .ff-text h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 38px);
+      letter-spacing: -.015em;
+      margin-bottom: 20px
+    }
+
+    .ff-text p {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+      max-width: 52ch
+    }
+
+    .ff-text .cta {
+      margin-top: 26px
+    }
+
+    .ff-media {
+      border-radius: var(--r-img);
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: var(--bone)
+    }
+
+    .ff-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    /* "what makes different" porcelain + bleeding image into stone "result" band */
+    .ff-diff {
+      background: var(--porcelain);
+      padding: 72px 40px 0;
+      text-align: center
+    }
+
+    .ff-diff .inner {
+      max-width: 820px;
+      margin: 0 auto
+    }
+
+    .ff-diff h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.8vw, 38px);
+      letter-spacing: -.015em;
+      margin-bottom: 22px
+    }
+
+    .ff-diff p {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin-bottom: 16px
+    }
+
+    .ff-bleed {
+      max-width: 1180px;
+      margin: 40px auto 0;
+      padding: 0 40px
+    }
+
+    .ff-bleed-img {
+      border-radius: var(--r-img);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--bone);
+      position: relative;
+      z-index: 2
+    }
+
+    .ff-bleed-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .ff-result {
+      background: var(--stone);
+      color: #fff;
+      text-align: center;
+      padding: 0 40px 72px;
+      margin-top: -90px
+    }
+
+    .ff-result .inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding-top: 120px
+    }
+
+    .ff-result h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 36px);
+      letter-spacing: -.015em;
+      margin-bottom: 20px;
+      color: #fff
+    }
+
+    .ff-result p {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, .92);
+      margin-bottom: 24px
+    }
+
+    /* why it matters - two overlapping images */
+    .ff-why {
+      padding: 72px 0
+    }
+
+    .ff-why .inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      gap: 56px;
+      align-items: center
+    }
+
+    @media(min-width:920px) {
+      .ff-why .inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 72px
+      }
+    }
+
+    .ff-why-imgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start
+    }
+
+    .ff-why-imgs .a,
+    .ff-why-imgs .b {
+      border-radius: var(--r-img);
+      overflow: hidden
+    }
+
+    .ff-why-imgs .a {
+      aspect-ratio: 3/4
+    }
+
+    .ff-why-imgs .b {
+      aspect-ratio: 3/4;
+      margin-top: 36px
+    }
+
+    .ff-why-imgs img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    @media(max-width:919px) {
+      .ff-why-imgs .b {
+        margin-top: 0
+      }
+    }
+
+    .ff-why-text h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 38px);
+      letter-spacing: -.015em;
+      margin-bottom: 20px
+    }
+
+    .ff-why-text p {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+      max-width: 52ch
+    }
+
+    /* difference you can feel - feature cards */
+    .ff-feat {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 40px 80px;
+      text-align: center
+    }
+
+    .ff-feat h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 36px);
+      letter-spacing: -.015em;
+      margin-bottom: 40px
+    }
+
+    .ff-feat-grid {
+      display: grid;
+      gap: 16px
+    }
+
+    @media(min-width:760px) {
+      .ff-feat-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    .ff-feat-card {
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-card);
+      padding: 36px 28px;
+      text-align: center
+    }
+
+    .ff-feat-card .ic {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: var(--stone);
+      display: grid;
+      place-items: center
+    }
+
+    .ff-feat-card .ic svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--ink);
+      stroke-width: 1.6;
+      fill: none
+    }
+
+    .ff-feat-card h3 {
+      font-family: var(--serif);
+      font-weight: 420;
+      font-size: 19px;
+      margin-bottom: 8px
+    }
+
+    .ff-feat-card p {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 26ch;
+      margin: 0 auto
+    }
+
+    /* why we keep it special + signature (porcelain) */
+    .ff-special {
+      background: var(--porcelain);
+      padding: 72px 40px
+    }
+
+    .ff-special .inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      gap: 56px;
+      align-items: center
+    }
+
+    @media(min-width:920px) {
+      .ff-special .inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 72px
+      }
+    }
+
+    .ff-special-box {
+      max-width: 560px
+    }
+
+    .ff-special h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 36px);
+      letter-spacing: -.015em;
+      margin-bottom: 20px
+    }
+
+    .ff-special p {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+      max-width: 52ch
+    }
+
+    .ff-special .off {
+      font-size: 15px;
+      color: var(--ink);
+      margin: 24px 0 2px
+    }
+
+    .ff-special .sig {
+      font-family: var(--script);
+      font-size: 34px;
+      color: var(--stone-text);
+      line-height: 1;
+      margin: 6px 0
+    }
+
+    .ff-special .role {
+      font-size: 12.5px;
+      letter-spacing: .04em;
+      color: var(--ink-faint)
+    }
+
+    .ff-special-media {
+      border-radius: var(--r-img);
+      overflow: hidden;
+      aspect-ratio: 5/4;
+      background: var(--bone)
+    }
+
+    .ff-special-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    @media(max-width:919px) {
+      .ff-special-media {
+        aspect-ratio: 4/3;
+        order: -1
+      }
+    }
+
+    /* parent testimonial carousel */
+    .ff-tst {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 72px 40px 24px
+    }
+
+    .ff-tst-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 36px;
+      flex-wrap: wrap
+    }
+
+    .ff-tst-head h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 38px);
+      letter-spacing: -.015em
+    }
+
+    .ff-tst-head p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-top: 6px
+    }
+
+    .ff-tst-nav {
+      display: flex;
+      gap: 10px
+    }
+
+    .ff-tst-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding-bottom: 8px
+    }
+
+    .ff-tst-track::-webkit-scrollbar {
+      display: none
+    }
+
+    .ff-tst-card {
+      flex: 0 0 min(360px, 82vw);
+      scroll-snap-align: start;
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px -20px rgba(0, 0, 0, .25)
+    }
+
+    .ff-tst-card .ph {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--bone)
+    }
+
+    .ff-tst-card .ph img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .ff-tst-card .body {
+      padding: 22px 24px 26px;
+      background: var(--white)
+    }
+
+    .ff-tst-card .quote {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: 16px
+    }
+
+    .ff-tst-card .who {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .ff-tst-card .who svg {
+      width: 14px;
+      height: 14px;
+      fill: #00b67a
+    }
+
+    .ff-tst-card .rel {
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      margin-top: 2px
+    }
+
+    @media(max-width:600px) {
+      .ff-hero {
+        min-height: 460px
+      }
+
+      .ff-hero-inner {
+        padding: 120px 18px 72px
+      }
+
+      .ff-hero-bg::after {
+        background: linear-gradient(180deg, rgba(16, 14, 12, .62) 0%, rgba(16, 14, 12, .55) 55%, rgba(16, 14, 12, .8) 100%)
+      }
+
+      .ff-band {
+        padding: 40px 0
+      }
+
+      .ff-band .inner,
+      .ff-why .inner {
+        padding: 0 18px;
+        gap: 28px
+      }
+
+      .ff-band.img-left .ff-media {
+        order: -1
+      }
+
+      .ff-diff {
+        padding: 48px 18px 0
+      }
+
+      .ff-bleed {
+        padding: 0 18px
+      }
+
+      .ff-result {
+        padding: 0 18px 48px
+      }
+
+      .ff-why {
+        padding: 48px 0
+      }
+
+      .ff-feat {
+        padding: 24px 18px 56px
+      }
+
+      .ff-special {
+        padding: 48px 18px
+      }
+
+      .ff-tst {
+        padding: 48px 18px 16px
+      }
+    }
+  
+/* =============================================================================
+   MOBILE IMAGE RULES (added 03/08/2026, Ryan)
+
+   [06] Portrait crops eat the screen on a phone. Every portrait image container
+        becomes SQUARE below 600px, so a band is roughly a third shorter and the
+        copy underneath is reachable without a long scroll. Desktop is untouched.
+
+   [07] Where two bands stack, one ending on an image and the next starting with
+        one, mobile gets two pictures back to back and the content is pushed a
+        long way down. `.os-band + .os-band.img-left .os-media` hides only the
+        SECOND of such a pair, which is exactly the case Ryan described. Applied
+        with `display:none` rather than removing the markup so desktop keeps both.
+   ============================================================================= */
+@media(max-width:600px) {
+
+  .os-media,
+  .os-media.tall,
+  .eco-media,
+  .fr2-collage .im,
+  .fr2-collage .im.tall,
+  .fr2-collage .im.short,
+  .up-media,
+  .ff-media,
+  .pr-media,
+  .bio-join-media,
+  .mc-media,
+  .ri-media {
+    aspect-ratio: 1 / 1
+  }
+
+  /* second of two consecutive image-leading bands */
+  .os-band + .os-band.img-left > .inner > .os-media,
+  .os-band + .os-band.img-left .os-media {
+    display: none
+  }
 }
 </style>
 </head>
+
 <body>
 
-<!-- INTERIM NAV MENU -->
-<nav class="nav-menu" id="navMenu" aria-hidden="true">
-  <div class="nav-menu-inner">
-    <div class="nav-menu-top">
-      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-        <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-      </a>
-      <div class="nav-menu-top-right">
-        <a class="nav-menu-order" href="/our-kit">
-          <span>Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  <!-- INTERIM NAV MENU -->
+  <nav class="nav-menu" id="navMenu" aria-hidden="true">
+    <div class="nav-menu-inner">
+      <div class="nav-menu-top">
+        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
         </a>
-        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-      </div>
-    </div>
-
-        <div class="nav-menu-links">
-      <a href="/" data-page="home">Home</a>
-      <a href="/our-story" data-page="our-story">Our Story</a>
-      <a href="/foil-fusion-technology" data-page="foil-fusion-technology" class="current">Foil Fusion Technology</a>
-      <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-      <a href="/our-kit" data-page="our-kit">Order Your Kit</a>
-      <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-      <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-      <a href="/faq" data-page="faq">FAQ</a>
-      <a href="/contact" data-page="contact">Contact</a>
-    </div>
-
-    <div class="nav-menu-cta">
-      <div class="nav-menu-cta-head">
-        <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
-        <span class="nav-menu-cta-sub">Run it, or find one near you</span>
-      </div>
-      <div class="nav-menu-cards">
-        <a class="nav-menu-card" href="/franchise" data-page="franchise">
-          <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
-          <span class="nav-menu-card-label">
-            <span>Become a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
-        </a>
-        <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
-          <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
-          <span class="nav-menu-card-label">
-            <span>Find a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-
-<div class="announce">
-  <img src="/assets/tp-stars.svg" alt="Rated Excellent on Trustpilot">
-  <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-</div>
-
-<div class="hero-scope">
-<header>
-  <div class="nav-row">
-    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-    <a class="logotype" href="/" aria-label="Bespoke Foil Company home"><img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company"></a>
-    <div class="nav-right">
-      <a class="cta nav-cta on-dark" href="/our-kit"><span class="lbl">Order Your Kit</span><span class="lbl-short">Order Kit</span><span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <button class="cart-btn" aria-label="Basket"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg><span class="cart-count">2</span></button>
-    </div>
-  </div>
-</header>
-
-<!-- ============ DARK HERO ============ -->
-<section class="ff-hero">
-  <div class="ff-hero-bg">
-    <img src="/assets/ff-hero-1600.webp" srcset="/assets/ff-hero-1200.webp 1200w, /assets/ff-hero-1600.webp 1600w, /assets/ff-hero-2000.webp 2000w" sizes="100vw" width="2000" height="1334" fetchpriority="high" alt="Foil Fusion craftsmanship in the studio">
-  </div>
-  <div class="ff-hero-inner">
-    <p class="eyebrow">Foil Fusion Technology</p>
-    <h1>Where craftsmanship meets innovation, and memories are made to last</h1>
-    <p>At The Bespoke Foil Company, we've reimagined what foil can be, not just a decorative layer but an integral part of your keepsake.</p>
-  </div>
-</section>
-</div><!-- /hero-scope -->
-
-<!-- ============ MADE TO HOLD FOREVER ============ -->
-<section class="ff-band">
-  <div class="inner">
-    <div class="ff-media">
-      <img src="/assets/ff-hold-800.webp" srcset="/assets/ff-hold-500.webp 500w, /assets/ff-hold-800.webp 800w, /assets/ff-hold-1100.webp 1100w" sizes="(min-width:920px) 560px, 100vw" width="800" height="533" loading="lazy" alt="A hand holding a finished foil footprint keepsake">
-    </div>
-    <div class="ff-text">
-      <h2>Made to hold forever</h2>
-      <p>At The Bespoke Foil Company, everything we do starts with the memory you want to hold onto forever. Whether it's a tiny handprint, a name, or a moment in the stars, we believe your keepsake deserves to look as beautiful in years to come as it does the day it arrives.</p>
-      <p>That's why we've spent over five years perfecting our exclusive Foil Fusion Technology - a process that goes far beyond traditional foil printing methods. It's not just about adding a shiny layer on top of the card. It's about creating a seamless, flawless finish that becomes part of the card itself. The difference is something you can see, feel, and cherish for a lifetime.</p>
-      <a class="cta dark" href="/our-kit"><span class="lbl">Order Your Kit</span><span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHAT MAKES FOIL FUSION DIFFERENT (porcelain) + bleed image + result (stone) ============ -->
-<section class="ff-diff">
-  <div class="inner">
-    <h2>What makes Foil Fusion different?</h2>
-    <p>Most foiled prints you'll see are created using toner foil methods, where foil is applied over a printed layer using glue or toner. While this can look effective at first glance, toner foiling often struggles with fine details, leaving patchy speckles, imperfections, and a finish that can lift, peel or fade over time.</p>
-    <p>Our Foil Fusion Technology is different. Instead of sticking foil to the surface, we use intense pressure and heat to carefully fuse the foil directly into our specially made card. It's a process that demands precision, skill, and materials.</p>
-  </div>
-</section>
-<div class="ff-bleed">
-  <div class="ff-bleed-img">
-    <img src="/assets/ff-process-1200.webp" srcset="/assets/ff-process-800.webp 800w, /assets/ff-process-1200.webp 1200w, /assets/ff-process-1600.webp 1600w" sizes="(min-width:1180px) 1100px, 100vw" width="1200" height="800" loading="lazy" alt="The Foil Fusion process in the studio">
-  </div>
-</div>
-<section class="ff-result">
-  <div class="inner">
-    <h2>The result?</h2>
-    <p>A silky, flawless finish that captures every delicate detail, from tiny fingerprints to intricate wording, without compromise. The foil becomes part of the print, not a layer that sits on top, meaning it won't crack, peel or fade, no matter how many times you lovingly admire it.</p>
-    <a class="cta on-dark" href="/our-kit"><span class="lbl">Order Your Kit</span><span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-  </div>
-</section>
-
-<!-- ============ WHY IT MATTERS (overlapping images) ============ -->
-<section class="ff-why">
-  <div class="inner">
-    <div class="ff-why-imgs">
-      <div class="a"><img src="/assets/ff-why-a-800.webp" srcset="/assets/ff-why-a-500.webp 500w, /assets/ff-why-a-800.webp 800w" sizes="340px" width="800" height="571" loading="lazy" alt="A framed foil keepsake"></div>
-      <div class="b"><img src="/assets/ff-why-b-800.webp" srcset="/assets/ff-why-b-500.webp 500w, /assets/ff-why-b-800.webp 800w" sizes="280px" width="800" height="533" loading="lazy" alt="A baby beside a foil keepsake"></div>
-    </div>
-    <div class="ff-why-text">
-      <h2>Why it matters for your memories</h2>
-      <p>Our Foil Fusion Technology isn't about showing off a process. It's about giving your memories the quality they deserve. It's about making sure that the first time your little one clasped your finger, the day you named them, or that song you played over and over, are all captured in a way that does justice to how those moments made you feel.</p>
-      <p>When you choose a Bespoke Foil Company keepsake, you're choosing a print that's been lovingly made using technology we're proud to say is as unique as the families we create for.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ A DIFFERENCE YOU CAN FEEL (feature cards) ============ -->
-<section class="ff-feat">
-  <h2>A difference you can feel</h2>
-  <div class="ff-feat-grid">
-    <div class="ff-feat-card">
-      <span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
-      <h3>Flawless finish every time</h3>
-      <p>No patchiness, no speckles, no compromise</p>
-    </div>
-    <div class="ff-feat-card">
-      <span class="ic"><svg viewBox="0 0 24 24"><path d="M17 7a5 5 0 0 0 0 10 5 5 0 0 0 0-10zM7 7a5 5 0 0 1 0 10 5 5 0 0 1 0-10z"/></svg></span>
-      <h3>Lifetime durability</h3>
-      <p>No peeling, curling or fading over the years</p>
-    </div>
-    <div class="ff-feat-card">
-      <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 21l-5-2.8 1.2-5.6L4 8.8l5.6-.6L12 3z"/></svg></span>
-      <h3>Bespoke Foil Exclusive</h3>
-      <p>Perfected over five years of testing, refinement, and love</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHY WE KEEP IT SPECIAL + SIGNATURE (porcelain) ============ -->
-<section class="ff-special">
-  <div class="inner">
-    <div class="ff-special-box">
-      <h2>Why we keep it special</h2>
-      <p>We know we've found something truly special with Foil Fusion, which is why we don't share all the behind-the-scenes details of our process. It's our way of keeping your keepsake as exclusive as it feels. And when you see the finished print in your hands, you'll understand why we guard this part of our process so carefully.</p>
-      <p>Your memories deserve more than ordinary. They deserve Foil Fusion.</p>
-      <p class="off">Love,</p>
-      <p class="sig">Ashley</p>
-      <p class="role">Co-founder, The Bespoke Foil Company</p>
-    </div>
-    <div class="ff-special-media">
-      <img src="/assets/ff-ashley-1000.webp" srcset="/assets/ff-ashley-700.webp 700w, /assets/ff-ashley-1000.webp 1000w, /assets/ff-ashley-1400.webp 1400w" sizes="(min-width:920px) 560px, 100vw" width="1000" height="1500" loading="lazy" alt="Ashley, co-founder of The Bespoke Foil Company">
-    </div>
-  </div>
-</section>
-
-<!-- ============ FROM THOSE WHO KNOW BEST (parent testimonials) ============ -->
-<section class="ff-tst">
-  <div class="ff-tst-head">
-    <div>
-      <h2>From those who know best</h2>
-      <p>See why those in the know can't get enough of Bespoke Foil's unique touch.</p>
-    </div>
-    <div class="ff-tst-nav">
-      <button class="s-nav" id="tPrev" aria-label="Previous">&#8592;</button>
-      <button class="s-nav" id="tNext" aria-label="Next">&#8594;</button>
-    </div>
-  </div>
-  <div class="ff-tst-track" id="tstTrack">
-    <article class="ff-tst-card">
-      <div class="ph"><img src="/assets/test-1-800.webp" srcset="/assets/test-1-500.webp 500w, /assets/test-1-800.webp 800w" sizes="360px" width="800" height="533" loading="lazy" alt=""></div>
-      <div class="body">
-        <p class="quote">"The kit was incredibly easy to use. I'd given up on a previous casting kit, but this one was amazing - even when some footprints smudged, they cleaned up perfectly to show all the true detail of Lilly's feet!"</p>
-        <p class="who">Megan <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></p>
-        <p class="rel">Mummy of Lottie &amp; Lilly</p>
-      </div>
-    </article>
-    <article class="ff-tst-card">
-      <div class="ph"><img src="/assets/test-2-800.webp" srcset="/assets/test-2-500.webp 500w, /assets/test-2-800.webp 800w" sizes="360px" width="800" height="533" loading="lazy" alt=""></div>
-      <div class="body">
-        <p class="quote">"Honestly couldn't believe how straightforward this was compared to other keepsake methods I'd tried. The instructions were crystal clear, and even though I'm not crafty at all, the results were perfect. Worth every penny!"</p>
-        <p class="who">Heather <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></p>
-        <p class="rel">Mummy of Arabella &amp; Nova</p>
-      </div>
-    </article>
-    <article class="ff-tst-card">
-      <div class="ph"><img src="/assets/test-3-800.webp" srcset="/assets/test-3-500.webp 500w, /assets/test-3-800.webp 800w" sizes="360px" width="800" height="533" loading="lazy" alt=""></div>
-      <div class="body">
-        <p class="quote">"As a first-time mum, I was nervous about doing anything that might upset Myles. This kit was perfect - so gentle and quick. The inkless wipes didn't irritate his skin at all, and now we have this beautiful keepsake to treasure forever."</p>
-        <p class="who">Charlotte <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></p>
-        <p class="rel">Mummy of Myles</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="reviews" aria-labelledby="reviews-title">
-  <div class="reviews-head">
-    <div class="tp-row">
-      <img src="/assets/tp-stars.svg" alt="4.9 out of 5 stars">
-    </div>
-    <h2 id="reviews-title">Rated Excellent on Trustpilot</h2>
-    <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">See all reviews on <img src="/assets/tp-brandmark.svg" alt="Trustpilot"></a>
-  </div>
-  <div class="review-track" id="revTrack">
-    <article class="review-card">
-      <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-      <h3>Absolutely gorgeous!</h3>
-      <p>I met Ashley in a baby class and she took foil prints of my 3 month old. The final print was beyond beautiful! The entire process was smooth and I highly recommend bespoke foil if you'd like to create a lovely memorable keepsake xx</p>
-      <span class="who">Vaidehi Nene</span>
-    </article>
-    <article class="review-card">
-      <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-      <h3>Got my print today and all I can say is...</h3>
-      <p>Got my print today and all I can say is "wow" it's absolutely perfect! So happy with it! Never been able to do my daughter's hand print and now I have it, it's perfect thank you so much!! Highly recommend</p>
-      <span class="who">Rebecca Burton</span>
-    </article>
-    <article class="review-card">
-      <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-      <h3>Stunning</h3>
-      <p>We are absolutely delighted with our foiled hand and footprint keepsakes. The quality is beautiful, and they perfectly captured those tiny details we'll treasure forever.</p>
-      <span class="who">Amy Edgar</span>
-    </article>
-    <article class="review-card">
-      <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-      <h3>Just perfect from start to finish</h3>
-      <p>Just perfect from start to finish! We saw Ashley face to face at baby class, she was so kind and friendly with my kids! The communication was brilliant and the product is beyond amazing, so special and worth every penny.</p>
-      <span class="who">Ella Brough Maclean</span>
-    </article>
-    <article class="review-card">
-      <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-      <h3>Family run, in the best way</h3>
-      <p>I could not have had a better experience. I was blown away by Ashley's care during the process of ordering and receiving the prints. We had some done for our twins, one of whom we lost, and Ashley took such care of our order.</p>
-      <span class="who">Aneka Osborne</span>
-    </article>
-    <article class="review-card">
-      <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-      <h3>Beautiful prints</h3>
-      <p>I recently received my baby's framed hand and footprints and they are beautiful. The website and instructions to customise the prints were simple and easy to use. I couldn't be happier with the result.</p>
-      <span class="who">Danielle Dolan</span>
-    </article>
-  </div>
-  <div class="reviews-nav">
-    <button class="s-nav" id="rPrev" aria-label="Previous review">&#8592;</button>
-    <button class="s-nav" id="rNext" aria-label="Next review">&#8594;</button>
-  </div>
-</section>
-
-
-
-<!-- ============ COMMUNITY (shared) ============ -->
-<section class="community">
-  <div class="community-inner">
-    <div>
-      <h2>Join our community</h2>
-      <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
-    </div>
-    <div class="community-form">
-      <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
-      <button id="communityJoin">Join</button>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="foot-top">
-    <div class="foot-col foot-contact">
-      <h4>Contact</h4>
-      <p>Tel: 07506 998934</p>
-      <p>Email: hello@thebespokefoilcompany.co.uk</p>
-      <div class="foot-social">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
-      </div>
-      <p class="f-label">Find Us</p>
-      <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
-      <p class="f-label">Opening Hours</p>
-      <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
-    </div>
-
-    <div class="foot-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="/our-kit">Order Your Kit</a></li>
-        <li><a href="/our-story">Our Story</a></li>
-        <li><a href="/premium-frames">Premium Frames</a></li>
-        <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
-        <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
-        <li><a href="/eco-friendly">Eco-Friendly</a></li>
-        <li><a href="/tommys-charity">Tommy's Charity</a></li>
-        <li><a href="/upload-portal">Uploading Your Prints</a></li>
-      </ul>
-    </div>
-
-    <div class="foot-col">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="/faq">FAQ's</a></li>
-        <li><a href="/blog">Stories &amp; Inspiration</a></li>
-        <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
-        <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
-      </ul>
-      <h4>Franchise</h4>
-      <ul>
-        <li><a href="/franchise-hub">Franchise Hub</a></li>
-        <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
-        <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
-        <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
-        <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
-        <li><a href="/franchise-region">Search Franchise Regions</a></li>
-        <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
-      </ul>
-    </div>
-
-    <div class="foot-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
-        <li><a href="/sitemap">Sitemap</a></li>
-      </ul>
-      <div class="foot-right" style="margin-top:26px">
-        <a class="cta on-dark foot-order" href="#order">
-          <span class="lbl">Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <div class="foot-pay" aria-label="Accepted payment methods">
-          <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
-          <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
-          <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
-          <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
-          <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
-          <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+        <div class="nav-menu-top-right">
+          <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span>Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
         </div>
-        <div class="foot-tp">
-          <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-          <span class="tp-meta">TrustScore 4.9 &middot; 65 reviews</span>
+      </div>
+
+      <div class="nav-menu-links">
+        <a href="/" data-page="home">Home</a>
+        <a href="/our-story" data-page="our-story">Our Story</a>
+        <a href="/foil-fusion-technology" data-page="foil-fusion-technology" class="current">Foil Fusion Technology</a>
+        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+        <a href="/faq" data-page="faq">FAQ</a>
+        <a href="/contact" data-page="contact">Contact</a>
+      </div>
+
+      <div class="nav-menu-cta">
+        <div class="nav-menu-cta-head">
+          <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
+          <span class="nav-menu-cta-sub">Run it, or find one near you</span>
+        </div>
+        <div class="nav-menu-cards">
+          <a class="nav-menu-card" href="/franchise" data-page="franchise">
+            <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
+            <span class="nav-menu-card-label">
+              <span>Become a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
+          <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
+            <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
+            <span class="nav-menu-card-label">
+              <span>Find a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
         </div>
       </div>
     </div>
+  </nav>
+
+
+  <div class="announce">
+    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
+    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
   </div>
 
-  <div class="foot-legal">
-    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID: GB419408687.</p>
-    <p style="margin-top:6px"><a href="https://www.mywixdesigner.com/">Website by My Wix Designer</a></p>
-  </div>
+  <div class="hero-scope">
+    <header>
+      <div class="nav-row">
+        <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <a class="logotype" href="/" aria-label="Bespoke Foil Company home"><img src="/assets/bfc-logo.svg"
+            alt="Bespoke Foil Company"></a>
+        <div class="nav-right">
+          <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake"><span class="lbl">Order Your Kit</span><span
+              class="lbl-short">Order Kit</span><span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span></a>
+            </div>
+      </div>
+    </header>
 
-  <div class="foot-watermark" aria-hidden="true">
-    <img src="/assets/bfc-logo.svg" alt="">
-  </div>
-</footer>
+    <!-- ============ DARK HERO ============ -->
+    <section class="ff-hero">
+      <div class="ff-hero-bg">
+        <img src="/assets/ff-hero-1600.webp"
+          srcset="/assets/ff-hero-1200.webp 1200w, /assets/ff-hero-1600.webp 1600w, /assets/ff-hero-2000.webp 2000w"
+          sizes="100vw" width="2000" height="1334" fetchpriority="high" alt="Foil Fusion craftsmanship in the studio">
+      </div>
+      <div class="ff-hero-inner">
+        <p class="eyebrow">Foil Fusion Technology</p>
+        <h1>Where craftsmanship meets innovation, and memories are made to last</h1>
+        <p>At The Bespoke Foil Company, we've reimagined what foil can be, not just a decorative layer but an integral
+          part of your keepsake.</p>
+      </div>
+    </section>
+  </div><!-- /hero-scope -->
 
-<script>
-/* sticky header (shared) */
-(function(){
-  const header=document.querySelector('header'); if(!header)return;
-  const ST=60,HIDE=260,D=6; let lastY=window.scrollY,acc=0,tick=false;
-  function up(){const y=window.scrollY,diff=y-lastY;
-    if(y>ST)header.classList.add('scrolled');else header.classList.remove('scrolled');
-    if(Math.abs(diff)>D){if(diff>0){acc+=diff;if(acc>HIDE&&y>ST)header.classList.add('header-hidden');}else{header.classList.remove('header-hidden');acc=0;}lastY=y;}tick=false;}
-  window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});up();
-})();
-/* parent testimonial carousel */
-(function(){
-  const t=document.getElementById('tstTrack'); if(!t)return;
-  const cards=t.querySelectorAll('.ff-tst-card');
-  function pos(){const w=cards[0].getBoundingClientRect().width+16;return Math.round(t.scrollLeft/w);}
-  const step=d=>{const w=cards[0].getBoundingClientRect().width+16;t.scrollTo({left:Math.max(0,Math.min(pos()+d,cards.length-1))*w,behavior:'smooth'});};
-  document.getElementById('tPrev').addEventListener('click',()=>step(-1));
-  document.getElementById('tNext').addEventListener('click',()=>step(1));
-})();
-/* trustpilot reviews carousel */
-(function(){
-  const rTrack=document.getElementById('revTrack'); if(!rTrack)return;
-  const rCards=rTrack.querySelectorAll('.review-card');
-  function revPos(){const w=rCards[0].getBoundingClientRect().width+16;return Math.round(rTrack.scrollLeft/w);}
-  document.getElementById('rPrev').addEventListener('click',()=>{const w=rCards[0].getBoundingClientRect().width+16;rTrack.scrollTo({left:Math.max(revPos()-1,0)*w,behavior:'smooth'});});
-  document.getElementById('rNext').addEventListener('click',()=>{const w=rCards[0].getBoundingClientRect().width+16;rTrack.scrollTo({left:Math.min(revPos()+1,rCards.length-1)*w,behavior:'smooth'});});
-  rTrack.scrollLeft=0;
-})();
-</script>
-<script>
-/* interim nav menu toggle */
-(function(){
-  const menu=document.getElementById('navMenu');
-  const burger=document.querySelector('.burger');
-  const closeBtn=document.getElementById('navMenuClose');
-  if(!menu||!burger)return;
-  function open(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}
-  function close(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}
-  burger.addEventListener('click',open);
-  if(closeBtn)closeBtn.addEventListener('click',close);
-  menu.addEventListener('click',e=>{if(e.target===menu)close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-})();
-</script>
+  <!-- ============ MADE TO HOLD FOREVER ============ -->
+  <section class="ff-band">
+    <div class="inner">
+      <div class="ff-media">
+        <img src="/assets/img-332-1100.webp" srcset="/assets/img-332-500.webp 500w, /assets/img-332-800.webp 800w, /assets/img-332-1100.webp 1100w" sizes="(min-width:920px) 560px, 100vw" width="1100" height="733" loading="lazy" alt="A finished foil keepsake being placed">
+      </div>
+      <div class="ff-text">
+        <h2>Made to hold forever</h2>
+        <p>At The Bespoke Foil Company, everything we do starts with the memory you want to hold onto forever. Whether
+          it's a tiny handprint, a name, or a moment in the stars, we believe your keepsake deserves to look as
+          beautiful in years to come as it does the day it arrives.</p>
+        <p>That's why we've spent over five years perfecting our exclusive Foil Fusion Technology - a process that goes
+          far beyond traditional foil printing methods. It's not just about adding a shiny layer on top of the card.
+          It's about creating a seamless, flawless finish that becomes part of the card itself. The difference is
+          something you can see, feel, and cherish for a lifetime.</p>
+        <a class="cta dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake"><span class="lbl">Order Your Kit</span><span class="sq"><svg
+              viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT MAKES FOIL FUSION DIFFERENT (porcelain) + bleed image + result (stone) ============ -->
+  <section class="ff-diff">
+    <div class="inner">
+      <h2>What makes Foil Fusion different?</h2>
+      <p>Most foiled prints you'll see are created using toner foil methods, where foil is applied over a printed layer
+        using glue or toner. While this can look effective at first glance, toner foiling often struggles with fine
+        details, leaving patchy speckles, imperfections, and a finish that can lift, peel or fade over time.</p>
+      <p>Our Foil Fusion Technology is different. Instead of sticking foil to the surface, we use intense pressure and
+        heat to carefully fuse the foil directly into our specially made card. It's a process that demands precision,
+        skill, and materials.</p>
+    </div>
+  </section>
+  <div class="ff-bleed">
+    <div class="ff-bleed-img">
+      <img src="/assets/img-444-1600.webp" srcset="/assets/img-444-800.webp 800w, /assets/img-444-1200.webp 1200w, /assets/img-444-1600.webp 1600w" sizes="(min-width:1180px) 1100px, 100vw" width="1600" height="1067" loading="lazy" alt="The foiling press in the workshop">
+    </div>
+  </div>
+  <section class="ff-result">
+    <div class="inner">
+      <h2>The result?</h2>
+      <p>A silky, flawless finish that captures every delicate detail, from tiny fingerprints to intricate wording,
+        without compromise. The foil becomes part of the print, not a layer that sits on top, meaning it won't crack,
+        peel or fade, no matter how many times you lovingly admire it.</p>
+      <a class="cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake"><span class="lbl">Order Your Kit</span><span class="sq"><svg
+            viewBox="0 0 24 24">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg></span></a>
+    </div>
+  </section>
+
+  <!-- ============ WHY IT MATTERS (overlapping images) ============ -->
+  <section class="ff-why">
+    <div class="inner">
+      <div class="ff-why-imgs">
+        <div class="a"><img src="/assets/img-437c-800.webp" srcset="/assets/img-437c-500.webp 500w, /assets/img-437c-800.webp 800w" sizes="340px" width="800" height="571" loading="lazy" alt="A close-up of foiled footprints"></div>
+        <div class="b"><img src="/assets/img-438-800.webp" srcset="/assets/img-438-500.webp 500w, /assets/img-438-800.webp 800w" sizes="280px" width="800" height="533" loading="lazy" alt="Finishing a keepsake in the studio"></div>
+      </div>
+      <div class="ff-why-text">
+        <h2>Why it matters for your memories</h2>
+        <p>Our Foil Fusion Technology isn't about showing off a process. It's about giving your memories the quality
+          they deserve. It's about making sure that the first time your little one clasped your finger, the day you
+          named them, or that song you played over and over, are all captured in a way that does justice to how those
+          moments made you feel.</p>
+        <p>When you choose a Bespoke Foil Company keepsake, you're choosing a print that's been lovingly made using
+          technology we're proud to say is as unique as the families we create for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ A DIFFERENCE YOU CAN FEEL (feature cards) ============ -->
+  <section class="ff-feat">
+    <h2>A difference you can feel</h2>
+    <div class="ff-feat-grid">
+      <div class="ff-feat-card">
+        <span class="ic"><svg viewBox="0 0 24 24">
+            <path d="M20 6L9 17l-5-5" />
+          </svg></span>
+        <h3>Flawless finish every time</h3>
+        <p>No patchiness, no speckles, no compromise</p>
+      </div>
+      <div class="ff-feat-card">
+        <span class="ic"><svg viewBox="0 0 24 24">
+            <path d="M17 7a5 5 0 0 0 0 10 5 5 0 0 0 0-10zM7 7a5 5 0 0 1 0 10 5 5 0 0 1 0-10z" />
+          </svg></span>
+        <h3>Lifetime durability</h3>
+        <p>No peeling, curling or fading over the years</p>
+      </div>
+      <div class="ff-feat-card">
+        <span class="ic"><svg viewBox="0 0 24 24">
+            <path d="M12 3l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 21l-5-2.8 1.2-5.6L4 8.8l5.6-.6L12 3z" />
+          </svg></span>
+        <h3>Bespoke Foil Exclusive</h3>
+        <p>Perfected over five years of testing, refinement, and love</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY WE KEEP IT SPECIAL + SIGNATURE (porcelain) ============ -->
+  <section class="ff-special">
+    <div class="inner">
+      <div class="ff-special-box">
+        <h2>Why we keep it special</h2>
+        <p>We know we've found something truly special with Foil Fusion, which is why we don't share all the
+          behind-the-scenes details of our process. It's our way of keeping your keepsake as exclusive as it feels. And
+          when you see the finished print in your hands, you'll understand why we guard this part of our process so
+          carefully.</p>
+        <p>Your memories deserve more than ordinary. They deserve Foil Fusion.</p>
+        <p class="off">Love,</p>
+        <p class="sig">Ashley</p>
+        <p class="role">Co-founder, The Bespoke Foil Company</p>
+      </div>
+      <div class="ff-special-media">
+        <img src="/assets/ff-ashley-1000.webp"
+          srcset="/assets/ff-ashley-700.webp 700w, /assets/ff-ashley-1000.webp 1000w, /assets/ff-ashley-1400.webp 1400w"
+          sizes="(min-width:920px) 560px, 100vw" width="1000" height="1500" loading="lazy"
+          alt="Ashley, co-founder of The Bespoke Foil Company">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FROM THOSE WHO KNOW BEST (parent testimonials) ============ -->
+  <section class="ff-tst">
+    <div class="ff-tst-head">
+      <div>
+        <h2>From those who know best</h2>
+        <p>See why those in the know can't get enough of Bespoke Foil's unique touch.</p>
+      </div>
+      <div class="ff-tst-nav">
+        <button class="s-nav" id="tPrev" aria-label="Previous">&#8592;</button>
+        <button class="s-nav" id="tNext" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+    <div class="ff-tst-track" id="tstTrack">
+      <article class="ff-tst-card">
+        <div class="ph"><img src="/assets/test-1-800.webp"
+            srcset="/assets/test-1-500.webp 500w, /assets/test-1-800.webp 800w" sizes="360px" width="800" height="533"
+            loading="lazy" alt=""></div>
+        <div class="body">
+          <p class="quote">"The kit was incredibly easy to use. I'd given up on a previous casting kit, but this one was
+            amazing - even when some footprints smudged, they cleaned up perfectly to show all the true detail of
+            Lilly's feet!"</p>
+          <p class="who">Megan <svg viewBox="0 0 24 24">
+              <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z" />
+            </svg></p>
+          <p class="rel">Mummy of Lottie &amp; Lilly</p>
+        </div>
+      </article>
+      <article class="ff-tst-card">
+        <div class="ph"><img src="/assets/test-2-800.webp"
+            srcset="/assets/test-2-500.webp 500w, /assets/test-2-800.webp 800w" sizes="360px" width="800" height="533"
+            loading="lazy" alt=""></div>
+        <div class="body">
+          <p class="quote">"Honestly couldn't believe how straightforward this was compared to other keepsake methods
+            I'd tried. The instructions were crystal clear, and even though I'm not crafty at all, the results were
+            perfect. Worth every penny!"</p>
+          <p class="who">Heather <svg viewBox="0 0 24 24">
+              <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z" />
+            </svg></p>
+          <p class="rel">Mummy of Arabella &amp; Nova</p>
+        </div>
+      </article>
+      <article class="ff-tst-card">
+        <div class="ph"><img src="/assets/test-3-800.webp"
+            srcset="/assets/test-3-500.webp 500w, /assets/test-3-800.webp 800w" sizes="360px" width="800" height="533"
+            loading="lazy" alt=""></div>
+        <div class="body">
+          <p class="quote">"As a first-time mum, I was nervous about doing anything that might upset Myles. This kit was
+            perfect - so gentle and quick. The inkless wipes didn't irritate his skin at all, and now we have this
+            beautiful keepsake to treasure forever."</p>
+          <p class="who">Charlotte <svg viewBox="0 0 24 24">
+              <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z" />
+            </svg></p>
+          <p class="rel">Mummy of Myles</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="reviews" aria-labelledby="reviews-title">
+    <div class="reviews-head">
+      <div class="tp-row">
+        <img src="/assets/tp-stars-5.svg" alt="4.9 out of 5 stars">
+      </div>
+      <h2 id="reviews-title">Rated Excellent on Trustpilot</h2>
+      <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">See all
+        reviews on <img src="/assets/tp-brandmark.svg" alt="Trustpilot"></a>
+    </div>
+    <div class="review-track" id="revTrack">
+      <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Absolutely gorgeous!</h3>
+        <p>I met Ashley in a baby class and she took foil prints of my 3 month old. The final print was beyond
+          beautiful! The entire process was smooth and I highly recommend bespoke foil if you'd like to create a lovely
+          memorable keepsake xx</p>
+        <span class="who">Vaidehi Nene</span>
+      </article>
+      <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Got my print today and all I can say is...</h3>
+        <p>Got my print today and all I can say is "wow" it's absolutely perfect! So happy with it! Never been able to
+          do my daughter's hand print and now I have it, it's perfect thank you so much!! Highly recommend</p>
+        <span class="who">Rebecca Burton</span>
+      </article>
+      <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Stunning</h3>
+        <p>We are absolutely delighted with our foiled hand and footprint keepsakes. The quality is beautiful, and they
+          perfectly captured those tiny details we'll treasure forever.</p>
+        <span class="who">Amy Edgar</span>
+      </article>
+      <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Just perfect from start to finish</h3>
+        <p>Just perfect from start to finish! We saw Ashley face to face at baby class, she was so kind and friendly
+          with my kids! The communication was brilliant and the product is beyond amazing, so special and worth every
+          penny.</p>
+        <span class="who">Ella Brough Maclean</span>
+      </article>
+      <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Family run, in the best way</h3>
+        <p>I could not have had a better experience. I was blown away by Ashley's care during the process of ordering
+          and receiving the prints. We had some done for our twins, one of whom we lost, and Ashley took such care of
+          our order.</p>
+        <span class="who">Aneka Osborne</span>
+      </article>
+      <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful prints</h3>
+        <p>I recently received my baby's framed hand and footprints and they are beautiful. The website and instructions
+          to customise the prints were simple and easy to use. I couldn't be happier with the result.</p>
+        <span class="who">Danielle Dolan</span>
+      </article>
+    </div>
+    <div class="reviews-nav">
+      <button class="s-nav" id="rPrev" aria-label="Previous review">&#8592;</button>
+      <button class="s-nav" id="rNext" aria-label="Next review">&#8594;</button>
+    </div>
+  </section>
+
+
+
+  <!-- ============ COMMUNITY (shared) ============ -->
+  <section class="community">
+    <div class="community-inner">
+      <div>
+        <h2>Join our community</h2>
+        <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
+      </div>
+      <div class="community-form">
+        <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
+        <button id="communityJoin">Join</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-top">
+      <div class="foot-col foot-contact">
+        <h4>Contact</h4>
+        <p>Tel: 07506 998934</p>
+        <p>Email: hello@thebespokefoilcompany.co.uk</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/TheBespokeFoilCompany" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z" />
+            </svg></a>
+          <a href="https://www.instagram.com/thebespokefoilco/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
+            </svg></a>
+        </div>
+        <p class="f-label">Find Us</p>
+        <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
+        <p class="f-label">Opening Hours</p>
+        <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
+          <li><a href="/our-story">Our Story</a></li>
+          <li><a href="/premium-frames">Premium Frames</a></li>
+          <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
+          <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
+          <li><a href="/eco-friendly">Eco-Friendly</a></li>
+          <li><a href="/tommys-charity">Tommy's Charity</a></li>
+          <li><a href="/upload-portal">Uploading Your Prints</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/faq">FAQ's</a></li>
+          <li><a href="/blog">Stories &amp; Inspiration</a></li>
+          <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
+          <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
+        </ul>
+        <h4>Franchise</h4>
+        <ul>
+          <li><a href="/franchise-hub">Franchise Hub</a></li>
+          <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
+          <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
+          <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
+          <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
+          <li><a href="/franchise-region">Search Franchise Regions</a></li>
+          <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/sitemap">Sitemap</a></li>
+        </ul>
+        <div class="foot-right" style="margin-top:26px">
+          <a class="cta on-dark foot-order" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span class="lbl">Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <div class="foot-pay" aria-label="Accepted payment methods">
+            <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
+            <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
+            <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
+            <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
+            <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
+            <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+          </div>
+          <div class="foot-tp">
+            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-legal">
+      <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
+        GB419408687.</p>
+      <p style="margin-top:6px"><a href="https://www.twinegrowth.com" target="_blank" rel="noopener">Website by Twine Growth</a></p>
+    </div>
+
+    <div class="foot-watermark" aria-hidden="true">
+      <img src="/assets/bfc-logo.svg" alt="">
+    </div>
+  </footer>
+
+  <script>
+    /* sticky header (shared) */
+    (function () {
+      const header = document.querySelector('header'); if (!header) return;
+      const ST = 60, HIDE = 260, D = 6; let lastY = window.scrollY, acc = 0, tick = false;
+      function up() {
+        const y = window.scrollY, diff = y - lastY;
+        if (y > ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+        if (Math.abs(diff) > D) { if (diff > 0) { acc += diff; if (acc > HIDE && y > ST) header.classList.add('header-hidden'); } else { header.classList.remove('header-hidden'); acc = 0; } lastY = y; } tick = false;
+      }
+      window.addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(up); tick = true; } }, { passive: true }); up();
+    })();
+    /* parent testimonial carousel */
+    (function () {
+      const t = document.getElementById('tstTrack'); if (!t) return;
+      const cards = t.querySelectorAll('.ff-tst-card');
+      function pos() { const w = cards[0].getBoundingClientRect().width + 16; return Math.round(t.scrollLeft / w); }
+      const step = d => { const w = cards[0].getBoundingClientRect().width + 16; t.scrollTo({ left: Math.max(0, Math.min(pos() + d, cards.length - 1)) * w, behavior: 'smooth' }); };
+      document.getElementById('tPrev').addEventListener('click', () => step(-1));
+      document.getElementById('tNext').addEventListener('click', () => step(1));
+    })();
+    /* trustpilot reviews carousel */
+    (function () {
+      const rTrack = document.getElementById('revTrack'); if (!rTrack) return;
+      const rCards = rTrack.querySelectorAll('.review-card');
+      function revPos() { const w = rCards[0].getBoundingClientRect().width + 16; return Math.round(rTrack.scrollLeft / w); }
+      document.getElementById('rPrev').addEventListener('click', () => { const w = rCards[0].getBoundingClientRect().width + 16; rTrack.scrollTo({ left: Math.max(revPos() - 1, 0) * w, behavior: 'smooth' }); });
+      document.getElementById('rNext').addEventListener('click', () => { const w = rCards[0].getBoundingClientRect().width + 16; rTrack.scrollTo({ left: Math.min(revPos() + 1, rCards.length - 1) * w, behavior: 'smooth' }); });
+      rTrack.scrollLeft = 0;
+    })();
+  </script>
+  <script>
+    /* interim nav menu toggle */
+    (function () {
+      const menu = document.getElementById('navMenu');
+      const burger = document.querySelector('.burger');
+      const closeBtn = document.getElementById('navMenuClose');
+      if (!menu || !burger) return;
+      function open() { menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); document.body.classList.add('menu-open'); }
+      function close() { menu.classList.remove('open'); menu.setAttribute('aria-hidden', 'true'); document.body.classList.remove('menu-open'); }
+      burger.addEventListener('click', open);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      menu.addEventListener('click', e => { if (e.target === menu) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
+
 </html>

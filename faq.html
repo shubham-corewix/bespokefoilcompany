@@ -1,748 +1,1112 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FAQs Foil Keepsake Kit Questions Answered Clearly Now</title>
-<meta name="description" content="Find clear answers from parents like you. Learn about kits prints uploads and delivery so you can create beautiful keepsakes with confidence and ease.">
-<link rel="preload" as="image" href="/assets/contact-hero-1600.webp" imagesrcset="/assets/contact-hero-1200.webp 1200w, /assets/contact-hero-1600.webp 1600w, /assets/contact-hero-2000.webp 2000w" imagesizes="100vw" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/shared/styles.css?v=10">
-<style>
-/* ===== FAQ page-specific ===== */
+  <script src="/shared/analytics.js"></script>
+  <script src="/shared/trustpilot.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FAQs Foil Keepsake Kit Questions Answered Clearly Now</title>
+  <meta name="description"
+    content="Find clear answers from parents like you. Learn about kits prints uploads and delivery so you can create beautiful keepsakes with confidence and ease.">
+  <link rel="preload" as="image" href="/assets/contact-hero-1600.webp"
+    imagesrcset="/assets/contact-hero-1200.webp 1200w, /assets/contact-hero-1600.webp 1600w, /assets/contact-hero-2000.webp 2000w"
+    imagesizes="100vw" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <style>
+    /* ===== FAQ page-specific ===== */
 
-/* --- dark hero with background photo, left-aligned (matches contact/franchise) --- */
-.faq-hero{position:relative;min-height:600px;display:flex;align-items:center;overflow:hidden;background:#161412}
-.faq-hero-bg{position:absolute;inset:0;z-index:0}
-.faq-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
-.faq-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,14,12,.86) 0%,rgba(16,14,12,.6) 42%,rgba(16,14,12,.28) 100%)}
-.faq-hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:150px 40px 110px;width:100%}
-.faq-hero .eyebrow{font-family:var(--sans);font-size:14px;color:rgba(255,255,255,.72);margin-bottom:20px}
-.faq-hero h1{font-family:var(--serif);font-weight:340;font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:16ch;margin-bottom:24px}
-.faq-hero p{font-family:var(--sans);font-size:16px;line-height:1.7;color:rgba(255,255,255,.85);max-width:52ch}
+    /* --- dark hero with background photo, left-aligned (matches contact/franchise) --- */
+    .faq-hero {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #161412
+    }
 
-/* --- accordion body --- */
-.faq-body{max-width:1280px;margin:0 auto;padding:72px 40px 24px}
-.faq-group{margin-bottom:40px}
-.faq-group:last-of-type{margin-bottom:8px}
-.faq-group h2{
-  font-family:var(--serif);font-weight:420;
-  font-size:clamp(20px,2.4vw,24px);letter-spacing:-.01em;
-  margin-bottom:6px;
-}
-.faq-item{border-bottom:1px solid var(--hairline)}
-.faq-q{
-  width:100%;text-align:left;cursor:pointer;
-  font-family:var(--sans);font-size:15.5px;font-weight:500;color:var(--ink);
-  background:none;border:0;
-  padding:20px 40px 20px 0;position:relative;
-  display:block;line-height:1.4;
-}
-.faq-q::after{
-  content:"";position:absolute;right:4px;top:50%;
-  width:11px;height:11px;
-  border-right:1.8px solid var(--ink-soft);border-bottom:1.8px solid var(--ink-soft);
-  transform:translateY(-70%) rotate(45deg);
-  transition:transform .28s ease;
-}
-.faq-item.open .faq-q::after{transform:translateY(-30%) rotate(225deg)}
-.faq-a{
-  overflow:hidden;max-height:0;
-  transition:max-height .32s ease;
-}
-.faq-a-inner{
-  padding:0 40px 22px 0;
-  font-size:15px;line-height:1.7;color:var(--ink-soft);max-width:70ch;
-}
-.faq-a-inner p{margin-bottom:12px}
-.faq-a-inner p:last-child{margin-bottom:0}
-.faq-a-inner ul,.faq-a-inner ol{margin:0 0 12px;padding-left:20px}
-.faq-a-inner ul{list-style:disc}
-.faq-a-inner ol{list-style:decimal}
-.faq-a-inner li{margin-bottom:6px;line-height:1.6}
-.faq-a-inner li:last-child{margin-bottom:0}
-.faq-a-inner ul:last-child,.faq-a-inner ol:last-child{margin-bottom:0}
-.faq-a-inner a{color:var(--stone-text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone)}
+    .faq-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0
+    }
 
-/* --- still wondering: founders photo + contact prompt --- */
-.faq-still{max-width:1280px;margin:0 auto;padding:56px 40px 72px}
-.faq-still-inner{display:grid;gap:40px;align-items:center}
-@media(min-width:920px){.faq-still-inner{grid-template-columns:minmax(0,46%) 1fr;gap:56px}}
-.faq-still-media{background:var(--bone);overflow:hidden;border-radius:var(--r-img)}
-.faq-still-media img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.faq-still-copy h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.015em;line-height:1.1;margin-bottom:18px}
-.faq-still-copy p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);max-width:48ch;margin-bottom:14px}
-.faq-still-copy p b{color:var(--ink);font-weight:600}
-.faq-still-copy a.email{color:var(--stone-text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone);font-weight:600}
-.faq-still-copy .off{margin-top:22px;font-size:15px;color:var(--ink)}
-.faq-still-copy .sig{font-family:var(--script);font-size:38px;color:var(--stone-text);line-height:1;margin:6px 0}
-.faq-still-copy .role{font-size:12.5px;letter-spacing:.04em;color:var(--ink-faint)}
+    .faq-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center
+    }
 
-@media(max-width:600px){
-  .faq-hero{min-height:480px}
-  .faq-hero-inner{padding:120px 18px 72px}
-  .faq-hero-bg::after{background:linear-gradient(180deg,rgba(16,14,12,.6) 0%,rgba(16,14,12,.55) 55%,rgba(16,14,12,.8) 100%)}
-  .faq-body{padding:48px 18px 16px}
-  .faq-still{padding:40px 18px 56px}
-}
-</style>
+    .faq-hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(16, 14, 12, .86) 0%, rgba(16, 14, 12, .6) 42%, rgba(16, 14, 12, .28) 100%)
+    }
+
+    .faq-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 150px 40px 110px;
+      width: 100%
+    }
+
+    .faq-hero .eyebrow {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: rgba(255, 255, 255, .72);
+      margin-bottom: 20px
+    }
+
+    .faq-hero h1 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      color: #fff;
+      max-width: 16ch;
+      margin-bottom: 24px
+    }
+
+    .faq-hero p {
+      font-family: var(--sans);
+      font-size: clamp(14px, 1vw + 12px, 16px);
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .85);
+      max-width: 52ch
+    }
+
+    /* --- accordion body --- */
+    .faq-body {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 72px 40px 24px
+    }
+
+    .faq-group {
+      margin-bottom: 40px
+    }
+
+    .faq-group:last-of-type {
+      margin-bottom: 8px
+    }
+
+    .faq-group h2 {
+      font-family: var(--serif);
+      font-weight: 420;
+      font-size: clamp(20px, 2.4vw, 24px);
+      letter-spacing: -.01em;
+      margin-bottom: 6px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--hairline)
+    }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 15.5px;
+      font-weight: 500;
+      color: var(--ink);
+      background: none;
+      border: 0;
+      padding: 20px 40px 20px 0;
+      position: relative;
+      display: block;
+      line-height: 1.4;
+    }
+
+    .faq-q::after {
+      content: "";
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      width: 11px;
+      height: 11px;
+      border-right: 1.8px solid var(--ink-soft);
+      border-bottom: 1.8px solid var(--ink-soft);
+      transform: translateY(-70%) rotate(45deg);
+      transition: transform .28s ease;
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: translateY(-30%) rotate(225deg)
+    }
+
+    .faq-a {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .32s ease;
+    }
+
+    .faq-a-inner {
+      padding: 0 40px 22px 0;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 70ch;
+    }
+
+    .faq-a-inner p {
+      margin-bottom: 12px
+    }
+
+    .faq-a-inner p:last-child {
+      margin-bottom: 0
+    }
+
+    .faq-a-inner ul,
+    .faq-a-inner ol {
+      margin: 0 0 12px;
+      padding-left: 20px
+    }
+
+    .faq-a-inner ul {
+      list-style: disc
+    }
+
+    .faq-a-inner ol {
+      list-style: decimal
+    }
+
+    .faq-a-inner li {
+      margin-bottom: 6px;
+      line-height: 1.6
+    }
+
+    .faq-a-inner li:last-child {
+      margin-bottom: 0
+    }
+
+    .faq-a-inner ul:last-child,
+    .faq-a-inner ol:last-child {
+      margin-bottom: 0
+    }
+
+    .faq-a-inner a {
+      color: var(--stone-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--stone)
+    }
+
+    /* --- still wondering: founders photo + contact prompt --- */
+    .faq-still {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 40px 72px
+    }
+
+    .faq-still-inner {
+      display: grid;
+      gap: 40px;
+      align-items: center
+    }
+
+    @media(min-width:920px) {
+      .faq-still-inner {
+        grid-template-columns: minmax(0, 46%) 1fr;
+        gap: 56px
+      }
+    }
+
+    .faq-still-media {
+      background: var(--bone);
+      overflow: hidden;
+      border-radius: var(--r-img)
+    }
+
+    .faq-still-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block
+    }
+
+    .faq-still-copy h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 38px);
+      letter-spacing: -.015em;
+      line-height: 1.1;
+      margin-bottom: 18px
+    }
+
+    .faq-still-copy p {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: 48ch;
+      margin-bottom: 14px
+    }
+
+    .faq-still-copy p b {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .faq-still-copy a.email {
+      color: var(--stone-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--stone);
+      font-weight: 600
+    }
+
+    .faq-still-copy .off {
+      margin-top: 22px;
+      font-size: 15px;
+      color: var(--ink)
+    }
+
+    .faq-still-copy .sig {
+      font-family: var(--script);
+      font-size: 38px;
+      color: var(--stone-text);
+      line-height: 1;
+      margin: 6px 0
+    }
+
+    .faq-still-copy .role {
+      font-size: 12.5px;
+      letter-spacing: .04em;
+      color: var(--ink-faint)
+    }
+
+    @media(max-width:600px) {
+      .faq-q::after {
+        width: 7px;
+        height: 7px;
+      }
+      .faq-hero {
+        min-height: 480px
+      }
+
+      .faq-hero-inner {
+        padding: 120px 18px 72px
+      }
+
+      .faq-hero-bg::after {
+        background: linear-gradient(180deg, rgba(16, 14, 12, .6) 0%, rgba(16, 14, 12, .55) 55%, rgba(16, 14, 12, .8) 100%)
+      }
+
+      .faq-body {
+        padding: 48px 18px 16px
+      }
+
+      .faq-still {
+        padding: 40px 18px 56px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- INTERIM NAV MENU -->
-<nav class="nav-menu" id="navMenu" aria-hidden="true">
-  <div class="nav-menu-inner">
-    <div class="nav-menu-top">
-      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-        <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-      </a>
-      <div class="nav-menu-top-right">
-        <a class="nav-menu-order" href="/our-kit">
-          <span>Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  <!-- INTERIM NAV MENU -->
+  <nav class="nav-menu" id="navMenu" aria-hidden="true">
+    <div class="nav-menu-inner">
+      <div class="nav-menu-top">
+        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
         </a>
-        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <div class="nav-menu-top-right">
+          <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span>Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+            <svg viewBox="0 0 24 24">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-menu-links">
+        <a href="/" data-page="home">Home</a>
+        <a href="/our-story" data-page="our-story">Our Story</a>
+        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+        <a href="/faq" data-page="faq" class="current">FAQ</a>
+        <a href="/contact" data-page="contact">Contact</a>
+      </div>
+
+      <div class="nav-menu-cta">
+        <div class="nav-menu-cta-head">
+          <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
+          <span class="nav-menu-cta-sub">Run it, or find one near you</span>
+        </div>
+        <div class="nav-menu-cards">
+          <a class="nav-menu-card" href="/franchise" data-page="franchise">
+            <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
+            <span class="nav-menu-card-label">
+              <span>Become a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
+          <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
+            <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
+            <span class="nav-menu-card-label">
+              <span>Find a Memory Catcher</span>
+              <span class="arw"><svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="announce">
+    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
+    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
+  </div>
+
+  <div class="hero-scope">
+    <header>
+      <div class="nav-row">
+        <button class="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
         </button>
-      </div>
-    </div>
-
-        <div class="nav-menu-links">
-      <a href="/" data-page="home">Home</a>
-      <a href="/our-story" data-page="our-story">Our Story</a>
-      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
-      <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-      <a href="/our-kit" data-page="our-kit">Order Your Kit</a>
-      <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-      <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-      <a href="/faq" data-page="faq" class="current">FAQ</a>
-      <a href="/contact" data-page="contact">Contact</a>
-    </div>
-
-    <div class="nav-menu-cta">
-      <div class="nav-menu-cta-head">
-        <span class="nav-menu-cta-eyebrow">Memory Catcher&trade;</span>
-        <span class="nav-menu-cta-sub">Run it, or find one near you</span>
-      </div>
-      <div class="nav-menu-cards">
-        <a class="nav-menu-card" href="/franchise" data-page="franchise">
-          <img src="/assets/mc-what-1100.webp" alt="A Memory Catcher taking a baby's prints">
-          <span class="nav-menu-card-label">
-            <span>Become a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
+        <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
+          <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
         </a>
-        <a class="nav-menu-card" href="/find-a-memory-catcher" data-page="find-a-memory-catcher">
-          <img src="/assets/mc-who-1100.webp" alt="Find your local Memory Catcher">
-          <span class="nav-menu-card-label">
-            <span>Find a Memory Catcher</span>
-            <span class="arw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </span>
-        </a>
+        <div class="nav-right">
+          <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span class="lbl">Order Your Kit</span>
+            <span class="lbl-short">Order Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+            </div>
       </div>
-    </div>
-  </div>
-</nav>
+    </header>
 
-
-<div class="announce">
-  <img src="/assets/tp-stars.svg" alt="Rated Excellent on Trustpilot">
-  <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-</div>
-
-<div class="hero-scope">
-<header>
-  <div class="nav-row">
-    <button class="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-      <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
-    </a>
-    <div class="nav-right">
-      <a class="cta nav-cta on-dark" href="/our-kit">
-        <span class="lbl">Order Your Kit</span>
-        <span class="lbl-short">Order Kit</span>
-        <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <button class="cart-btn" aria-label="Basket">
-        <svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12L6 6z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
-        <span class="cart-count">2</span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- ============ DARK HERO WITH PHOTO ============ -->
-<!-- IMAGE PLACEHOLDER: reusing contact-hero (desk scene) until the real FAQ iMac hero is supplied -->
-<section class="faq-hero">
-  <div class="faq-hero-bg">
-    <img src="/assets/contact-hero-1600.webp"
-         srcset="/assets/contact-hero-1200.webp 1200w, /assets/contact-hero-1600.webp 1600w, /assets/contact-hero-2000.webp 2000w"
-         sizes="100vw" width="2000" height="1429" fetchpriority="high"
-         alt="Ashley at her desk preparing foil print keepsakes">
-  </div>
-  <div class="faq-hero-inner">
-    <p class="eyebrow">Frequently Asked Questions</p>
-    <h1>Helping you feel at ease when ordering your keepsake</h1>
-    <p>We understand how important these moments are, and we're honoured to be part of how you choose to remember them. Below, you'll find answers to some of the most common questions we receive. If you still need help, we're just a message away and always happy to talk things through with you.</p>
-  </div>
-</section>
-</div>
-
-<!-- ============ FAQ ACCORDION ============ -->
-<!-- DRAFT ANSWER COPY: written in-house to match brand voice. Ryan to confirm/adjust against real Wix answers. -->
-<section class="faq-body">
-
-  <div class="faq-group">
-    <h2>About Our Handprint &amp; Footprint Kits</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">What exactly is a Foil Hand and Footprint kit?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Our foil hand and footprint kits are mess-free, stress-free ways to capture your baby's tiny hand or footprints at home. The kit includes everything you need to take clear prints using safe, inkless wipes and special reactive paper. We then transform these prints into stunning foil keepsakes using our exclusive Foil Fusion Technology.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What's included in the kit cost?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Each kit contains:</p>
-        <ul>
-          <li>2 inkless, baby-safe wipes</li>
-          <li>4 sheets of A5 reactive paper</li>
-          <li>Detailed instruction booklet</li>
-          <li>Your order number card (needed for uploading photos)</li>
-          <li>One A4 framed foil print included (delivered free)</li>
-        </ul>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">How many prints can I make with one kit?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Each kit allows you to create prints in one of these combinations:</p>
-        <ul>
-          <li>Two footprints</li>
-          <li>One handprint and one footprint</li>
-          <li>Two handprints (usually siblings)</li>
-        </ul>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Is it safe for newborns?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Absolutely! Our inkless wipes are completely non-toxic, hypoallergenic, and contain no chemicals, dyes, pigments, alcohol, or parabens. They're dermatologically tested and safe for even the tiniest newborns. You can even use them in the hospital right after birth.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">How long does the process take?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Taking the prints takes less than 5 minutes! It's designed for busy parents and can even be done while your baby is sleeping.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Using Your Kit</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">When is the best time to take the prints?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Choose a calm moment when your baby is relaxed - after feeding is ideal, or even while they're sleeping. The process is so gentle it won't disturb them.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What if my baby moves during the process?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>No worries at all! That's why we include extra wipes and multiple sheets of reactive paper. Even if your baby moves, you'll likely get several good imprints. We can also remove smudges during our editing process.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Do I need to be crafty or artistic?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Not at all! Our kits are designed for anyone to use successfully. You simply take the prints and leave the artistic transformation to us.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What if the prints don't turn out well?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>We include multiple sheets of reactive paper so you can take several prints. We then select the best ones and clean up any imperfections before creating your foil keepsake.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Our Foil Fusion Technology</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">What makes your foil prints different from others?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>We're the only company using Foil Fusion Technology - our exclusive process that seamlessly bonds foil to premium cardstock. Unlike traditional methods that glue foil on top (causing speckles and peeling), our process creates a flawless, durable finish that lasts a lifetime.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Will the foil peel or fade over time?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>No! Our Foil Fusion Technology permanently bonds the foil to the card, ensuring no peeling, fading, or deterioration. Your keepsake is designed to last generations.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What foil colours are available?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>We offer a carefully curated selection including gold, silver and rose gold. Each is chosen for its richness, clarity, and timeless appeal.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Ordering &amp; Personalisation</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">Can I personalise my print?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Yes! After uploading your prints, you can add:</p>
-        <ul>
-          <li>Baby's name</li>
-          <li>Birth details (date, time, weight, etc.)</li>
-          <li>Age when prints were taken</li>
-          <li>Special messages or quotes</li>
-        </ul>
-        <p>You can also choose:</p>
-        <ul>
-          <li>Card colour: Black or White</li>
-          <li>Foil colour: Gold, Silver, or Rose Gold</li>
-          <li>Frame colour: Ash, White, Black, Walnut, Oak</li>
-          <li>Layout (from set templates)</li>
-          <li>Font style (from our licensed fonts)</li>
-        </ul>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Can I order this as a gift before the baby arrives?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Absolutely! Our kits make perfect baby shower or hospital bag gifts. The recipients can take prints and add personalisation details after their baby arrives.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Can I order extra prints and add-ons?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Yes! You can order additional items at the proofing stage. This is popular for grandparents and other family members. You can choose from the following add-ons:</p>
-        <ul>
-          <li>Extra copy (print only)</li>
-          <li>Extra framed copy</li>
-          <li>A3 Framed Print (larger)</li>
-          <li>A5 Framed print (smaller)</li>
-          <li>Keyrings</li>
-        </ul>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Do you offer frames?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Yes, our frames are included in the cost. We offer beautifully crafted UK-made frames that complement our prints perfectly. Colours are: Ash, White, Black, Walnut, Oak.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Delivery &amp; Process</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">How does the process work after I take the prints?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <ol>
-          <li>Take photos of your prints</li>
-          <li>Upload them to our website with your order number</li>
-          <li>Choose your personalisation options</li>
-          <li>The editing process at our end begins - cleaning up any smudges</li>
-          <li>We send you proofs for approval via email or WhatsApp</li>
-          <li>Once approved, we create your foil keepsake</li>
-          <li>We deliver it to your door free of charge</li>
-        </ol>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">How long does it take to receive my finished print?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>After you approve your digital proof, we aim to dispatch within 5 working days. During busy periods it may take slightly longer, but we'll keep you updated.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Do you ship internationally?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Currently, we ship only to the UK.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Pricing &amp; Value</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">How much does a kit cost?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Our kits are &pound;40 making them an affordable way to create a luxury keepsake. Additional prints and items are available for small additional costs.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Is this good value compared to other keepsakes?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Unlike baby clothes that are quickly outgrown or toys that break, our foil prints are designed to last a lifetime. When you consider the quality, durability, and emotional value, they offer exceptional value for such a meaningful keepsake.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Environmental &amp; Ethical Considerations</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">Are your products eco-friendly?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Yes! We're committed to sustainability:</p>
-        <ul>
-          <li>100% plastic-free packaging</li>
-          <li>All materials are recyclable or compostable</li>
-          <li>Even our print delivery wallets are made from compostable cellophane</li>
-          <li>Our sturdy kit boxes are designed to be reused</li>
-          <li>Products are made to last a lifetime, not end up in landfills</li>
-        </ul>
-        <p>We've worked hard to make sure our packaging is both protective and planet-friendly. Your keepsake will arrive safe, beautiful and kind to the environment.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Do you support any charities?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Yes, we donate &pound;1 from every kit to Tommy's, a UK charity that funds research into pregnancy complications and supports families affected by miscarriage, premature birth, and stillbirth.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>About The Bespoke Foil Company</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">Who are you?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>We're Ashley and Ryan, a wife and husband-run business created by parents, for parents. We understand the significance of capturing precious moments and have designed our products with real-life parenting in mind.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Why should I choose you over other companies?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <ul>
-          <li>We're the only company with Foil Fusion Technology</li>
-          <li>Family-owned business with personal service</li>
-          <li>Completely eco-friendly packaging</li>
-          <li>Products designed specifically for busy new parents</li>
-          <li>Lifetime quality guarantee</li>
-          <li>Support for Tommy's charity</li>
-        </ul>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Can I contact you directly?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Absolutely! We believe in personal service. You can reach us at <a href="mailto:hello@thebespokefoilcompany.co.uk">hello@thebespokefoilcompany.co.uk</a> or WhatsApp 07506 998934.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Comparisons &amp; Alternatives</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">How do your kits compare to DIY methods?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>DIY methods using ink or paint are messy, can irritate baby's skin, and often produce smudged results. Our kits are mess-free, completely safe, and produce professional-quality results every time.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What about clay or plaster casting?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Clay and plaster require babies to stay still longer, can be messy, and the results are fragile and easily broken. Our foil prints are durable, can be reproduced if needed, and the process is much gentler for babies.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Are there any disadvantages to your method?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>The only "disadvantage" is that you need to wait for us to create your finished keepsake - but we think the professional quality and lifetime durability make it worth the wait!</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Troubleshooting</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">What if I'm not happy with the prints I take?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>It's not very often that this happens, as we can usually always work with what you produce and edit any imperfections. However, if you are really unhappy, we will send another set of wipes and paper out to you free of charge. All we ask is that you cover the shipping and handling fee of &pound;4.95.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What if I lose my order number?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>No problem! Just contact us with your order details (name and email address) and we'll help you find your information.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What if I'm not happy with my proof?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>We'll work with you to make any necessary adjustments. We won't proceed to printing until you're satisfied.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">What if my kit arrives damaged?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Please contact us immediately and we'll send a replacement kit at no charge.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Can I change my personalisation after I've submitted it?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>If you contact us quickly after submitting, we may be able to make changes. Once we've started production, changes become more difficult, but we'll do our best to help.</p>
-      </div></div>
-    </div>
-  </div>
-
-  <div class="faq-group">
-    <h2>Special Occasions</h2>
-
-    <div class="faq-item">
-      <button class="faq-q">Are these suitable for premature babies?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>Yes! Our gentle process is safe for premature babies, and many NICU parents have used our kits to capture precious early moments.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Can I use your kit for older children?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>As long as the child's hand or foot fits onto A5 (the size of the reactive paper) it won't be a problem. While designed for babies, our kits work beautifully for toddlers and older children too. Many families create sibling prints which display both the younger and older child's handprints - this is very popular.</p>
-      </div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q">Do you offer memorial keepsakes?</button>
-      <div class="faq-a"><div class="faq-a-inner">
-        <p>We understand that not all baby journeys have happy endings. Please contact us directly if you'd like to discuss creating a memorial keepsake - we'll handle your request with the utmost care and sensitivity.</p>
-      </div></div>
-    </div>
-  </div>
-
-</section>
-
-<!-- ============ STILL WONDERING (founders photo + contact) ============ -->
-<section class="faq-still">
-  <div class="faq-still-inner">
-    <div class="faq-still-media">
-      <img src="/assets/founders-074-1000.webp"
-           srcset="/assets/founders-074-700.webp 700w, /assets/founders-074-1000.webp 1000w, /assets/founders-074-1400.webp 1400w"
-           sizes="(min-width:920px) 46vw, 100vw" width="1400" height="1000" loading="lazy"
-           alt="Ashley and Ryan, co-founders of The Bespoke Foil Company">
-    </div>
-    <div class="faq-still-copy">
-      <h2>Still wondering about something?</h2>
-      <p>Contact us at <a class="email" href="mailto:hello@thebespokefoilcompany.co.uk">hello@thebespokefoilcompany.co.uk</a> or call <b>07506 998934</b>. Your memories are too important to leave to chance.</p>
-      <p class="off">Love,</p>
-      <p class="sig">Ashley &amp; Ryan</p>
-      <p class="role">Co-founders, The Bespoke Foil Company</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ JOIN OUR COMMUNITY ============ -->
-<section class="community">
-  <div class="community-inner">
-    <div>
-      <h2>Join our community</h2>
-      <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
-    </div>
-    <div class="community-form">
-      <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
-      <button id="communityJoin">Join</button>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="foot-top">
-    <div class="foot-col foot-contact">
-      <h4>Contact</h4>
-      <p>Tel: 07506 998934</p>
-      <p>Email: hello@thebespokefoilcompany.co.uk</p>
-      <div class="foot-social">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z"/></svg></a>
+    <!-- ============ DARK HERO WITH PHOTO ============ -->
+    <!-- IMAGE PLACEHOLDER: reusing contact-hero (desk scene) until the real FAQ iMac hero is supplied -->
+    <section class="faq-hero">
+      <div class="faq-hero-bg">
+        <img src="/assets/contact-hero-1600.webp"
+          srcset="/assets/contact-hero-1200.webp 1200w, /assets/contact-hero-1600.webp 1600w, /assets/contact-hero-2000.webp 2000w"
+          sizes="100vw" width="2000" height="1429" fetchpriority="high"
+          alt="Ashley at her desk preparing foil print keepsakes">
       </div>
-      <p class="f-label">Find Us</p>
-      <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
-      <p class="f-label">Opening Hours</p>
-      <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
-    </div>
+      <div class="faq-hero-inner">
+        <p class="eyebrow">Frequently Asked Questions</p>
+        <h1>Helping you feel at ease when ordering your keepsake</h1>
+        <p>We understand how important these moments are, and we're honoured to be part of how you choose to remember
+          them. Below, you'll find answers to some of the most common questions we receive. If you still need help,
+          we're just a message away and always happy to talk things through with you.</p>
+      </div>
+    </section>
+  </div>
 
-    <div class="foot-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="/our-kit">Order Your Kit</a></li>
-        <li><a href="/our-story">Our Story</a></li>
-        <li><a href="/premium-frames">Premium Frames</a></li>
-        <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
-        <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
-        <li><a href="/eco-friendly">Eco-Friendly</a></li>
-        <li><a href="/tommys-charity">Tommy's Charity</a></li>
-        <li><a href="/upload-portal">Uploading Your Prints</a></li>
-      </ul>
-    </div>
+  <!-- ============ FAQ ACCORDION ============ -->
+  <!-- DRAFT ANSWER COPY: written in-house to match brand voice. Ryan to confirm/adjust against real Wix answers. -->
+  <section class="faq-body">
 
-    <div class="foot-col">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="/faq">FAQ's</a></li>
-        <li><a href="/blog">Stories &amp; Inspiration</a></li>
-        <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
-        <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
-      </ul>
-      <h4>Franchise</h4>
-      <ul>
-        <li><a href="/franchise-hub">Franchise Hub</a></li>
-        <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
-        <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
-        <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
-        <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
-        <li><a href="/franchise-region">Search Franchise Regions</a></li>
-        <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
-      </ul>
-    </div>
+    <div class="faq-group">
+      <h2>About Our Handprint &amp; Footprint Kits</h2>
 
-    <div class="foot-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
-        <li><a href="/sitemap">Sitemap</a></li>
-      </ul>
-      <div class="foot-right" style="margin-top:26px">
-        <a class="cta on-dark foot-order" href="/our-kit">
-          <span class="lbl">Order Your Kit</span>
-          <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <div class="foot-pay" aria-label="Accepted payment methods">
-          <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
-          <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
-          <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
-          <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
-          <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
-          <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+      <div class="faq-item">
+        <button class="faq-q">What exactly is a Foil Hand and Footprint kit?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Our foil hand and footprint kits are mess-free, stress-free ways to capture your baby's tiny hand or
+              footprints at home. The kit includes everything you need to take clear prints using safe, inkless wipes
+              and special reactive paper. We then transform these prints into stunning foil keepsakes using our
+              exclusive Foil Fusion Technology.</p>
+          </div>
         </div>
-        <div class="foot-tp">
-          <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-          <span class="tp-meta">TrustScore 4.9 &middot; 65 reviews</span>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What's included in the kit cost?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Each kit contains:</p>
+            <ul>
+              <li>2 inkless, baby-safe wipes</li>
+              <li>4 sheets of A5 reactive paper</li>
+              <li>Detailed instruction booklet</li>
+              <li>Your order number card (needed for uploading photos)</li>
+              <li>One A4 framed foil print included (delivered free)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How many prints can I make with one kit?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Each kit allows you to create prints in one of these combinations:</p>
+            <ul>
+              <li>Two footprints</li>
+              <li>One handprint and one footprint</li>
+              <li>Two handprints (usually siblings)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Is it safe for newborns?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Absolutely! Our inkless wipes are completely non-toxic, hypoallergenic, and contain no chemicals, dyes,
+              pigments, alcohol, or parabens. They're dermatologically tested and safe for even the tiniest newborns.
+              You can even use them in the hospital right after birth.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How long does the process take?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Taking the prints takes less than 5 minutes! It's designed for busy parents and can even be done while
+              your baby is sleeping.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="foot-legal">
-    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID: GB419408687.</p>
-    <p style="margin-top:6px"><a href="https://www.mywixdesigner.com/">Website by My Wix Designer</a></p>
-  </div>
+    <div class="faq-group">
+      <h2>Using Your Kit</h2>
 
-  <div class="foot-watermark" aria-hidden="true">
-    <img src="/assets/bfc-logo.svg" alt="">
-  </div>
-</footer>
+      <div class="faq-item">
+        <button class="faq-q">When is the best time to take the prints?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Choose a calm moment when your baby is relaxed - after feeding is ideal, or even while they're sleeping.
+              The process is so gentle it won't disturb them.</p>
+          </div>
+        </div>
+      </div>
 
-<script>
-/* sticky header (shared behaviour) */
-(function(){
-  const header = document.querySelector('header');
-  if(!header) return;
-  const ST=60, HIDE=260, D=6;
-  let lastY=window.scrollY, acc=0, tick=false;
-  function up(){
-    const y=window.scrollY, diff=y-lastY;
-    if(y>ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-    if(Math.abs(diff)>D){
-      if(diff>0){ acc+=diff; if(acc>HIDE && y>ST) header.classList.add('header-hidden'); }
-      else { header.classList.remove('header-hidden'); acc=0; }
-      lastY=y;
-    }
-    tick=false;
-  }
-  window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});
-  up();
-})();
+      <div class="faq-item">
+        <button class="faq-q">What if my baby moves during the process?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>No worries at all! That's why we include extra wipes and multiple sheets of reactive paper. Even if your
+              baby moves, you'll likely get several good imprints. We can also remove smudges during our editing
+              process.</p>
+          </div>
+        </div>
+      </div>
 
-/* FAQ accordion - one item open at a time within the whole list */
-(function(){
-  const items = Array.from(document.querySelectorAll('.faq-item'));
-  if(!items.length) return;
-  function setOpen(item, open){
-    const a = item.querySelector('.faq-a');
-    if(open){
-      item.classList.add('open');
-      a.style.maxHeight = a.scrollHeight + 'px';
-    } else {
-      item.classList.remove('open');
-      a.style.maxHeight = null;
-    }
-  }
-  items.forEach(item=>{
-    const q = item.querySelector('.faq-q');
-    q.addEventListener('click',()=>{
-      const isOpen = item.classList.contains('open');
-      items.forEach(other=>{ if(other!==item) setOpen(other,false); });
-      setOpen(item, !isOpen);
-    });
-  });
-  // keep an open item sized correctly on resize
-  window.addEventListener('resize',()=>{
-    const open = document.querySelector('.faq-item.open');
-    if(open){ const a=open.querySelector('.faq-a'); a.style.maxHeight = a.scrollHeight + 'px'; }
-  });
-})();
-</script>
-<script>
-/* interim nav menu toggle */
-(function(){
-  const menu=document.getElementById('navMenu');
-  const burger=document.querySelector('.burger');
-  const closeBtn=document.getElementById('navMenuClose');
-  if(!menu||!burger)return;
-  function open(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}
-  function close(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}
-  burger.addEventListener('click',open);
-  if(closeBtn)closeBtn.addEventListener('click',close);
-  menu.addEventListener('click',e=>{if(e.target===menu)close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-})();
-</script>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to be crafty or artistic?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Not at all! Our kits are designed for anyone to use successfully. You simply take the prints and leave
+              the artistic transformation to us.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What if the prints don't turn out well?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>We include multiple sheets of reactive paper so you can take several prints. We then select the best ones
+              and clean up any imperfections before creating your foil keepsake.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Our Foil Fusion Technology</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">What makes your foil prints different from others?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>We're the only company using Foil Fusion Technology - our exclusive process that seamlessly bonds foil to
+              premium cardstock. Unlike traditional methods that glue foil on top (causing speckles and peeling), our
+              process creates a flawless, durable finish that lasts a lifetime.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Will the foil peel or fade over time?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>No! Our Foil Fusion Technology permanently bonds the foil to the card, ensuring no peeling, fading, or
+              deterioration. Your keepsake is designed to last generations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What foil colours are available?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>We offer a carefully curated selection including gold, silver and rose gold. Each is chosen for its
+              richness, clarity, and timeless appeal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Ordering &amp; Personalisation</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I personalise my print?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes! After uploading your prints, you can add:</p>
+            <ul>
+              <li>Baby's name</li>
+              <li>Birth details (date, time, weight, etc.)</li>
+              <li>Age when prints were taken</li>
+              <li>Special messages or quotes</li>
+            </ul>
+            <p>You can also choose:</p>
+            <ul>
+              <li>Card colour: Black or White</li>
+              <li>Foil colour: Gold, Silver, or Rose Gold</li>
+              <li>Frame colour: Ash, White, Black, Walnut, Oak</li>
+              <li>Layout (from set templates)</li>
+              <li>Font style (from our licensed fonts)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I order this as a gift before the baby arrives?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Absolutely! Our kits make perfect baby shower or hospital bag gifts. The recipients can take prints and
+              add personalisation details after their baby arrives.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I order extra prints and add-ons?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes! You can order additional items at the proofing stage. This is popular for grandparents and other
+              family members. You can choose from the following add-ons:</p>
+            <ul>
+              <li>Extra copy (print only)</li>
+              <li>Extra framed copy</li>
+              <li>A3 Framed Print (larger)</li>
+              <li>A5 Framed print (smaller)</li>
+              <li>Keyrings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Do you offer frames?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes, our frames are included in the cost. We offer beautifully crafted UK-made frames that complement our
+              prints perfectly. Colours are: Ash, White, Black, Walnut, Oak.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Delivery &amp; Process</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">How does the process work after I take the prints?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <ol>
+              <li>Take photos of your prints</li>
+              <li>Upload them to our website with your order number</li>
+              <li>Choose your personalisation options</li>
+              <li>The editing process at our end begins - cleaning up any smudges</li>
+              <li>We send you proofs for approval via email or WhatsApp</li>
+              <li>Once approved, we create your foil keepsake</li>
+              <li>We deliver it to your door free of charge</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How long does it take to receive my finished print?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>After you approve your digital proof, we aim to dispatch within 5 working days. During busy periods it
+              may take slightly longer, but we'll keep you updated.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Do you ship internationally?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Currently, we ship only to the UK.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Pricing &amp; Value</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">How much does a kit cost?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Our kits are &pound;40 making them an affordable way to create a luxury keepsake. Additional prints and
+              items are available for small additional costs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Is this good value compared to other keepsakes?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Unlike baby clothes that are quickly outgrown or toys that break, our foil prints are designed to last a
+              lifetime. When you consider the quality, durability, and emotional value, they offer exceptional value for
+              such a meaningful keepsake.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Environmental &amp; Ethical Considerations</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">Are your products eco-friendly?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes! We're committed to sustainability:</p>
+            <ul>
+              <li>100% plastic-free packaging</li>
+              <li>All materials are recyclable or compostable</li>
+              <li>Even our print delivery wallets are made from compostable cellophane</li>
+              <li>Our sturdy kit boxes are designed to be reused</li>
+              <li>Products are made to last a lifetime, not end up in landfills</li>
+            </ul>
+            <p>We've worked hard to make sure our packaging is both protective and planet-friendly. Your keepsake will
+              arrive safe, beautiful and kind to the environment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Do you support any charities?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes, we donate &pound;1 from every kit to Tommy's, a UK charity that funds research into pregnancy
+              complications and supports families affected by miscarriage, premature birth, and stillbirth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>About The Bespoke Foil Company</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">Who are you?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>We're Ashley and Ryan, a wife and husband-run business created by parents, for parents. We understand the
+              significance of capturing precious moments and have designed our products with real-life parenting in
+              mind.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Why should I choose you over other companies?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <ul>
+              <li>We're the only company with Foil Fusion Technology</li>
+              <li>Family-owned business with personal service</li>
+              <li>Completely eco-friendly packaging</li>
+              <li>Products designed specifically for busy new parents</li>
+              <li>Lifetime quality guarantee</li>
+              <li>Support for Tommy's charity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I contact you directly?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Absolutely! We believe in personal service. You can reach us at <a
+                href="mailto:hello@thebespokefoilcompany.co.uk">hello@thebespokefoilcompany.co.uk</a> or WhatsApp 07506
+              998934.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Comparisons &amp; Alternatives</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">How do your kits compare to DIY methods?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>DIY methods using ink or paint are messy, can irritate baby's skin, and often produce smudged results.
+              Our kits are mess-free, completely safe, and produce professional-quality results every time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What about clay or plaster casting?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Clay and plaster require babies to stay still longer, can be messy, and the results are fragile and
+              easily broken. Our foil prints are durable, can be reproduced if needed, and the process is much gentler
+              for babies.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Are there any disadvantages to your method?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>The only "disadvantage" is that you need to wait for us to create your finished keepsake - but we think
+              the professional quality and lifetime durability make it worth the wait!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Troubleshooting</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">What if I'm not happy with the prints I take?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>It's not very often that this happens, as we can usually always work with what you produce and edit any
+              imperfections. However, if you are really unhappy, we will send another set of wipes and paper out to you
+              free of charge. All we ask is that you cover the shipping and handling fee of &pound;4.95.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What if I lose my order number?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>No problem! Just contact us with your order details (name and email address) and we'll help you find your
+              information.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What if I'm not happy with my proof?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>We'll work with you to make any necessary adjustments. We won't proceed to printing until you're
+              satisfied.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What if my kit arrives damaged?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Please contact us immediately and we'll send a replacement kit at no charge.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I change my personalisation after I've submitted it?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>If you contact us quickly after submitting, we may be able to make changes. Once we've started
+              production, changes become more difficult, but we'll do our best to help.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h2>Special Occasions</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">Are these suitable for premature babies?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes! Our gentle process is safe for premature babies, and many NICU parents have used our kits to capture
+              precious early moments.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I use your kit for older children?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>As long as the child's hand or foot fits onto A5 (the size of the reactive paper) it won't be a problem.
+              While designed for babies, our kits work beautifully for toddlers and older children too. Many families
+              create sibling prints which display both the younger and older child's handprints - this is very popular.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Do you offer memorial keepsakes?</button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>We understand that not all baby journeys have happy endings. Please contact us directly if you'd like to
+              discuss creating a memorial keepsake - we'll handle your request with the utmost care and sensitivity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ STILL WONDERING (founders photo + contact) ============ -->
+  <section class="faq-still">
+    <div class="faq-still-inner">
+      <div class="faq-still-media">
+        <img src="/assets/founders-074-1000.webp"
+          srcset="/assets/founders-074-700.webp 700w, /assets/founders-074-1000.webp 1000w, /assets/founders-074-1400.webp 1400w"
+          sizes="(min-width:920px) 46vw, 100vw" width="1400" height="1000" loading="lazy"
+          alt="Ashley and Ryan, co-founders of The Bespoke Foil Company">
+      </div>
+      <div class="faq-still-copy">
+        <h2>Still wondering about something?</h2>
+        <p>Contact us at <a class="email"
+            href="mailto:hello@thebespokefoilcompany.co.uk">hello@thebespokefoilcompany.co.uk</a><br>or call <b>07506&nbsp;998934</b>. Your memories are too important to leave to chance.</p>
+        <p class="off">Love,</p>
+        <p class="sig">Ashley &amp; Ryan</p>
+        <p class="role">Co-founders, The Bespoke Foil Company</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOIN OUR COMMUNITY ============ -->
+  <section class="community">
+    <div class="community-inner">
+      <div>
+        <h2>Join our community</h2>
+        <p>Become part of our parenting community and enjoy 10% off your first order as a welcome gift.</p>
+      </div>
+      <div class="community-form">
+        <input type="email" id="communityEmail" placeholder="Email address*" aria-label="Email address">
+        <button id="communityJoin">Join</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-top">
+      <div class="foot-col foot-contact">
+        <h4>Contact</h4>
+        <p>Tel: 07506 998934</p>
+        <p>Email: hello@thebespokefoilcompany.co.uk</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/TheBespokeFoilCompany" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.6.2-1 .9-1z" />
+            </svg></a>
+          <a href="https://www.instagram.com/thebespokefoilco/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
+            </svg></a>
+        </div>
+        <p class="f-label">Find Us</p>
+        <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
+        <p class="f-label">Opening Hours</p>
+        <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
+          <li><a href="/our-story">Our Story</a></li>
+          <li><a href="/premium-frames">Premium Frames</a></li>
+          <li><a href="/print-quality-guarantee">Print Quality Guarantee</a></li>
+          <li><a href="/foil-fusion-technology">Foil Fusion Technology&trade;</a></li>
+          <li><a href="/eco-friendly">Eco-Friendly</a></li>
+          <li><a href="/tommys-charity">Tommy's Charity</a></li>
+          <li><a href="/upload-portal">Uploading Your Prints</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/faq">FAQ's</a></li>
+          <li><a href="/blog">Stories &amp; Inspiration</a></li>
+          <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
+          <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
+        </ul>
+        <h4>Franchise</h4>
+        <ul>
+          <li><a href="/franchise-hub">Franchise Hub</a></li>
+          <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
+          <li><a href="/franchise">Memory Catcher&trade; Franchise</a></li>
+          <li><a href="/memory-catcher-earnings-calculator">Franchise Earnings Calculator</a></li>
+          <li><a href="/memory-catcher-region-map">View Franchise Regional Map</a></li>
+          <li><a href="/franchise-region">Search Franchise Regions</a></li>
+          <li><a href="/find-a-memory-catcher">Find Your Local Memory Catcher</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/sitemap">Sitemap</a></li>
+        </ul>
+        <div class="foot-right" style="margin-top:26px">
+          <a class="cta on-dark foot-order" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+            <span class="lbl">Order Your Kit</span>
+            <span class="sq"><svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></span>
+          </a>
+          <div class="foot-pay" aria-label="Accepted payment methods">
+            <span class="pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
+            <span class="pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
+            <span class="pay-chip"><img src="/assets/pay/master.svg" alt="Mastercard"></span>
+            <span class="pay-chip"><img src="/assets/pay/applePay.svg" alt="Apple Pay"></span>
+            <span class="pay-chip"><img src="/assets/pay/amex.svg" alt="American Express"></span>
+            <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
+          </div>
+          <div class="foot-tp">
+            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-legal">
+      <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
+        GB419408687.</p>
+      <p style="margin-top:6px"><a href="https://www.twinegrowth.com" target="_blank" rel="noopener">Website by Twine Growth</a></p>
+    </div>
+
+    <div class="foot-watermark" aria-hidden="true">
+      <img src="/assets/bfc-logo.svg" alt="">
+    </div>
+  </footer>
+
+  <script>
+    /* sticky header (shared behaviour) */
+    (function () {
+      const header = document.querySelector('header');
+      if (!header) return;
+      const ST = 60, HIDE = 260, D = 6;
+      let lastY = window.scrollY, acc = 0, tick = false;
+      function up() {
+        const y = window.scrollY, diff = y - lastY;
+        if (y > ST) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+        if (Math.abs(diff) > D) {
+          if (diff > 0) { acc += diff; if (acc > HIDE && y > ST) header.classList.add('header-hidden'); }
+          else { header.classList.remove('header-hidden'); acc = 0; }
+          lastY = y;
+        }
+        tick = false;
+      }
+      window.addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(up); tick = true; } }, { passive: true });
+      up();
+    })();
+
+    /* FAQ accordion - one item open at a time within the whole list */
+    (function () {
+      const items = Array.from(document.querySelectorAll('.faq-item'));
+      if (!items.length) return;
+      function setOpen(item, open) {
+        const a = item.querySelector('.faq-a');
+        if (open) {
+          item.classList.add('open');
+          a.style.maxHeight = a.scrollHeight + 'px';
+        } else {
+          item.classList.remove('open');
+          a.style.maxHeight = null;
+        }
+      }
+      items.forEach(item => {
+        const q = item.querySelector('.faq-q');
+        q.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+          items.forEach(other => { if (other !== item) setOpen(other, false); });
+          setOpen(item, !isOpen);
+        });
+      });
+      // keep an open item sized correctly on resize
+      window.addEventListener('resize', () => {
+        const open = document.querySelector('.faq-item.open');
+        if (open) { const a = open.querySelector('.faq-a'); a.style.maxHeight = a.scrollHeight + 'px'; }
+      });
+    })();
+  </script>
+  <script>
+    /* interim nav menu toggle */
+    (function () {
+      const menu = document.getElementById('navMenu');
+      const burger = document.querySelector('.burger');
+      const closeBtn = document.getElementById('navMenuClose');
+      if (!menu || !burger) return;
+      function open() { menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); document.body.classList.add('menu-open'); }
+      function close() { menu.classList.remove('open'); menu.setAttribute('aria-hidden', 'true'); document.body.classList.remove('menu-open'); }
+      burger.addEventListener('click', open);
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      menu.addEventListener('click', e => { if (e.target === menu) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
+
 </html>

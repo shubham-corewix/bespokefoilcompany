@@ -134,7 +134,7 @@ exports.handler = async (event) => {
         client_ip: clientIp,
         client_ua: clientUa,
         event_source_url: (page || '').slice(0, 480),
-        source: 'keepsake-landing',
+        source: 'main-keepsake-landing',
       },
       description: `${quantity}x ${item.name} - keepsake.thebespokefoilcompany.co.uk`,
     });

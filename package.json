@@ -1,7 +1,8 @@
 {
-  "name": "bespoke-foil-site",
+  "name": "bfc-unified-site",
   "private": true,
+  "description": "The Bespoke Foil Company - unified static site + Netlify functions (kit checkout, add-ons, franchise leads, affiliate edge pages)",
   "dependencies": {
-    "stripe": "^17.0.0"
+    "stripe": "^17.7.0"
   }
 }

@@ -20,11 +20,16 @@ const strict = process.argv.includes('--strict');
 
 // 1) Learn every live route + 301 source from _redirects
 const routes = new Set(['/']);
+const wildcardRoutes = [];
 const redirectSources = new Set();
 const redirects = fs.readFileSync(path.join(ROOT, '_redirects'), 'utf8');
 for (const line of redirects.split('\n')) {
   const m200 = line.match(/^(\/\S*)\s+\/\S+\.html\s+200/);
-  if (m200) { routes.add(m200[1]); continue; }
+  if (m200) {
+    if (m200[1].endsWith('/*')) wildcardRoutes.push(m200[1].slice(0, -1));
+    else routes.add(m200[1]);
+    continue;
+  }
   const m301 = line.match(/^(\/\S*)\s+(\/\S*)\s+301/);
   if (m301) redirectSources.add(m301[1]);
 }
@@ -50,6 +55,7 @@ for (const page of pages) {
       continue;
     }
     if (routes.has(href)) continue;                                  // clean route
+    if (wildcardRoutes.some(p => href.startsWith(p))) continue;      // wildcard route (e.g. edge-served)
     if (href.startsWith('/assets/') || href.startsWith('/shared/')) { // static asset
       if (fs.existsSync(path.join(ROOT, href))) continue;
       problems.push({ page, href, why: 'asset missing on disk' });
