@@ -135,7 +135,22 @@ function build() {
     }
   }
   xml += '</urlset>\n';
-  fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
+  /* sitemap.xml is NO LONGER written here (04/08/2026). It is served at request
+     time by netlify/edge-functions/sitemap.js, which merges these static routes
+     with the dynamic franchise regions and blog posts held in Supabase.
+     Writing a static sitemap.xml as well would leave a real file on a path an
+     edge function also claims - the file usually wins, and the sitemap would
+     silently list only the static half of the site.
+     What IS written is that static half as JSON, for the function to read. */
+  fs.writeFileSync(path.join(ROOT, 'sitemap-static.json'), JSON.stringify({
+    generated: new Date().toISOString(),
+    site: SITE,
+    urls: catOrder.flatMap(cat => grouped[cat].map(e => ({
+      loc: e.from,
+      lastmod: lastmod(e.from),
+      priority: Number(priorityFor(e.from, cat).toFixed(1)),
+    }))),
+  }, null, 1));
 
   // -------- robots.txt --------
   const robots =

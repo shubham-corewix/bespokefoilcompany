@@ -392,7 +392,7 @@
       }
 
       .eco-hero-bg::after {
-        background: linear-gradient(180deg, rgba(16, 14, 12, .6) 0%, rgba(16, 14, 12, .55) 55%, rgba(16, 14, 12, .82) 100%)
+        background: linear-gradient(180deg, rgba(16, 14, 12, 0.74) 0%, rgba(16, 14, 12, 0.71) 55%, rgba(16, 14, 12, 0.92) 100%)
       }
 
       .os-video {
@@ -462,6 +462,26 @@
     display: none
   }
 }
+
+    /* 04/08: the three "create your own memory" tiles are aspect-ratio 3/4, which
+       at full mobile width is ~660px of height EACH - three stacked is most of a
+       phone's scroll. Below 600px they become wide-and-shallow (16/9) and sit two
+       to a row where there is space, cutting the block to roughly a third. */
+    @media(max-width:600px) {
+      .os-cards {
+        gap: 12px
+      }
+
+      .os-card {
+        aspect-ratio: 16/9
+      }
+
+      .os-card h3 {
+        left: 14px;
+        bottom: 12px;
+        font-size: 16px
+      }
+    }
 </style>
 </head>
 
@@ -472,7 +492,7 @@
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
         <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-menu-top-right">
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -544,7 +564,7 @@
           <span></span><span></span><span></span>
         </button>
         <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-          <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-right">
           <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -685,7 +705,7 @@
         </div>
       </div>
       <div class="os-media">
-        <img src="/assets/img-074-1400.webp" srcset="/assets/img-074-500.webp 500w, /assets/img-074-800.webp 800w, /assets/img-074-1000.webp 1000w, /assets/img-074-1100.webp 1100w, /assets/img-074-1400.webp 1400w" sizes="(min-width:920px) 560px, 100vw" width="1400" height="1000" loading="lazy" alt="Ashley and Ryan with their two boys">
+        <img src="/assets/img-074-1400-v2.webp" srcset="/assets/img-074-500-v2.webp 500w, /assets/img-074-800-v2.webp 800w, /assets/img-074-1000-v2.webp 1000w, /assets/img-074-1100-v2.webp 1100w, /assets/img-074-1400-v2.webp 1400w" sizes="(min-width:920px) 560px, 100vw" width="1400" height="1000" loading="lazy" alt="Ashley and Ryan with their two boys">
       </div>
     </div>
   </section>
@@ -698,11 +718,11 @@
     </div>
     <div class="os-cards">
       <a class="os-card" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
-        <img src="/assets/img-064-800.webp" srcset="/assets/img-064-500.webp 500w, /assets/img-064-800.webp 800w" sizes="(min-width:560px) 300px, 100vw" width="800" height="1067" loading="lazy" alt="Shop our kits">
+        <img src="/assets/img-064-800-v2.webp" srcset="/assets/img-064-500-v2.webp 500w, /assets/img-064-800-v2.webp 800w" sizes="(min-width:560px) 300px, 100vw" width="800" height="1067" loading="lazy" alt="Shop our kits">
         <h3>Shop<br>Our Kits</h3>
       </a>
       <a class="os-card" href="/faq">
-        <img src="/assets/img-330-800.webp" srcset="/assets/img-330-500.webp 500w, /assets/img-330-800.webp 800w" sizes="(min-width:560px) 300px, 100vw" width="800" height="1200" loading="lazy" alt="Read our FAQs">
+        <img src="/assets/img-330-800-v2.webp" srcset="/assets/img-330-500-v2.webp 500w, /assets/img-330-800-v2.webp 800w" sizes="(min-width:560px) 300px, 100vw" width="800" height="1200" loading="lazy" alt="Read our FAQs">
         <h3>Read<br>Our FAQs</h3>
       </a>
       <a class="os-card" href="/foil-fusion-technology">
@@ -819,7 +839,7 @@
     </div>
 
     <div class="foot-watermark" aria-hidden="true">
-      <img src="/assets/bfc-logo.svg" alt="">
+      <img src="/assets/bfc-logo-v2.svg" alt="">
     </div>
   </footer>
 

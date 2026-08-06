@@ -55,3 +55,23 @@
 [[edge_functions]]
   path = "/memory-catcher/:slug"
   function = "memory-catcher"
+
+# sitemap.xml is served at request time, not built. It merges the static routes
+# (sitemap-static.json, written by the build from _redirects) with the dynamic
+# franchise regions and blog posts in Supabase. The build must NOT write a
+# sitemap.xml file - a real file on this path would win over the function.
+[[edge_functions]]
+  path = "/sitemap.xml"
+  function = "sitemap"
+
+# Franchise regions and blog posts are served from Supabase at request time -
+# one template each, no static generation. Both return a REAL 404 when the slug
+# has no row, and both inject SEO and Open Graph tags server-side (social
+# scrapers do not run JavaScript, so client-side meta would not work).
+[[edge_functions]]
+  path = "/franchises/:slug"
+  function = "franchise-region"
+
+[[edge_functions]]
+  path = "/post/:slug"
+  function = "blog-post"

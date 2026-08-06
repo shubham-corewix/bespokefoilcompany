@@ -1,0 +1,121 @@
+{
+ "generated": "2026-08-05T05:07:25.530Z",
+ "site": "https://www.thebespokefoilcompany.co.uk",
+ "urls": [
+  {
+   "loc": "/",
+   "lastmod": "2026-08-04",
+   "priority": 1
+  },
+  {
+   "loc": "/eco-friendly",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/foil-fusion-technology",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/product-page/foil-handprint-footprint-kit-baby-keepsake",
+   "lastmod": "2026-08-05",
+   "priority": 0.6
+  },
+  {
+   "loc": "/our-story",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/premium-frames",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/print-quality-guarantee",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/tommys-charity",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/upload-portal",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/bespoke-baby-gallery",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/faq",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/find-a-memory-catcher",
+   "lastmod": "2026-08-04",
+   "priority": 0.7
+  },
+  {
+   "loc": "/kit-walkthrough-video",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/blog",
+   "lastmod": "2026-08-04",
+   "priority": 0.6
+  },
+  {
+   "loc": "/memory-catcher-earnings-calculator",
+   "lastmod": "2026-08-04",
+   "priority": 0.7
+  },
+  {
+   "loc": "/franchise-hub",
+   "lastmod": "2026-08-04",
+   "priority": 0.7
+  },
+  {
+   "loc": "/memory-catcher-region-map",
+   "lastmod": "2026-08-04",
+   "priority": 0.7
+  },
+  {
+   "loc": "/franchise",
+   "lastmod": "2026-08-04",
+   "priority": 0.8
+  },
+  {
+   "loc": "/franchise-region",
+   "lastmod": "2026-08-04",
+   "priority": 0.7
+  },
+  {
+   "loc": "/memory-catcher-hub",
+   "lastmod": "2026-08-04",
+   "priority": 0.7
+  },
+  {
+   "loc": "/franchises-bio/ashley-eccleston",
+   "lastmod": "2026-08-05",
+   "priority": 0.5
+  },
+  {
+   "loc": "/contact",
+   "lastmod": "2026-08-04",
+   "priority": 0.5
+  },
+  {
+   "loc": "/privacy-policy",
+   "lastmod": "2026-08-04",
+   "priority": 0.5
+  }
+ ]
+}

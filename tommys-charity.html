@@ -24,342 +24,66 @@
       rel="stylesheet">
   </noscript>
   <link rel="stylesheet" href="/shared/styles.css?v=10">
-  <style>
-    /* ===== TOMMY'S CHARITY page-specific ===== */
+  <style>.tc-hero{position: relative; min-height: 560px; display: flex; align-items: center; overflow: hidden; background: #161412}
+.tc-hero-bg{position: absolute; inset: 0; z-index: 0}
+.tc-hero-bg img{width: 100%; height: 100%; object-fit: cover; object-position: center}
+.tc-hero-bg::after{content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 14, 12, .9) 0%, rgba(16, 14, 12, .66) 44%, rgba(16, 14, 12, .34) 100%)}
+.tc-hero-inner{position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 150px 40px 110px; width: 100%}
+.tc-hero .eyebrow{font-family: var(--sans); font-size: 14px; color: rgba(255, 255, 255, .72); margin-bottom: 20px}
+.tc-hero h1{font-family: var(--serif); font-weight: 340; font-size: clamp(34px, 5vw, 54px); line-height: 1.1; letter-spacing: -.02em; color: #fff; max-width: 18ch; margin-bottom: 22px}
+.tc-hero p{font-family: var(--sans); font-size: clamp(14px, 1vw + 12px, 16px); line-height: 1.7; color: rgba(255, 255, 255, .85); max-width: 52ch}
+.tc-intro{max-width: 760px; margin: 0 auto; padding: 72px 40px 8px; text-align: center}
+.tc-pound{font-family: var(--serif); font-weight: 340; font-size: clamp(48px, 9vw, 92px); line-height: 1; letter-spacing: -.03em; color: var(--stone-text); margin-bottom: 12px}
+.tc-intro h2{font-family: var(--serif); font-weight: 340; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -.015em; margin-bottom: 20px}
+.tc-intro p{font-family: var(--sans); font-size: 16px; line-height: 1.8; color: var(--ink-soft); margin-bottom: 18px}
+.tc-intro p:last-child{margin-bottom: 0}
+.tc-sign{margin-top: 32px; padding-bottom:0}
+.tc-sign .sign-name{font-family:var(--script);font-size:38px;color:var(--stone-text);line-height:1;margin:6px 0}
+.tc-sign .sign-role{font-family:var(--sans);font-size:12.5px;letter-spacing:.04em;color:var(--ink-faint);margin:0}
+.tc-cta{position: relative; isolation: isolate; text-align: center; padding: clamp(88px, 11vw, 140px) 40px; overflow: hidden; color: var(--white)}
+.tc-cta-bg{position: absolute; inset: 0; z-index: -2}
+.tc-cta-bg img{width: 100%; height: 100%; object-fit: cover; object-position: center; display: block}
+.tc-cta::after{content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(16, 14, 12, .72) 0%, rgba(16, 14, 12, .66) 55%, rgba(16, 14, 12, .78) 100%)}
+.tc-cta-inner{max-width: 720px; margin: 0 auto}
+.tc-cta h2, .tc-cta p{color: var(--white)}
+.tc-cta p{opacity: .9}
+.tc-cta h2{font-family: var(--serif); font-weight: 340; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -.015em; color: var(--white); margin-bottom: 16px}
+.tc-cta p{font-family: var(--sans); font-size: 16px; line-height: 1.7; color: rgba(255,255,255,.9); max-width: 52ch; margin: 0 auto 28px}
 
-    /* --- dark hero with background photo --- */
-    .tc-hero {
-      position: relative;
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: #161412
-    }
+@media(max-width:600px){
+.tc-hero{min-height: 460px}
+.tc-hero-inner{padding: 120px 18px 72px}
+.tc-hero-bg::after{background: linear-gradient(180deg, rgba(16, 14, 12, 0.74) 0%, rgba(16, 14, 12, 0.71) 55%, rgba(16, 14, 12, 0.92) 100%)}
+.tc-intro{padding: 48px 18px 8px}
+.tc-sign{padding-bottom:0}
+}
 
-    .tc-hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0
-    }
 
-    .tc-hero-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center
-    }
 
-    .tc-hero-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(16, 14, 12, .9) 0%, rgba(16, 14, 12, .66) 44%, rgba(16, 14, 12, .34) 100%)
-    }
-
-    .tc-hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 150px 40px 110px;
-      width: 100%
-    }
-
-    .tc-hero .eyebrow {
-      font-family: var(--sans);
-      font-size: 14px;
-      color: rgba(255, 255, 255, .72);
-      margin-bottom: 20px
-    }
-
-    .tc-hero h1 {
-      font-family: var(--serif);
-      font-weight: 340;
-      font-size: clamp(34px, 5vw, 54px);
-      line-height: 1.1;
-      letter-spacing: -.02em;
-      color: #fff;
-      max-width: 18ch;
-      margin-bottom: 22px
-    }
-
-    .tc-hero p {
-      font-family: var(--sans);
-      font-size: clamp(14px, 1vw + 12px, 16px);
-      line-height: 1.7;
-      color: rgba(255, 255, 255, .85);
-      max-width: 52ch
-    }
-
-    /* --- intro / £1 statement --- */
-    .tc-intro {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 72px 40px 8px;
-      text-align: center
-    }
-
-    .tc-pound {
-      font-family: var(--serif);
-      font-weight: 340;
-      font-size: clamp(48px, 9vw, 92px);
-      line-height: 1;
-      letter-spacing: -.03em;
-      color: var(--stone-text);
-      margin-bottom: 12px
-    }
-
-    .tc-intro h2 {
-      font-family: var(--serif);
-      font-weight: 340;
-      font-size: clamp(24px, 3.4vw, 34px);
-      letter-spacing: -.015em;
-      margin-bottom: 20px
-    }
-
-    .tc-intro p {
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--ink-soft);
-      margin-bottom: 18px
-    }
-
-    .tc-intro p:last-child {
-      margin-bottom: 0
-    }
-
-    /* --- who is Tommy's band --- */
-    .tc-who {
-      background: var(--porcelain);
-      margin-top: 64px;
-      padding: 72px 40px
-    }
-
-    .tc-who-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center
-    }
-
-    .tc-who img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: var(--r-img);
-      background: var(--bone)
-    }
-
-    .tc-who h2 {
-      font-family: var(--serif);
-      font-weight: 340;
-      font-size: clamp(24px, 3.2vw, 32px);
-      letter-spacing: -.015em;
-      margin-bottom: 16px
-    }
-
-    .tc-who p {
-      font-family: var(--sans);
-      font-size: 15.5px;
-      line-height: 1.8;
-      color: var(--ink-soft);
-      margin-bottom: 16px
-    }
-
-    .tc-who p:last-child {
-      margin-bottom: 0
-    }
-
-    .tc-who a.tc-link {
-      color: var(--stone-text);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: var(--stone)
-    }
-
-    /* --- why it matters to us (with signature) --- */
-    .tc-why {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 72px 40px
-    }
-
-    .tc-why h2 {
-      font-family: var(--serif);
-      font-weight: 340;
-      font-size: clamp(24px, 3.2vw, 32px);
-      letter-spacing: -.015em;
-      margin-bottom: 20px
-    }
-
-    .tc-why p {
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--ink);
-      margin-bottom: 18px
-    }
-
-    .tc-sign {
-      margin-top: 32px;
-      padding-bottom: 72px
-    }
-
-    .tc-sign .sign-name {
-      font-family: var(--script);
-      font-size: 28px;
-      color: var(--ink);
-      line-height: 1.1;
-      margin-bottom: 2px
-    }
-
-    .tc-sign .sign-role {
-      font-family: var(--sans);
-      font-size: 14px;
-      color: var(--ink-soft)
-    }
-
-    /* --- closing CTA band --- */
-    .tc-cta {
-      position: relative;
-      isolation: isolate;
-      text-align: center;
-      padding: clamp(88px, 11vw, 140px) 40px;
-      overflow: hidden;
-      color: var(--white)
-    }
-
-    .tc-cta-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -2
-    }
-
-    .tc-cta-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block
-    }
-
-    /* Scrim: dark enough for white text at AA on a busy photo, light enough
-       that the image still reads. */
-    .tc-cta::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(180deg, rgba(16, 14, 12, .72) 0%, rgba(16, 14, 12, .66) 55%, rgba(16, 14, 12, .78) 100%)
-    }
-
-    .tc-cta-inner {
-      max-width: 720px;
-      margin: 0 auto
-    }
-
-    .tc-cta h2,
-    .tc-cta p {
-      color: var(--white)
-    }
-
-    .tc-cta p {
-      opacity: .9
-    }
-
-    .tc-cta h2 {
-      font-family: var(--serif);
-      font-weight: 340;
-      font-size: clamp(26px, 3.6vw, 38px);
-      letter-spacing: -.015em;
-      color: var(--ink);
-      margin-bottom: 16px
-    }
-
-    .tc-cta p {
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--ink);
-      max-width: 52ch;
-      margin: 0 auto 28px
-    }
-
-    @media(max-width:760px) {
-      .tc-who-inner {
-        grid-template-columns: 1fr;
-        gap: 28px
-      }
-
-      .tc-who-inner img {
-        order: -1
-      }
-    }
-
-    @media(max-width:600px) {
-      .tc-hero {
-        min-height: 460px
-      }
-
-      .tc-hero-inner {
-        padding: 120px 18px 72px
-      }
-
-      .tc-hero-bg::after {
-        background: linear-gradient(180deg, rgba(16, 14, 12, .6) 0%, rgba(16, 14, 12, .55) 55%, rgba(16, 14, 12, .82) 100%)
-      }
-
-      .tc-intro {
-        padding: 48px 18px 8px
-      }
-
-      .tc-who,
-      .tc-why,
-      .tc-cta {
-        padding-left: 18px;
-        padding-right: 18px
-      }
-
-      .tc-sign {
-        padding-bottom: 56px
-      }
-    }
-  
-    /* Two columns from 860px: image left, copy right. Below that it stacks with
-       the image first, matching how the other picture-plus-text bands behave. */
-    .tc-why {
-      display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 44px;
-      align-items: center;
-      max-width: 1080px
-    }
-
-    .tc-why-media {
-      border-radius: var(--r-img);
-      overflow: hidden;
-      background: var(--bone)
-    }
-
-    .tc-why-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block
-    }
-
-    @media(max-width:860px) {
-      .tc-why {
-        grid-template-columns: 1fr;
-        gap: 28px
-      }
-    }
-
-  </style>
+/* ---- shared editorial band, identical to .os-band on /our-story ----
+   Rebuilt 04/08: this page previously used two bespoke layouts (.tc-who-inner at
+   900px with a 1fr 1fr grid, .tc-why at 1080px with a fixed 380px image column),
+   so neither matched the rest of the site and the image ran away with the row.
+   Now the same two-equal-column pattern every other content page uses. */
+.tc-band{padding:72px 0}
+.tc-band.bg-porcelain{background:var(--porcelain)}
+.tc-band .inner{max-width:1280px;margin:0 auto;padding:0 40px;display:grid;gap:56px;align-items:center}
+.tc-text h2{font-family:var(--serif);font-weight:340;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.015em;margin-bottom:18px}
+.tc-text p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:16px;max-width:52ch}
+.tc-media{border-radius:var(--r-img);overflow:hidden;aspect-ratio:4/5;background:var(--bone)}
+.tc-media img{width:100%;height:100%;object-fit:cover;display:block}
+@media(min-width:920px){
+.tc-band .inner{grid-template-columns:1fr 1fr;gap:72px}
+.tc-band.img-left .tc-text{order:2}
+.tc-band.img-left .tc-media{order:1}
+}
+@media(max-width:600px){
+.tc-band{padding:48px 0}
+.tc-band .inner{padding:0 18px;gap:28px}
+.tc-band.img-left .tc-media{order:-1}
+.tc-media{aspect-ratio:1/1}
+}
+</style>
 </head>
 
 <body>
@@ -369,7 +93,7 @@
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
         <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-menu-top-right">
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -440,7 +164,7 @@
           <span></span><span></span><span></span>
         </button>
         <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-          <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-right">
           <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -483,9 +207,9 @@
   </section>
 
   <!-- ============ WHO ARE TOMMY'S ============ -->
-  <section class="tc-who">
-    <div class="tc-who-inner">
-      <div>
+  <section class="tc-band bg-porcelain">
+    <div class="inner">
+      <div class="tc-text">
         <h2>Who are Tommy's?</h2>
         <p>Tommy's is the pregnancy and baby charity, and the leading charity funding pregnancy research in the UK.
           Their mission is to stop the heartbreak and devastation of baby loss, and to make pregnancy and birth safe for
@@ -495,23 +219,17 @@
         <p>You can learn more about their work at <a class="tc-link" href="https://www.tommys.org" target="_blank"
             rel="noopener">tommys.org</a>.</p>
       </div>
-      <!-- IMAGE PLACEHOLDER: gentle parent-and-baby moment - founders-074 -->
-      <img src="/assets/img-112-1400.webp" srcset="/assets/img-112-700.webp 700w, /assets/img-112-1000.webp 1000w, /assets/img-112-1400.webp 1400w" width="1400" height="1000" alt="A parent and child sharing a moment">
+      <div class="tc-media">
+        <img src="/assets/img-112-sq-1400-v2.webp" srcset="/assets/img-112-sq-700-v2.webp 700w, /assets/img-112-sq-1000-v2.webp 1000w, /assets/img-112-sq-1400-v2.webp 1400w" sizes="(min-width:900px) 50vw, 100vw" width="1400" height="1400" loading="lazy" alt="A parent and child sharing a moment">
+      </div>
     </div>
   </section>
 
   <!-- ============ WHY IT MATTERS TO US ============ -->
-  <section class="tc-why">
-      <!-- Image sits left of the copy, mirroring the sign-off blocks elsewhere.
-           Square crop so it reads as a portrait rather than a banner. -->
-      <div class="tc-why-media">
-        <img src="/assets/img-074-sq-900.webp"
-          srcset="/assets/img-074-sq-600.webp 600w, /assets/img-074-sq-900.webp 900w"
-          sizes="(min-width:860px) 380px, 100vw" width="900" height="900" loading="lazy"
-          alt="Ashley and Ryan with their two boys">
-      </div>
-      <div class="tc-why-copy">
-    <h2>Why it matters to us</h2>
+  <section class="tc-band img-left">
+    <div class="inner">
+      <div class="tc-text">
+        <h2>Why it matters to us</h2>
     <p>As parents ourselves, we know how precious those early days are, and we know that not every family gets to keep
       them. That truth sits with us in everything we make.</p>
     <p>When you order a kit, you're not just preserving your own memory. You're helping fund the research and the care
@@ -521,8 +239,15 @@
       <p class="sign-name">Ashley &amp; Ryan</p>
       <p class="sign-role">Co-founders, The Bespoke Foil Company</p>
     </div>
-  </div>
-    </section>
+      </div>
+      <div class="tc-media">
+        <img src="/assets/img-074-sq-900-v2.webp"
+          srcset="/assets/img-074-sq-600-v2.webp 600w, /assets/img-074-sq-900-v2.webp 900w"
+          sizes="(min-width:860px) 380px, 100vw" width="900" height="900" loading="lazy"
+          alt="Ashley and Ryan with their two boys">
+      </div>
+    </div>
+  </section>
 
   <!-- ============ CLOSING CTA ============ -->
   <section class="tc-cta">
@@ -530,7 +255,7 @@
            regardless of what is behind it. Same hero pattern used sitewide:
            never a solid-black band, always a dark photo. -->
       <div class="tc-cta-bg">
-        <img src="/assets/img-435-1600.webp" width="1600" height="1067" loading="lazy" alt="">
+        <img src="/assets/img-435-1600-v2.webp" width="1600" height="1067" loading="lazy" alt="">
       </div>
       <div class="tc-cta-inner">
     <h2>Make a memory, make a difference</h2>
@@ -652,7 +377,7 @@
     </div>
 
     <div class="foot-watermark" aria-hidden="true">
-      <img src="/assets/bfc-logo.svg" alt="">
+      <img src="/assets/bfc-logo-v2.svg" alt="">
     </div>
   </footer>
 

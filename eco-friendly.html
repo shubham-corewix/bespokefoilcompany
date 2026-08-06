@@ -194,10 +194,21 @@
 
     /* --- doing better: centred script heading + tinted wide image --- */
     .eco-better {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 40px 40px;
-      text-align: center
+      /* 04/08: the CARD now runs the full body width (1280px, matching the site
+         grid); the COPY inside stays narrow via .eco-better-inner so the lines
+         do not become unreadably long. */
+      max-width: 1280px;
+      margin: 56px auto;
+      padding: 64px 40px 56px;
+      text-align: center;
+      background: var(--bone);
+      border-radius: var(--r-img)
+    }
+
+    .eco-better>* {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto
     }
 
     .eco-better h2 {
@@ -329,7 +340,7 @@
       }
 
       .eco-hero-bg::after {
-        background: linear-gradient(180deg, rgba(16, 14, 12, .6) 0%, rgba(16, 14, 12, .55) 55%, rgba(16, 14, 12, .82) 100%)
+        background: linear-gradient(180deg, rgba(16, 14, 12, 0.74) 0%, rgba(16, 14, 12, 0.71) 55%, rgba(16, 14, 12, 0.92) 100%)
       }
 
       .eco-band {
@@ -345,7 +356,8 @@
       }
 
       .eco-better {
-        padding: 48px 18px 24px
+        margin: 32px 18px;
+        padding: 44px 24px 36px
       }
 
       .eco-keepsake {
@@ -399,7 +411,7 @@
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
         <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-menu-top-right">
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -470,7 +482,7 @@
           <span></span><span></span><span></span>
         </button>
         <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-          <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-right">
           <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -488,7 +500,7 @@
     <!-- IMAGE PLACEHOLDER: reusing hero-196 until the real eco parallax hero is supplied -->
     <section class="eco-hero">
       <div class="eco-hero-bg">
-        <img src="/assets/img-453-2000.webp" width="2000" height="1333" fetchpriority="high" alt="Kraft packaging, plastic free">
+        <img src="/assets/img-453-2000-v2.webp" width="2000" height="1333" fetchpriority="high" alt="Kraft packaging, plastic free">
       </div>
       <div class="eco-hero-inner">
         <p class="eyebrow">Being Eco-Friendly</p>
@@ -545,8 +557,8 @@
           </a>
         </div>
         <div class="eco-recycle-media">
-          <div class="r-img"><img src="/assets/img-058-900.webp" width="900" height="990" loading="lazy" alt="Recyclable kraft envelope"></div>
-          <div class="r-img"><img src="/assets/img-459-900.webp" width="900" height="990" loading="lazy" alt="Kraft packaging being wrapped by hand"></div>
+          <div class="r-img"><img src="/assets/img-058-900-v2.webp" width="900" height="990" loading="lazy" alt="Recyclable kraft envelope"></div>
+          <div class="r-img"><img src="/assets/img-459-900-v2.webp" width="900" height="990" loading="lazy" alt="Kraft packaging being wrapped by hand"></div>
         </div>
       </div>
     </div>
@@ -558,7 +570,7 @@
     <div class="eco-band">
       <div class="eco-band-inner">
         <div class="eco-media">
-          <img src="/assets/img-067-1100.webp" srcset="/assets/img-067-500.webp 500w, /assets/img-067-800.webp 800w, /assets/img-067-1100.webp 1100w" sizes="(min-width:920px) 46vw, 100vw" width="1100" height="733" loading="lazy" alt="A range of solid wood frame finishes">
+          <img src="/assets/img-067-1100-v2.webp" srcset="/assets/img-067-500-v2.webp 500w, /assets/img-067-800-v2.webp 800w, /assets/img-067-1100-v2.webp 1100w" sizes="(min-width:920px) 46vw, 100vw" width="1100" height="733" loading="lazy" alt="A range of solid wood frame finishes">
         </div>
         <div class="eco-copy">
           <h2>Made to last, not to landfill</h2>
@@ -715,7 +727,7 @@
     </div>
 
     <div class="foot-watermark" aria-hidden="true">
-      <img src="/assets/bfc-logo.svg" alt="">
+      <img src="/assets/bfc-logo-v2.svg" alt="">
     </div>
   </footer>
 

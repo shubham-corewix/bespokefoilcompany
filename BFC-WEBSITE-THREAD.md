@@ -568,3 +568,129 @@ So nothing crept back. The wordmark has been right all along; a colour token was
 **27/27 intact.** One initially flagged as regressed - the consent wording - turned out to be my check being whitespace-sensitive: Dixit ran `upload-portal-form.html` through a formatter, which put spaces inside the tags. The wording itself is unchanged.
 
 Worth keeping this audit. It is cheap to re-run and it is the only way to know a handover has not quietly undone something.
+
+### sitemap.xml moved to an edge function (04/08/2026, Dixit's call)
+
+Franchise regions and blog posts are being served dynamically from Supabase via edge functions, so they have no files on disk and no lines in `_redirects`. `scripts/generate-sitemaps.js` only reads `_redirects`, so a build-time sitemap would have listed the 39 static pages and **none of the ~128 dynamic ones** - live, crawlable, invisible to search. Dixit chose to serve `sitemap.xml` from a function rather than rebuild daily.
+
+Built as `netlify/edge-functions/sitemap.js`, registered on `/sitemap.xml`.
+
+- **`generate-sitemaps.js` no longer writes `sitemap.xml`.** It now writes `sitemap-static.json` - the same routes, same lastmod, same per-category priorities, as data. This was not optional: a real `sitemap.xml` file on the publish root would win over the edge function claiming that path, and the sitemap would silently revert to the static half only. `sitemap.html`, `robots.txt` and `llms.txt` are unchanged and still built.
+- The function merges `sitemap-static.json` with two Supabase reads (`franchise_regions` where available, `blog_posts` where published), de-duplicates on `loc` so a URL cannot appear twice, and emits the same XML shape the build used to.
+- Priorities kept aligned with the generator's own table: regions 0.5, posts 0.6.
+- Cached an hour at the edge, so a crawler does not trigger a Supabase read per request but a new post still appears the same day.
+- **Supabase failure is non-fatal**: if either read fails the function logs it and returns the static routes rather than a 500. Tested - a 500 from `franchise_regions` still yields a valid 39-URL sitemap. A short sitemap is recoverable; an error page tells Google nothing.
+
+Tested with stubbed Supabase and the real `sitemap-static.json`: 41 URLs from 39 static + 2 regions + 1 post, zero duplicates, valid XML, correct content-type, and a null `updated_at` falls back to today rather than emitting an empty `<lastmod>`.
+
+**DEPENDS ON DIXIT'S SCHEMA.** The function assumes `franchise_regions(slug, updated_at, is_available)` and `blog_posts(slug, updated_at, published)`. If the column names differ, three lines need changing. Flagged to him.
+
+### Snag batch - eco-friendly + foil fusion (5 snags, 04/08/2026 11:29)
+
+- **[01] `/eco-friendly` `.eco-better` did not separate** because it had **no background at all** - it sat on the page between `.eco-bone` (porcelain, full-bleed) above and `.eco-keepsake` below, so there was nothing to separate from. Given the bone tone as a CONTAINED card (`max-width:960px`, `margin:56px auto`, rounded) rather than another full-bleed band, so it reads as a separate editorial note in a page that already alternates stone/porcelain bands. Mobile keeps the card but insets it 18px so it never touches the screen edge.
+- **[02] press image re-cropped.** `img-444` was cut at 30% down the source, which framed the window and clipped the foil print at the very bottom edge. Re-cut at **62%**, which pushes the window out and brings the foiled footprints and the press into the same frame. Verified visually.
+- **[03] the three feature icons were genuinely wrong.** All stroked at 1.6 with `fill:none`:
+  - The **star was lopsided** - hand-rounded relative coordinates where the lower-left arm reached `y=21` while the upper arms stopped near `y=8.8`. Replaced with a true pentagram computed from an outer radius of 8.6 and an inner radius at the golden ratio (0.382x), so all five points are equal.
+  - **Two overlapping circles** for "Lifetime durability" meant nothing as an outline. Replaced with a shield.
+  - Bare tick for "Flawless finish" replaced with a check inside a circle, which reads as finished rather than as a stray mark.
+  - Added `stroke-linecap/linejoin: round` - without them the star points render chipped at 22px.
+- **[04] mobile hero scrims deepened SITEWIDE**, as asked. Each hero carries two: a `90deg` horizontal for desktop and a `180deg` vertical inside a mobile media query. **Only the mobile ones were touched** - 15 scrims across 14 pages - each stop lifted (roughly +0.14 / +0.16 / +0.10, capped at .80/.78/.92 so the photo is still visible). Desktop unchanged.
+- **[05] testimonial photos replaced** with the three files Ryan supplied: **210 Megan, 431 Heather, 372 Charlotte** - matched by eye against the live screenshot, in that order. Cropped to the card's `16/10` so `object-fit:cover` has nothing left to trim.
+  - These files are **shared by 4 pages** (`foil-fusion-technology`, `premium-frames`, `print-quality-guarantee`, `component-library`), so overwriting them updated the component everywhere in one go - which is what Ryan asked for. **Deliberately different from the earlier image snags**, where each page needed its own copy because pages wanted different images in the same slot.
+  - The old files had **inconsistent ratios** (1.50, 1.40, 1.40). All three are now 1.60, so the cards match. Stale `width`/`height` attributes on `foil-fusion-technology` corrected from 800x533 to 800x500; the other two pages already declared 800x500.
+
+### Snag round - 04/08 afternoon
+
+- **Testimonial component unified.** `foil-fusion-technology` was running an entirely different component (`.ff-tst-card`) from `premium-frames` and `print-quality-guarantee` (`.kb-card`) - which is why replacing the shared images updated the photos everywhere but left the STYLE inconsistent. Ported the `.know-best` / `.kb-card` section verbatim from `premium-frames`: static three-up grid, stone verified tick instead of the green `#00b67a` star, no slider arrows. Removed 15 `.ff-tst` rules, the orphaned `.ff-tst{}` rule and the dead `tstTrack` slider IIFE. Media queries walked as units during the CSS strip so none were flattened.
+- **Our Story tiles cut on mobile.** `.os-card` is `aspect-ratio: 3/4`, which at ~500px wide is **660px of height each** - three stacked is most of a phone screen's scroll. Below 600px they are now `16/9`, **281px each, 42% of the previous depth**, with the label scaled to match.
+
+**LOGO - THE FILE IN THIS REPO IS ALREADY THE ONE RYAN KEEPS SENDING.** Checked three ways:
+- `assets/bfc-logo.svg` is **byte-identical (same MD5)** to `Bespoke_Foil_Company_x_Memory_Catcher_-_Logo_Files_-_4.svg` as sent today.
+- Compared against the **30 July baseline**: the path data is *identical*. The only thing that ever differed was the fill token, `#000` vs `#1d1d1b`, which was corrected on 03/08.
+- `bfc-mc-lockup.svg` carries its own copy of the wordmark with different path data, but rendered side by side the letterforms match.
+
+So the artwork in the repo has been the same since at least 30 July, and it matches file 4. If the correct mark is genuinely a *softer serif with rounder corners*, **file 4 is not that file** - it needs a different export from the logo pack. Flagged to Ryan; cannot be actioned without the right file.
+
+**BLACK BARS - not reproducible in this package.** Every `img-*` asset was checked programmatically for symmetrical dark edges (0 found) and the card images inspected visually - clean, and all size variants are ratio-consistent. `.os-card img` and `.kb-photo img` are both `object-fit: cover`, which cannot letterbox. The bars were real on 03/08 morning, caused by the crop-padding bug, and were fixed that afternoon. Most likely the deploy under review predates that fix. Asked Ryan to confirm which build.
+
+### LOGO - Ryan was right, and I was wrong twice. Root cause found (04/08/2026)
+
+I twice told Ryan the logo was correct because `assets/bfc-logo.svg` was byte-identical to the file he sent. **That was true and still missed the point.** Rendering both at high resolution and zooming into the trailing glyph settles it:
+
+- **Deployed** (Ryan's screenshot): **®** - a circled R
+- **The file he sent, and the file in the repo**: a circled **"tm"**
+
+Two genuinely different marks. Similar at 22px in a header, which is why a byte comparison of the repo file against the supplied file kept coming back clean - **I was comparing the two correct copies to each other and never once looked at what was actually on screen.**
+
+**ROOT CAUSE: the immutable cache header.** `netlify.toml` serves `/assets/*` with:
+
+```
+Cache-Control = "public, max-age=31536000, immutable"
+```
+
+`immutable` tells browsers and the CDN the file at that URL will **never** change, so they are entitled to keep it for a year without revalidating. Replacing `bfc-logo.svg` in place on 03/08 could therefore never reach anyone who had already loaded the old one - Ryan included. The fix looked applied in the repo and was invisible in the browser. That is exactly the symptom he kept reporting.
+
+**FIX: cache-busted filename.** Shipped as `assets/bfc-logo-v2.svg`, all **156 references across 48 files** repointed (including `scripts/sitemap-template.html`), and the old `bfc-logo.svg` **deleted** so it cannot be reintroduced or served from anywhere.
+
+`bfc-mc-lockup.svg` was checked too - it carries its own copy of the wordmark, and it renders the circled-tm, so its artwork is already correct.
+
+**LESSON, worth remembering:** any asset under an `immutable` cache header must be replaced by CHANGING ITS FILENAME, never by overwriting it in place. Every other asset in `/assets/` has the same exposure - a like-for-like replacement of any of them will look correct in the repo and stay stale in the browser.
+
+- **Frame collage image swapped (04/08).** Ryan identified the cause of the black edges on that one: **they were baked into library image 530 itself**, not introduced by any crop. Replaced with **067**, a cleaner five-finish frame corner shot on a light background. Cropped to the slot's 3/4 with a 0.62 horizontal bias, chosen from three test positions because a centre crop cut the oak and white finishes out of frame - 0.62 keeps all five with the oak corner as the focal point.
+  - Shipped as `img-067-frames-{800,1200}.webp`, a **NEW filename** rather than overwriting `img-530`. `/assets/*` is served `immutable` for a year, so an in-place replacement would never reach anyone who had already loaded the old file. Same lesson as the logo.
+  - **067 now appears twice on this page**: the hero (`img-067-2000`, 1.50 landscape, full-bleed behind the title) and this collage tile (0.75 portrait, close crop). Different crops of the same shot, and far enough apart on the page that it should read as intentional - but worth Ryan's eye on a deploy, and a different library image would avoid the question entirely.
+  - Alt text improved from "every finish" to naming the five: black, walnut, ash, oak and white.
+  - `img-530-1200.webp` is now orphaned. Left in place rather than deleted.
+
+### Snag - Bespoke Difference icons + gift band scrim (04/08, 2 snags)
+
+- **The Bespoke Difference icons.** The four items carried generic stroke glyphs (a shield-check, a globe, a lightbulb and a power symbol) with no relation to their labels. Ryan's reference from the live site shows filled stone discs with white pictograms.
+  - **Only ONE of the four was in `assets/icons/`**: `eco-friendly.svg`, the recycling/leaf triangle, which matches "Sustainable Gifting Option" exactly. The `feature-01..04` set in that folder is a different group entirely (hands with a sparkle, a phone with a tick, scissors, sparkles) and belongs elsewhere.
+  - Drew the missing three to match the house style precisely - 53x53 viewBox, `#B9A394` filled disc, `#DCD0C8` pictogram, same as `eco-friendly.svg`: `diff-safe.svg` (hands cupping a heart), `diff-premium.svg` (infinity), `diff-fusion.svg` (sphere with meridians). Rendered and checked against the reference before wiring.
+  - Applied on **both** pages carrying the strip - `premium-frames` and `print-quality-guarantee` - as Ryan asked, 8 icons total. Inline SVG replaced with `<img>` referencing the asset files, so the set is now shared rather than duplicated in markup.
+- **Gift band scrim** was a flat `rgba(16,14,12,.62)`, leaving the copy competing with a busy photo. Now a vertical gradient at `.72 / .80 / .86`, darkest where the text sits.
+
+### CACHE BUST - the black bands were never a crop bug (04/08/2026)
+
+Ryan reported the Our Story cards still showing black bands above and below on desktop, after I had twice confirmed the files were clean. **Same root cause as the logo: the immutable cache header.**
+
+On 03/08 morning I generated the `img-*` set with the crop-padding bug, which baked black bars into the files. That afternoon I fixed the maths and **regenerated them in place, under the same filenames**. `/assets/*` is served `Cache-Control: public, max-age=31536000, immutable`, so the CDN and every browser that had already loaded the broken versions kept serving them - for a year. The repo was correct and the browser was stale, exactly as with the logo, and my file-level checks kept passing because the files really were fine.
+
+**FIX: every regenerated asset versioned.** 71 `img-*` files plus the 6 `test-*` testimonial images (also overwritten in place, on 04/08) renamed with a `-v2` suffix and all references updated. Verified: zero references without `-v2`, zero missing files.
+
+**RULE, now proven twice in two days:** under an `immutable` header an asset can only be replaced by CHANGING ITS FILENAME. Overwriting in place is invisible to anyone who has already loaded the page, and no amount of checking the repo will reveal it.
+
+### Snag batch - eco-friendly + Tommy's Charity (5 snags, 04/08 13:30)
+
+- **[01] `.eco-better`** card now runs the full 1280px body width as asked, with the copy inside capped at 760px via `.eco-better > *` so the lines do not become unreadably long across a full-width box.
+- **[02] `.tc-cta` text was still dark.** I set `color: var(--white)` on the section when I rebuilt that band, but **the page's own `.tc-cta h2` and `.tc-cta p` rules sit later in the stylesheet at equal specificity and reset it to `--ink`**. Later wins. Fixed at source rather than adding another override.
+- **[03] `tc-who` image squared** - was 1400x1000 (1.40 landscape) beside a text column. Re-cut square from source 112 so the two columns balance.
+- **[04] `.tc-who-inner` was `max-width: 900px`** and **[05] `.tc-why` was `1080px`**, against the site grid of 1280px. Both corrected - that is why the copy on this page never lined up with the rest of the site.
+
+### Tommy's Charity rebuilt on the shared band pattern (04/08/2026)
+
+Ryan: the layout still did not match the rest of the site - an over-long image in "Who are Tommy's?" and a family photo and sign-off presented differently from every other page. He pointed at `/our-story` as the reference.
+
+**Root cause: this page never used the shared component.** It had two bespoke layouts:
+- `.tc-who-inner` - `max-width: 900px`, `grid-template-columns: 1fr 1fr`
+- `.tc-why` - `max-width: 1080px`, `grid-template-columns: 380px 1fr` (a FIXED narrow image column, which is why the family photo looked stunted next to a full-width text block)
+
+Neither matched the site's 1280px grid or the `.os-band` pattern every other content page uses. Widening them earlier fixed the gutters but not the underlying structure, which is why it still looked wrong.
+
+**Rebuilt both sections as `.tc-band`, a direct port of `.os-band`**: `max-width:1280px`, `padding: 0 40px`, `1fr 1fr` above 920px, `gap: 72px`, `align-items: center`, `.tc-media` at `aspect-ratio: 4/5` with `object-fit: cover`, `.img-left` swapping the order, and the same mobile behaviour (`1/1` below 600px, image first). All the old `.tc-who*` / `.tc-why*` rules removed, media queries walked as units so none were flattened.
+
+Also aligned the sign-off: `.tc-sign .sign-name` was 28px ink; `/our-story` uses the script face at 38px in `--stone-text` with the role in `--ink-faint`. Matched, and the 72px bottom padding dropped since it now sits inside a band rather than a full-width section.
+
+### Dynamic franchise regions + blog BUILT (04/08/2026)
+
+Dixit deployed and found no dynamic code. He was right: the previous session settled the architecture over five rounds of questions but never produced any code. Built now - see `DYNAMIC-PAGES-NOTES.md`.
+
+Two edge functions (`franchise-region.js`, `blog-post.js`), two templates, full Supabase schema with RLS, and a seed file carrying all 112 regions and 1,482 postcodes generated from the CSV with coordinates merged from `regions.json`.
+
+Rendering is **server-side at the edge**, not client-side, which was the whole point of the earlier discussion: social scrapers do not run JavaScript, so meta and Open Graph injected in the browser would leave every region and post sharing one link preview. A slug with no row returns a **real 404 status**, not a 200 with 404 content.
+
+Routing: `/franchises/*` and `/post/*` splats to the templates. **16 hardcoded post routes plus the single region route removed**, and the 16 static post pages and one built region page deleted - they would have been a second crawlable copy of the same content. Both templates 301'd so they cannot be reached directly.
+
+Tested against stubbed Supabase and the real templates: hits render with zero leftover placeholders and correct structured data; misses and malformed slugs both return 404; Ricos rich text flattens to paragraphs; the map iframe receives the right slug.
+
+**NOT DONE, flagged in the notes:** the region LISTING page and the blog LISTING still read their static arrays. Detail pages are dynamic, indexes are not.

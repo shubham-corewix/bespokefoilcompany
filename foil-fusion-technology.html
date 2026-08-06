@@ -23,10 +23,7 @@
       rel="stylesheet">
   </noscript>
   <link rel="stylesheet" href="/shared/styles.css?v=10">
-  <style>
-    /* ===== FOIL FUSION page-specific ===== */
-    /* dark photo hero (same style as Contact) */
-    .ff-hero {
+  <style>/* ===== FOIL FUSION page-specific ===== */ /* dark photo hero (same style as Contact) */ .ff-hero{
       position: relative;
       min-height: 600px;
       display: flex;
@@ -34,28 +31,24 @@
       overflow: hidden;
       background: #161412
     }
-
-    .ff-hero-bg {
+.ff-hero-bg{
       position: absolute;
       inset: 0;
       z-index: 0
     }
-
-    .ff-hero-bg img {
+.ff-hero-bg img{
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center
     }
-
-    .ff-hero-bg::after {
+.ff-hero-bg::after{
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(90deg, rgba(16, 14, 12, .88) 0%, rgba(16, 14, 12, .62) 44%, rgba(16, 14, 12, .3) 100%)
     }
-
-    .ff-hero-inner {
+.ff-hero-inner{
       position: relative;
       z-index: 2;
       max-width: 1280px;
@@ -63,15 +56,13 @@
       padding: 150px 40px 110px;
       width: 100%
     }
-
-    .ff-hero .eyebrow {
+.ff-hero .eyebrow{
       font-family: var(--sans);
       font-size: 14px;
       color: rgba(255, 255, 255, .72);
       margin-bottom: 20px
     }
-
-    .ff-hero h1 {
+.ff-hero h1{
       font-family: var(--serif);
       font-weight: 340;
       font-size: clamp(34px, 5vw, 54px);
@@ -81,21 +72,17 @@
       max-width: 18ch;
       margin-bottom: 24px
     }
-
-    .ff-hero p {
+.ff-hero p{
       font-family: var(--sans);
       font-size: clamp(14px, 1vw + 12px, 16px);
       line-height: 1.7;
       color: rgba(255, 255, 255, .85);
       max-width: 46ch
     }
-
-    /* content bands */
-    .ff-band {
+/* content bands */ .ff-band{
       padding: 64px 0
     }
-
-    .ff-band .inner {
+.ff-band .inner{
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 40px;
@@ -103,89 +90,74 @@
       gap: 56px;
       align-items: center
     }
-
-    @media(min-width:920px) {
-      .ff-band .inner {
+@media(min-width:920px){
+.ff-band .inner{
         grid-template-columns: 1fr 1fr;
         gap: 72px
       }
-
-      .ff-band.img-left .ff-text {
+.ff-band.img-left .ff-text{
         order: 2
       }
-
-      .ff-band.img-left .ff-media {
+.ff-band.img-left .ff-media{
         order: 1
       }
-    }
-
-    .ff-text h2 {
+}
+.ff-text h2{
       font-family: var(--serif);
       font-weight: 340;
       font-size: clamp(26px, 3.6vw, 38px);
       letter-spacing: -.015em;
       margin-bottom: 20px
     }
-
-    .ff-text p {
+.ff-text p{
       font-size: 15.5px;
       line-height: 1.75;
       color: var(--ink-soft);
       margin-bottom: 16px;
       max-width: 52ch
     }
-
-    .ff-text .cta {
+.ff-text .cta{
       margin-top: 26px
     }
-
-    .ff-media {
+.ff-media{
       border-radius: var(--r-img);
       overflow: hidden;
       aspect-ratio: 1/1;
       background: var(--bone)
     }
-
-    .ff-media img {
+.ff-media img{
       width: 100%;
       height: 100%;
       object-fit: cover
     }
-
-    /* "what makes different" porcelain + bleeding image into stone "result" band */
-    .ff-diff {
+/* "what makes different" porcelain + bleeding image into stone "result" band */ .ff-diff{
       background: var(--porcelain);
       padding: 72px 40px 0;
       text-align: center
     }
-
-    .ff-diff .inner {
+.ff-diff .inner{
       max-width: 820px;
       margin: 0 auto
     }
-
-    .ff-diff h2 {
+.ff-diff h2{
       font-family: var(--serif);
       font-weight: 340;
       font-size: clamp(26px, 3.8vw, 38px);
       letter-spacing: -.015em;
       margin-bottom: 22px
     }
-
-    .ff-diff p {
+.ff-diff p{
       font-size: 15.5px;
       line-height: 1.8;
       color: var(--ink-soft);
       margin-bottom: 16px
     }
-
-    .ff-bleed {
+.ff-bleed{
       max-width: 1180px;
       margin: 40px auto 0;
       padding: 0 40px
     }
-
-    .ff-bleed-img {
+.ff-bleed-img{
       border-radius: var(--r-img);
       overflow: hidden;
       aspect-ratio: 16/9;
@@ -193,28 +165,24 @@
       position: relative;
       z-index: 2
     }
-
-    .ff-bleed-img img {
+.ff-bleed-img img{
       width: 100%;
       height: 100%;
       object-fit: cover
     }
-
-    .ff-result {
+.ff-result{
       background: var(--stone);
       color: #fff;
       text-align: center;
       padding: 0 40px 72px;
       margin-top: -90px
     }
-
-    .ff-result .inner {
+.ff-result .inner{
       max-width: 760px;
       margin: 0 auto;
       padding-top: 120px
     }
-
-    .ff-result h2 {
+.ff-result h2{
       font-family: var(--serif);
       font-weight: 340;
       font-size: clamp(26px, 3.6vw, 36px);
@@ -222,20 +190,16 @@
       margin-bottom: 20px;
       color: #fff
     }
-
-    .ff-result p {
+.ff-result p{
       font-size: 15.5px;
       line-height: 1.8;
       color: rgba(255, 255, 255, .92);
       margin-bottom: 24px
     }
-
-    /* why it matters - two overlapping images */
-    .ff-why {
+/* why it matters - two overlapping images */ .ff-why{
       padding: 72px 0
     }
-
-    .ff-why .inner {
+.ff-why .inner{
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 40px;
@@ -243,100 +207,83 @@
       gap: 56px;
       align-items: center
     }
-
-    @media(min-width:920px) {
-      .ff-why .inner {
+@media(min-width:920px){
+.ff-why .inner{
         grid-template-columns: 1fr 1fr;
         gap: 72px
       }
-    }
-
-    .ff-why-imgs {
+}
+.ff-why-imgs{
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       align-items: start
     }
-
-    .ff-why-imgs .a,
-    .ff-why-imgs .b {
+.ff-why-imgs .a, .ff-why-imgs .b{
       border-radius: var(--r-img);
       overflow: hidden
     }
-
-    .ff-why-imgs .a {
+.ff-why-imgs .a{
       aspect-ratio: 3/4
     }
-
-    .ff-why-imgs .b {
+.ff-why-imgs .b{
       aspect-ratio: 3/4;
       margin-top: 36px
     }
-
-    .ff-why-imgs img {
+.ff-why-imgs img{
       width: 100%;
       height: 100%;
       object-fit: cover
     }
-
-    @media(max-width:919px) {
-      .ff-why-imgs .b {
+@media(max-width:919px){
+.ff-why-imgs .b{
         margin-top: 0
       }
-    }
-
-    .ff-why-text h2 {
+}
+.ff-why-text h2{
       font-family: var(--serif);
       font-weight: 340;
       font-size: clamp(26px, 3.6vw, 38px);
       letter-spacing: -.015em;
       margin-bottom: 20px
     }
-
-    .ff-why-text p {
+.ff-why-text p{
       font-size: 15.5px;
       line-height: 1.75;
       color: var(--ink-soft);
       margin-bottom: 16px;
       max-width: 52ch
     }
-
-    /* difference you can feel - feature cards */
-    .ff-feat {
+/* difference you can feel - feature cards */ .ff-feat{
       max-width: 1180px;
       margin: 0 auto;
       padding: 24px 40px 80px;
       text-align: center
     }
-
-    .ff-feat h2 {
+.ff-feat h2{
       font-family: var(--serif);
       font-weight: 340;
       font-size: clamp(26px, 3.6vw, 36px);
       letter-spacing: -.015em;
       margin-bottom: 40px
     }
-
-    .ff-feat-grid {
+.ff-feat-grid{
       display: grid;
       gap: 16px
     }
-
-    @media(min-width:760px) {
-      .ff-feat-grid {
+@media(min-width:760px){
+.ff-feat-grid{
         grid-template-columns: repeat(3, 1fr)
       }
-    }
-
-    .ff-feat-card {
+}
+.ff-feat-card{
       background: var(--white);
       border: 1px solid var(--hairline);
       border-radius: var(--r-card);
       padding: 36px 28px;
       text-align: center
     }
-
-    .ff-feat-card .ic {
+.ff-feat-card .ic{
       width: 48px;
       height: 48px;
       margin: 0 auto 18px;
@@ -345,306 +292,169 @@
       display: grid;
       place-items: center
     }
-
-    .ff-feat-card .ic svg {
+.ff-feat-card .ic svg{
+      stroke-linecap: round;
+      stroke-linejoin: round;
       width: 22px;
       height: 22px;
       stroke: var(--ink);
       stroke-width: 1.6;
       fill: none
     }
-
-    .ff-feat-card h3 {
+.ff-feat-card h3{
       font-family: var(--serif);
       font-weight: 420;
       font-size: 19px;
       margin-bottom: 8px
     }
-
-    .ff-feat-card p {
+.ff-feat-card p{
       font-size: 13.5px;
       line-height: 1.5;
       color: var(--ink-soft);
       max-width: 26ch;
       margin: 0 auto
     }
-
-    /* why we keep it special + signature (porcelain) */
-    .ff-special {
+/* why we keep it special + signature (porcelain) */ .ff-special{
       background: var(--porcelain);
       padding: 72px 40px
     }
-
-    .ff-special .inner {
+.ff-special .inner{
       max-width: 1280px;
       margin: 0 auto;
       display: grid;
       gap: 56px;
       align-items: center
     }
-
-    @media(min-width:920px) {
-      .ff-special .inner {
+@media(min-width:920px){
+.ff-special .inner{
         grid-template-columns: 1fr 1fr;
         gap: 72px
       }
-    }
-
-    .ff-special-box {
+}
+.ff-special-box{
       max-width: 560px
     }
-
-    .ff-special h2 {
+.ff-special h2{
       font-family: var(--serif);
       font-weight: 340;
       font-size: clamp(26px, 3.6vw, 36px);
       letter-spacing: -.015em;
       margin-bottom: 20px
     }
-
-    .ff-special p {
+.ff-special p{
       font-size: 15.5px;
       line-height: 1.75;
       color: var(--ink-soft);
       margin-bottom: 16px;
       max-width: 52ch
     }
-
-    .ff-special .off {
+.ff-special .off{
       font-size: 15px;
       color: var(--ink);
       margin: 24px 0 2px
     }
-
-    .ff-special .sig {
+.ff-special .sig{
       font-family: var(--script);
       font-size: 34px;
       color: var(--stone-text);
       line-height: 1;
       margin: 6px 0
     }
-
-    .ff-special .role {
+.ff-special .role{
       font-size: 12.5px;
       letter-spacing: .04em;
       color: var(--ink-faint)
     }
-
-    .ff-special-media {
+.ff-special-media{
       border-radius: var(--r-img);
       overflow: hidden;
       aspect-ratio: 5/4;
       background: var(--bone)
     }
-
-    .ff-special-media img {
+.ff-special-media img{
       width: 100%;
       height: 100%;
       object-fit: cover
     }
-
-    @media(max-width:919px) {
-      .ff-special-media {
+@media(max-width:919px){
+.ff-special-media{
         aspect-ratio: 4/3;
         order: -1
       }
-    }
-
-    /* parent testimonial carousel */
-    .ff-tst {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 72px 40px 24px
-    }
-
-    .ff-tst-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 24px;
-      margin-bottom: 36px;
-      flex-wrap: wrap
-    }
-
-    .ff-tst-head h2 {
-      font-family: var(--serif);
-      font-weight: 340;
-      font-size: clamp(26px, 3.6vw, 38px);
-      letter-spacing: -.015em
-    }
-
-    .ff-tst-head p {
-      font-size: 14px;
-      color: var(--ink-soft);
-      margin-top: 6px
-    }
-
-    .ff-tst-nav {
-      display: flex;
-      gap: 10px
-    }
-
-    .ff-tst-track {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      padding-bottom: 8px
-    }
-
-    .ff-tst-track::-webkit-scrollbar {
-      display: none
-    }
-
-    .ff-tst-card {
-      flex: 0 0 min(360px, 82vw);
-      scroll-snap-align: start;
-      background: var(--white);
-      border: 1px solid var(--hairline);
-      border-radius: var(--r-card);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 30px -20px rgba(0, 0, 0, .25)
-    }
-
-    .ff-tst-card .ph {
-      aspect-ratio: 16/10;
-      overflow: hidden;
-      background: var(--bone)
-    }
-
-    .ff-tst-card .ph img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover
-    }
-
-    .ff-tst-card .body {
-      padding: 22px 24px 26px;
-      background: var(--white)
-    }
-
-    .ff-tst-card .quote {
-      font-size: 14.5px;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      margin-bottom: 16px
-    }
-
-    .ff-tst-card .who {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 6px
-    }
-
-    .ff-tst-card .who svg {
-      width: 14px;
-      height: 14px;
-      fill: #00b67a
-    }
-
-    .ff-tst-card .rel {
-      font-size: 12.5px;
-      color: var(--ink-faint);
-      margin-top: 2px
-    }
-
-    @media(max-width:600px) {
-      .ff-hero {
+}
+@media(max-width:600px){
+.ff-hero{
         min-height: 460px
       }
-
-      .ff-hero-inner {
+.ff-hero-inner{
         padding: 120px 18px 72px
       }
-
-      .ff-hero-bg::after {
-        background: linear-gradient(180deg, rgba(16, 14, 12, .62) 0%, rgba(16, 14, 12, .55) 55%, rgba(16, 14, 12, .8) 100%)
+.ff-hero-bg::after{
+        background: linear-gradient(180deg, rgba(16, 14, 12, 0.76) 0%, rgba(16, 14, 12, 0.71) 55%, rgba(16, 14, 12, 0.9) 100%)
       }
-
-      .ff-band {
+.ff-band{
         padding: 40px 0
       }
-
-      .ff-band .inner,
-      .ff-why .inner {
+.ff-band .inner, .ff-why .inner{
         padding: 0 18px;
         gap: 28px
       }
-
-      .ff-band.img-left .ff-media {
+.ff-band.img-left .ff-media{
         order: -1
       }
-
-      .ff-diff {
+.ff-diff{
         padding: 48px 18px 0
       }
-
-      .ff-bleed {
+.ff-bleed{
         padding: 0 18px
       }
-
-      .ff-result {
+.ff-result{
         padding: 0 18px 48px
       }
-
-      .ff-why {
+.ff-why{
         padding: 48px 0
       }
-
-      .ff-feat {
+.ff-feat{
         padding: 24px 18px 56px
       }
-
-      .ff-special {
+.ff-special{
         padding: 48px 18px
       }
+}
 
-      .ff-tst {
-        padding: 48px 18px 16px
-      }
-    }
-  
-/* =============================================================================
-   MOBILE IMAGE RULES (added 03/08/2026, Ryan)
-
-   [06] Portrait crops eat the screen on a phone. Every portrait image container
-        becomes SQUARE below 600px, so a band is roughly a third shorter and the
-        copy underneath is reachable without a long scroll. Desktop is untouched.
-
-   [07] Where two bands stack, one ending on an image and the next starting with
-        one, mobile gets two pictures back to back and the content is pushed a
-        long way down. `.os-band + .os-band.img-left .os-media` hides only the
-        SECOND of such a pair, which is exactly the case Ryan described. Applied
-        with `display:none` rather than removing the markup so desktop keeps both.
-   ============================================================================= */
-@media(max-width:600px) {
-
-  .os-media,
-  .os-media.tall,
-  .eco-media,
-  .fr2-collage .im,
-  .fr2-collage .im.tall,
-  .fr2-collage .im.short,
-  .up-media,
-  .ff-media,
-  .pr-media,
-  .bio-join-media,
-  .mc-media,
-  .ri-media {
+@media(max-width:600px){
+.os-media, .os-media.tall, .eco-media, .fr2-collage .im, .fr2-collage .im.tall, .fr2-collage .im.short, .up-media, .ff-media, .pr-media, .bio-join-media, .mc-media, .ri-media{
     aspect-ratio: 1 / 1
   }
-
-  /* second of two consecutive image-leading bands */
-  .os-band + .os-band.img-left > .inner > .os-media,
-  .os-band + .os-band.img-left .os-media {
+/* second of two consecutive image-leading bands */ .os-band + .os-band.img-left > .inner > .os-media, .os-band + .os-band.img-left .os-media{
     display: none
   }
+}
+.know-best{max-width: 1280px; margin: 0 auto; padding: 80px 40px}
+.know-best-head{display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px; flex-wrap: wrap}
+.know-best-head h2{font-family: var(--serif); font-weight: 340; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -.015em; margin-bottom: 8px}
+.know-best-head p{font-size: 14.5px; color: var(--ink-soft)}
+.know-best-grid{display: grid; grid-template-columns: 1fr; gap: 24px}
+.kb-card{background: var(--porcelain); border: 1px solid var(--hairline); border-radius: var(--r-card); overflow: hidden; display: flex; flex-direction: column}
+.kb-photo{aspect-ratio: 16/10; overflow: hidden; background: var(--bone)}
+.kb-photo img{width: 100%; height: 100%; object-fit: cover; display: block}
+.kb-body{padding: 22px 24px 24px}
+.kb-quote{font-size: 14.5px; line-height: 1.6; color: var(--ink); margin-bottom: 16px}
+.kb-name{font-size: 14.5px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 6px}
+.kb-name .verified{width: 15px; height: 15px; flex: 0 0 15px}
+.kb-name .verified svg{width: 15px; height: 15px; fill: var(--stone-text)}
+.kb-role{font-size: 13px; color: var(--ink-faint); margin-top: 2px}
+.kb-tp{text-align: center; margin-top: 32px; font-size: 14px; color: var(--ink-soft)}
+.kb-tp a{color: var(--stone-text); text-decoration: underline; text-underline-offset: 3px}
+.know-best{padding: 48px 18px}
+@media(min-width:680px){
+.know-best-grid{grid-template-columns: 1fr 1fr}
+}
+@media(min-width:980px){
+.know-best-grid{grid-template-columns: repeat(3, 1fr)}
+}
+@media(max-width:600px){
+.know-best{padding: 48px 18px}
 }
 </style>
 </head>
@@ -656,7 +466,7 @@
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
         <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-menu-top-right">
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -724,7 +534,7 @@
     <header>
       <div class="nav-row">
         <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-        <a class="logotype" href="/" aria-label="Bespoke Foil Company home"><img src="/assets/bfc-logo.svg"
+        <a class="logotype" href="/" aria-label="Bespoke Foil Company home"><img src="/assets/bfc-logo-v2.svg"
             alt="Bespoke Foil Company"></a>
         <div class="nav-right">
           <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake"><span class="lbl">Order Your Kit</span><span
@@ -755,7 +565,7 @@
   <section class="ff-band">
     <div class="inner">
       <div class="ff-media">
-        <img src="/assets/img-332-1100.webp" srcset="/assets/img-332-500.webp 500w, /assets/img-332-800.webp 800w, /assets/img-332-1100.webp 1100w" sizes="(min-width:920px) 560px, 100vw" width="1100" height="733" loading="lazy" alt="A finished foil keepsake being placed">
+        <img src="/assets/img-332-1100-v2.webp" srcset="/assets/img-332-500-v2.webp 500w, /assets/img-332-800-v2.webp 800w, /assets/img-332-1100-v2.webp 1100w" sizes="(min-width:920px) 560px, 100vw" width="1100" height="733" loading="lazy" alt="A finished foil keepsake being placed">
       </div>
       <div class="ff-text">
         <h2>Made to hold forever</h2>
@@ -788,7 +598,7 @@
   </section>
   <div class="ff-bleed">
     <div class="ff-bleed-img">
-      <img src="/assets/img-444-1600.webp" srcset="/assets/img-444-800.webp 800w, /assets/img-444-1200.webp 1200w, /assets/img-444-1600.webp 1600w" sizes="(min-width:1180px) 1100px, 100vw" width="1600" height="1067" loading="lazy" alt="The foiling press in the workshop">
+      <img src="/assets/img-444-1600-v2.webp" srcset="/assets/img-444-800-v2.webp 800w, /assets/img-444-1200-v2.webp 1200w, /assets/img-444-1600-v2.webp 1600w" sizes="(min-width:1180px) 1100px, 100vw" width="1600" height="1067" loading="lazy" alt="The foiling press in the workshop">
     </div>
   </div>
   <section class="ff-result">
@@ -808,8 +618,8 @@
   <section class="ff-why">
     <div class="inner">
       <div class="ff-why-imgs">
-        <div class="a"><img src="/assets/img-437c-800.webp" srcset="/assets/img-437c-500.webp 500w, /assets/img-437c-800.webp 800w" sizes="340px" width="800" height="571" loading="lazy" alt="A close-up of foiled footprints"></div>
-        <div class="b"><img src="/assets/img-438-800.webp" srcset="/assets/img-438-500.webp 500w, /assets/img-438-800.webp 800w" sizes="280px" width="800" height="533" loading="lazy" alt="Finishing a keepsake in the studio"></div>
+        <div class="a"><img src="/assets/img-437c-800-v2.webp" srcset="/assets/img-437c-500-v2.webp 500w, /assets/img-437c-800-v2.webp 800w" sizes="340px" width="800" height="571" loading="lazy" alt="A close-up of foiled footprints"></div>
+        <div class="b"><img src="/assets/img-438-800-v2.webp" srcset="/assets/img-438-500-v2.webp 500w, /assets/img-438-800-v2.webp 800w" sizes="280px" width="800" height="533" loading="lazy" alt="Finishing a keepsake in the studio"></div>
       </div>
       <div class="ff-why-text">
         <h2>Why it matters for your memories</h2>
@@ -829,21 +639,21 @@
     <div class="ff-feat-grid">
       <div class="ff-feat-card">
         <span class="ic"><svg viewBox="0 0 24 24">
-            <path d="M20 6L9 17l-5-5" />
+            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path d="M8.2 12.2 11 15l4.8-5.2" />
           </svg></span>
         <h3>Flawless finish every time</h3>
         <p>No patchiness, no speckles, no compromise</p>
       </div>
       <div class="ff-feat-card">
         <span class="ic"><svg viewBox="0 0 24 24">
-            <path d="M17 7a5 5 0 0 0 0 10 5 5 0 0 0 0-10zM7 7a5 5 0 0 1 0 10 5 5 0 0 1 0-10z" />
+            <path d="M12 3 4.5 6v6c0 4.2 3 7.5 7.5 9 4.5-1.5 7.5-4.8 7.5-9V6L12 3Z" />
           </svg></span>
         <h3>Lifetime durability</h3>
         <p>No peeling, curling or fading over the years</p>
       </div>
       <div class="ff-feat-card">
         <span class="ic"><svg viewBox="0 0 24 24">
-            <path d="M12 3l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 21l-5-2.8 1.2-5.6L4 8.8l5.6-.6L12 3z" />
+            <path d="M12 3.4 13.93 9.34 20.18 9.34 15.12 13.02 17.05 18.96 12 15.29 6.95 18.96 8.88 13.02 3.82 9.34 10.07 9.34Z" />
           </svg></span>
         <h3>Bespoke Foil Exclusive</h3>
         <p>Perfected over five years of testing, refinement, and love</p>
@@ -875,61 +685,58 @@
   </section>
 
   <!-- ============ FROM THOSE WHO KNOW BEST (parent testimonials) ============ -->
-  <section class="ff-tst">
-    <div class="ff-tst-head">
+  <section class="know-best">
+    <div class="know-best-head">
       <div>
         <h2>From those who know best</h2>
         <p>See why those in the know can't get enough of Bespoke Foil's unique touch.</p>
       </div>
-      <div class="ff-tst-nav">
-        <button class="s-nav" id="tPrev" aria-label="Previous">&#8592;</button>
-        <button class="s-nav" id="tNext" aria-label="Next">&#8594;</button>
-      </div>
     </div>
-    <div class="ff-tst-track" id="tstTrack">
-      <article class="ff-tst-card">
-        <div class="ph"><img src="/assets/test-1-800.webp"
-            srcset="/assets/test-1-500.webp 500w, /assets/test-1-800.webp 800w" sizes="360px" width="800" height="533"
-            loading="lazy" alt=""></div>
-        <div class="body">
-          <p class="quote">"The kit was incredibly easy to use. I'd given up on a previous casting kit, but this one was
-            amazing - even when some footprints smudged, they cleaned up perfectly to show all the true detail of
+    <div class="know-best-grid">
+      <article class="kb-card">
+        <div class="kb-photo"><img src="/assets/test-1-800-v2.webp"
+            srcset="/assets/test-1-500-v2.webp 500w, /assets/test-1-800-v2.webp 800w" sizes="(min-width:980px) 400px, 100vw"
+            width="800" height="500" loading="lazy" alt="Megan with her daughters"></div>
+        <div class="kb-body">
+          <p class="kb-quote">"The kit was incredibly easy to use. I'd given up on a previous casting kit, but this one
+            was amazing - even when some footprints smudged, they cleaned up perfectly to show all the true detail of
             Lilly's feet!"</p>
-          <p class="who">Megan <svg viewBox="0 0 24 24">
-              <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z" />
-            </svg></p>
-          <p class="rel">Mummy of Lottie &amp; Lilly</p>
+          <p class="kb-name">Megan <span class="verified"><svg viewBox="0 0 24 24">
+                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
+              </svg></span></p>
+          <p class="kb-role">Mummy of Lottie &amp; Lilly</p>
         </div>
       </article>
-      <article class="ff-tst-card">
-        <div class="ph"><img src="/assets/test-2-800.webp"
-            srcset="/assets/test-2-500.webp 500w, /assets/test-2-800.webp 800w" sizes="360px" width="800" height="533"
-            loading="lazy" alt=""></div>
-        <div class="body">
-          <p class="quote">"Honestly couldn't believe how straightforward this was compared to other keepsake methods
+      <article class="kb-card">
+        <div class="kb-photo"><img src="/assets/test-2-800-v2.webp"
+            srcset="/assets/test-2-500-v2.webp 500w, /assets/test-2-800-v2.webp 800w" sizes="(min-width:980px) 400px, 100vw"
+            width="800" height="500" loading="lazy" alt="Heather with her family"></div>
+        <div class="kb-body">
+          <p class="kb-quote">"Honestly couldn't believe how straightforward this was compared to other keepsake methods
             I'd tried. The instructions were crystal clear, and even though I'm not crafty at all, the results were
             perfect. Worth every penny!"</p>
-          <p class="who">Heather <svg viewBox="0 0 24 24">
-              <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z" />
-            </svg></p>
-          <p class="rel">Mummy of Arabella &amp; Nova</p>
+          <p class="kb-name">Heather <span class="verified"><svg viewBox="0 0 24 24">
+                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
+              </svg></span></p>
+          <p class="kb-role">Mummy of Arabella &amp; Nova</p>
         </div>
       </article>
-      <article class="ff-tst-card">
-        <div class="ph"><img src="/assets/test-3-800.webp"
-            srcset="/assets/test-3-500.webp 500w, /assets/test-3-800.webp 800w" sizes="360px" width="800" height="533"
-            loading="lazy" alt=""></div>
-        <div class="body">
-          <p class="quote">"As a first-time mum, I was nervous about doing anything that might upset Myles. This kit was
-            perfect - so gentle and quick. The inkless wipes didn't irritate his skin at all, and now we have this
+      <article class="kb-card">
+        <div class="kb-photo"><img src="/assets/test-3-800-v2.webp"
+            srcset="/assets/test-3-500-v2.webp 500w, /assets/test-3-800-v2.webp 800w" sizes="(min-width:980px) 400px, 100vw"
+            width="800" height="500" loading="lazy" alt="Charlotte with her son"></div>
+        <div class="kb-body">
+          <p class="kb-quote">"As a first-time mum, I was nervous about doing anything that might upset Myles. This kit
+            was perfect - so gentle and quick. The inkless wipes didn't irritate his skin at all, and now we have this
             beautiful keepsake to treasure forever."</p>
-          <p class="who">Charlotte <svg viewBox="0 0 24 24">
-              <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z" />
-            </svg></p>
-          <p class="rel">Mummy of Myles</p>
+          <p class="kb-name">Charlotte <span class="verified"><svg viewBox="0 0 24 24">
+                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
+              </svg></span></p>
+          <p class="kb-role">Mummy of Myles</p>
         </div>
       </article>
     </div>
+    <p class="kb-tp">Rated <b>Excellent</b> - <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener"><span data-tp-count>72</span> reviews on Trustpilot</a></p>
   </section>
 
   <section class="reviews" aria-labelledby="reviews-title">
@@ -1102,7 +909,7 @@
     </div>
 
     <div class="foot-watermark" aria-hidden="true">
-      <img src="/assets/bfc-logo.svg" alt="">
+      <img src="/assets/bfc-logo-v2.svg" alt="">
     </div>
   </footer>
 
@@ -1118,15 +925,8 @@
       }
       window.addEventListener('scroll', () => { if (!tick) { requestAnimationFrame(up); tick = true; } }, { passive: true }); up();
     })();
-    /* parent testimonial carousel */
-    (function () {
-      const t = document.getElementById('tstTrack'); if (!t) return;
-      const cards = t.querySelectorAll('.ff-tst-card');
-      function pos() { const w = cards[0].getBoundingClientRect().width + 16; return Math.round(t.scrollLeft / w); }
-      const step = d => { const w = cards[0].getBoundingClientRect().width + 16; t.scrollTo({ left: Math.max(0, Math.min(pos() + d, cards.length - 1)) * w, behavior: 'smooth' }); };
-      document.getElementById('tPrev').addEventListener('click', () => step(-1));
-      document.getElementById('tNext').addEventListener('click', () => step(1));
-    })();
+/* testimonial slider removed 04/08 - the component is now a static
+       three-up grid matching premium-frames and print-quality-guarantee. */
     /* trustpilot reviews carousel */
     (function () {
       const rTrack = document.getElementById('revTrack'); if (!rTrack) return;

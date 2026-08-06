@@ -40,26 +40,18 @@
 /memory-catcher-earnings-calculator   /memory-catcher-earnings-calculator.html   200   # Franchise | Franchise Earnings Calculator | Estimate potential Memory Catcher franchise earnings
 /memory-catcher-region-map   /memory-catcher-region-map.html   200   # Franchise | Franchise Regional Map | Interactive map of available Memory Catcher regions across the UK
 /memory-catcher-region-map-embed   /memory-catcher-region-map-embed.html   200   # exclude
-/franchises/norfolk-west   /franchise-region-west-norfolk-kings-lynn.html   200   # Franchise Regions | Norfolk West | Region page template - Dixit wires remaining 108 CMS routes to /franchises/<wix-slug>
+# All 112 franchise regions are served from Supabase by the franchise-region
+# edge function, which intercepts before this rule. The splat exists so the
+# request resolves to the template; the function fills it and returns a real
+# 404 for any slug with no row.
+/franchises/*   /franchise-region-template.html   200   # exclude
 /franchises-bio/ashley-eccleston   /franchise-bio-ashley-eccleston.html   200   # Memory Catchers | Ashley Eccleston | Founder Memory Catcher - Wigan, St Helens & Bolton
 /contact                /contact.html         200   # Contact | Contact Us
 /privacy-policy         /privacy-policy.html  200   # Contact | Privacy Policy
 /blog                   /blog.html            200   # Resources | Stories & Inspiration | Heartfelt stories, parenting tips and behind-the-scenes moments
-/post/why-every-parent-needs-a-baby-footprint-keepsake   /post-why-every-parent-needs-a-baby-footprint-keepsake.html   200   # Stories | Why Every Parent Needs a Baby Footprint Keepsake
-/post/baby-wont-open-hand-for-handprints   /post-baby-wont-open-hand-for-handprints.html   200   # Stories | Baby Won't Open Their Hand for Handprints
-/post/can-you-use-paint-for-baby-handprints   /post-can-you-use-paint-for-baby-handprints.html   200   # Stories | Can You Use Paint for Baby Handprints
-/post/capture-baby-s-first-touch-with-foil-prints   /post-capture-baby-s-first-touch-with-foil-prints.html   200   # Stories | Capture Baby's First Touch with Foil Prints
-/post/create-lasting-memories-with-one-tiny-touch   /post-create-lasting-memories-with-one-tiny-touch.html   200   # Stories | Create Lasting Memories with One Tiny Touch
-/post/don-t-let-your-memories-fade-away   /post-don-t-let-your-memories-fade-away.html   200   # Stories | Don't Let Your Memories Fade Away
-/post/foil-fusion-the-future-of-baby-keepsakes   /post-foil-fusion-the-future-of-baby-keepsakes.html   200   # Stories | Foil Fusion: The Future of Baby Keepsakes
-/post/foil-fusion-vs-toner-foiling-the-real-difference   /post-foil-fusion-vs-toner-foiling-the-real-difference.html   200   # Stories | Foil Fusion vs Toner Foiling
-/post/handprints-or-footprints-newborn   /post-handprints-or-footprints-newborn.html   200   # Stories | Handprints or Footprints for Newborns
-/post/how-to-take-your-babys-handprints-neatly   /post-how-to-take-your-babys-handprints-neatly.html   200   # Stories | How to Take Your Baby's Handprints Neatly
-/post/step-by-step-guide-to-a-beautiful-baby-keepsake   /post-step-by-step-guide-to-a-beautiful-baby-keepsake.html   200   # Stories | Step-by-Step Guide to a Beautiful Baby Keepsake
-/post/the-must-have-handprint-kit-for-new-parents   /post-the-must-have-handprint-kit-for-new-parents.html   200   # Stories | The Must-Have Handprint Kit for New Parents
-/post/the-perfect-gift-for-new-mums-and-dads   /post-the-perfect-gift-for-new-mums-and-dads.html   200   # Stories | The Perfect Gift for New Mums and Dads
-/post/tiny-hands-big-emotions-captured-forever   /post-tiny-hands-big-emotions-captured-forever.html   200   # Stories | Tiny Hands, Big Emotions Captured Forever
-/post/why-foil-prints-make-the-ultimate-baby-gift   /post-why-foil-prints-make-the-ultimate-baby-gift.html   200   # Stories | Why Foil Prints Make the Ultimate Baby Gift
+# All blog posts are served from Supabase by the blog-post edge function,
+# which intercepts before this rule. Same pattern as the regions.
+/post/*   /post-template.html   200   # exclude
 /upload-portal-thank-you   /upload-portal-thank-you.html   200   # util | Upload Portal - Thank You
 /franchise-success   /franchise-success.html   200   # util | Franchise - Success
 /memory-catcher-enquiry   /memory-catcher-enquiry.html   200   # util | Memory Catcher - Enquiry Form
@@ -104,6 +96,8 @@
 /franchise.html              /franchise              301
 /our-kit.html                /product-page/foil-handprint-footprint-kit-baby-keepsake   301
 /keepsake-standalone.html    /product-page/foil-handprint-footprint-kit-baby-keepsake   301
+/franchise-region-template.html   /franchise-region   301
+/post-template.html              /blog                301
 /faq.html                    /faq                    301
 /eco-friendly.html           /eco-friendly           301
 /franchise-region.html       /franchise-region       301

@@ -335,7 +335,7 @@
       }
 
       .fr-hero-bg::after {
-        background: linear-gradient(180deg, rgba(16, 14, 12, .55) 0%, rgba(16, 14, 12, .5) 55%, rgba(16, 14, 12, .8) 100%)
+        background: linear-gradient(180deg, rgba(16, 14, 12, 0.69) 0%, rgba(16, 14, 12, 0.66) 55%, rgba(16, 14, 12, 0.9) 100%)
       }
 
       .fr-search {
@@ -369,7 +369,7 @@
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
         <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-menu-top-right">
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -440,7 +440,7 @@
           <span></span><span></span><span></span>
         </button>
         <a class="logotype" href="/" aria-label="Bespoke Foil Company home">
-          <img src="/assets/bfc-logo.svg" alt="Bespoke Foil Company">
+          <img src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
         </a>
         <div class="nav-right">
           <a class="cta nav-cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
@@ -487,10 +487,8 @@
   </section>
 
   <!-- ============ REGION CARDS GRID ============ -->
-  <!-- NOTE: This is the CMS-ready template. The region data below lives in the FRANCHISE_REGIONS
-     array and is rendered into cards by JS. When the CMS is wired, this array is replaced by a
-     CMS feed (Astro collection / headless CMS) that populates all 112 regions. Card markup,
-     search filter, and "View Region" links all read from the same data shape. -->
+  <!-- Region cards are filled from Supabase via /.netlify/functions/franchise-regions.
+     Card markup, search UI, and "View Region" links are unchanged. -->
   <section class="fr-grid-wrap">
     <div class="fr-grid" id="regionGrid" aria-live="polite"></div>
   </section>
@@ -601,39 +599,14 @@
     </div>
 
     <div class="foot-watermark" aria-hidden="true">
-      <img src="/assets/bfc-logo.svg" alt="">
+      <img src="/assets/bfc-logo-v2.svg" alt="">
     </div>
   </footer>
 
   <script>
-    /* ============ REGION DATA (CMS-ready) ============
-       This array is the single source of truth for the cards. When the CMS is wired,
-       replace this with the CMS feed - the render + search logic below is data-driven
-       and will scale to all 112 regions without markup changes.
-       Fields: name, slug, status ('available'|'unavailable'), price, potential,
-       coverage (array), description. */
-    const FRANCHISE_REGIONS = [
-      { name: "West Norfolk and King's Lynn", slug: "west-norfolk-kings-lynn", status: "available", price: "\u00A33,445", potential: "Either", coverage: ["King's Lynn", "Downham Market", "Hunstanton", "Swaffham", "Dereham", "Fakenham"], description: "Sandringham Royal prestige, King's Lynn market town, 200K+ territory, flexible full-time or part-time." },
-      { name: "North Devon and Torbay", slug: "north-devon-torbay", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Barnstaple", "Bideford", "Torquay", "Paignton", "Newton Abbot", "Teignmouth"], description: "English Riviera and surf coast, 350K+ combined, coastal lifestyle families, two distinctive areas." },
-      { name: "Antrim and East Antrim", slug: "antrim-east-antrim", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Antrim", "Ballymena", "Larne", "Carrickfergus", "Newtownabbey", "Glengormley"], description: "300K+ territory, Belfast-adjacent Newtownabbey, Antrim coast character, Ballymena market town." },
-      { name: "Cambridge and South Cambridgeshire", slug: "cambridge-south-cambridgeshire", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Cambridge city centre", "Trumpington", "Cherry Hinton", "Ely", "Newmarket", "Saffron Walden"], description: "Silicon Fen tech wealth, world-famous university, international family community, 350K+ territory, exceptional average order value potential." },
-      { name: "York and Harrogate", slug: "york-harrogate", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["York", "Harrogate", "Knaresborough", "Ripon", "Wetherby", "Tadcaster"], description: "Harrogate premium market, existing baby class partnership, historic York, affluent North Yorkshire market towns." },
-      { name: "Edinburgh", slug: "edinburgh", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Edinburgh city centre", "Morningside", "Stockbridge", "Leith", "Corstorphine", "surrounding suburbs"], description: "Scotland's capital, highly educated and affluent demographic, premium pricing potential, compact city with strong baby class infrastructure." },
-      { name: "Cardiff and Vale of Glamorgan", slug: "cardiff-vale-glamorgan", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Cardiff city centre", "Pontcanna", "Penarth", "Barry", "Cowbridge", "Llandaff"], description: "Welsh capital, Pontcanna 'Nappy Valley', Penarth premium coast, youngest city in Wales, Welsh network anchor." },
-      { name: "Greater Belfast", slug: "greater-belfast", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Belfast city centre", "South Belfast", "East Belfast", "Lisburn", "Holywood", "Bangor"], description: "NI capital (670K+ metro), existing baby class partnerships, premium South Belfast and north Down, renowned community warmth, flagship NI territory." },
-      { name: "Sheffield", slug: "sheffield", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Sheffield city centre", "Ecclesall", "Dore", "Crookes", "Hillsborough", "Chapeltown"], description: "UK's 5th largest city (550K+), young demographics, premium Ecclesall and Dore suburbs, greenest city in England." },
-      { name: "Bristol", slug: "bristol", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Bristol city centre", "Clifton", "Redland", "Bishopston", "Cotham", "Southville", "Bedminster"], description: "South West's largest city (494K), median age 33.4, strong artisan and independent culture, premium family areas in Clifton and Redland, 11.4% population growth over past decade." },
-      { name: "Manchester Central", slug: "manchester-central", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Manchester city centre", "Salford", "Stretford", "Didsbury", "Chorlton", "Withington"], description: "Youngest major city demographic in the UK, strong Established baby class partners, creative and professional young families." },
-      { name: "Birmingham Central and South", slug: "birmingham-central-south", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Birmingham city centre", "Edgbaston", "Moseley", "Kings Heath", "Harborne", "Selly Oak", "Hall Green", "Solihull"], description: "UK's largest birth rate increase in 2024 (+1,323), median age 33.7, strong baby class infrastructure, premium pockets in Edgbaston, Moseley, and Solihull." },
-      { name: "London: Nappy Valley - Wandsworth, Battersea, Clapham", slug: "london-nappy-valley", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Wandsworth", "Battersea", "Clapham", "Balham", "Tooting", "Earlsfield"], description: "London's most famous family neighbourhood, highest average order value potential in the UK, exceptional baby class density, affluent and engaged young parents." },
-      { name: "London: Kensington and Chelsea, Hammersmith and Fulham", slug: "london-kensington-chelsea", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Kensington", "Chelsea", "Hammersmith", "Fulham", "Parsons Green", "South Kensington"], description: "London's most exclusive family boroughs, ultra-premium average order value, international family community, boutique territory with exceptional per-session revenue." },
-      { name: "Lancaster and Morecambe", slug: "lancaster-morecambe", status: "available", price: "\u00A33,445", potential: "Part-Time", coverage: ["Lancaster", "Morecambe", "Carnforth", "Garstang", "surrounding villages"], description: "Compact university city, steady young family pipeline, strong independent culture, part-time territory with engaged community." },
-      { name: "Inverness and the Highlands", slug: "inverness-highlands", status: "available", price: "\u00A33,445", potential: "Either", coverage: ["Inverness", "Nairn", "Dingwall", "Fort William", "Aviemore"], description: "Capital of the Highlands, self-contained market, zero competition, growing Inverness, adventurous franchise territory." },
-      { name: "Aberdeen and Aberdeenshire", slug: "aberdeen-aberdeenshire", status: "available", price: "\u00A33,445", potential: "Full-Time", coverage: ["Aberdeen city centre", "Westhill", "Stonehaven", "Inverurie", "Ellon", "Peterhead"], description: "Energy industry wealth, international family community, 490K+ combined population, self-contained market, keepsakes valued by relocated families." },
-      { name: "Bolton and Wigan", slug: "bolton-wigan", status: "unavailable", price: "\u00A33,445", potential: "Full-Time", coverage: ["Bolton", "Wigan", "Horwich", "Atherton", "Leigh", "Standish"], description: "Combined 470K+ population, strong Greater Manchester towns, fierce community loyalty, established family communities, excellent value territory." }
-    ];
-
-    /* ============ RENDER ============ */
+    /* ============ REGION LIST (Supabase via Netlify function) ============
+       Same card shape as before: name, slug, status, price, potential,
+       coverage (array), description. Loaded from franchise_regions. */
     (function () {
       const grid = document.getElementById('regionGrid');
       const countEl = document.getElementById('regionCount');
@@ -641,7 +614,16 @@
       const searchBtn = document.getElementById('regionSearchBtn');
       if (!grid) return;
 
+      let FRANCHISE_REGIONS = [];
+      let searchTimer = null;
+
       const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+      /* UK outcode at the start of the query, e.g. IP1, IP1 2AB, SW1A. */
+      function extractOutcode(q) {
+        const m = String(q || '').trim().toUpperCase().match(/^([A-Z]{1,2}\d[A-Z\d]?)\b/);
+        return m ? m[1] : null;
+      }
 
       function cardHTML(r) {
         const statusLabel = r.status === 'available' ? 'Available' : 'Unavailable';
@@ -657,11 +639,9 @@
           <span class="val" style="grid-column:2">${esc(r.potential)}</span>
         </div>
         <p class="fr-cov-label">Key Coverage Areas</p>
-        <p class="fr-cov">${esc(r.coverage.join(', '))}</p>
-        <p class="fr-desc">${esc(r.description)}</p>
-        <!-- TEMP for nav testing: all View Region buttons point to the one built region page.
-             Revert to href="/franchises/${esc(r.slug)}" once per-region pages / CMS exist. -->
-        <a class="cta dark" href="/franchises/norfolk-west">
+        <p class="fr-cov">${esc((r.coverage || []).join(', '))}</p>
+        <p class="fr-desc">${esc(r.description || '')}</p>
+        <a class="cta dark" href="/franchises/${esc(r.slug)}">
           <span class="lbl">View Region</span>${arrow}
         </a>
       </article>`;
@@ -675,26 +655,64 @@
         }
         grid.innerHTML = list.map(cardHTML).join('');
         countEl.textContent = list.length === FRANCHISE_REGIONS.length
-          ? `Showing all ${list.length} example regions`
+          ? `Showing all ${list.length} regions`
           : `Showing ${list.length} of ${FRANCHISE_REGIONS.length} regions`;
       }
 
-      function filter() {
-        const q = (searchInput.value || '').trim().toLowerCase();
+      async function fetchRegions(outcode) {
+        const url = outcode
+          ? `/.netlify/functions/franchise-regions?outcode=${encodeURIComponent(outcode)}`
+          : '/.netlify/functions/franchise-regions';
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('regions fetch failed');
+        const data = await res.json();
+        return Array.isArray(data.regions) ? data.regions : [];
+      }
+
+      async function filter() {
+        const q = (searchInput.value || '').trim();
         if (!q) { render(FRANCHISE_REGIONS); return; }
+
+        const outcode = extractOutcode(q);
+        if (outcode) {
+          try {
+            const matches = await fetchRegions(outcode);
+            render(matches);
+          } catch {
+            grid.innerHTML = `<p class="fr-empty">Could not search by postcode right now. Please try again, or <a href="/contact">contact us</a>.</p>`;
+            countEl.textContent = '';
+          }
+          return;
+        }
+
+        const needle = q.toLowerCase();
         const matches = FRANCHISE_REGIONS.filter(r =>
-          r.name.toLowerCase().includes(q) ||
-          r.coverage.some(c => c.toLowerCase().includes(q)) ||
-          r.description.toLowerCase().includes(q)
+          (r.name || '').toLowerCase().includes(needle) ||
+          (r.coverage || []).some(c => c.toLowerCase().includes(needle)) ||
+          (r.description || '').toLowerCase().includes(needle)
         );
         render(matches);
       }
 
+      function scheduleFilter() {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(filter, 200);
+      }
+
       searchBtn.addEventListener('click', filter);
-      searchInput.addEventListener('input', filter);
+      searchInput.addEventListener('input', scheduleFilter);
       searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') filter(); });
 
-      render(FRANCHISE_REGIONS);
+      grid.innerHTML = `<p class="fr-empty">Loading regions…</p>`;
+      fetchRegions()
+        .then(list => {
+          FRANCHISE_REGIONS = list;
+          render(FRANCHISE_REGIONS);
+        })
+        .catch(() => {
+          grid.innerHTML = `<p class="fr-empty">Could not load regions. Please refresh, or <a href="/contact">contact us</a>.</p>`;
+          countEl.textContent = '';
+        });
     })();
   </script>
 
