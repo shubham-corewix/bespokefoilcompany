@@ -22,8 +22,11 @@ const TAG = '/shared/analytics.js';
 
 /* Pages that legitimately have no analytics. Add with a reason, never silently. */
 const EXEMPT = new Set([
-  'snag-tool.html',        // internal QA tool, excluded from discovery
-  'component-library.html' // internal reference, not a public page
+  'snag-tool.html',              // internal QA tool, excluded from discovery
+  'component-library.html',      // internal reference, not a public page
+  'memory-catcher-404.html',     // legacy keepsake 404 shell, noindex test page
+  'memory-catcher.html',         // legacy affiliate template copy, noindex
+  'wallet-test.html',            // Stripe wallet diagnostic, not a public page
 ]);
 
 const pages = fs.readdirSync(ROOT)
