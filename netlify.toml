@@ -75,3 +75,7 @@
 [[edge_functions]]
   path = "/post/:slug"
   function = "blog-post"
+
+  [[edge_functions]]
+  path = "/franchises-bio/:slug"
+  function = "franchise-bio"

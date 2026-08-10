@@ -45,7 +45,7 @@
 # request resolves to the template; the function fills it and returns a real
 # 404 for any slug with no row.
 /franchises/*   /franchise-region-template.html   200   # exclude
-/franchises-bio/ashley-eccleston   /franchise-bio-ashley-eccleston.html   200   # Memory Catchers | Ashley Eccleston | Founder Memory Catcher - Wigan, St Helens & Bolton
+/franchises-bio/*   /franchise-bio-template.html   200   # exclude
 /contact                /contact.html         200   # Contact | Contact Us
 /privacy-policy         /privacy-policy.html  200   # Contact | Privacy Policy
 /blog                   /blog.html            200   # Resources | Stories & Inspiration | Heartfelt stories, parenting tips and behind-the-scenes moments

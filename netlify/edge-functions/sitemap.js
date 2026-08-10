@@ -86,9 +86,10 @@ export default async (request, context) => {
   /* 2. Dynamic halves. Both are best-effort: if Supabase is unreachable the
         sitemap still returns the static routes rather than a 500. A short
         sitemap is recoverable; an error page tells Google nothing. */
-  const [regions, posts] = await Promise.all([
+  const [regions, posts, bios] = await Promise.all([
     fromSupabase('franchise_regions', 'slug,updated_at', 'is_available=eq.true'),
     fromSupabase('blog_posts', 'slug,updated_at', 'published=eq.true'),
+    fromSupabase('franchisees', 'slug,updated_at', 'active=eq.true'),
   ]);
 
   const regionUrls = regions.map((r) => ({
@@ -103,10 +104,16 @@ export default async (request, context) => {
     priority: 0.6,          // matches CATEGORY_PRIORITY['Stories']
   }));
 
+  const bioUrls = bios.filter((b) => b.slug).map((b) => ({
+    loc: `/franchises-bio/${b.slug}`,
+    lastmod: (b.updated_at || today).slice(0, 10),
+    priority: 0.6,
+  }));
+
   /* 3. Merge. De-duplicated on loc so a route that exists both statically and in
         Supabase cannot appear twice - a duplicate <loc> is a validation error. */
   const seen = new Set();
-  const all = [...staticUrls, ...regionUrls, ...postUrls].filter((u) => {
+  const all = [...staticUrls, ...regionUrls, ...postUrls, ...bioUrls].filter((u) => {
     if (seen.has(u.loc)) return false;
     seen.add(u.loc);
     return true;
@@ -118,7 +125,7 @@ export default async (request, context) => {
     all.map(urlBlock).join('') +
     '</urlset>\n';
 
-  console.log(`[sitemap] ${staticUrls.length} static + ${regionUrls.length} regions + ${postUrls.length} posts = ${all.length}`);
+  console.log(`[sitemap] ${staticUrls.length} static + ${regionUrls.length} regions + ${postUrls.length} posts + ${bioUrls.length} bios = ${all.length}`);
 
   return new Response(xml, {
     headers: { 'content-type': 'application/xml; charset=utf-8', 'cache-control': CACHE },
