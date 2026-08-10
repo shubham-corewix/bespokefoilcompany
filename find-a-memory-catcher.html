@@ -800,21 +800,23 @@
       const pin = '<svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
 
       function cardHTML(mc) {
+        const covering = Array.isArray(mc.covering) ? mc.covering : [];
         const badge = mc.founder
           ? `<span class="mc-find-badge"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3-6.3-4.6L5.7 21l2.3-7.3-6-4.3h7.6z"/></svg>Founder</span>`
           : '';
+        const href = mc.slug ? `/franchises-bio/${esc(mc.slug)}` : '/contact';
         return `
-      <a class="mc-find-card" href="/franchises-bio/${esc(mc.slug)}">
+      <a class="mc-find-card" href="${href}">
         <div class="mc-find-photo">
           ${badge}
-          <img src="${esc(mc.photo)}" srcset="${esc(mc.photoSet)}" sizes="(min-width:1000px) 400px, 100vw" width="1000" height="750" loading="lazy" alt="${esc(mc.name)}, your local Memory Catcher">
+          <img src="${esc(mc.photo || '/assets/mc-who-1100.webp')}" width="1000" height="750" loading="lazy" alt="${esc(mc.full_name || 'Memory Catcher')}, your local Memory Catcher">
         </div>
         <div class="mc-find-body">
-          <h3>${esc(mc.full_name)}</h3>
-          <p class="mc-find-region">${pin}${esc(mc.full_address)}</p>
+          <h3>${esc(mc.full_name || '')}</h3>
+          <p class="mc-find-region">${pin}${esc(mc.full_address || '')}</p>
           <p class="mc-find-cov-label">Covering</p>
-          <p class="mc-find-cov">${esc(mc.covering.join(', '))}</p>
-          <p class="mc-find-desc">${esc(mc.sort_description)}</p>
+          <p class="mc-find-cov">${esc(covering.join(', ') || 'Area details coming soon')}</p>
+          <p class="mc-find-desc">${esc(mc.sort_description || '')}</p>
           <span class="mc-find-cta">View profile <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
         </div>
       </a>`;
@@ -838,11 +840,13 @@
       function filter() {
         const q = (searchInput.value || '').trim().toLowerCase();
         if (!q) { render(MEMORY_CATCHERS); return; }
-        const matches = MEMORY_CATCHERS.filter(mc =>
-          mc.name.toLowerCase().includes(q) ||
-          mc.region.toLowerCase().includes(q) ||
-          mc.coverage.some(c => c.toLowerCase().includes(q))
-        );
+        const matches = MEMORY_CATCHERS.filter(mc => {
+          const covering = Array.isArray(mc.covering) ? mc.covering : [];
+          return (mc.full_name || '').toLowerCase().includes(q) ||
+            (mc.full_address || '').toLowerCase().includes(q) ||
+            (mc.sort_description || '').toLowerCase().includes(q) ||
+            covering.some(c => String(c).toLowerCase().includes(q));
+        });
         render(matches);
       }
 

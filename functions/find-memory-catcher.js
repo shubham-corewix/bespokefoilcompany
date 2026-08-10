@@ -1,11 +1,11 @@
 /**
- * blog-posts.js
+ * find-memory-catcher.js
  *
- * Public read of published blog_posts for the /blog listing page.
- * Uses the anon key + RLS (only published rows are readable).
+ * Public read of active franchisees for the /find-a-memory-catcher listing.
+ * Uses the anon key + RLS.
  *
- * GET /.netlify/functions/blog-posts
- *   -> all published posts, card-shaped for blog.html
+ * GET /.netlify/functions/find-memory-catcher
+ *   -> { rows: [...] } card-shaped for find-a-memory-catcher.html
  *
  * Env: SUPABASE_URL, SUPABASE_ANON_KEY
  */
@@ -14,13 +14,35 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
 const SELECT =
-  'full_name,full_address,covering,sort_description,photo';
+  'slug,full_name,full_address,covering,sort_description,photo,founder';
 
 const cors = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Content-Type': 'application/json',
 };
+
+/* covering may be text[], text, or null - always return a string[] for the UI. */
+function asCoverage(v) {
+  if (Array.isArray(v)) return v.map((s) => String(s).trim()).filter(Boolean);
+  if (v == null || v === '') return [];
+  return String(v)
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function mapRow(r) {
+  return {
+    slug: r.slug || '',
+    full_name: r.full_name || r.name || '',
+    full_address: r.full_address || '',
+    covering: asCoverage(r.covering),
+    sort_description: r.sort_description || '',
+    photo: r.photo || '/assets/mc-who-1100.webp',
+    founder: r.founder === true,
+  };
+}
 
 async function sb(path, opts = {}) {
   const res = await fetch(`${SUPABASE_URL}${path}`, {
@@ -55,15 +77,30 @@ exports.handler = async (event) => {
 
   try {
     const rows = await sb(
-      `/rest/v1/franchisees?active=eq.true&select=${SELECT}`
+      `/rest/v1/franchisees?active=eq.true&select=${SELECT}&order=full_name.asc`
     );
     return {
       statusCode: 200,
       headers: { ...cors, 'Cache-Control': 'public, max-age=60' },
-      body: JSON.stringify({ rows }),
+      body: JSON.stringify({ rows: (Array.isArray(rows) ? rows : []).map(mapRow) }),
     };
   } catch (e) {
     console.log('[find-memory-catcher]', e.message);
+    /* Fallback without founder if that column is missing. */
+    if (String(e.message).includes('founder') || String(e.message).includes('42703')) {
+      try {
+        const rows = await sb(
+          `/rest/v1/franchisees?active=eq.true&select=slug,full_name,full_address,covering,sort_description,photo&order=full_name.asc`
+        );
+        return {
+          statusCode: 200,
+          headers: { ...cors, 'Cache-Control': 'public, max-age=60' },
+          body: JSON.stringify({ rows: (Array.isArray(rows) ? rows : []).map(mapRow) }),
+        };
+      } catch (e2) {
+        console.log('[find-memory-catcher] fallback', e2.message);
+      }
+    }
     return {
       statusCode: 502,
       headers: cors,
