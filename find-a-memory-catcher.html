@@ -22,7 +22,7 @@
       href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
       rel="stylesheet">
   </noscript>
-  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <link rel="stylesheet" href="/shared/styles.css?v=12">
   <style>
     /* ===== FIND YOUR LOCAL MEMORY CATCHER (directory) page-specific ===== */
 
@@ -214,6 +214,8 @@
     }
 
     .mc-find-card {
+      background: var(--white);
+      box-shadow: 0 1px 2px rgba(16,14,12,.04), 0 8px 20px -12px rgba(16,14,12,.14);
       background: var(--porcelain);
       border: 1px solid var(--hairline);
       border-radius: var(--r-card);
@@ -241,7 +243,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      /* 05/08: was "center top", which framed low on a portrait source.
+         28% lifts the head into the middle of the crop. */
+      object-position: center 28%;
       display: block;
       transition: transform .4s ease
     }
@@ -276,6 +280,9 @@
     }
 
     .mc-find-body {
+      /* 05/08: white so the card lifts off the page tone, matching the
+         region cards. */
+      background: var(--white);
       padding: 22px 24px 24px;
       display: flex;
       flex-direction: column;
@@ -340,6 +347,13 @@
       margin-top: auto;
       font-size: 14.5px;
       font-weight: 500;
+      /* 05/08: was unboxed, so it read as floating text rather than a button.
+         Outlined pill, matching the ghost buttons used elsewhere. */
+      padding: 9px 16px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-btn);
+      background: var(--white);
+      transition: border-color .15s ease, background .15s ease;
       color: var(--ink)
     }
 
@@ -490,6 +504,12 @@
         padding: 20px 18px 48px;
       }
     }
+  
+    .mc-find-card:hover .mc-find-cta {
+      border-color: var(--stone-text);
+      background: var(--porcelain)
+    }
+
   </style>
 </head>
 
@@ -520,7 +540,7 @@
       <div class="nav-menu-links">
         <a href="/" data-page="home">Home</a>
         <a href="/our-story" data-page="our-story">Our Story</a>
-        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology&trade;</a>
         <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
         <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
         <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
@@ -646,7 +666,7 @@
             <path d="M12 2l2.4 7.4H22l-6 4.3 2.3 7.3-6.3-4.6L5.7 21l2.3-7.3-6-4.3h7.6z" />
           </svg></span>
         <h3>A keepsake forever</h3>
-        <p>Your prints are crafted into a real foil keepsake using our exclusive Foil Fusion Technology.</p>
+        <p>Your prints are crafted into a real foil keepsake using our exclusive Foil Fusion Technology&trade;.</p>
       </div>
     </div>
   </section>
@@ -766,30 +786,7 @@
        One entry per live Memory Catcher. Fields: name, slug (-> /franchise-bio/{slug}),
        region, coverage (array of towns), intro, photo. When the CMS is wired this array
        becomes the franchisee feed; the render + search below scale automatically. */
-    const MEMORY_CATCHERS = [
-      {
-        name: "Ashley Eccleston",
-        slug: "ashley-eccleston",
-        region: "Wigan, St Helens & Bolton",
-        coverage: ["Wigan", "St Helens", "Bolton", "Leigh", "Ashton-in-Makerfield"],
-        intro: "Co-founder and the very first Memory Catcher. Mum of two, keepsake obsessive, and the friendly face behind it all.",
-        photo: "/assets/mc-ashley-1000.webp",
-        photoSet: "/assets/mc-ashley-700.webp 700w, /assets/mc-ashley-1000.webp 1000w",
-        founder: true
-      },
-      {
-        name: "Salamata Bah",
-        /* TEMP for nav testing: links to Ashley's bio until /franchise-bio/salamata-bah is built.
-           Revert slug to "salamata-bah" once her page exists. */
-        slug: "ashley-eccleston",
-        region: "Greenwich & Lewisham",
-        coverage: ["Greenwich", "Lewisham", "Blackheath", "Lee", "Eltham", "Catford", "Forest Hill"],
-        intro: "Your South East London Memory Catcher, capturing tiny prints across Greenwich, Lewisham and the surrounding communities.",
-        photo: "/assets/mc-what-1100.webp",
-        photoSet: "/assets/mc-what-500.webp 500w, /assets/mc-what-800.webp 800w, /assets/mc-what-1100.webp 1100w",
-        founder: false
-      }
-    ];
+    let MEMORY_CATCHERS = [];
 
     /* ============ RENDER ============ */
     (function () {
@@ -813,11 +810,11 @@
           <img src="${esc(mc.photo)}" srcset="${esc(mc.photoSet)}" sizes="(min-width:1000px) 400px, 100vw" width="1000" height="750" loading="lazy" alt="${esc(mc.name)}, your local Memory Catcher">
         </div>
         <div class="mc-find-body">
-          <h3>${esc(mc.name)}</h3>
-          <p class="mc-find-region">${pin}${esc(mc.region)}</p>
+          <h3>${esc(mc.full_name)}</h3>
+          <p class="mc-find-region">${pin}${esc(mc.full_address)}</p>
           <p class="mc-find-cov-label">Covering</p>
-          <p class="mc-find-cov">${esc(mc.coverage.join(', '))}</p>
-          <p class="mc-find-desc">${esc(mc.intro)}</p>
+          <p class="mc-find-cov">${esc(mc.covering.join(', '))}</p>
+          <p class="mc-find-desc">${esc(mc.sort_description)}</p>
           <span class="mc-find-cta">View profile <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
         </div>
       </a>`;
@@ -853,7 +850,19 @@
       searchInput.addEventListener('input', filter);
       searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') filter(); });
 
-      render(MEMORY_CATCHERS);
+      grid.innerHTML = '';
+      fetch('/.netlify/functions/find-memory-catcher')
+        .then(res => {
+          if (!res.ok) throw new Error('fetch failed');
+          return res.json();
+        })
+        .then(data => {
+          MEMORY_CATCHERS = Array.isArray(data.rows) ? data.rows : [];
+          render(MEMORY_CATCHERS);
+        })
+        .catch(() => {
+          grid.innerHTML = '<p class="mc-find-empty">Could not load memory catchers right now. Please refresh, or <a href="/contact">contact us</a>.</p>';
+        });
     })();
   </script>
 

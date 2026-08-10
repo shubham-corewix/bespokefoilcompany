@@ -393,10 +393,10 @@
     <input type="search" id="blogSearch" placeholder="Search stories..." aria-label="Search stories">
   </div>
 
-  <!-- ============ FEATURED (rendered from POSTS[0] / featured flag) ============ -->
+  <!-- ============ FEATURED (newest published post from Supabase) ============ -->
   <section class="blog-featured" id="blogFeatured"></section>
 
-  <!-- ============ POST GRID (CMS-driven; JS renders from POSTS array) ============ -->
+  <!-- ============ POST GRID (loaded from Supabase via /.netlify/functions/blog-posts) ============ -->
   <div class="blog-grid-wrap">
     <div class="blog-grid" id="blogGrid"></div>
     <div class="blog-empty" id="blogEmpty" hidden>No stories match your search yet. Try another word.</div>
@@ -534,125 +534,18 @@
     })();
 
     /* =========================================================
-       BLOG HUB - CMS-driven post list.
-       When the CMS is wired, POSTS becomes the CMS feed (same shape).
-       Each item: {slug, title, excerpt, image, author, avatar, date, read,
-                   featured?:true}. Order = newest first. One item may set
-                   featured:true to appear in the large featured slot.
+       BLOG HUB - post list from Supabase (published blog_posts).
+       Card shape: {slug, title, excerpt, image, author, avatar, date, read,
+                   featured?}. Newest first; first post is featured.
        ========================================================= */
-    const POSTS = [
-      {
-        slug: "why-every-parent-needs-a-baby-footprint-keepsake", featured: true,
-        title: "Why Every Parent Needs a Baby Footprint Keepsake",
-        excerpt: "Nothing melts a parent's heart quite like their newborn's tiny feet. Those soft, wrinkled soles and delicate toes seem almost too perfect to be real. As parents, we're fascinated by how fast our baby's little feet grow.",
-        image: "/assets/founders-074-1400.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 5
-      },
-
-      {
-        slug: "handprints-or-footprints-newborn",
-        title: "Handprints or Footprints for Newborns: Which Should You Do First?",
-        excerpt: "When you're holding your brand-new baby in one arm and a keepsake kit in the other, a surprisingly tricky question pops up.",
-        image: "/assets/gallery-01-600.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "15 Jun 2025", read: 4
-      },
-
-      {
-        slug: "baby-wont-open-hand-for-handprints",
-        title: "Baby Won't Open Their Hand for Handprints? Here's the Trick",
-        excerpt: "Megan, one of our hand and footprint kit customers, capturing her baby's handprints. You've got the kit ready, the paper laid out.",
-        image: "/assets/gallery-02.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "15 Jun 2025", read: 5
-      },
-
-      {
-        slug: "can-you-use-paint-for-baby-handprints",
-        title: "Can You Use Paint for Baby Handprints? (Read This First)",
-        excerpt: "Thinking of using paint for your baby's handprints? Here's what's safe, what to avoid, and the mess-free alternative.",
-        image: "/assets/gallery-03.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "5 Jun 2025", read: 4
-      },
-
-      {
-        slug: "how-to-take-your-babys-handprints-neatly",
-        title: "How to Take Your Baby's Handprints Neatly (No Paint, No Ink, No Mess)",
-        excerpt: "Struggling to get a clean print from a wriggly baby? Here's exactly how to take your baby's handprints neatly at home.",
-        image: "/assets/gallery-04.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "5 Jun 2025", read: 4
-      },
-
-      {
-        slug: "don-t-let-your-memories-fade-away",
-        title: "Don't Let Your Memories Fade Away",
-        excerpt: "When our little ones arrive, life becomes a swirl of soft blankets, tiny yawns, and unforgettable firsts. The first time...",
-        image: "/assets/gallery-05.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "22 Sep 2025", read: 3
-      },
-
-      {
-        slug: "foil-fusion-vs-toner-foiling-the-real-difference",
-        title: "Foil Fusion vs Toner Foiling - The Real Difference",
-        excerpt: "When you're capturing the delicate hand or footprint of your newborn baby, you're not just making a print, you're saving a moment.",
-        image: "/assets/gallery-06.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "22 Sep 2025", read: 3
-      },
-
-      {
-        slug: "why-foil-prints-make-the-ultimate-baby-gift",
-        title: "Why Foil Prints Make the Ultimate Baby Gift",
-        excerpt: "New parents are often showered with practical baby gifts, which are undoubtedly useful. After all, every new parent...",
-        image: "/assets/gallery-07.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 6
-      },
-
-      {
-        slug: "tiny-hands-big-emotions-captured-forever",
-        title: "Tiny Hands, Big Emotions Captured Forever",
-        excerpt: "In the whirlwind of feeding, baby bonding, and sleepless nights, it's easy to overlook the little things, like just how small...",
-        image: "/assets/gallery-08.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 6
-      },
-
-      {
-        slug: "the-perfect-gift-for-new-mums-and-dads",
-        title: "The Perfect Gift for New Mums and Dads",
-        excerpt: "Finding the right gift for expecting parents can feel overwhelming. Walk into any store and you're confronted with...",
-        image: "/assets/gallery-09.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 6
-      },
-
-      {
-        slug: "the-must-have-handprint-kit-for-new-parents",
-        title: "The Must-Have Handprint Kit for New Parents",
-        excerpt: "There's something magical about watching your newborn's tiny hands wave in the air or grasp your thumb with surprising...",
-        image: "/assets/gallery-10.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 6
-      },
-
-      {
-        slug: "step-by-step-guide-to-a-beautiful-baby-keepsake",
-        title: "Step-by-Step Guide to a Beautiful Baby Keepsake",
-        excerpt: "Our foil print kits let you preserve your newborn's tiny hands and feet in a truly special way, creating a wonderful keepsake.",
-        image: "/assets/gallery-11.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 6
-      },
-
-      {
-        slug: "foil-fusion-the-future-of-baby-keepsakes",
-        title: "Foil Fusion: The Future of Baby Keepsakes",
-        excerpt: "The fleeting moments of a newborn's early days are precious, and parents often seek ways to preserve the delicate imprint...",
-        image: "/assets/gallery-12.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 7
-      },
-
-      {
-        slug: "create-lasting-memories-with-one-tiny-touch",
-        title: "Create Lasting Memories with One Tiny Touch",
-        excerpt: "A newborn's tiny hands and feet are precious, but they grow so fast. At The Bespoke Foil Company, we believe a keepsake...",
-        image: "/assets/gallery-13.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 5
-      },
-
-      {
-        slug: "capture-baby-s-first-touch-with-foil-prints",
-        title: "Capture Baby's First Touch with Foil Prints",
-        excerpt: "The first time your baby wraps its teeny fingers around yours is pure magic. You can't help but marvel at how something can...",
-        image: "/assets/gallery-01.webp", author: "Ashley Eccleston", avatar: "/assets/ff-ashley-700.webp", date: "14 Jul 2025", read: 5
-      }
-    ];
-
     (function () {
       const grid = document.getElementById('blogGrid');
       const feat = document.getElementById('blogFeatured');
       const empty = document.getElementById('blogEmpty');
       const search = document.getElementById('blogSearch');
       if (!grid) return;
+
+      let POSTS = [];
 
       const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -682,14 +575,16 @@
     </a>`;
       }
 
-      const featured = POSTS.find(p => p.featured) || POSTS[0];
+      function featuredPost() {
+        return POSTS.find(p => p.featured) || POSTS[0];
+      }
 
       function render(list) {
-        // featured only shows when not searching (or if it matches)
         const q = (search.value || '').trim().toLowerCase();
+        const featured = featuredPost();
         const showFeatured = !q && featured;
         feat.innerHTML = showFeatured ? featHTML(featured) : '';
-        const rest = list.filter(p => !(showFeatured && p.slug === featured.slug));
+        const rest = list.filter(p => !(showFeatured && featured && p.slug === featured.slug));
         grid.innerHTML = rest.map(cardHTML).join('');
         empty.hidden = list.length > 0;
       }
@@ -702,7 +597,22 @@
       }
 
       search.addEventListener('input', filter);
-      render(POSTS);
+
+      grid.innerHTML = '';
+      feat.innerHTML = '';
+      fetch('/.netlify/functions/blog-posts')
+        .then(res => {
+          if (!res.ok) throw new Error('fetch failed');
+          return res.json();
+        })
+        .then(data => {
+          POSTS = Array.isArray(data.posts) ? data.posts : [];
+          render(POSTS);
+        })
+        .catch(() => {
+          grid.innerHTML = '<p class="blog-empty">Could not load stories right now. Please refresh, or <a href="/contact">contact us</a>.</p>';
+          empty.hidden = true;
+        });
     })();
   </script>
   <script>
