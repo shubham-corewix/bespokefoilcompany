@@ -167,6 +167,9 @@ exports.handler = async (event) => {
   const orderNumber = buildOrderNumber(pi);
 
   // ---------- 1. ShipStation ----------
+  // Do not return on failure: email/CAPI must still run. Stripe retries if we
+  // end the handler with 500; orderKey + orderEmailSent keep both idempotent.
+  let shipStationFailed = false;
   try {
     const auth = Buffer.from(
       process.env.SHIPSTATION_API_KEY + ':' + process.env.SHIPSTATION_API_SECRET
@@ -224,13 +227,13 @@ exports.handler = async (event) => {
     if (!res.ok) {
       const text = await res.text();
       console.error('ShipStation error:', res.status, text);
-      // Return 500 so Stripe retries the webhook - the orderKey keeps it idempotent
-      return { statusCode: 500, body: 'ShipStation failed' };
+      shipStationFailed = true;
+    } else {
+      console.log('ShipStation order created:', orderNumber);
     }
-    console.log('ShipStation order created:', orderNumber);
   } catch (err) {
     console.error('ShipStation exception:', err.message);
-    return { statusCode: 500, body: 'ShipStation failed' };
+    shipStationFailed = true;
   }
 
   // ---------- 2. Email ----------
@@ -336,5 +339,8 @@ exports.handler = async (event) => {
     }
   }
 
+  if (shipStationFailed) {
+    return { statusCode: 500, body: 'ShipStation failed' };
+  }
   return { statusCode: 200, body: 'OK' };
 };
