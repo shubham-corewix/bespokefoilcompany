@@ -2,6 +2,7 @@
 <html lang="en-GB">
 <head>
 <script src="/shared/analytics.js"></script>
+  <script src="/shared/community-signup.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sitemap | Bespoke Foil Company</title>
@@ -11,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/shared/styles.css?v=10">
+<link rel="stylesheet" href="/shared/styles.css?v=25">
 <style>
 /* ===== SITEMAP page-specific ===== */
 
@@ -32,8 +33,26 @@
 .sm-group h2{font-family:var(--serif);font-weight:340;font-size:22px;letter-spacing:-.01em;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--hairline)}
 .sm-group ul{list-style:none;margin:0;padding:0}
 .sm-group li{margin-bottom:11px}
-.sm-group li a{font-family:var(--sans);font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .18s ease,border-color .18s ease}
-.sm-group li a:hover{color:var(--stone-text);border-bottom-color:var(--stone)}
+/* Every link on this page, not just .sm-group. Franchise Regions and Stories
+       live in .sm-long, and the intro and utility tags in their own containers -
+       none of which matched the old .sm-group-only rule, so all three fell back
+       to the browser default and rendered underlined. On a page where literally
+       everything is a link, underlines are noise: the context IS the affordance.
+       Restored on hover and focus, so the cue returns the moment someone
+       interacts, and keyboard users still get a visible target. */
+    .sm-group li a,
+    .sm-long li a,
+    .sm-intro a,
+    .sm-util-tag a{font-family:var(--sans);font-size:15px;color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;transition:color .18s ease,border-color .18s ease}
+    .sm-long li a,.sm-intro a,.sm-util-tag a{font-size:inherit}
+    .sm-group li a:focus-visible,
+    .sm-long li a:focus-visible,
+    .sm-intro a:focus-visible,
+    .sm-util-tag a:focus-visible{outline:2px solid var(--stone);outline-offset:3px;border-radius:2px}
+.sm-group li a:hover,
+    .sm-long li a:hover,
+    .sm-intro a:hover,
+    .sm-util-tag a:hover{color:var(--stone-text);border-bottom-color:var(--stone)}
 .sm-group--util h2{color:var(--stone-text)}
 .sm-util-tag{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--white);background:var(--stone-text);border-radius:100px;padding:3px 9px;margin-left:8px;vertical-align:middle}
 
@@ -44,7 +63,22 @@
   .sm-body{padding:48px 18px 64px}
   .sm-grid{gap:36px 32px}
 }
-</style>
+
+    /* ---- long sections ----
+       Franchise Regions (112) and Stories (15) would dominate the main grid and
+       turn this into one very long scroll, so each gets its own full-width band
+       below it, separated by a rule and split into columns. */
+    .sm-long{border-top:1px solid var(--hairline);margin-top:56px;padding-top:40px}
+    .sm-long h2{font-family:var(--serif);font-weight:340;font-size:22px;letter-spacing:-.01em;
+      margin-bottom:18px;display:flex;align-items:baseline;gap:10px}
+    .sm-count{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.04em;
+      color:var(--ink-faint);background:var(--bone);border-radius:999px;padding:3px 9px}
+    .sm-long ul{list-style:none;margin:0;padding:0;columns:3;column-gap:48px}
+    .sm-long li{break-inside:avoid;margin-bottom:10px}
+    @media(max-width:900px){.sm-long ul{columns:2;column-gap:32px}}
+    @media(max-width:560px){.sm-long ul{columns:1}}
+
+  </style>
 </head>
 <body>
 
@@ -52,28 +86,28 @@
 <nav class="nav-menu" id="navMenu" aria-hidden="true">
   <div class="nav-menu-inner">
     <div class="nav-menu-top">
-      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-        <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
-      </a>
-      <div class="nav-menu-top-right">
-        <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
+      <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
           <span>Order Your Kit</span>
           <span class="sq"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
-        <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
+      <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+        <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
+      </a>
+      <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
           <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
-      </div>
     </div>
 
         <div class="nav-menu-links">
       <a href="/" data-page="home">Home</a>
       <a href="/our-story" data-page="our-story">Our Story</a>
-      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
+      <a href="/franchise" data-page="franchise">Memory Catcher&trade; Franchise</a>
+      <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology&trade;</a>
       <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
       <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
       <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
       <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+      <a href="/memory-catcher-hub" data-page="memory-catcher-hub">The Memory Catcher&trade; Hub</a>
       <a href="/faq" data-page="faq">FAQ</a>
       <a href="/contact" data-page="contact">Contact</a>
     </div>
@@ -149,6 +183,19 @@
 <section class="sm-body">
   <p class="sm-intro">Everything on our website, grouped by area. If you still can't find what you need, <a href="/contact">get in touch</a> and we'll point you the right way.</p>
   <div class="sm-grid">
+      <div class="sm-group sm-group--util">
+        <h2>Utility Pages <span class="sm-util-tag">testing</span></h2>
+        <ul>
+          <li><a href="/add-ons-exclusive-discount-938476">Add-Ons Upsell App</a></li>
+          <li><a href="/gallery-upload">Ashley Gallery Upload</a></li>
+          <li><a href="/franchise-success">Franchise - Success</a></li>
+          <li><a href="/memory-catcher/ashley-eccleston">Memory Catcher - Ashley Eccleston (affiliate example)</a></li>
+          <li><a href="/memory-catcher-enquiry">Memory Catcher - Enquiry Form</a></li>
+          <li><a href="/slot-reservation-form">Slot Reservation Form</a></li>
+          <li><a href="/upload-portal-form">Upload Portal - Form</a></li>
+          <li><a href="/upload-portal-thank-you">Upload Portal - Thank You</a></li>
+        </ul>
+      </div>
       <div class="sm-group">
         <h2>Main</h2>
         <ul>
@@ -190,31 +237,158 @@
         </ul>
       </div>
       <div class="sm-group">
-        <h2>Memory Catchers</h2>
-        <ul>
-          <li><a href="/franchises-bio/ashley-eccleston">Ashley Eccleston</a></li>
-        </ul>
-      </div>
-      <div class="sm-group">
         <h2>Contact</h2>
         <ul>
           <li><a href="/contact">Contact Us</a></li>
           <li><a href="/privacy-policy">Privacy Policy</a></li>
         </ul>
       </div>
-      <div class="sm-group sm-group--util">
-        <h2>Utility Pages <span class="sm-util-tag">testing</span></h2>
+      <div class="sm-group">
+        <h2>Utilities</h2>
         <ul>
-          <li><a href="/add-ons-exclusive-discount-938476">Add-Ons Upsell App</a></li>
-          <li><a href="/franchise-success">Franchise - Success</a></li>
-          <li><a href="/memory-catcher/ashley-eccleston">Memory Catcher - Ashley Eccleston (affiliate example)</a></li>
-          <li><a href="/memory-catcher-enquiry">Memory Catcher - Enquiry Form</a></li>
-          <li><a href="/slot-reservation-form">Slot Reservation Form</a></li>
-          <li><a href="/upload-portal-form">Upload Portal - Form</a></li>
-          <li><a href="/upload-portal-thank-you">Upload Portal - Thank You</a></li>
+          <li><a href="/linktree">Links</a></li>
+          <li><a href="/franchisee-login">Memory Catcher hub login</a></li>
         </ul>
       </div>
   </div>
+
+        <div class="sm-long">
+      <h2>Franchise Regions <span class="sm-count">112</span></h2>
+      <ul>
+          <li><a href="/franchises/aberdeen">Aberdeen and Aberdeenshire</a></li>
+          <li><a href="/franchises/antrim">Antrim and East Antrim</a></li>
+          <li><a href="/franchises/bath">Bath and North East Somerset</a></li>
+          <li><a href="/franchises/bedford-luton">Bedford and Luton</a></li>
+          <li><a href="/franchises/birmingham">Birmingham Central and South</a></li>
+          <li><a href="/franchises/blackburn-burnley">Blackburn and Burnley</a></li>
+          <li><a href="/franchises/bolton-wigan">Bolton and Wigan</a></li>
+          <li><a href="/franchises/bournemouth-poole">Bournemouth, Christchurch and Poole</a></li>
+          <li><a href="/franchises/bradford">Bradford</a></li>
+          <li><a href="/franchises/brighton">Brighton and Hove</a></li>
+          <li><a href="/franchises/bristol">Bristol</a></li>
+          <li><a href="/franchises/buckinghamshire">Buckinghamshire: High Wycombe and Aylesbury</a></li>
+          <li><a href="/franchises/bury-rossendale">Bury and Rossendale</a></li>
+          <li><a href="/franchises/cambridge">Cambridge and South Cambridgeshire</a></li>
+          <li><a href="/franchises/cardiff">Cardiff and Vale of Glamorgan</a></li>
+          <li><a href="/franchises/cheshire-east">Cheshire East: Macclesfield and Wilmslow</a></li>
+          <li><a href="/franchises/cheshire-west">Cheshire West: Chester and Northwich</a></li>
+          <li><a href="/franchises/cornwall">Cornwall</a></li>
+          <li><a href="/franchises/county-durham">County Durham</a></li>
+          <li><a href="/franchises/coventry">Coventry and Warwickshire</a></li>
+          <li><a href="/franchises/cumbria">Cumbria: Carlisle and the Lakes</a></li>
+          <li><a href="/franchises/derby">Derby and South Derbyshire</a></li>
+          <li><a href="/franchises/derry-northwest">Derry and North West NI</a></li>
+          <li><a href="/franchises/doncaster-rotherham">Doncaster and Rotherham</a></li>
+          <li><a href="/franchises/down-lisburn">Down and Lisburn</a></li>
+          <li><a href="/franchises/dundee">Dundee and Angus</a></li>
+          <li><a href="/franchises/kent-east">East Kent: Canterbury, Thanet and Dover</a></li>
+          <li><a href="/franchises/east-sussex">East Sussex: Eastbourne and Hastings</a></li>
+          <li><a href="/franchises/edinburgh">Edinburgh</a></li>
+          <li><a href="/franchises/edinburgh-lothians">Edinburgh Greater Lothians</a></li>
+          <li><a href="/franchises/enfield-north-london">Enfield and North London Borders</a></li>
+          <li><a href="/franchises/exeter">Exeter and East Devon</a></li>
+          <li><a href="/franchises/fife">Fife</a></li>
+          <li><a href="/franchises/glasgow">Glasgow City</a></li>
+          <li><a href="/franchises/gloucester-cheltenham">Gloucester and Cheltenham</a></li>
+          <li><a href="/franchises/belfast">Greater Belfast</a></li>
+          <li><a href="/franchises/glasgow-greater">Greater Glasgow: Lanarkshire and Renfrewshire</a></li>
+          <li><a href="/franchises/southampton">Hampshire North: Southampton and Eastleigh</a></li>
+          <li><a href="/franchises/hampshire-south">Hampshire South: Portsmouth and Gosport</a></li>
+          <li><a href="/franchises/hertfordshire">Hertfordshire: St Albans and Watford</a></li>
+          <li><a href="/franchises/huddersfield-calderdale">Huddersfield and Calderdale</a></li>
+          <li><a href="/franchises/hull">Hull and East Riding</a></li>
+          <li><a href="/franchises/inverness">Inverness and the Highlands</a></li>
+          <li><a href="/franchises/ipswich-suffolk">Ipswich and Suffolk</a></li>
+          <li><a href="/franchises/isle-of-man">Isle of Man</a></li>
+          <li><a href="/franchises/isle-of-wight">Isle of Wight</a></li>
+          <li><a href="/franchises/lancashire-central">Lancashire Central: Preston and Chorley</a></li>
+          <li><a href="/franchises/lancaster-morecambe">Lancaster and Morecambe</a></li>
+          <li><a href="/franchises/leeds">Leeds</a></li>
+          <li><a href="/franchises/leicester">Leicester</a></li>
+          <li><a href="/franchises/lincoln">Lincoln and North Lincolnshire</a></li>
+          <li><a href="/franchises/liverpool">Liverpool</a></li>
+          <li><a href="/franchises/barnet-enfield">London: Barnet and Enfield</a></li>
+          <li><a href="/franchises/brent-harrow">London: Brent and Harrow</a></li>
+          <li><a href="/franchises/bromley-bexley">London: Bromley and Bexley</a></li>
+          <li><a href="/franchises/camden-haringey">London: Camden and Haringey</a></li>
+          <li><a href="/franchises/croydon">London: Croydon</a></li>
+          <li><a href="/franchises/ealing-hounslow">London: Ealing and Hounslow</a></li>
+          <li><a href="/franchises/greenwich-lewisham">London: Greenwich and Lewisham</a></li>
+          <li><a href="/franchises/hackney-islington">London: Hackney and Islington</a></li>
+          <li><a href="/franchises/havering-barking">London: Havering and Barking</a></li>
+          <li><a href="/franchises/hillingdon-harrow">London: Hillingdon and Harrow</a></li>
+          <li><a href="/franchises/kensington-chelsea-hammersmith">London: Kensington and Chelsea, Hammersmith and Fulham</a></li>
+          <li><a href="/franchises/kingston-epsom">London: Kingston and Epsom</a></li>
+          <li><a href="/franchises/lambeth-southwark">London: Lambeth and Southwark</a></li>
+          <li><a href="/franchises/nappy-valley">London: Nappy Valley - Wandsworth, Battersea, Clapham</a></li>
+          <li><a href="/franchises/richmond-kingston-wimbledon">London: Richmond, Kingston and Wimbledon</a></li>
+          <li><a href="/franchises/sutton-merton">London: Sutton and Merton</a></li>
+          <li><a href="/franchises/tower-hamlets-newham">London: Tower Hamlets and Newham</a></li>
+          <li><a href="/franchises/waltham-forest-redbridge">London: Waltham Forest and Redbridge</a></li>
+          <li><a href="/franchises/manchester">Manchester Central</a></li>
+          <li><a href="/franchises/merseyside-south">Merseyside South: St Helens and Knowsley</a></li>
+          <li><a href="/franchises/kent-mid">Mid Kent: Maidstone and Ashford</a></li>
+          <li><a href="/franchises/mid-ulster">Mid Ulster and Armagh</a></li>
+          <li><a href="/franchises/newcastle">Newcastle and Gateshead</a></li>
+          <li><a href="/franchises/newport">Newport and Monmouthshire</a></li>
+          <li><a href="/franchises/devon-north">North Devon and Torbay</a></li>
+          <li><a href="/franchises/essex-north">North Essex: Chelmsford and Colchester</a></li>
+          <li><a href="/franchises/kent-north">North Kent: Dartford, Gravesend and Medway</a></li>
+          <li><a href="/franchises/bristol-north-somerset">North Somerset and South Gloucestershire</a></li>
+          <li><a href="/franchises/north-tyneside">North Tyneside and Northumberland South</a></li>
+          <li><a href="/franchises/north-wales">North Wales: Wrexham, Flintshire and Denbighshire</a></li>
+          <li><a href="/franchises/northampton-milton-keynes">Northampton and Milton Keynes</a></li>
+          <li><a href="/franchises/norwich">Norwich and Norfolk</a></li>
+          <li><a href="/franchises/nottingham">Nottingham</a></li>
+          <li><a href="/franchises/oldham-rochdale">Oldham and Rochdale</a></li>
+          <li><a href="/franchises/oxford">Oxford and South Oxfordshire</a></li>
+          <li><a href="/franchises/perth">Perth and Kinross</a></li>
+          <li><a href="/franchises/peterborough">Peterborough and The Fens</a></li>
+          <li><a href="/franchises/plymouth">Plymouth and South Devon</a></li>
+          <li><a href="/franchises/reading-basingstoke">Reading and Basingstoke</a></li>
+          <li><a href="/franchises/salisbury-dorset">Salisbury and North Dorset</a></li>
+          <li><a href="/franchises/sheffield">Sheffield</a></li>
+          <li><a href="/franchises/somerset">Somerset: Taunton and Yeovil</a></li>
+          <li><a href="/franchises/essex-south">South Essex: Southend, Basildon and Thurrock</a></li>
+          <li><a href="/franchises/south-wales-valleys">South Wales Valleys</a></li>
+          <li><a href="/franchises/stirling-falkirk">Stirling and Falkirk</a></li>
+          <li><a href="/franchises/stockport-tameside">Stockport and Tameside</a></li>
+          <li><a href="/franchises/stoke">Stoke-on-Trent and North Staffordshire</a></li>
+          <li><a href="/franchises/sunderland-south-tyneside">Sunderland and South Tyneside</a></li>
+          <li><a href="/franchises/surrey">Surrey: Guildford and Woking</a></li>
+          <li><a href="/franchises/swansea">Swansea and Neath Port Talbot</a></li>
+          <li><a href="/franchises/swindon-wiltshire">Swindon and North Wiltshire</a></li>
+          <li><a href="/franchises/teesside">Teesside: Middlesbrough and Stockton</a></li>
+          <li><a href="/franchises/wakefield-barnsley">Wakefield and Barnsley</a></li>
+          <li><a href="/franchises/kent-west">West Kent: Tunbridge Wells and Sevenoaks</a></li>
+          <li><a href="/franchises/norfolk-west">West Norfolk and King's Lynn</a></li>
+          <li><a href="/franchises/sussex-west">West Sussex: Crawley, Horsham and Worthing</a></li>
+          <li><a href="/franchises/wirral">Wirral</a></li>
+          <li><a href="/franchises/wolverhampton-walsall">Wolverhampton and Walsall</a></li>
+          <li><a href="/franchises/worcester-hereford">Worcester and Herefordshire</a></li>
+          <li><a href="/franchises/york-harrogate">York and Harrogate</a></li>
+      </ul>
+    </div>
+    <div class="sm-long">
+      <h2>Stories <span class="sm-count">15</span></h2>
+      <ul>
+          <li><a href="/post/the-perfect-gift-for-new-mums-and-dads">A Baby Gift Parents Will Cherish Forever</a></li>
+          <li><a href="/post/baby-wont-open-hand-for-handprints">Baby Won't Open Their Hand for Handprints? Try This</a></li>
+          <li><a href="/post/can-you-use-paint-for-baby-handprints">Can You Use Paint for Baby Handprints? (Read This First)</a></li>
+          <li><a href="/post/tiny-hands-big-emotions-captured-forever">Capture the Magic of Your Baby's Tiny Hands</a></li>
+          <li><a href="/post/create-lasting-memories-with-one-tiny-touch">Capture Your Baby's Tiny Hands and Feet Forever</a></li>
+          <li><a href="/post/the-must-have-handprint-kit-for-new-parents">Create a Keepsake of Your Baby's Tiny Hands</a></li>
+          <li><a href="/post/step-by-step-guide-to-a-beautiful-baby-keepsake">Create Your Baby Keepsake in Just Six Steps</a></li>
+          <li><a href="/post/don-t-let-your-memories-fade-away">Don't Let Your Memories Fade Away</a></li>
+          <li><a href="/post/foil-fusion-the-future-of-baby-keepsakes">Foil Fusion - The Future of Baby Keepsake Prints</a></li>
+          <li><a href="/post/foil-fusion-vs-toner-foiling-the-real-difference">Foil Fusion vs Toner Foiling - The Real Difference</a></li>
+          <li><a href="/post/handprints-or-footprints-newborn">Handprints or Footprints for Newborns: Which Is Easier?</a></li>
+          <li><a href="/post/how-to-take-your-babys-handprints-neatly">How to Take Your Baby's Handprints Neatly (No Paint, No Ink, No Mess)</a></li>
+          <li><a href="/post/why-foil-prints-make-the-ultimate-baby-gift">The Baby Gift Parents Will Treasure Forever</a></li>
+          <li><a href="/post/capture-baby-s-first-touch-with-foil-prints">Turn Baby's First Touch into a Timeless Keepsake</a></li>
+          <li><a href="/post/why-every-parent-needs-a-baby-footprint-keepsake">Why Every Parent Needs a Baby Footprint Keepsake</a></li>
+      </ul>
+    </div>
 </section>
 
 <!-- ============ COMMUNITY (shared) ============ -->
@@ -339,20 +513,9 @@
   window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(up);tick=true;}},{passive:true});
   up();
 })();
-
-/* contact form stub - production wires to a Netlify form / function */
-(function(){
-  const f=document.getElementById('contactForm');
-  if(!f) return;
-  f.addEventListener('submit',e=>{
-    e.preventDefault();
-    if(!f.fname.value.trim() || !f.email.value.trim()){
-      alert('Please add your first name and email so we can get back to you.');
-      return;
-    }
-    alert('Design preview: your enquiry would be sent here (production wires to a Netlify form).');
-  });
-})();
+      /* The contact-form stub that lived here has been removed. This page has no
+         form element at all, so the handler could never fire - dead code that
+         read like something broken. */
 </script>
 <script>
 /* interim nav menu toggle */

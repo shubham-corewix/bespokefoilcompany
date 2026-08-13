@@ -15,8 +15,9 @@
  * never reach ShipStation (signature check fails silently). This bit us on
  * add-ons - verify the webhook delivery log shows 200.
  */
-const { renderOrderEmailHtml, renderOrderEmailText } = require('./render-order-email');
+const { renderOrderEmailHtml, renderOrderEmailText } = require('./_shared/render-order-email');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { buildKitOrderNumber } = require('./order-number');
 const crypto = require('crypto');
 
 /* ---- Meta Conversions API (server-side Purchase, deduped vs browser pixel) ----
@@ -244,7 +245,7 @@ exports.handler = async (event) => {
      the customer completes it later in the upload portal, exactly as today.
      We tag the order so fulfilment knows a portal upload is pending. */
   const order = {
-    orderNumber: `KS-${pi.id.slice(-8).toUpperCase()}`,
+    orderNumber: buildKitOrderNumber(pi),
     orderKey: pi.id, // idempotency: ShipStation dedupes repeat webhooks on this
     orderDate: new Date(pi.created * 1000).toISOString(),
     orderStatus: 'awaiting_shipment',
@@ -271,11 +272,19 @@ exports.handler = async (event) => {
     shippingAmount: (parseInt(m.postage_pence || '0', 10)) / 100,
     amountPaid: pi.amount / 100,
     requestedShippingService: 'Royal Mail Next Working Day',
-    customerNotes: personalisationNote(m),
+    /* The free extra copy is prepended to the notes, not tucked into a custom
+       field, because customerNotes is what the studio actually reads when
+       picking an order. A fulfilment instruction nobody sees is the same as no
+       instruction at all. */
+    customerNotes: (m.free_extra_copy === 'yes'
+      ? '*** FREE EXTRA COPY - include a second print-only copy (Memory Catcher offer) ***\n\n'
+      : '') + personalisationNote(m),
     // Memory Catcher attribution: tag the order so commission can be
     // credited to the right franchisee at 20%. affiliate_slug is set by
-    // create-payment-intent when the order came from /memory-catcher/<slug>.
+    // create-payment-intent, either from /memory-catcher/<slug> or from a
+    // discount code entered at checkout.
     ...(m.affiliate_slug ? { tagIds: [], customField1: 'mc:' + m.affiliate_slug } : {}),
+    ...(m.free_extra_copy === 'yes' ? { customField2: 'FREE EXTRA COPY' } : {}),
     advancedOptions: {
       source: m.affiliate_slug ? ('memory-catcher:' + m.affiliate_slug) : 'main-keepsake-landing'
     },

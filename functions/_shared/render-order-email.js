@@ -47,6 +47,33 @@ function itemRows(items) {
                 </tr>`).join('');
 }
 
+
+function personalisationBlock(data) {
+  const rows = data.personalisation;
+  if (!rows || !rows.length) return '';
+  const items = rows.map(([k, v]) => `
+                  <tr>
+                    <td style="padding:4px 0; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#5A5650;">${esc(k)}</td>
+                    <td align="right" style="padding:4px 0; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#000000;">${esc(v)}</td>
+                  </tr>`).join('');
+  return `
+          <tr>
+            <td style="padding:28px 40px 0 40px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#F6F6F4; border-radius:12px;">
+                <tr>
+                  <td style="padding:20px 24px;">
+                    <div style="font-family:Georgia,serif; font-size:15px; color:#000000; padding-bottom:8px;">Your personalisation</div>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${items}</table>
+                    <div style="font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#5A5650; padding-top:10px;">
+                      We have these on file - no need to add them again in the upload portal.
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>`;
+}
+
 function renderOrderEmailHtml(data) {
   const supportEmail = data.support_email || 'hello@thebespokefoilcompany.co.uk';
   const websiteUrl = data.website_url || 'thebespokefoilcompany.co.uk';
@@ -128,6 +155,7 @@ ${discountRow(data)}${postageRow(data)}
               </table>
             </td>
           </tr>
+${personalisationBlock(data)}
           <tr>
             <td style="padding:36px 40px 0 40px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#F6F6F4; border-radius:12px; overflow:hidden;">
@@ -195,6 +223,13 @@ function renderOrderEmailText(data) {
   }
   lines.push(`Total paid: ${gbpPlain(data.total)}`);
   lines.push('');
+
+  if (data.personalisation && data.personalisation.length) {
+    lines.push('Your personalisation:');
+    for (const [k, v] of data.personalisation) lines.push(`- ${k}: ${v}`);
+    lines.push('We have these on file - no need to add them again in the upload portal.');
+    lines.push('');
+  }
   lines.push(`Questions? ${data.support_email || 'hello@thebespokefoilcompany.co.uk'}`);
   lines.push('');
   lines.push('The Bespoke Foil Company');

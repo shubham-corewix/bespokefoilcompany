@@ -254,7 +254,7 @@ exports.handler = async (event) => {
 
         const html = renderOrderEmailHtml(merge);
         const text = renderOrderEmailText(merge);
-        const subject = `Your order is confirmed (#${merge.order_ref})`;
+        const subject = `Your add-ons are confirmed (#${merge.order_ref})`;
 
         const result = await sendOrderEmailViaMandrill({
           toEmail,
