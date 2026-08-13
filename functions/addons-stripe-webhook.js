@@ -17,11 +17,31 @@ const { buildOrderNumber } = require('./order-number');
 const { renderOrderEmailHtml, renderOrderEmailText } = require('./_shared/render-order-email');
 
 exports.handler = async (event) => {
-  const sig = event.headers['stripe-signature'];
+  // Stripe POSTs a raw JSON body. Netlify often base64-encodes it; a GET
+  // (browser, health check) or a 301/302 in front of this URL arrives with
+  // no body and Stripe throws "No webhook payload was provided."
+  if (event.httpMethod && event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
+
+  const rawBody = event.isBase64Encoded
+    ? Buffer.from(event.body || '', 'base64')
+    : (event.body || '');
+  const sig = event.headers['stripe-signature'] || event.headers['Stripe-Signature'];
+
+  if (!rawBody || !rawBody.length) {
+    console.error('Webhook missing body', {
+      httpMethod: event.httpMethod,
+      isBase64Encoded: event.isBase64Encoded,
+      hasSig: Boolean(sig)
+    });
+    return { statusCode: 400, body: 'No webhook payload was provided' };
+  }
+
   let stripeEvent;
   try {
     stripeEvent = stripe.webhooks.constructEvent(
-      event.body,
+      rawBody,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET_ADDON
     );
