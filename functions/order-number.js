@@ -11,4 +11,9 @@ function buildOrderNumber(paymentIntent) {
   return 'ADDON-' + (orderRef ? orderRef + '-' : '') + tail;
 }
 
-module.exports = { buildOrderNumber };
+function buildKitOrderNumber(paymentIntent) {
+  const tail = paymentIntent.id.slice(-8).toUpperCase();
+  return 'KS-' + tail;
+}
+
+module.exports = { buildOrderNumber, buildKitOrderNumber };

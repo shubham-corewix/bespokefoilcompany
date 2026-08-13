@@ -240,12 +240,15 @@ exports.handler = async (event) => {
     }
   }
   const addr = ship.address || {};
+  const orderNumber = buildKitOrderNumber(pi);
+  const subtotal = parseInt(m.subtotal_pence || '0', 10) / 100;
+  const postage = parseInt(m.postage_pence || '0', 10) / 100;
 
   /* Build the ShipStation order. Personalisation is NOT collected here -
      the customer completes it later in the upload portal, exactly as today.
      We tag the order so fulfilment knows a portal upload is pending. */
   const order = {
-    orderNumber: buildKitOrderNumber(pi),
+    orderNumber,
     orderKey: pi.id, // idempotency: ShipStation dedupes repeat webhooks on this
     orderDate: new Date(pi.created * 1000).toISOString(),
     orderStatus: 'awaiting_shipment',
