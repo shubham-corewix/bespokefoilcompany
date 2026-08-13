@@ -291,25 +291,25 @@ exports.handler = async (event) => {
   };
 
    // ---------- 1. ShipStation ----------
-  try {
-    const res = await fetch(SHIPSTATION_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: ssAuthHeader(),
-      },
-      body: JSON.stringify(order),
-    });
-    if (!res.ok) {
-      const text = await res.text();
-      console.error('ShipStation rejected order:', res.status, text);
-      return { statusCode: 502, body: 'ShipStation error' };
-    }
-    // return { statusCode: 200, body: 'Order created' };
-  } catch (err) {
-    console.error('ShipStation request failed:', err.message);
-    return { statusCode: 502, body: 'ShipStation request failed' };
-  }
+  // try {
+  //   const res = await fetch(SHIPSTATION_URL, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: ssAuthHeader(),
+  //     },
+  //     body: JSON.stringify(order),
+  //   });
+  //   if (!res.ok) {
+  //     const text = await res.text();
+  //     console.error('ShipStation rejected order:', res.status, text);
+  //     return { statusCode: 502, body: 'ShipStation error' };
+  //   }
+  //   // return { statusCode: 200, body: 'Order created' };
+  // } catch (err) {
+  //   console.error('ShipStation request failed:', err.message);
+  //   return { statusCode: 502, body: 'ShipStation request failed' };
+  // }
 
 
    // ---------- 2. Email (non-blocking) ----------
