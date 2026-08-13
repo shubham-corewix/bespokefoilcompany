@@ -254,6 +254,19 @@ exports.handler = async (event) => {
         const couponDisc = Number(pi.metadata.couponDisc || 0) / 100;
         const discountAmount = basketDisc + keyringDisc + couponDisc;
 
+        const personalisationRows = [];
+        items.forEach((it) => {
+          const entries = [
+            ...Object.entries(it.fields || {}),
+            ...Object.entries(it.options || {})
+          ];
+          entries.forEach(([k, v]) => {
+            const label = FIELD_LABELS[k] || k;
+            const prefixedLabel = items.length > 1 ? `${it.name} — ${label}` : label;
+            personalisationRows.push([prefixedLabel, String(v)]);
+          });
+        });
+
         const merge = {
           order_ref: orderRef || orderNumber,
           date_paid: formatDatePaid(pi.created),
@@ -271,7 +284,8 @@ exports.handler = async (event) => {
           discount_label: pi.metadata.couponCode ? `${pi.metadata.couponCode}` : '',
           discount_amount: discountAmount || 0,
           postage: 0,
-          total: pi.amount / 100
+          total: pi.amount / 100,
+          personalisation: personalisationRows
         };
 
         console.log('Order email merge payload:', JSON.stringify(merge));
