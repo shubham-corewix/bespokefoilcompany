@@ -146,6 +146,7 @@ exports.handler = async (event) => {
     if (first && (first.status === 'rejected' || first.status === 'invalid')) {
       throw new Error(`Mandrill ${first.status}: ${first.reject_reason || 'unknown'}`);
     }
+    console.log("email sent successfully");
     return { ok: true, status: first && first.status };
   };
 
