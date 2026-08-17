@@ -78,36 +78,11 @@ photography changes would be a dependency earning nothing.
 
 Regenerate when a hero image changes:
 
+```bash
+python3 scripts/generate-og-images.py
 ```
-python3 - <<'PY'
-import re, glob, os
-from PIL import Image
-SKIP = {'component-library.html','snag-tool.html','gallery-upload.html',
-        'memory-catcher-region-map-embed.html','post-template.html',
-        'franchise-region-template.html','franchise-bio-template.html'}
-DEFAULT = 'assets/hero-slide-196-1800.webp'
-def hero(f):
-    h = open(f).read()
-    n = h.find('nav-menu-cards')          # the shared nav overlay is not the hero
-    if n > 0:
-        e = h.find('</nav>', n); h = h[:n] + h[e if e > 0 else n:]
-    for m in re.finditer(r'<img[^>]+src="(/assets/[^"]+\.(?:webp|jpg|jpeg|png))"', h):
-        u = m.group(1)
-        if any(k in u for k in ('logo','wordmark','lockup','/pay/','tp-')): continue
-        if os.path.exists(u.lstrip('/')): return u.lstrip('/')
-    return DEFAULT
-os.makedirs('assets/og', exist_ok=True)
-for f in sorted(glob.glob('*.html')):
-    if f in SKIP: continue
-    im = Image.open(hero(f)).convert('RGB'); w, h = im.size; tr = 1200/630
-    if w/h > tr:
-        nw = int(h*tr); box = ((w-nw)//2, 0, (w-nw)//2+nw, h)
-    else:
-        nh = int(w/tr); top = int((h-nh)*0.32); box = (0, top, w, top+nh)
-    im.crop(box).resize((1200,630), Image.LANCZOS).save(
-        f'assets/og/{f[:-5]}.jpg', 'JPEG', quality=82, optimize=True)
-PY
-```
+
+Requires `pip install Pillow`. The script crops each page's hero to 1200×630 JPEG in `assets/og/`.
 
 JPEG, not WebP: WhatsApp's link preview does not reliably render WebP, and a
 preview only fails where you cannot see it. The 0.32 vertical bias keeps faces
