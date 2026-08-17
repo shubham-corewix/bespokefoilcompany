@@ -2,11 +2,20 @@
 <html lang="en-GB">
 
 <head>
-  <script src="/shared/analytics.js"></script>
-  <script src="/shared/trustpilot.js" defer></script>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <script src="/shared/community-signup.js?v=0921b97b" defer></script>
+  <script src="/shared/trustpilot.js?v=6fa7af21" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>FAQs Foil Keepsake Kit Questions Answered Clearly Now</title>
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/faq.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/faq.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/faq.jpg">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/faq">
   <meta name="description"
     content="Find clear answers from parents like you. Learn about kits prints uploads and delivery so you can create beautiful keepsakes with confidence and ease.">
   <link rel="preload" as="image" href="/assets/contact-hero-1600.webp"
@@ -15,14 +24,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
     onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
       rel="stylesheet">
   </noscript>
-  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
   <style>
     /* ===== FAQ page-specific ===== */
 
@@ -326,35 +335,39 @@
   <nav class="nav-menu" id="navMenu" aria-hidden="true">
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
-        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
-        </a>
-        <div class="nav-menu-top-right">
+          <!-- Order: CTA, logo, close. All three are DIRECT children so the
+               existing space-between puts the logo between the other two.
+               .nav-menu-top-right is gone - it nested the CTA one level down,
+               which made that impossible. -->
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
             <span>Order Your Kit</span>
             <span class="sq"><svg viewBox="0 0 24 24">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></span>
           </a>
+          <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
+        </a>
           <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
             <svg viewBox="0 0 24 24">
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
         </div>
-      </div>
 
       <div class="nav-menu-links">
-        <a href="/" data-page="home">Home</a>
-        <a href="/our-story" data-page="our-story">Our Story</a>
-        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
-        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
-        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-        <a href="/faq" data-page="faq" class="current">FAQ</a>
-        <a href="/contact" data-page="contact">Contact</a>
-      </div>
+          <a href="/" data-page="home">Home</a>
+          <a href="/our-story" data-page="our-story">Our Story</a>
+          <a href="/franchise" data-page="franchise">Memory Catcher&trade; Franchise</a>
+          <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology&trade;</a>
+          <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+          <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+          <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+          <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+          <a href="/memory-catcher-hub" data-page="memory-catcher-hub">The Memory Catcher&trade; Hub</a>
+          <a href="/faq" data-page="faq" class="current">FAQ</a>
+          <a href="/contact" data-page="contact">Contact</a>
+        </div>
 
       <div class="nav-menu-cta">
         <div class="nav-menu-cta-head">
@@ -387,11 +400,12 @@
 
 
   <div class="announce">
-    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
-    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-  </div>
-
-  <div class="hero-scope">
+      <span class="announce-item"><img src="/assets/tp-stars-5.svg" alt=""><span class="announce-text">Rated <b>Excellent</b> on Trustpilot</span></span>
+      <span class="announce-item"><span class="announce-text">Rated <b>4.9 / 5</b> from <b>over 2,000</b> reviews on Etsy</span></span>
+      <span class="announce-item"><span class="announce-text">Our exclusive <b>Foil Fusion Technology&trade;</b></span></span>
+      <span class="announce-item"><span class="announce-text">Order before <b>12pm</b> on a weekday for same-day dispatch</span></span>
+    </div>
+    <div class="hero-scope">
     <header>
       <div class="nav-row">
         <button class="burger" aria-label="Menu">
@@ -445,7 +459,7 @@
             <p>Our foil hand and footprint kits are mess-free, stress-free ways to capture your baby's tiny hand or
               footprints at home. The kit includes everything you need to take clear prints using safe, inkless wipes
               and special reactive paper. We then transform these prints into stunning foil keepsakes using our
-              exclusive Foil Fusion Technology.</p>
+              exclusive Foil Fusion Technology&trade;.</p>
           </div>
         </div>
       </div>
@@ -548,13 +562,13 @@
     </div>
 
     <div class="faq-group">
-      <h2>Our Foil Fusion Technology</h2>
+      <h2>Our Foil Fusion Technology&trade;</h2>
 
       <div class="faq-item">
         <button class="faq-q">What makes your foil prints different from others?</button>
         <div class="faq-a">
           <div class="faq-a-inner">
-            <p>We're the only company using Foil Fusion Technology - our exclusive process that seamlessly bonds foil to
+            <p>We're the only company using Foil Fusion Technology&trade; - our exclusive process that seamlessly bonds foil to
               premium cardstock. Unlike traditional methods that glue foil on top (causing speckles and peeling), our
               process creates a flawless, durable finish that lasts a lifetime.</p>
           </div>
@@ -565,7 +579,7 @@
         <button class="faq-q">Will the foil peel or fade over time?</button>
         <div class="faq-a">
           <div class="faq-a-inner">
-            <p>No! Our Foil Fusion Technology permanently bonds the foil to the card, ensuring no peeling, fading, or
+            <p>No! Our Foil Fusion Technology&trade; permanently bonds the foil to the card, ensuring no peeling, fading, or
               deterioration. Your keepsake is designed to last generations.</p>
           </div>
         </div>
@@ -762,7 +776,7 @@
         <div class="faq-a">
           <div class="faq-a-inner">
             <ul>
-              <li>We're the only company with Foil Fusion Technology</li>
+              <li>We're the only company with Foil Fusion Technology&trade;</li>
               <li>Family-owned business with personal service</li>
               <li>Completely eco-friendly packaging</li>
               <li>Products designed specifically for busy new parents</li>
@@ -949,7 +963,7 @@
   <footer>
     <div class="foot-top">
       <div class="foot-col foot-contact">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <p>Tel: 07506 998934</p>
         <p>Email: hello@thebespokefoilcompany.co.uk</p>
         <div class="foot-social">
@@ -960,7 +974,11 @@
               <path
                 d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
             </svg></a>
-        </div>
+        
+            <a href="https://www.youtube.com/@bespokefoilcompany" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M21.58 7.19a2.51 2.51 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.81.41A2.51 2.51 0 0 0 2.42 7.19 26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.81-.41a2.51 2.51 0 0 0 1.77-1.78A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.42-4.81zM10 15.5v-7l6 3.5z" />
+            </svg></a>
+          </div>
         <p class="f-label">Find Us</p>
         <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
         <p class="f-label">Opening Hours</p>
@@ -968,7 +986,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h3>Explore</h3>
         <ul>
           <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
           <li><a href="/our-story">Our Story</a></li>
@@ -982,14 +1000,14 @@
       </div>
 
       <div class="foot-col">
-        <h4>Resources</h4>
+        <h3>Resources</h3>
         <ul>
           <li><a href="/faq">FAQ's</a></li>
           <li><a href="/blog">Stories &amp; Inspiration</a></li>
           <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
           <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
         </ul>
-        <h4>Franchise</h4>
+        <h3>Franchise</h3>
         <ul>
           <li><a href="/franchise-hub">Franchise Hub</a></li>
           <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
@@ -1002,7 +1020,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <ul>
           <li><a href="/contact">Contact Us</a></li>
           <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -1024,13 +1042,33 @@
             <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
           </div>
           <div class="foot-tp">
-            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          <!-- Official TrustBox (Mini). Everything inside the container is the
+               no-JS fallback - the widget replaces it once tp.widget.bootstrap
+               loads. The real figures live there on purpose: AI crawlers never
+               run the widget, so this is what they read. Kept in sync by
+               scripts/build-trustpilot.js from shared/trustpilot.js. -->
+          <div class="trustpilot-widget" data-locale="en-GB" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="5fec7f5644198b00014a524a" data-style-height="100px" data-style-width="200px" data-theme="dark" data-token="39d85b3a-b3ee-4772-ad2c-a59b046a1b1e" data-review-disclaimer="false">
+            <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">
+              <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+              <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews on Trustpilot</span>
+            </a>
           </div>
-        </div>
-      </div>
-    </div>
+          <!-- Etsy sits directly beneath the TrustBox so the two read as one
+               block of proof: a verified rating from one platform, and volume
+               from another. 2,224 is a far bigger number than 72 and does real
+               work here, at the point someone is deciding.
 
+               Unlinked, deliberately, for the same reason as the announce bar:
+               a clickable Etsy link in the footer of every page routes traffic
+               off the site, where the margin is whole, to a marketplace that
+               takes a cut and owns the customer. The claim earns trust here;
+               the link would spend it. The Organization schema's sameAs already
+               connects the two for machines. -->
+          <p class="foot-etsy"><span data-etsy-score>4.9</span> / 5 from <span data-etsy-count>over 2,000</span> reviews on Etsy</p>
+        </div>
+        </div><!-- /.foot-right -->
+      </div><!-- /.foot-col -->
+    </div><!-- /.foot-top -->
     <div class="foot-legal">
       <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
         GB419408687.</p>
@@ -1107,6 +1145,7 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
     })();
   </script>
+<script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async data-tp-bootstrap></script>
 </body>
 
 </html>

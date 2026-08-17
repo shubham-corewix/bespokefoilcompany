@@ -3,36 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Your add-ons | Last chance to order | Memory Catcher</title>
-<meta name="description" content="Last chance to add extra prints, framed replicas and keepsakes to your original order. Spend £40 or more and get 20% off.">
+<title>Add extras to your order | Memory Catcher</title>
+  <!-- Social preview. Absolute and on www deliberately: the links customers
+       actually receive are the /add-ons-exclusive-discount-938476 URLs on the
+       main domain, and Facebook and WhatsApp both reject relative og:image
+       values without saying why. An absolute URL still resolves when the app is
+       served from its own subdomain, so one image covers both deployments.
+       JPEG, not WebP - WhatsApp previews do not reliably render WebP. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Add extras to your order">
+  <meta property="og:description" content="Extra prints, framed replicas and keepsakes, added to your original order before we start foiling.">
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/addons/assets/og-addons.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/addons/assets/og-addons.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/addons/assets/og-addons.jpg">
+<meta name="description" content="Add extra prints, framed replicas and keepsakes to your original order. Spend £40 or more and get 20% off.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://static.wixstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Analytics, NO consent banner. Deliberately NOT the main site's
+     shared/analytics.js: that file's banner is fixed to the bottom of the
+     viewport at z-index 2147483000 and sat directly on top of this page's
+     sticky Checkout bar, swallowing the tap. Consent Mode v2 is denied
+     permanently here and no cookie is ever written, so there is nothing to
+     ask about. Full reasoning at the top of the file. -->
+<script src="shared/analytics-addons.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 <style>
+  /* ------------------------------------------------------------------
+     TOKENS - mirrored from /shared/styles.css (v25).
+     Names and values match the main site exactly so this page can never
+     drift again. If a token changes on the site, change it here to match.
+     Only --stone-tint, --shadow and --shadow-lift are local to this app.
+     ------------------------------------------------------------------ */
   :root{
     --ink:#000000;
-    --foil:#BEAD9D;
-    --stone:#DDD6CE;
-    --paper:#F6F6F4;
+    --stone:#BEAD9D;
+    --bone:#DDD6CE;
+    --porcelain:#F6F6F4;
     --white:#FFFFFF;
-    --muted:#6E6E6C;
-    --border:#D9D4CD;
-    --foil-tint:rgba(190,173,157,.18);
-    --radius:20px;
-    --radius-sm:12px;
+    --ink-soft:rgba(0,0,0,.62);
+    --ink-faint:rgba(0,0,0,.55);
+    --stone-text:#7D6E52;
+    --hairline:rgba(0,0,0,.12);
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    --script:"Nothing You Could Do",cursive;
+    --r-img:18px;
+    --r-card:14px;
+    --r-btn:10px;
+    /* local to this app */
+    --stone-tint:rgba(190,173,157,.18);
     --shadow:0 1px 2px rgba(0,0,0,.04), 0 10px 30px rgba(0,0,0,.06);
     --shadow-lift:0 2px 4px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.10);
-    --sans:'Figtree',system-ui,-apple-system,sans-serif;
-    --serif:'Fraunces',Georgia,serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
   body{
     font-family:var(--sans);
-    background:var(--paper);
+    background:var(--porcelain);
     color:var(--ink);
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
@@ -41,6 +74,8 @@
   img{max-width:100%;display:block}
   button{font-family:inherit;cursor:pointer}
   .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  @media (max-width:620px){.wrap{padding:0 14px}}
+  @media (max-width:400px){.wrap{padding:0 10px}}
 
   /* ---------- Header ---------- */
   header{
@@ -48,107 +83,381 @@
     background:rgba(246,246,244,.88);
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid var(--hairline);
+    transition:transform .28s cubic-bezier(.22,1,.36,1);
+    will-change:transform;
   }
-  .bar{display:flex;align-items:center;justify-content:space-between;height:82px;gap:12px}
+  header.hide{transform:translateY(-101%)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:12px}
   .lockup{display:flex;align-items:center;gap:14px;min-width:0}
-  .lockup svg{height:32px;width:auto;flex:none}
-  @media (max-width:480px){.lockup svg{height:29px}}
+  .lockup svg{height:30px;width:auto;flex:none}
+  @media (max-width:480px){.bar{height:58px}.lockup svg{height:26px}}
+  /* 42px looks smaller than 48 but keeps a 44px tap target via the ::after
+     below, so nothing gets harder to hit. */
   .btn-cart{
-    background:var(--ink);color:var(--white);border:none;
-    height:48px;padding:0 20px;border-radius:99px;font-weight:600;font-size:.95rem;
-    display:flex;align-items:center;gap:9px;transition:transform .12s ease;flex:none;
+    background:var(--ink);color:var(--white);border:none;position:relative;
+    height:42px;padding:0 16px;border-radius:var(--r-btn);font-weight:600;font-size:.9rem;
+    display:flex;align-items:center;gap:8px;transition:transform .12s ease;flex:none;
   }
+  .btn-cart::after{
+    content:'';position:absolute;left:0;right:0;top:50%;
+    height:44px;transform:translateY(-50%);
+  }
+  @media (max-width:480px){.btn-cart{height:38px;padding:0 13px;font-size:.85rem}}
   .btn-cart:active{transform:scale(.97)}
   .pip{
-    background:var(--foil);color:var(--ink);min-width:24px;height:24px;border-radius:99px;
+    background:var(--stone);color:var(--ink);min-width:21px;height:21px;border-radius:99px;
     display:inline-flex;align-items:center;justify-content:center;
-    font-size:.82rem;font-weight:700;padding:0 7px;
+    font-size:.76rem;font-weight:600;padding:0 6px;
     transition:transform .2s ease;
   }
   .pip.bump{transform:scale(1.25)}
 
   /* ---------- Hero ---------- */
-  .hero{padding-top:52px;padding-bottom:26px}
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    border:1.5px solid var(--foil);border-radius:99px;
-    padding:7px 16px;font-size:.74rem;font-weight:700;
-    letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
-    background:var(--foil-tint);
+  .hero{padding-top:44px;padding-bottom:26px}
+  /* Text column and product shot side by side from 920px, stacked below it with
+     the photo directly under the headline so the eye gets an image before it
+     hits the detail. */
+  .hero-grid{display:grid;gap:0}
+  @media (min-width:920px){
+    /* No align-items here on purpose. The default is stretch, which is what
+       makes the photo exactly as tall as the copy: top level with the headline,
+       bottom level with the last point. Centring it, or giving it a fixed
+       aspect ratio, only lines up by coincidence at one window width. */
+    .hero-grid{grid-template-columns:1fr .82fr;gap:44px}
   }
-  .eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--foil)}
+  .hero-shot{margin:0;border-radius:var(--r-img);overflow:hidden;background:var(--bone);
+             aspect-ratio:16/10;box-shadow:var(--shadow);position:relative}
+  @media (min-width:920px){
+    /* auto lets the grid row decide the height. The slides are absolutely
+       positioned, so the figure has no content height of its own and simply
+       takes whatever the copy column is. */
+    .hero-shot{aspect-ratio:auto}
+  }
+
+  /* ---------- Hero slideshow ----------
+     Slides stack on top of each other and crossfade. Base state shows the first
+     slide only, so a browser without :has() (pre-2023) simply gets a static
+     hero rather than a blank box. The :has() rules below upgrade that to a
+     crossfade and pick the right cycle length for however many slides exist.
+
+     Each slide holds 3s with a 0.6s crossfade. The delays are per-position and
+     independent of the count, so only the duration has to change - which is
+     why there is one keyframe set per count rather than one clever formula.
+     Keyframe percentages cannot be calculated from a variable in CSS.
+
+     LONGHANDS BELOW, NOT THE `animation` SHORTHAND. This matters. The shorthand
+     resets animation-delay to 0, and these :has() rules are specificity (0,4,0)
+     against (0,2,0) for the per-position delays - so the shorthand won, every
+     slide got a delay of 0, and all ten faded in and out in lockstep. Only the
+     topmost was ever visible. */
+  .hero-slide{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;
+  }
+  .hero-slide:first-child{opacity:1}
+
+  .hero-shot:has(.hero-slide:nth-child(2)) .hero-slide{animation-name:hero-x2;animation-duration:6s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(3)) .hero-slide{animation-name:hero-x3;animation-duration:9s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(4)) .hero-slide{animation-name:hero-x4;animation-duration:12s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(5)) .hero-slide{animation-name:hero-x5;animation-duration:15s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(6)) .hero-slide{animation-name:hero-x6;animation-duration:18s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(7)) .hero-slide{animation-name:hero-x7;animation-duration:21s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(8)) .hero-slide{animation-name:hero-x8;animation-duration:24s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(9)) .hero-slide{animation-name:hero-x9;animation-duration:27s;animation-iteration-count:infinite}
+  .hero-shot:has(.hero-slide:nth-child(10)) .hero-slide{animation-name:hero-x10;animation-duration:30s;animation-iteration-count:infinite}
+
+  .hero-slide:nth-child(2){animation-delay:3s}
+  .hero-slide:nth-child(3){animation-delay:6s}
+  .hero-slide:nth-child(4){animation-delay:9s}
+  .hero-slide:nth-child(5){animation-delay:12s}
+  .hero-slide:nth-child(6){animation-delay:15s}
+  .hero-slide:nth-child(7){animation-delay:18s}
+  .hero-slide:nth-child(8){animation-delay:21s}
+  .hero-slide:nth-child(9){animation-delay:24s}
+  .hero-slide:nth-child(10){animation-delay:27s}
+
+  /* Two images need their crop nudged off centre. 416 centres on dad and loses
+     the frame entirely; 35% keeps the baby, the frame and the eldest in shot.
+     024 is the only portrait source, and a centred landscape crop clips the top
+     of the prints. Keyed off src like the Klarna chip, so the markup stays
+     clean and srcset selection cannot break it. */
+  .hero-slide[src*="hero-416"]{object-position:35% center}
+  .hero-slide[src*="hero-024"]{object-position:center 42%}
+
+  /* Visible for 3s, then 0.6s to fade out. The last slide's fade-out wraps
+     around to overlap the first slide's fade-in, so the loop has no seam.
+     Generated, not hand-typed: the percentages are FADE and SLOT expressed
+     against each cycle length and are wrong the moment either changes. */
+  @keyframes hero-x2{0%{opacity:0}10.000%,50.000%{opacity:1}60.000%,100%{opacity:0}}
+  @keyframes hero-x3{0%{opacity:0}6.667%,33.333%{opacity:1}40.000%,100%{opacity:0}}
+  @keyframes hero-x4{0%{opacity:0}5.000%,25.000%{opacity:1}30.000%,100%{opacity:0}}
+  @keyframes hero-x5{0%{opacity:0}4.000%,20.000%{opacity:1}24.000%,100%{opacity:0}}
+  @keyframes hero-x6{0%{opacity:0}3.333%,16.667%{opacity:1}20.000%,100%{opacity:0}}
+  @keyframes hero-x7{0%{opacity:0}2.857%,14.286%{opacity:1}17.143%,100%{opacity:0}}
+  @keyframes hero-x8{0%{opacity:0}2.500%,12.500%{opacity:1}15.000%,100%{opacity:0}}
+  @keyframes hero-x9{0%{opacity:0}2.222%,11.111%{opacity:1}13.333%,100%{opacity:0}}
+  @keyframes hero-x10{0%{opacity:0}2.000%,10.000%{opacity:1}12.000%,100%{opacity:0}}
+
+
+
+  @media (prefers-reduced-motion:reduce){
+    .hero-slide{animation:none!important;opacity:0}
+    .hero-slide:first-child{opacity:1}
+  }
+  /* 920px, not 760px, and the number is not arbitrary. Stretching means the
+     photo's shape is set by the copy height, and the narrower the window the
+     taller and thinner it gets. At a 760px window the slot works out around
+     0.58 wide-to-tall, which crops the dad clean out of the family shot and
+     reduces the frame-corner photo to a strip. At 920px the worst case is 0.73,
+     which every one of the ten survives - checked against rendered crops, not
+     assumed. Below that it stacks, which is a better layout anyway. */
+
+
+
+  /* Three short points carrying what the old paragraph carried. Boxed rather
+     than divided by rules: same white-on-porcelain, hairline and soft shadow as
+     the product tiles, so they read as part of the same family. Radius is
+     --r-card (14px) not --r-img (18px) - these are smaller objects than a
+     product tile and a matching radius would look oversized on them. */
+  .hero-points{list-style:none;margin:22px 0 0;display:flex;flex-direction:column;gap:10px}
+  .hero-points li{
+    display:flex;gap:13px;align-items:flex-start;
+    background:var(--white);border:1px solid var(--hairline);
+    border-radius:var(--r-card);padding:14px 16px;
+    box-shadow:var(--shadow);
+  }
+  .hp-icon{
+    flex:none;width:38px;height:38px;border-radius:var(--r-btn);
+    background:var(--stone-tint);color:var(--stone-text);
+    display:grid;place-items:center;
+  }
+  .hp-icon svg{width:19px;height:19px}
+  /* Capped measure. Without it the wrap point moves with the viewport, so a
+     line could sit two characters from flipping and the three points would stop
+     matching at some widths. Capping the measure fixes where they break
+     regardless of screen size, and a shorter measure reads better anyway. */
+  .hp-text{font-size:.92rem;line-height:1.45;color:var(--ink-soft);padding-top:1px;max-width:46ch}
+  .hp-text b{display:block;font-weight:600;color:var(--ink);font-size:.95rem;margin-bottom:1px}
+  .hero-note{
+    margin-top:16px;font-size:.8rem;font-weight:500;letter-spacing:.02em;
+    color:var(--stone-text);display:flex;align-items:center;gap:8px;
+  }
+  .hero-note::before{
+    content:'';width:6px;height:6px;border-radius:50%;background:var(--stone);flex:none;
+  }
+  @media (max-width:400px){
+    .hero-points{margin-top:18px;gap:8px}
+    .hero-points li{padding:12px 13px;gap:11px}
+    .hp-icon{width:34px;height:34px}
+    .hp-icon svg{width:17px;height:17px}
+    .hp-text{font-size:.86rem}
+    .hp-text b{font-size:.9rem}
+  }
   .hero h1{
     font-family:var(--serif);font-optical-sizing:auto;
-    font-size:clamp(2.2rem,7.5vw,3.6rem);
-    font-weight:500;line-height:1.08;letter-spacing:-.015em;
-    margin-top:20px;max-width:15ch;
+    font-size:clamp(1.9rem,5.4vw,2.6rem);
+    font-weight:340;line-height:1.1;letter-spacing:-.015em;
+    margin-top:0;
   }
-  .hero h1 em{font-style:italic;font-weight:500}
+  .hero h1 em{font-style:italic;font-weight:340}
+  /* Set tight under the headline so the two read as one thought. Any more gap
+     and it becomes a subheading, which is a different, weaker thing. */
+  .hero-sub{
+    font-family:var(--serif);font-style:italic;font-weight:340;
+    font-size:clamp(1.1rem,3.6vw,1.45rem);line-height:1.3;
+    margin-top:10px;color:var(--stone-text);
+  }
   .hero .lede{
-    margin-top:16px;color:var(--muted);font-size:1.08rem;max-width:52ch;line-height:1.6;
+    margin-top:14px;color:var(--ink-soft);font-size:1.05rem;max-width:46ch;line-height:1.55;
+  }
+  /* display:none rather than visibility, so the hidden one leaves the
+     accessibility tree instead of being read out twice. */
+  /* One lede, desktop only. The mobile hero carries the headline and its coda
+     and nothing else; the copy that used to live here is now in the headline. */
+  @media (max-width:919px){
+    .lede-wide{display:none}
   }
 
   /* ---------- Sections ---------- */
   section{padding:54px 0 6px}
   h2{
     font-family:var(--serif);font-optical-sizing:auto;
-    font-size:clamp(1.7rem,5vw,2.2rem);font-weight:500;letter-spacing:-.01em;
+    font-size:clamp(1.7rem,5vw,2.2rem);font-weight:420;letter-spacing:-.01em;
   }
-  .sub{color:var(--muted);margin-top:8px;font-size:1.02rem}
-  .sec-rule{height:1px;background:var(--border);margin:54px 0 0}
-  .sec-rule.hero-rule{margin:30px 0 6px}
+  .sub{color:var(--ink-soft);margin-top:8px;font-size:1.02rem}
+  .sec-rule{height:1px;background:var(--hairline);margin:54px 0 0}
+
+  /* ============================================================
+     MOBILE OVERRIDES - POSITION MATTERS
+
+     This block sits HERE, after .hero-points, .hero .lede, section and
+     .sec-rule, because it overrides all of them at EQUAL specificity, where
+     source order is the only tie-breaker.
+
+     It was originally placed above those rules and silently did nothing:
+     .hero-points{display:none} lost to .hero-points{display:flex}, and
+     .hero-headline .lede{color:...} lost to .hero .lede{color:var(--ink-soft)}.
+     The nested b rule at (0,3,0) still won, which is why the bold went white
+     while the rest of the paragraph stayed dark.
+
+     If you add a base rule below this block that these need to beat, move this
+     block down past it. mobilehero.js resolves the cascade and will fail if the
+     order slips again.
+     ============================================================ */
+  @media (max-width:919px){
+    /* ---------- Mobile: overlay hero ----------
+       The photo becomes the background and the headline sits on it, which buys
+       back the ~140px the headline and lede used to occupy above it. That is
+       the whole point: it lifts the first product images into the fold.
+
+       display:contents lifts the copy block's children into the grid, so the
+       photo and the headline can be placed in the SAME cell (1/1) and stack,
+       while the points and note flow underneath in later rows. */
+    .hero{padding-top:0}
+    .hero-copy{display:contents}
+    .hero-grid{grid-template-columns:1fr}
+
+    .hero-shot{
+      grid-area:1/1;
+      aspect-ratio:auto;min-height:360px;height:100%;
+      border-radius:0;box-shadow:none;
+      /* Full bleed. The negative margins cancel .wrap's padding; they are in
+         step with it and must move together if that ever changes. */
+      margin-left:-14px;margin-right:-14px;
+    }
+    .hero-headline{
+      grid-area:1/1;align-self:end;position:relative;z-index:2;
+      padding-bottom:26px;color:var(--white);
+    }
+    .hero-points{grid-area:2/1;margin-top:22px}
+    .hero-note{grid-area:3/1}
+
+    /* Scrim. Sized by measurement, not eye: the brightest slide (the white
+       frame on a white wall) sits at 0.66 luminance, which is 1.5:1 against
+       white text and unreadable. 0.72 alpha at the text zone takes it to about
+       9:1. It tapers to nothing at the top so the photograph still reads. */
+    .hero-shot::after{
+      content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:linear-gradient(180deg,
+        rgba(20,18,16,0) 0%,
+        rgba(20,18,16,.30) 38%,
+        rgba(20,18,16,.72) 74%,
+        rgba(20,18,16,.86) 100%);
+    }
+    /* 90% white, matching the site's hero body copy. The headline above sits at
+       full white, so the coda reads as second without a size jump doing all the
+       work. */
+    .hero-headline .lede{color:rgba(255,255,255,.9);max-width:none}
+    .hero-headline .hero-sub{color:rgba(255,255,255,.9)}
+
+    /* Snag: the point boxes are gone on mobile entirely. The first one's copy
+       now leads the lede above, and the other two made the page too deep. All
+       three survive on desktop, where they also set the height the hero photo
+       stretches to. */
+    .hero-points{display:none}
+    .hero{padding-bottom:0}
+
+    /* "Extras" now sits roughly where the first point box used to start, which
+       is what the snag asked for, and puts the product images well up the fold. */
+    .sec-rule{margin-top:32px}
+    section{padding:26px 0 6px}
+  }
+  @media (max-width:400px){
+    .hero-shot{margin-left:-10px;margin-right:-10px}
+  }
+
 
   /* ---------- Product tiles ---------- */
   .grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    display:grid;grid-template-columns:repeat(2,1fr);
     gap:22px;margin-top:28px;
   }
-  .grid.single{grid-template-columns:minmax(300px,510px)}
+  /* Tiles in a row share a height (the grid default). This was align-items:start
+     while personalisation opened inline, because an expanding panel would have
+     dragged its neighbour's height around. That panel is a sheet now, so the
+     reason has gone and staggered card bottoms are just untidy. */
+  .grid.single{grid-template-columns:minmax(0,510px)}
+  @media (max-width:620px){.grid{gap:12px;margin-top:20px}}
+  @media (max-width:400px){.grid{gap:8px}}
   .card{
-    background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+    background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-img);
     overflow:hidden;display:flex;flex-direction:column;
     box-shadow:var(--shadow);
     transition:transform .18s ease, box-shadow .18s ease;
   }
   @media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}}
-  .card-img{aspect-ratio:1/0.9;background:var(--stone);position:relative;overflow:hidden}
+  .card-img{aspect-ratio:1/0.9;background:var(--bone);position:relative;overflow:hidden}
   .card-img img{width:100%;height:100%;object-fit:cover}
-  /* Keyring photo has the BFC logo (with the ®) near the right edge; bias the
-     crop rightwards so the mark isn't clipped. Left side is empty pouch space. */
-  .card[data-sku="MK-KEY"] .card-img img{object-position:70% center}
+  /* Tile is 1/0.9, and six of the eight photographs are tall portraits, so each
+     loses roughly 40% of its height. These three were chosen by rendering the
+     alternatives side by side rather than guessing; the other five are correct
+     dead centre. The old keyring rule is gone with the old keyring photo - it
+     biased right for a logo that is not in this shot. */
+  .card[data-sku="CK-PRINT"] .card-img img{object-position:center 85%}
+  .card[data-sku="PM-FRAME"] .card-img img{object-position:center 45%}
+  .card[data-sku="TK-A5"]    .card-img img{object-position:center 40%}
   .tag{
     position:absolute;top:14px;left:14px;
-    background:var(--white);border:1px solid var(--border);
+    background:var(--white);border:1px solid var(--hairline);
     border-radius:99px;padding:6px 13px;
-    font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
   }
-  .tag.offer{background:var(--ink);color:var(--white);border-color:var(--ink)}
   .card-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1;gap:0}
+  @media (max-width:620px){.card-body{padding:14px 13px 16px}}
+  @media (max-width:400px){.card-body{padding:12px 10px 14px}}
   .card h3{
     font-family:var(--serif);font-optical-sizing:auto;
-    font-size:1.3rem;font-weight:500;line-height:1.25;letter-spacing:-.005em;
+    font-size:1.3rem;font-weight:420;line-height:1.25;letter-spacing:-.005em;
   }
-  .card .desc{color:var(--muted);margin-top:8px;font-size:.97rem;line-height:1.5}
-  .price-row{display:flex;align-items:baseline;gap:10px;margin-top:14px;flex-wrap:wrap}
-  .price{font-family:var(--serif);font-size:1.55rem;font-weight:500}
-  .was{color:var(--muted);text-decoration:line-through;font-size:1rem}
+  .card .desc{
+    color:var(--ink-soft);margin-top:8px;font-size:.97rem;line-height:1.5;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .card h3{overflow-wrap:anywhere}
+  @media (max-width:620px){
+    /* Names run long ("Treasured Keepsake - A5 Framed Print"). Clamped here,
+       always shown in full in the personalisation sheet. */
+    .card h3{font-size:.95rem;line-height:1.3;-webkit-line-clamp:3;
+             display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+    .card .desc{font-size:.84rem;margin-top:5px;-webkit-line-clamp:2}
+    .price{font-size:1.08rem}
+    .price-row{padding-top:9px;gap:7px}
+    .was{font-size:.86rem}
+    .save,.deal{font-size:.66rem;padding:3px 8px}
+    .tag{top:9px;left:9px;font-size:.6rem;padding:4px 9px;letter-spacing:.08em}
+  }
+  /* "CUSTOMISABLE (A4)" is 17 characters and clears the tile edge by about 5px
+     on a 320px phone, which is inside the margin of error on the measurement.
+     Easing the type back buys 19px instead, and is invisible at this size. */
+  @media (max-width:360px){
+    .tag{font-size:.55rem;letter-spacing:.06em;padding:4px 8px}
+  }
+  .price-row{display:flex;align-items:baseline;gap:10px;margin-top:auto;padding-top:14px;flex-wrap:wrap}
+  @media (max-width:520px){
+    .price-row{min-height:55px;align-content:flex-end}
+  }
+  .price{font-family:var(--serif);font-size:1.35rem;font-weight:420}
+  .was{color:var(--ink-soft);text-decoration:line-through;font-size:1rem}
   .save,.deal{
-    background:var(--foil-tint);color:var(--ink);border-radius:99px;
-    font-size:.74rem;font-weight:700;padding:4px 11px;letter-spacing:.02em;
+    background:var(--stone-tint);color:var(--ink);border-radius:99px;
+    font-size:.74rem;font-weight:600;padding:4px 11px;letter-spacing:.02em;
   }
-  .deal{border:1px solid var(--foil)}
+  .deal{border:1px solid var(--stone)}
 
   /* option fields */
   .fields{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+  /* Sentence case at 500, matching .frm-label in the upload portal. The old
+     uppercase + letter-spaced labels were shouting three times per form, which
+     was a good chunk of why this felt heavy. */
   .field label{
-    display:block;font-size:.8rem;font-weight:700;letter-spacing:.05em;
-    text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+    display:block;font-size:.82rem;font-weight:500;
+    color:var(--ink);margin-bottom:7px;line-height:1.35;
   }
-  .field label .req{color:var(--ink)}
+  .field label .req{color:var(--stone-text)}
   .field select,.field input[type=text],.field textarea{
-    width:100%;border:1px solid var(--border);border-radius:var(--radius-sm);
-    padding:13px 14px;font-family:inherit;font-size:.96rem;background:var(--paper);
+    width:100%;border:1px solid var(--hairline);border-radius:var(--r-card);
+    padding:13px 14px;font-family:inherit;font-size:16px;background:var(--porcelain);
     color:var(--ink);appearance:none;-webkit-appearance:none;
     transition:border-color .15s, background .15s;
   }
@@ -157,40 +466,205 @@
     background-repeat:no-repeat;background-position:right 15px center;padding-right:38px;
   }
   .field textarea{resize:vertical;min-height:58px}
+  /* Full-screen sheet means there is room; a 500-character box should not look
+     like a two-line slot. Shrinks back when the keyboard takes the space. */
+  .sheet-body .field textarea{min-height:104px}
+
   .field ::placeholder{color:#9c968e}
   .field select:focus,.field input:focus,.field textarea:focus{outline:none;border-color:var(--ink);background:var(--white)}
   .field.invalid select,.field.invalid input,.field.invalid textarea{border-color:#b04a3e;background:#fdf4f2}
-  .field .count{font-size:.76rem;color:var(--muted);text-align:right;margin-top:4px}
-  .card-err{color:#b04a3e;font-size:.88rem;font-weight:600;margin-top:10px;min-height:0}
+  .field .count{font-size:.76rem;color:var(--ink-soft);text-align:right;margin-top:4px}
 
-  /* collapsible personalisation */
-  .reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.22,1,.36,1)}
-  .reveal-inner{overflow:hidden;min-height:0}
-  .card.open .reveal{grid-template-rows:1fr}
-  .card.open .reveal .reveal-inner{overflow:visible}
-  .controls{display:flex;gap:12px;margin-top:auto;padding-top:18px;align-items:stretch}
+  /* Product note. Quiet, but ahead of the choices - it exists to set an
+     expectation before someone pays, so it must not read as fine print. */
+  .field-note{
+    background:var(--stone-tint);border-radius:var(--r-card);
+    padding:12px 14px;margin:0 0 18px;
+    font-size:.86rem;line-height:1.5;color:var(--ink);
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .field-note::before{
+    content:'';flex:none;width:4px;align-self:stretch;border-radius:99px;
+    background:var(--stone);
+  }
+
+  /* Optional free-text starts collapsed. Most people do not want to write
+     anything, and an empty box invites a keyboard nobody asked for. */
+  .opt-toggle{
+    background:none;border:none;padding:2px 0;color:var(--stone-text);
+    font-family:inherit;font-size:.85rem;font-weight:500;
+    display:inline-flex;align-items:center;gap:7px;text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .opt-toggle::before{
+    content:'+';display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;border-radius:99px;background:var(--stone-tint);
+    text-decoration:none;font-size:.95rem;line-height:1;
+  }
+  .opt-toggle[aria-expanded="true"]{display:none}
+  .opt-inner{display:none}
+  .opt-block.open .opt-inner{display:block}
+  .card-err{color:#b04a3e;font-size:.88rem;font-weight:600;margin-top:10px;min-height:0}
+  .card-err:empty{margin-top:0}
+
+  /* ---------- Personalisation sheet ----------
+     Replaces the old inline reveal. Two-up tiles are far too narrow to hold a
+     colour select and a 500-character textarea, and an inline panel would also
+     drag the neighbouring tile's height around. One dialog, one code path:
+     bottom sheet on phones, centred panel from 620px up. */
+  .sheet-overlay{
+    position:fixed;inset:0;background:var(--porcelain);z-index:64;
+    opacity:0;pointer-events:none;transition:opacity .25s;
+  }
+  .sheet-overlay.open{opacity:1;pointer-events:auto}
+  @media (min-width:620px){
+    /* Desktop keeps a dim scrim - the dialog is a panel, not a takeover. */
+    .sheet-overlay{background:rgba(0,0,0,.45)}
+  }
+  /* The sticky checkout bar and the site header are both position:fixed, so
+     they float above the page and would otherwise sit in any gap the keyboard
+     leaves. Nothing from the shop should be visible while personalising. */
+  body.sheet-open .sticky,
+  body.sheet-open header{visibility:hidden}
+  @media (min-width:620px){
+    body.sheet-open .sticky,
+    body.sheet-open header{visibility:visible}
+  }
+  /* On phones this is a full-screen takeover, not a peeking sheet. Seeing the
+     shop behind a half-height panel was the thing that made personalising feel
+     busy, and a partial sheet leaves a strip of page visible under the keyboard
+     that no amount of z-index fixes. Height and top are overwritten from the
+     visualViewport API while the keyboard is open - see syncSheetViewport(). */
+  .sheet{
+    position:fixed;left:0;right:0;top:0;z-index:66;
+    height:100vh;height:100dvh;
+    background:var(--porcelain);
+    display:flex;flex-direction:column;
+    transform:translateY(100%);
+    transition:transform .3s cubic-bezier(.22,1,.36,1);
+  }
+  .sheet.open{transform:none}
+  @media (min-width:620px){
+    .sheet{
+      left:50%;right:auto;top:50%;
+      width:min(520px,calc(100% - 44px));
+      height:auto;max-height:86vh;
+      border-radius:var(--r-img);
+      transform:translate(-50%,-46%) scale(.98);
+      opacity:0;transition:transform .28s cubic-bezier(.22,1,.36,1),opacity .2s;
+      box-shadow:0 24px 60px rgba(0,0,0,.3);
+    }
+    .sheet.open{transform:translate(-50%,-50%);opacity:1}
+  }
+  /* No grab handle on a full-screen view - it would promise a drag-to-dismiss
+     that does not exist. The close button does the job. */
+  .sheet-grab{display:none}
+  .sheet-head{
+    display:flex;align-items:flex-start;gap:13px;
+    padding:14px 18px 15px;border-bottom:1px solid var(--hairline);flex:none;
+  }
+  .sheet-thumb{
+    width:58px;height:58px;flex:none;object-fit:cover;
+    border-radius:var(--r-card);background:var(--bone);
+  }
+  .sheet-titles{flex:1;min-width:0}
+  .sheet-head h3{
+    font-family:var(--serif);font-size:1.1rem;font-weight:420;line-height:1.25;
+  }
+  .sheet-price{
+    font-family:var(--serif);font-size:1.15rem;font-weight:420;margin-top:3px;
+    display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  }
+  .sheet-close{
+    background:var(--white);border:1px solid var(--hairline);border-radius:99px;
+    width:36px;height:36px;font-size:1.2rem;line-height:1;color:var(--ink);flex:none;
+  }
+  /* .kb marks "the keyboard is open". It deliberately changes NOTHING visible.
+     It used to drop the thumbnail and price to buy ~70px, but reshuffling the
+     header the instant someone taps a field reads as a glitch, and the space
+     was not needed: the form fits above the keyboard and scrolls if it does
+     not. All .kb does now is give the body room to scroll a focused field clear
+     of the Add to basket bar. */
+
+  .sheet-body{flex:1;overflow-y:auto;padding:18px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  /* Scroll padding so a field focused near the bottom is never left tucked
+     under the Add to basket bar. */
+  .sheet.kb .sheet-body{scroll-padding-bottom:96px}
+  .sheet.kb .sheet-body::after{content:'';display:block;height:64px}
+  .sheet-body .fields{margin-top:0}
+  .sheet-foot{
+    flex:none;padding:14px 18px calc(16px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--hairline);background:var(--porcelain);
+  }
+  .sheet-foot .controls{margin-top:0;padding-top:0}
+  @media (max-width:620px){.sheet-foot .controls{flex-direction:row;gap:12px}}
+  .sheet-foot .qty{width:auto;flex:none}
+  .sheet-foot .qty button{width:42px;flex:none;height:48px;font-size:1.2rem}
+  .sheet-foot .qty span{min-width:30px;font-size:1.02rem}
+  .sheet-foot .add{height:48px;font-size:.97rem;padding:0 16px}
+  .sheet-foot .controls{gap:12px}
+  body.sheet-open{overflow:hidden}
+  .controls{display:flex;gap:12px;padding-top:18px;align-items:stretch}
+  /* Stepper left, button right, at every width. Rather than a hard switch this
+     scales fluidly with the viewport, so the row tightens gradually instead of
+     collapsing at one breakpoint. At 375px a tile is ~174px wide: the stepper
+     takes ~76px and the button keeps ~90px, which is ample for "Add". */
+  @media (max-width:620px){
+    .controls{gap:clamp(4px,1.6vw,8px);padding-top:12px}
+    .qty{flex:none}
+    .qty button{width:clamp(30px,7.4vw,34px);height:38px;font-size:1rem}
+    .qty span{min-width:clamp(18px,4.4vw,24px);font-size:.88rem}
+    .add{height:38px;font-size:clamp(.76rem,2.8vw,.86rem);padding:0 6px}
+  }
+  .tile-cta{padding-top:18px;display:flex}
+  .tile-cta .add{width:100%}
+  @media (max-width:620px){.tile-cta{padding-top:12px}}
+  /* --r-btn rather than a pill: sitting directly beside a 10px Add button, a
+     full pill read as two unrelated controls rather than one row. */
   .qty{
-    display:flex;align-items:center;border:1px solid var(--border);border-radius:99px;
-    background:var(--paper);overflow:hidden;flex:none;
+    display:flex;align-items:center;border:1px solid var(--hairline);border-radius:var(--r-btn);
+    background:var(--porcelain);overflow:hidden;flex:none;
   }
   .qty button{
-    background:none;border:none;width:42px;height:50px;font-size:1.25rem;line-height:1;
-    color:var(--ink);transition:background .12s;
+    background:none;border:none;width:42px;height:46px;font-size:1.2rem;line-height:1;
+    color:var(--ink);transition:background .12s;position:relative;
   }
-  .qty button:active{background:var(--stone)}
-  .qty span{min-width:30px;text-align:center;font-weight:700;font-size:1.02rem}
+  /* Visually 38px on a phone, but the tap target stays a full 44px tall. */
+  .qty button::after{
+    content:'';position:absolute;left:0;right:0;top:50%;
+    height:44px;transform:translateY(-50%);
+  }
+  .qty button:active{background:var(--bone)}
+  .qty span{min-width:30px;text-align:center;font-weight:600;font-size:1.02rem}
   .add{
-    flex:1;background:var(--ink);color:var(--white);border:none;border-radius:99px;
-    font-weight:600;font-size:.99rem;height:50px;
+    flex:1;background:var(--ink);color:var(--white);border:none;border-radius:var(--r-btn);
+    font-weight:600;font-size:.95rem;height:46px;
     transition:background .18s ease, transform .12s ease;
   }
   .add:active{transform:scale(.98)}
-  .add.added{background:var(--foil);color:var(--ink)}
+  .add.added{background:var(--stone);color:var(--ink)}
+  /* Three labels, one shown at a time, chosen entirely in CSS. Previously the
+     JS rewrote textContent for the "Added" confirmation, which would have wiped
+     any responsive markup inside the button. */
+  .add .l-short,.add .l-done,.add .l-tick{display:none}
+  .add.added .l-full{display:none}
+  .add.added .l-done{display:inline}
+  /* Narrow tiles: "Add", confirming as a bare tick. Every override below is
+     scoped to either :not(.added) or .added so the two states can never both
+     match - the previous version let the responsive rule outrank the confirmed
+     rule and printed "Add" and "Added" on top of each other. */
+  @media (max-width:620px){
+    .card .controls .add:not(.added) .l-full{display:none}
+    .card .controls .add:not(.added) .l-short{display:inline}
+    .card .controls .add.added .l-done{display:none}
+    .card .controls .add.added .l-tick{display:inline}
+  }
+  .add .l-tick{font-size:1.15rem;line-height:1}
 
   /* ---------- Foil progress strip (lives in the sticky bar) ---------- */
   .goal-strip{
     position:relative;overflow:hidden;height:42px;border-radius:99px;
-    background:var(--white);border:1px solid var(--border);
+    background:var(--white);border:1px solid var(--hairline);
     margin-bottom:10px;box-shadow:var(--shadow);
   }
   .strip-fill{
@@ -203,22 +677,22 @@
   .strip-text{
     position:relative;z-index:1;height:100%;
     display:flex;align-items:center;justify-content:center;gap:8px;
-    font-size:.88rem;font-weight:700;color:var(--ink);letter-spacing:.01em;
+    font-size:.88rem;font-weight:600;color:var(--ink);letter-spacing:.01em;
     padding:0 16px;text-align:center;
   }
-  .goal-strip.unlocked{border-color:var(--foil)}
-  .goal-strip.unlocked .strip-text::before{content:'\2713';font-weight:700}
+  .goal-strip.unlocked{border-color:var(--stone)}
+  .goal-strip.unlocked .strip-text::before{content:'\2713';font-weight:600}
 
   /* ---------- Sticky checkout bar ---------- */
   .sticky{
     position:fixed;left:0;right:0;bottom:0;z-index:50;
     padding:14px 22px calc(14px + env(safe-area-inset-bottom));
-    background:linear-gradient(to top,var(--paper) 72%,rgba(246,246,244,0));
+    background:linear-gradient(to top,var(--porcelain) 72%,rgba(246,246,244,0));
     pointer-events:none;
   }
   .sticky-inner{max-width:1060px;margin:0 auto;pointer-events:auto}
   .checkout{
-    background:var(--ink);color:var(--white);border:none;border-radius:99px;
+    background:var(--ink);color:var(--white);border:none;border-radius:var(--r-btn);
     padding:0 26px;height:62px;font-weight:600;font-size:1.06rem;width:100%;
     display:flex;align-items:center;justify-content:space-between;gap:14px;
     box-shadow:var(--shadow-lift);
@@ -228,8 +702,8 @@
   .checkout:disabled{opacity:.4;cursor:default}
   .checkout .left{display:flex;align-items:center;gap:11px}
   .checkout .pip{min-width:26px;height:26px;font-size:.85rem}
-  .checkout .amount{font-family:var(--serif);font-size:1.2rem;font-weight:500}
-  .checkout .discount-note{font-size:.78rem;font-weight:600;color:var(--foil);letter-spacing:.02em}
+  .checkout .amount{font-family:var(--serif);font-size:1.2rem;font-weight:420}
+  .checkout .discount-note{font-size:.78rem;font-weight:600;color:var(--stone);letter-spacing:.02em}
 
   /* ---------- Checkout panel ---------- */
   .overlay{
@@ -239,85 +713,89 @@
   .overlay.open{opacity:1;pointer-events:auto}
   .panel{
     position:fixed;top:0;right:0;bottom:0;width:min(480px,100%);z-index:70;
-    background:var(--paper);transform:translateX(105%);
+    background:var(--porcelain);transform:translateX(105%);
     transition:transform .32s cubic-bezier(.22,1,.36,1);
     display:flex;flex-direction:column;box-shadow:-16px 0 48px rgba(0,0,0,.16);
   }
   .panel.open{transform:translateX(0)}
   .panel-head{
     display:flex;justify-content:space-between;align-items:center;
-    padding:22px 24px;border-bottom:1px solid var(--border);flex:none;
+    padding:22px 24px;border-bottom:1px solid var(--hairline);flex:none;
   }
-  .panel-head h3{font-family:var(--serif);font-size:1.35rem;font-weight:500}
+  .panel-head h3{font-family:var(--serif);font-size:1.35rem;font-weight:420}
   .panel-close{
-    background:var(--white);border:1px solid var(--border);border-radius:99px;
+    background:var(--white);border:1px solid var(--hairline);border-radius:99px;
     width:40px;height:40px;font-size:1.25rem;line-height:1;color:var(--ink);
   }
   .panel-body{flex:1;overflow-y:auto;padding:22px 24px 34px}
   /* postage quick-add (shown until it's in the cart) */
   .upsell-head{
-    font-family:var(--serif);font-size:1.08rem;font-weight:500;margin:0 0 10px;
+    font-family:var(--serif);font-size:1.08rem;font-weight:420;margin:0 0 10px;
   }
   .upsell-card{
     display:flex;align-items:center;gap:12px;
-    background:var(--stone);border-radius:var(--radius-sm);
+    background:var(--bone);border-radius:var(--r-card);
     padding:10px;margin-bottom:20px;
   }
   .upsell-card img{width:62px;height:62px;object-fit:cover;border-radius:9px;flex:none}
   .upsell-info{flex:1;min-width:0}
-  .upsell-info .t{font-weight:700;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+  .upsell-info .t{font-weight:600;font-size:.95rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
   .upsell-info .t .price-pill{
     display:inline-flex;align-items:center;
-    background:var(--foil);color:var(--ink);
-    font-weight:700;font-size:.82rem;letter-spacing:.01em;
+    background:var(--stone);color:var(--ink);
+    font-weight:600;font-size:.82rem;letter-spacing:.01em;
     padding:2px 9px;border-radius:99px;line-height:1.5;
     box-shadow:0 1px 2px rgba(0,0,0,.06);white-space:nowrap;
   }
-  .upsell-info .d{color:var(--muted);font-size:.84rem;margin-top:2px;line-height:1.35}
+  .upsell-info .d{color:var(--ink-soft);font-size:.84rem;margin-top:2px;line-height:1.35}
   .upsell-add{
-    background:var(--ink);color:var(--white);border:none;border-radius:99px;
+    background:var(--ink);color:var(--white);border:none;border-radius:var(--r-btn);
     padding:12px 16px;font-weight:600;font-size:.88rem;flex:none;white-space:nowrap;
     transition:transform .12s ease;
   }
   .upsell-add:active{transform:scale(.97)}
 
   .summary-card{
-    background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);
+    background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);
     padding:6px 18px;
   }
-  .line .thumb{width:56px;height:56px;object-fit:cover;border-radius:8px;flex:none;background:var(--stone)}
+  .line .thumb{width:56px;height:56px;object-fit:cover;border-radius:8px;flex:none;background:var(--bone)}
   .line-main{display:flex;gap:12px;flex:1;min-width:0}
   .line-info{flex:1;min-width:0}
   .line-qty{
-    display:inline-flex;align-items:center;border:1px solid var(--border);
-    border-radius:99px;background:var(--paper);margin-top:8px;overflow:hidden;
+    display:inline-flex;align-items:center;border:1px solid var(--hairline);
+    border-radius:99px;background:var(--porcelain);margin-top:8px;overflow:hidden;
   }
   .line-qty button{background:none;border:none;width:32px;height:34px;font-size:1.05rem;line-height:1;color:var(--ink)}
-  .line-qty button:active{background:var(--stone)}
-  .line-qty span{min-width:24px;text-align:center;font-weight:700;font-size:.92rem}
+  .line-qty button:active{background:var(--bone)}
+  .line-qty span{min-width:24px;text-align:center;font-weight:600;font-size:.92rem}
   .line-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
   .bin{
-    background:none;border:none;padding:6px;color:var(--muted);line-height:0;border-radius:8px;
+    background:none;border:none;padding:6px;color:var(--ink-soft);line-height:0;border-radius:8px;
   }
-  .bin:active{background:var(--paper)}
+  .bin:active{background:var(--porcelain)}
   .bin svg{width:18px;height:18px}
-  .line{display:flex;justify-content:space-between;gap:12px;padding:13px 0;font-size:.97rem;border-bottom:1px solid var(--paper)}
+  .line{display:flex;justify-content:space-between;gap:12px;padding:13px 0;font-size:.97rem;border-bottom:1px solid var(--porcelain)}
   .line:last-child{border-bottom:none}
   .line .n{color:var(--ink);font-weight:500}
-  .line .meta{display:block;color:var(--muted);font-size:.84rem;font-weight:400;margin-top:3px;line-height:1.45}
+  .line .meta{display:block;color:var(--ink-soft);font-size:.84rem;font-weight:400;margin-top:3px;line-height:1.45}
   .line .amt{white-space:nowrap;font-weight:600}
+  .line-fixed{
+    font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--stone-text);white-space:nowrap;
+  }
   .line.disc .n,.line.disc .amt{color:#7d6a52;font-weight:600}
-  .line.total .n,.line.total .amt{font-family:var(--serif);font-size:1.18rem;font-weight:500}
-  .remove{background:none;border:none;color:var(--muted);font-size:.82rem;text-decoration:underline;padding:0;margin-left:8px}
+  .line.total .n,.line.total .amt{font-family:var(--serif);font-size:1.18rem;font-weight:420}
+  .remove{background:none;border:none;color:var(--ink-soft);font-size:.82rem;text-decoration:underline;padding:0;margin-left:8px}
   /* unlock nudge (shown in the panel while the £40 discount is locked) */
   .nudge{
     position:relative;overflow:hidden;
-    border:1px solid var(--foil);border-radius:var(--radius-sm);
+    border:1px solid var(--stone);border-radius:var(--r-card);
     background:var(--white);margin-top:14px;
   }
   .nudge-fill{
     position:absolute;inset:0;width:0%;
-    background:var(--foil-tint);
+    background:var(--stone-tint);
     transition:width .5s cubic-bezier(.22,1,.36,1);
   }
   .nudge-body{
@@ -325,10 +803,10 @@
     padding:14px 16px;
   }
   .nudge-text{flex:1;min-width:0}
-  .nudge-text .big{font-weight:700;font-size:.95rem}
-  .nudge-text .small{color:var(--muted);font-size:.83rem;margin-top:2px}
+  .nudge-text .big{font-weight:600;font-size:.95rem}
+  .nudge-text .small{color:var(--ink-soft);font-size:.83rem;margin-top:2px}
   .nudge-btn{
-    background:var(--ink);color:var(--white);border:none;border-radius:99px;
+    background:var(--ink);color:var(--white);border:none;border-radius:var(--r-btn);
     padding:12px 18px;font-weight:600;font-size:.88rem;flex:none;white-space:nowrap;
     transition:transform .12s ease;
   }
@@ -343,13 +821,13 @@
   .coupon-row{display:none;gap:10px;margin-top:12px}
   .coupon-row.open{display:flex}
   .coupon-row input{
-    flex:1;min-width:0;border:1px solid var(--border);border-radius:99px;
-    padding:0 18px;height:48px;font-family:inherit;font-size:.95rem;
+    flex:1;min-width:0;border:1px solid var(--hairline);border-radius:var(--r-btn);
+    padding:0 18px;height:48px;font-family:inherit;font-size:16px;
     background:var(--white);text-transform:uppercase;letter-spacing:.06em;
   }
   .coupon-row input:focus{outline:none;border-color:var(--ink)}
   .coupon-row button{
-    background:var(--ink);color:var(--white);border:none;border-radius:99px;
+    background:var(--ink);color:var(--white);border:none;border-radius:var(--r-btn);
     padding:0 22px;height:48px;font-weight:600;font-size:.92rem;flex:none;
   }
   .coupon-row button:disabled{opacity:.5}
@@ -358,60 +836,78 @@
   .coupon-msg.bad{color:#b04a3e;font-weight:600}
   /* express checkout */
   .express-label{
-    font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--muted);margin:20px 0 10px;
+    font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-soft);margin:20px 0 10px;
   }
   #express-checkout-element{min-height:0}
   .or-divider{
     display:flex;align-items:center;gap:14px;margin:18px 0 2px;
-    color:var(--muted);font-size:.85rem;font-weight:600;
+    color:var(--ink-soft);font-size:.85rem;font-weight:600;
   }
-  .or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+  .or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--hairline)}
   #payment-element,#address-element,#contact-element{margin-top:18px}
   .pay{
     width:100%;margin-top:22px;background:var(--ink);color:var(--white);
-    border:none;border-radius:99px;padding:18px;font-weight:600;font-size:1.04rem;
+    border:none;border-radius:var(--r-btn);padding:18px;font-weight:600;font-size:1.04rem;
     transition:transform .12s ease;
   }
   .pay:active{transform:scale(.99)}
   .pay:disabled{opacity:.5}
   .pay-msg{margin-top:12px;font-size:.92rem;color:#b04a3e;min-height:1.2em}
-  .secure{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:16px;color:var(--muted);font-size:.85rem}
+  .secure{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:16px;color:var(--ink-soft);font-size:.85rem}
 
   /* ---------- Success ---------- */
   .success{max-width:560px;margin:70px auto;padding:0 22px;text-align:center}
   .success .tick{
-    width:78px;height:78px;border-radius:50%;background:var(--foil);
+    width:78px;height:78px;border-radius:50%;background:var(--stone);
     display:flex;align-items:center;justify-content:center;margin:0 auto 24px;
     font-size:2rem;color:var(--ink);
   }
   .success h2{font-size:clamp(1.7rem,6vw,2.3rem);line-height:1.15}
-  .success p{margin-top:14px;color:var(--muted);line-height:1.65;font-size:1.02rem}
+  .success p{margin-top:14px;color:var(--ink-soft);line-height:1.65;font-size:1.02rem}
   .order-box{
     margin:30px auto 0;max-width:420px;background:var(--white);
-    border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;
+    border:1px solid var(--hairline);border-radius:var(--r-img);padding:24px 22px;
     box-shadow:var(--shadow);
   }
-  .order-label{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .order-label{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
   .order-number{
-    font-family:var(--serif);font-size:clamp(1.4rem,6vw,1.9rem);font-weight:500;
+    font-family:var(--serif);font-size:clamp(1.4rem,6vw,1.9rem);font-weight:340;
     letter-spacing:.01em;margin-top:8px;word-break:break-all;
   }
-  .order-number.loading{font-family:var(--sans);font-size:1rem;font-weight:500;color:var(--muted)}
+  .order-number.loading{font-family:var(--sans);font-size:1rem;font-weight:500;color:var(--ink-soft)}
   .order-copy{
     width:100%;margin-top:18px;background:var(--ink);color:var(--white);border:none;
-    border-radius:99px;padding:16px;font-weight:600;font-size:1rem;
+    border-radius:var(--r-btn);padding:16px;font-weight:600;font-size:1rem;
     display:flex;align-items:center;justify-content:center;gap:9px;transition:transform .12s ease;
   }
   .order-copy:active{transform:scale(.99)}
-  .order-copy.done{background:var(--foil);color:var(--ink)}
+  .order-copy.done{background:var(--stone);color:var(--ink)}
   .order-instruction{margin-top:14px;font-size:.9rem;color:#4c4944;line-height:1.5}
 
   footer{
-    margin-top:70px;padding:26px 22px calc(150px + env(safe-area-inset-bottom));
-    border-top:1px solid var(--border);text-align:center;
-    color:var(--muted);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+    margin-top:70px;padding:30px 22px calc(150px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--hairline);text-align:center;color:var(--ink-soft);
   }
+  .foot-pay{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
+  /* NO border here. Six of the seven SVGs already draw their own 2px #D9D9D9
+     rounded-rect card outline, so adding one produces a visible double stroke.
+     Amex is the exception: it paints a full-bleed blue card and carries no
+     outline of its own, which is why the site leaves the chip bare too. */
+  .pay-chip{
+    display:inline-flex;width:39px;height:26px;border-radius:5px;overflow:hidden;
+    background:var(--white);
+  }
+  .pay-chip img{width:100%;height:100%;object-fit:cover;display:block}
+  /* Klarna ships as a transparent wordmark meant to sit on Klarna Pink. Without
+     this it renders as an empty white chip. The main site had exactly this bug
+     in one place and it was caught by a check rather than by eye, so there is a
+     test for it below too. */
+  .pay-chip img[src*="klarna"]{background:#FFA8CD}
+  .foot-mark{font-size:.82rem;letter-spacing:.02em;font-weight:500}
+  /* Wide separator rather than literal spaces, which HTML would collapse. */
+  .foot-mark .sep{display:inline-block;padding:0 .85em;color:var(--hairline)}
+  .foot-legal{margin-top:9px;font-size:.72rem;line-height:1.6;color:var(--ink-faint)}
 
   /* ===== Locked mode ===== */
   .lb-overlay{
@@ -421,27 +917,27 @@
   }
   .lb-overlay.open{opacity:1;pointer-events:auto}
   .lb{
-    background:var(--paper);border-radius:var(--radius);overflow:hidden;
+    background:var(--porcelain);border-radius:var(--r-img);overflow:hidden;
     width:min(400px,100%);box-shadow:0 24px 60px rgba(0,0,0,.3);
     transform:translateY(12px) scale(.98);transition:transform .28s cubic-bezier(.22,1,.36,1);
   }
   .lb-overlay.open .lb{transform:none}
-  .lb-img{aspect-ratio:16/11;background:var(--stone);position:relative;overflow:hidden}
+  .lb-img{aspect-ratio:16/11;background:var(--bone);position:relative;overflow:hidden}
   .lb-img img{width:100%;height:100%;object-fit:cover}
   .lb-close{
     position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;
     background:rgba(0,0,0,.45);color:#fff;border:none;font-size:1.1rem;line-height:1;
     display:flex;align-items:center;justify-content:center;
   }
-  .lb-body{background:var(--foil);color:var(--ink);padding:26px 24px 24px}
-  .lb-body h3{font-family:var(--serif);font-size:1.7rem;font-weight:500;line-height:1.1}
+  .lb-body{background:var(--stone);color:var(--ink);padding:26px 24px 24px}
+  .lb-body h3{font-family:var(--serif);font-size:1.7rem;font-weight:420;line-height:1.1}
   .lb-body p{font-size:.94rem;line-height:1.5;margin-top:12px;color:#3f382f}
   .lb-actions{display:flex;gap:10px;margin-top:20px}
   .lb-share svg,.share-bar svg{width:20px;height:20px;flex:none}
   .lb-share{gap:9px;flex:1;width:100%}
 
   .lb-share{
-    flex:1;background:var(--ink);color:var(--white);border:none;border-radius:99px;
+    flex:1;background:var(--ink);color:var(--white);border:none;border-radius:var(--r-btn);
     height:52px;font-weight:600;font-size:1rem;display:flex;align-items:center;justify-content:center;gap:9px;
   }
   .lb-copy{
@@ -451,7 +947,7 @@
   .lb-copy.done{background:#dfe4d6}
   /* locked share sticky bar (replaces checkout) */
   .share-bar{
-    background:var(--ink);color:var(--white);border:none;border-radius:99px;
+    background:var(--ink);color:var(--white);border:none;border-radius:var(--r-btn);
     padding:0 26px;height:62px;font-weight:600;font-size:1.06rem;width:100%;
     display:flex;align-items:center;justify-content:center;gap:12px;
     box-shadow:var(--shadow-lift);
@@ -459,11 +955,113 @@
   body.locked #checkoutBtn{display:none}
   body:not(.locked) #shareBar{display:none}
 
+  /* Preview banner - only ever renders off the production hostname, so a test
+     deploy can never be mistaken for the live page when it is shared around.
+     Deliberately NOT black: it sits above the announcement bar and should read
+     as a dev artefact rather than compete with it. */
+  /* --bone rather than --stone so the two never read as one bar in preview.
+     Tonal ladder top to bottom: bone (dev only), stone (shipping), ink
+     (announcements). */
+  .preview-flag{
+    background:var(--bone);color:var(--ink);
+    font-size:.6rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+    text-align:center;padding:4px 16px;line-height:1.4;
+  }
+  .preview-flag b{color:var(--ink);font-weight:600}
+
+  /* Shipping promise. Ships in production; the preview flag does not. */
+  .ship-bar{
+    background:var(--stone);color:var(--ink);
+    font-size:.64rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+    text-align:center;padding:6px 16px;line-height:1.4;
+  }
+  /* The snag asked for one line. At .64rem the copy needs ~342px and only has
+     the viewport less 32px, so it is eased to .6rem below 620px: one line from
+     about 355px up, which covers every current phone. Anything narrower than
+     that (original SE) wraps to two, which is a fair trade for legibility. */
+  @media (max-width:620px){.ship-bar{font-size:.6rem;letter-spacing:.08em}}
+  @media (max-width:400px){.ship-bar{padding:5px 10px}}
+
+  /* ---------- Announcement bar ----------
+     Ported verbatim from /shared/styles.css so it matches the site pixel for
+     pixel. Two statements here rather than the site's four, so the cycle is 14s
+     instead of 28s - the per-statement timing is identical. */
+  .announce{
+    background:var(--ink);
+    color:var(--white);
+    font-family:"Figtree",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:500;
+    font-size:14px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    min-height:44px;
+    padding:0 16px;
+  }
+  .announce-item{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    gap:8px;padding:0 16px;
+    opacity:0;
+    animation:announce-cycle 14s infinite;
+  }
+  .announce-item:nth-child(2){animation-delay:7s}
+  /* One flex item, so the container's gap can only ever fall between the image
+     and the text - never between words. Without this, flexbox splits
+     `Rated <b>Excellent</b> on Trustpilot` into three anonymous flex items and
+     adds the 8px gap on top of each ordinary word space. */
+  .announce-text{display:inline}
+  /* 14s for two statements: each holds ~5.6s and fades over ~0.5s, which is the
+     same rhythm as the site's 28s/four. */
+  @keyframes announce-cycle{
+    0%,1%{opacity:0}
+    4%,44%{opacity:1}
+    48%,100%{opacity:0}
+  }
+  /* Reduced motion: no cycling, just the first statement. The second stays in
+     the markup, so nothing is lost for crawlers. */
+  @media (prefers-reduced-motion:reduce){
+    .announce-item{animation:none;opacity:0}
+    .announce-item:first-child{opacity:1}
+  }
+  @media (max-width:420px){
+    .announce{font-size:12.5px}
+    .announce-item{gap:6px;padding:0 10px}
+  }
+  .announce img{height:18px;width:auto;display:block;margin-right:8px}
+  .announce b{font-weight:600}
+
   .hidden{display:none!important}
   :focus-visible{outline:2.5px solid var(--ink);outline-offset:3px;border-radius:4px}
 </style>
 </head>
 <body>
+<div class="preview-flag hidden" id="previewFlag"></div>
+
+<!-- Shipping promise.
+     Standard postage is free on everything, by Royal Mail 2nd class, exactly as
+     on the main site. The £3.95 Tracked 24 line is a SPEED upgrade, never
+     carriage - nobody is ever charged to receive their add-ons. Naming the
+     service here is deliberate: "ships free" on its own invites "then why is
+     there a £3.95 postage product?".
+     Swapped in follow-up mode, where the original has already gone. -->
+<div class="ship-bar" id="shipBar">All add-on orders include free 2nd class postage</div>
+
+<!-- ============ ANNOUNCEMENT ============
+     Same component as the main site. Most people landing here bought in person
+     through a Memory Catcher and have never seen the website, so the trust
+     signals have to be made here rather than assumed.
+
+     BOTH STATEMENTS ARE IN THE MARKUP AT ONCE and rotate in CSS, exactly as on
+     the site. A JS text swap would show a crawler one statement and hide the
+     other, and it would need no consent gate either way. Do not "simplify" this
+     into a setInterval. -->
+<div class="announce">
+  <span class="announce-item"><img src="assets/tp-stars-5.svg" alt=""><span class="announce-text">Rated <b>Excellent</b> on Trustpilot</span></span>
+  <span class="announce-item"><span class="announce-text">Made using our exclusive <b>Foil Fusion Technology&trade;</b></span></span>
+</div>
 
 <header>
   <div class="wrap bar">
@@ -542,12 +1140,147 @@
 
 <main id="shop">
   <div class="wrap hero">
-    <span class="eyebrow" id="eyebrow">Last chance!</span>
-    <h1>All add-ons are only available now</h1>
-    <p class="lede">Your little one's prints are already with our studio. Add extra copies, frames or our best-selling keyrings (perfect gifts for Grandparents) and they'll be pressed alongside your original. Need it all sooner? Upgrade to express postage too. This page closes once your order goes to foil.</p>
-  </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <!-- Wrapped so the two can share a single grid cell with the photo on
+             mobile. Two separate items in the same cell would stack on top of
+             each other rather than flow. On desktop this is an ordinary block
+             and changes nothing. -->
+        <div class="hero-headline">
+          <!-- Breaks are explicit. Left to wrap, this orphans "like" on its own
+               line at most phone widths. -->
+          <h1>One set of prints,<br>as many keepsakes<br>as you like</h1>
+          <p class="hero-sub">They&rsquo;ll never be this small again</p>
+          <!-- Two ledes, one shown per breakpoint. On mobile the first hero
+               point has been folded into the lede and the point boxes are gone
+               entirely, so this is the only body copy in the hero. On desktop
+               the points still exist below, so repeating one here would read as
+               a duplicate. -->
+          <p class="lede lede-wide">Your little one's prints are already with our studio. Anything you add now is posted with your original.</p>
 
-  <div class="wrap"><div class="sec-rule hero-rule"></div></div>
+        </div>
+
+        <ul class="hero-points">
+          <li>
+            <span class="hp-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 3 7.5l9 4.5 9-4.5L12 3Z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17 12 21.5 21 17"/>
+              </svg>
+            </span>
+            <span class="hp-text"><b>The hard bit's already done</b>We have your digitally edited hand and footprints, ready to use again</span>
+          </li>
+          <li>
+            <span class="hp-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 12v8.5H4V12"/><path d="M2.5 7.5h19V12h-19z"/><path d="M12 7.5v13"/>
+                <path d="M12 7.5S10.8 3 8.2 3a2.3 2.3 0 0 0 0 4.5Z"/><path d="M12 7.5S13.2 3 15.8 3a2.3 2.3 0 0 1 0 4.5Z"/>
+              </svg>
+            </span>
+            <span class="hp-text"><b>Grandparent-proof gifts</b>Our keyrings are the one people come back for, three or more saves 20%</span>
+          </li>
+          <li>
+            <span class="hp-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2.5 16.5V6.5h11v10"/><path d="M13.5 9.5h4l4 3.5v3.5h-8"/>
+                <circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/>
+              </svg>
+            </span>
+            <span class="hp-text"><b>Need it sooner?</b>Upgrade to Tracked 24 at the checkout, next working day after dispatch</span>
+          </li>
+        </ul>
+
+        <p class="hero-note hidden" id="heroNote"></p>
+      </div>
+
+      <!-- ============ HERO SLIDESHOW ============
+           Crossfades in CSS, no JavaScript. Add up to ten slides by pasting
+           another <img class="hero-slide"> below; the timing looks after
+           itself and nothing else needs changing. Each slide holds 3s.
+
+           Rules for a new slide:
+             - keep class="hero-slide"
+             - first slide keeps fetchpriority="high" (it is the LCP image);
+               give every later one fetchpriority="low". NOT loading="lazy":
+               they are already in the viewport, so it defers nothing and some
+               browsers stall a transparent lazy image indefinitely.
+             - give every slide real alt text, they are not decorative
+             - paths are relative on purpose: they resolve from the pretty URLs
+               and also work when opening index.html straight off the disk
+           ========================================================= -->
+      <figure class="hero-shot">
+        <img id="heroShot" class="hero-slide"
+             src="assets/hero-566-1200.webp"
+             srcset="assets/hero-566-800.webp 800w, assets/hero-566-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="A mum unboxing her baby's framed foil footprint keepsake"
+             fetchpriority="high" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-067-1200.webp"
+             srcset="assets/hero-067-800.webp 800w, assets/hero-067-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="Frame corners in charcoal, walnut, white and oak"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-416-1200.webp"
+             srcset="assets/hero-416-800.webp 800w, assets/hero-416-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="A family looking together at their baby's framed foil print"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-024-1200.webp"
+             srcset="assets/hero-024-800.webp 800w, assets/hero-024-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="A rose gold hand and footprint keepsake in a white frame"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-196-1200.webp"
+             srcset="assets/hero-196-800.webp 800w, assets/hero-196-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="A baby reaching for their own foil footprints in a dark frame"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-091-1200.webp"
+             srcset="assets/hero-091-800.webp 800w, assets/hero-091-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="A silver foil handprint keepsake in a charcoal frame"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-437-1200.webp"
+             srcset="assets/hero-437-800.webp 800w, assets/hero-437-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="A foil footprint print being lifted from its packaging"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-033-1200.webp"
+             srcset="assets/hero-033-800.webp 800w, assets/hero-033-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="Gold foil footprints in a black frame on a wooden shelf"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-184-1200.webp"
+             srcset="assets/hero-184-800.webp 800w, assets/hero-184-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="A mum placing a framed foil footprint keepsake on a shelf"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+        <img class="hero-slide"
+             src="assets/hero-042-1200.webp"
+             srcset="assets/hero-042-800.webp 800w, assets/hero-042-1200.webp 1200w"
+             sizes="(min-width:920px) 440px, 100vw"
+             alt="Personalised foil handprint keyrings in gold, silver and rose gold"
+             fetchpriority="low" decoding="async"
+             onerror="this.style.display='none'">
+      </figure>
+    </div>
+  </div>
 
   <div class="wrap">
     <section>
@@ -596,7 +1329,22 @@
   </div>
 </div>
 
-<footer>Memory Catcher&trade; &middot; From Bespoke Foil Company&reg;</footer>
+<footer>
+  <!-- Same seven methods as the product page. Anyone who bought through a
+       Memory Catcher has never seen the site, so this is the only place they
+       learn what they can pay with. -->
+  <div class="foot-pay" aria-label="Accepted payment methods">
+    <span class="pay-chip"><img src="assets/pay/klarna.svg" alt="Klarna"></span>
+    <span class="pay-chip"><img src="assets/pay/visa.svg" alt="Visa"></span>
+    <span class="pay-chip"><img src="assets/pay/master.svg" alt="Mastercard"></span>
+    <span class="pay-chip"><img src="assets/pay/applePay.svg" alt="Apple Pay"></span>
+    <span class="pay-chip"><img src="assets/pay/googlePay.svg" alt="Google Pay"></span>
+    <span class="pay-chip"><img src="assets/pay/amex.svg" alt="American Express"></span>
+    <span class="pay-chip"><img src="assets/pay/paypal.svg" alt="PayPal"></span>
+  </div>
+  <p class="foot-mark">&copy; Bespoke Foil Company&trade;<span class="sep">|</span>Memory Catcher&trade;</p>
+  <p class="foot-legal">Registered in England &amp; Wales &middot; Company No. 12941845 &middot; VAT GB419408687</p>
+</footer>
 
 <div class="sticky" id="stickyBar">
   <div class="sticky-inner">
@@ -615,10 +1363,31 @@
   </div>
 </div>
 
+<!-- Personalisation sheet. The card's own .fields and .controls nodes are
+     moved in here on open and moved back on close, so every existing
+     validation and add-to-cart handler keeps working untouched. -->
+<div class="sheet-overlay" id="sheetOverlay"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1" hidden>
+  <div class="sheet-grab"></div>
+  <div class="sheet-head">
+    <img class="sheet-thumb" id="sheetThumb" alt="" onerror="this.style.visibility='hidden'">
+    <div class="sheet-titles">
+      <h3 id="sheetTitle"></h3>
+      <div class="sheet-price" id="sheetPrice"></div>
+    </div>
+    <button class="sheet-close" id="sheetClose" aria-label="Close personalisation">&times;</button>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+  <div class="sheet-foot" id="sheetFoot"></div>
+</div>
+
 <div class="lb-overlay" id="lockLightbox" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
   <div class="lb">
     <div class="lb-img">
-      <img src="https://static.wixstatic.com/media/f508cb_6367caaac33942b1a9ca5eba18dea939~mv2.jpg" alt="" onerror="this.style.display='none'">
+      <img src="assets/prod-pm-frame-1000.webp"
+           srcset="assets/prod-pm-frame-600.webp 600w, assets/prod-pm-frame-1000.webp 1000w"
+           sizes="(min-width:620px) 420px, 90vw"
+           alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
     </div>
     <div class="lb-body">
@@ -696,89 +1465,143 @@
    every total from the same catalogue in
    netlify/functions/create-payment-intent.js.
    ============================================================ */
-const STRIPE_PK = 'pk_test_Iof6pLKrd2JGNSgypxYKRhj9';
+/* Stripe keys are chosen by hostname so a preview deploy can never take a real
+   payment. Production hostnames get the live key; everything else (*.netlify.app,
+   localhost, deploy previews) gets the test key. To go live, the only thing that
+   has to be true is that the hostname is in PROD_HOSTS. */
+const PROD_HOSTS = [
+  'addons.thebespokefoilcompany.co.uk',
+  'thebespokefoilcompany.co.uk',
+  'www.thebespokefoilcompany.co.uk'
+];
+const IS_PROD        = PROD_HOSTS.includes(location.hostname);
+const STRIPE_PK_LIVE = 'pk_live_nYdwJILTammDf7vpPuADIPXW';
+const STRIPE_PK_TEST = 'pk_test_REPLACE_ME';
+const STRIPE_PK      = IS_PROD ? STRIPE_PK_LIVE : STRIPE_PK_TEST;
+const PK_MISSING     = !IS_PROD && STRIPE_PK_TEST.includes('REPLACE_ME');
+
+if (!IS_PROD){
+  const flag = document.getElementById('previewFlag');
+  flag.innerHTML = PK_MISSING
+    ? 'Preview build &middot; <b>payments disabled</b> &middot; no Stripe test key set'
+    : 'Preview build &middot; <b>Stripe test mode</b> &middot; use card 4242 4242 4242 4242';
+  flag.classList.remove('hidden');
+}
 const DISCOUNT_THRESHOLD = 4000; // £40
 const DISCOUNT_RATE = 0.20;
 const KEYRING_SKU = 'MK-KEY';
 const KEYRING_DEAL_QTY = 3;
 const KEYRING_DEAL_RATE = 0.20;
 
-const WIX = h => 'https://static.wixstatic.com/media/' + h;
+/* Product photography is served from this site. It used to come from the Wix
+   CDN, which failed silently at least once and took every tile with it. */
+const IMG_SLUG = {
+  'PM-PRINT':'pm-print', 'PM-FRAME':'pm-frame', 'CK-PRINT':'ck-print', 'CK-FRAME':'ck-frame',
+  'MK-KEY':'mk-key', 'TK-A5':'tk-a5', 'HK-A3':'hk-a3', 'POST-EXP':'post-exp', 'POST-STD':'post-exp'
+};
+const PROD = slug => 'assets/prod-' + slug + '-1000.webp';
+const PROD_SRCSET = slug =>
+  'assets/prod-' + slug + '-600.webp 600w, assets/prod-' + slug + '-1000.webp 1000w';
+/* Tile is 2-up: half the viewport on a phone, ~500px once the wrap caps out. */
+const PROD_SIZES = '(min-width:620px) 500px, 50vw';
 
 const CARD_FOIL = ['Black Card | Gold Foil','Black Card | Rose Gold Foil','Black Card | Silver Foil','White Card | Gold Foil','White Card | Rose Gold Foil','White Card | Silver Foil'];
 const FRAME = ['Ash','Black','Oak','Walnut','White'];
+const NAME_POSITION = ['Bottom','Top'];
+const NAME_FONT = ['Cursive','Modern'];
 
 const PRODUCTS = [
   /* -------- Extras: replicas, straight add -------- */
-  { sku:'PM-PRINT', section:'sec-extras', tag:'Offer',
+  { sku:'PM-PRINT', section:'sec-extras', tag:'Replica (A4)', short:'extra print', boost:1,
     name:'Perfect Match Print - Extra Print',
     desc:'Exact replica of original copy',
-    price:995, was:1500,
-    img:WIX('f508cb_7c7bc9e318ed46f3ad77f004bb9bb38f~mv2.jpg') },
+    price:995, was:1495,
+    img:PROD('pm-print') },
 
-  { sku:'PM-FRAME', section:'sec-extras', tag:'Replica',
+  { sku:'PM-FRAME', section:'sec-extras', tag:'Replica (A4)', short:'framed replica', boost:1,
     name:'Perfect Match Frame - Extra Framed Print',
     desc:'Framed replica of original copy',
-    price:1995, was:null,
-    img:WIX('f508cb_6367caaac33942b1a9ca5eba18dea939~mv2.jpg') },
+    price:1995, was:2495,
+    img:PROD('pm-frame') },
 
   /* -------- Customised extras -------- */
-  { sku:'CK-PRINT', section:'sec-custom', tag:'Customised',
+  { sku:'CK-PRINT', section:'sec-custom', tag:'Customisable (A4)', short:'custom print',
     name:'Custom Keepsake - Extra Print',
     desc:'Change colours or text of original copy',
     price:1495, was:null,
-    img:WIX('f508cb_6db3d52765c94e3f8f95ae6613c46aaf~mv2.jpg'),
+    img:PROD('ck-print'),
     options:[{key:'cardFoil', label:'Card & foil colour', values:CARD_FOIL}],
     fields:[{key:'personalisation', label:'What would you like to change the personalisation to?', max:200, required:true, multiline:true}] },
 
-  { sku:'CK-FRAME', section:'sec-custom', tag:'Customised',
+  { sku:'CK-FRAME', section:'sec-custom', tag:'Customisable (A4)', short:'custom framed print',
     name:'Custom Keepsake - Extra Framed Print',
     desc:'Change colours or text of original copy - Frame included',
-    price:2495, was:null,
-    img:WIX('f508cb_634b1f14d78749edbf7ccd8663a4c824~mv2.jpg'),
+    price:2495, was:2995,
+    img:PROD('ck-frame'),
     options:[
       {key:'cardFoil', label:'Card & foil colour', values:CARD_FOIL},
       {key:'frame', label:'Frame colour', values:FRAME}],
     fields:[{key:'personalisation', label:'What would you like to change the personalisation to?', max:500, required:true, multiline:true}] },
 
   /* -------- Add ons -------- */
-  { sku:'MK-KEY', section:'sec-addons', tag:'Keyring', deal:'3+ keyrings save 20%',
+  { sku:'MK-KEY', section:'sec-addons', tag:'Keyring', short:'keyring', deal:'3+ keyrings save 20%',
     name:'Miniature Keepsake - Keyring',
     desc:'Order 3 or more keyrings for 20% off!',
     price:1495, was:null,
-    img:WIX('f508cb_6d73fb741ff445b6ab8b035462bf4bff~mv2.jpg'),
+    img:PROD('mk-key'),
     options:[
       {key:'keyringFoil', label:'Keyring & foil colour', values:['Gold','Silver','Rose Gold','Gun Metal']},
       {key:'handFoot', label:'Hand or foot', values:['Foot','Hand']}],
-    fields:[{key:'name', label:'Name - up to 10 characters (leave blank for no name)', max:10, required:false}] },
+    fields:[{key:'name', label:'Name - up to 10 characters', max:10, required:false, optCta:'Add a name'}] },
 
-  { sku:'TK-A5', section:'sec-addons', tag:'A5',
+  { sku:'TK-A5', section:'sec-addons', tag:'A5 (smaller)', short:'A5 framed print',
     name:'Treasured Keepsake - A5 Framed Print',
     desc:'Smaller - Perfect for grandparent gifts!',
     price:1995, was:null,
-    img:WIX('f508cb_7d8a57c3e6cd4fea9bba39772293eaf1~mv2.jpg'),
+    img:PROD('tk-a5'),
     options:[
       {key:'cardFoil', label:'Card & foil colour', values:CARD_FOIL},
       {key:'frame', label:'Frame colour', values:FRAME},
-      {key:'handFoot', label:'Hand or foot', values:['Hand','Foot']}],
-    fields:[{key:'notes', label:'Any notes for your order?', max:500, required:false, multiline:true}] },
+      {key:'handFoot', label:'Hand or foot', values:['Hand','Foot']},
+      {key:'namePosition', label:'Name position', values:NAME_POSITION},
+      {key:'nameFont', label:'Name font', values:NAME_FONT}],
+    fields:[{key:'notes', label:'Any notes for your order?', max:500, required:false, multiline:true, optCta:'Add a note'}] },
 
-  { sku:'HK-A3', section:'sec-addons', tag:'A3',
+  { sku:'HK-A3', section:'sec-addons', tag:'A3 (larger)', short:'A3 framed print',
     name:'Heritage Keepsake - A3 Framed Print',
     desc:'Larger - A truly standout piece for your home!',
-    price:3495, was:null,
-    img:WIX('f508cb_e887e8990e2b40f7b7917357dd9c7f4d~mv2.jpg'),
+    price:3495, was:4995,
+    img:PROD('hk-a3'),
+    /* Sets expectation before they pay, not after. Someone spending £34.95 on
+       "A3" reasonably assumes bigger prints; they get the same artwork with a
+       wider border. Better said here than in a refund conversation.
+
+       "true scale" rather than "same size" on purpose: it answers the
+       expectation AND says the thing that actually matters, which is that the
+       hand and footprints are a faithful record of how big they really were.
+       That turns a limitation into the reason the keepsake is worth having. */
+    note:'Your prints stay at their true scale, exactly as on the A4. An A3 frame sets them in a wider border, which gives the finished piece more presence.',
     options:[
       {key:'cardFoil', label:'Card & foil colour', values:CARD_FOIL},
       {key:'frame', label:'Frame colour', values:FRAME}],
-    fields:[{key:'notes', label:'Any notes for your order?', max:500, required:false, multiline:true}] },
+    fields:[{key:'notes', label:'Any notes for your order?', max:500, required:false, multiline:true, optCta:'Add a note'}] },
 
   /* -------- Upgrades -------- */
+  /* Follow-up only, and never browsable: it is not something anyone chooses,
+     it is the carriage on a parcel that no longer travels with the original.
+     `hidden` keeps it out of the grid entirely. */
+  { sku:'POST-STD', section:'sec-upgrades', tag:'Postage', maxQty:1, hidden:true,
+    short:'2nd class postage',
+    name:'2nd Class Postage',
+    desc:'Royal Mail 2nd Class, untracked',
+    price:295, was:null,
+    img:PROD('post-exp') },
+
   { sku:'POST-EXP', section:'sec-upgrades', tag:'Postage', maxQty:1,
     name:'Express Tracked Postage',
     desc:'Upgrade your shipping to Tracked 24 and get your keepsake the next working day after dispatch',
     price:395, was:null,
-    img:WIX('f508cb_ea1ffc4e4b6f4b19931c92daa4c6866f~mv2.jpg') }
+    img:PROD('post-exp') }
 ];
 
 /* Original order reference arrives on the URL:
@@ -797,7 +1620,20 @@ const PREFILL_EMAIL = params.get('email') || '';
    what's possible - only the final "Add" is intercepted.
    The live (unlocked) URL is the same page without the flag.
    ============================================================ */
-const LOCKED = params.get('locked') === '1' || /-locked\/?$/.test(location.pathname);
+/* ---------- LOCK SWITCH ----------
+   Locked mode is CURRENTLY OFF. The -locked URL still resolves and still
+   serves this page, it just behaves exactly like the live one, so the link in
+   the WhatsApp flow never has to change.
+
+   TO LOCK IT AGAIN: set this to true. Nothing else needs touching - every
+   piece of locked-mode machinery below is intact and tested.
+
+   Which link someone arrived on is still recorded (see ENTRY_LINK), so the two
+   entry points can be compared in GA4 even though they behave identically. */
+const LOCK_ENABLED = false;
+
+const ARRIVED_LOCKED = params.get('locked') === '1' || /-locked\/?$/.test(location.pathname);
+const LOCKED = LOCK_ENABLED && ARRIVED_LOCKED;
 // The link shared with family should also land them in browse-only mode.
 const LOCKED_SHARE_URL = (() => {
   const u = new URL(location.href);
@@ -810,8 +1646,29 @@ const LOCKED_SHARE_URL = (() => {
 
 if (LOCKED) document.body.classList.add('locked');
 
+/* ---------- FOLLOW-UP MODE ----------
+   The week-later "anything you missed?" link. By then the original keepsake has
+   usually shipped, so this order travels on its own and has to carry its own
+   postage. Postage is added automatically and cannot be removed.
+
+   Two ways in, matching the locked-mode pattern:
+     /add-ons-exclusive-discount-938476-followup
+     ...938476?followup=1                                                     */
+const FOLLOWUP = !ARRIVED_LOCKED && (params.get('followup') === '1' || /-followup\/?$/.test(location.pathname));
+const POSTAGE_STD  = 'POST-STD';    // £2.95 untracked, forced on follow-ups
+const POSTAGE_SKU  = 'POST-EXP';    // £3.95 Tracked 24, the upgrade
+const POSTAGE_SKUS = [POSTAGE_STD, POSTAGE_SKU];
+if (FOLLOWUP) document.body.classList.add('followup');
+
 const lightbox = document.getElementById('lockLightbox');
-function openLightbox(){ lightbox.classList.add('open'); }
+/* Pre-proof purchase intent. Someone on the locked link tried to buy and was
+   stopped by us, not by hesitation. Arguably the most valuable single number on
+   this page: it is demand with a known order ref attached, before the proof has
+   even landed. */
+function openLightbox(){
+  track('locked_intent_blocked', { value: gaValue(totals().sub), item_count: totals().count });
+  lightbox.classList.add('open');
+}
 function closeLightbox(){ lightbox.classList.remove('open'); }
 document.getElementById('lbClose').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
@@ -832,6 +1689,7 @@ const SHARE_TEXT = 'Have a browse of the exclusive add-ons for our foil keepsake
    browsers) we silently copy the link so the button always does
    something useful. */
 async function shareLocked(ev){
+  track('share_link', { method: 'native_share_sheet' });
   if (ev) ev.preventDefault();
   const shareData = { title: 'Browse our Add-ons', text: SHARE_TEXT, url: LOCKED_SHARE_URL };
   if (navigator.share){
@@ -855,14 +1713,44 @@ async function shareLocked(ev){
 document.getElementById('lbShare').addEventListener('click', shareLocked);
 document.getElementById('shareBar').addEventListener('click', shareLocked);
 
+if (FOLLOWUP){
+  /* The original has almost certainly shipped by now, so nothing here can claim
+     to travel with it. */
+  const h1 = document.querySelector('.hero h1');
+  if (h1) h1.textContent = 'Anything you missed?';
+  const wide = document.querySelector('.hero .lede-wide');
+  if (wide) wide.textContent = "We still have your little one's prints on file. Anything you order now is made from those same prints and sent out to you.";
+
+  const p1 = document.querySelector('.hero-points li:nth-child(1) .hp-text');
+  if (p1) p1.innerHTML = "<b>We still have your prints</b>Nothing to redo, every extra comes from the digitally edited prints we hold";
+  const p3 = document.querySelector('.hero-points li:nth-child(3) .hp-text');
+  if (p3) p3.innerHTML = "<b>Postage on this one</b>It travels on its own, so \u00A32.95 2nd class is added, or upgrade to Tracked 24";
+  /* "Ships free with your original" is false once the original has gone. */
+  const ship = document.getElementById('shipBar');
+  if (ship) ship.textContent = 'All add-on orders include \u00A32.95 2nd class postage';
+
+  const note = document.getElementById('heroNote');
+  if (note){
+    note.textContent = 'Your first keepsake has already been sent. This is a separate parcel.';
+    note.classList.remove('hidden');
+  }
+  const up = document.querySelector('#sec-upgrades');
+  const upHead = up && up.closest('section');
+  if (upHead) upHead.style.display = 'none';   // postage is already in the basket
+}
+
 if (LOCKED){
   // Relabel the hero for browse mode.
-  const eb = document.getElementById('eyebrow');
-  if (eb) eb.textContent = 'Browse our Add-ons';
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.textContent = 'Exclusive discounts available';
-  const lede = document.querySelector('.hero .lede');
-  if (lede) lede.textContent = "Your little one's prints are already with our studio. Add extra copies, frames or our best-selling keyrings (perfect gifts for Grandparents) and they'll be pressed alongside your original. Need it all sooner? Upgrade to express postage too. This page unlocks once you approve your proof.";
+  const lWide = document.querySelector('.hero .lede-wide');
+  if (lWide) lWide.textContent = "Your little one's prints are already with our studio. Have a look at what you can add to your order.";
+
+  const note = document.getElementById('heroNote');
+  if (note){
+    note.textContent = 'Add-ons unlock once you approve your proof.';
+    note.classList.remove('hidden');
+  }
 
   // Capture-phase interceptor: any actionable control opens the lightbox.
   // Allowed through: the Personalise expander, field inputs, and the
@@ -874,7 +1762,9 @@ if (LOCKED){
     '.qty button',          // adjust quantity (harmless while browsing)
     '.line-qty button',
     'select[data-opt]', 'input[data-fld]', 'textarea[data-fld]',
-    '.custom-note', '.field'
+    '.custom-note', '.field',
+    '.sheet-close',         // close the personalisation sheet
+    '.opt-toggle'           // reveal an optional field while browsing
   ];
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('button, a, .checkout, .share-bar');
@@ -885,6 +1775,7 @@ if (LOCKED){
     if (btn.id === 'shareBar' || btn.id === 'lbShare' || btn.id === 'lbClose') return;
     e.preventDefault();
     e.stopPropagation();
+    if (typeof closeSheet === 'function') closeSheet();
     openLightbox();
   }, true); // capture = fires before the element's own handler
 
@@ -892,6 +1783,53 @@ if (LOCKED){
   window.__lockedNoPay = true;
 }
 
+
+/* ============================================================
+   MEASUREMENT
+
+   Standard GA4 ecommerce event names throughout (view_item,
+   add_to_cart, begin_checkout, purchase and so on) so the built-in
+   ecommerce reports work with no configuration. Custom events only
+   where this app does something GA4 has no name for.
+
+   TWO RULES, BOTH DELIBERATE:
+
+   1. Nothing here may ever break checkout. Every call is wrapped and
+      is a silent no-op if gtag is missing, blocked, or throws. An ad
+      blocker must cost us a data point, never a payment.
+
+   2. NO EMAIL, EVER. Google's terms forbid PII, and we have the
+      customer's address in the URL. We send order_ref instead - it is
+      pseudonymous to Google but lets Ryan look up exactly who added
+      to a basket and never paid, which is the whole point.
+   ============================================================ */
+function track(name, params){
+  try {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', name, Object.assign({
+      /* how the page behaved */
+      app_mode: LOCKED ? 'locked' : (FOLLOWUP ? 'followup' : 'live'),
+      /* which link they arrived on, which is NOT the same thing while
+         LOCK_ENABLED is false - both links behave live, and this is how you
+         tell them apart in reporting. */
+      entry_link: ARRIVED_LOCKED ? 'locked-url' : (FOLLOWUP ? 'followup' : 'standard'),
+      lock_enabled: LOCK_ENABLED,
+      order_ref: ORDER_REF || '(none)'
+    }, params || {}));
+  } catch (e) { /* measurement must never surface to the customer */ }
+}
+
+/* GA4 item shape, built from a cart line or a bare product. */
+function gaItem(p, qty, extra){
+  return Object.assign({
+    item_id: p.sku,
+    item_name: p.name,
+    price: p.price / 100,
+    quantity: qty || 1,
+    item_category: p.section.replace('sec-', '')
+  }, extra || {});
+}
+const gaValue = pence => +(pence / 100).toFixed(2);
 
 const gbp = p => '\u00A3' + (p/100).toFixed(2);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
@@ -956,7 +1894,8 @@ function restoreCart(){
         sku: l.sku,
         qty: qty,
         options: (l.options && typeof l.options === 'object') ? l.options : {},
-        fields: (l.fields && typeof l.fields === 'object') ? l.fields : {}
+        fields: (l.fields && typeof l.fields === 'object') ? l.fields : {},
+        locked: !!l.locked
       });
     }
     cart = clean;
@@ -966,10 +1905,56 @@ function restoreCart(){
   }
 }
 
+/* Adds, or re-asserts, the mandatory postage line. Called after restore and
+   after every cart change, so it cannot be lost by clearing the basket, by a
+   stale saved cart, or by editing localStorage. */
+/* Follow-up parcels travel on their own, so they carry their own postage:
+   £2.95 2nd class by default, or £3.95 Tracked 24 if they choose the upgrade.
+   Exactly one of the two, always present, never removable.
+
+   In live mode neither is forced - standard postage is free there, and POST-STD
+   should not exist in a basket at all. */
+function enforcePostage(){
+  const lines = cart.filter(l => POSTAGE_SKUS.includes(l.sku));
+
+  if (!FOLLOWUP){
+    /* Came back on the normal link with a follow-up basket in storage. Standard
+       postage is free here, so the forced line is dropped and any Tracked 24
+       they chose becomes an ordinary, removable upgrade again. */
+    cart = cart.filter(l => l.sku !== POSTAGE_STD);
+    cart.forEach(l => { if (l.sku === POSTAGE_SKU) delete l.locked; });
+    return;
+  }
+
+  const express = lines.find(l => l.sku === POSTAGE_SKU);
+  const std     = lines.find(l => l.sku === POSTAGE_STD);
+
+  /* If both are somehow present, the upgrade wins and the standard line goes.
+     Never charge for two lots of carriage. */
+  const keep = express || std;
+  cart = cart.filter(l => !POSTAGE_SKUS.includes(l.sku) || l === keep);
+
+  if (!keep){
+    cart.push({ lineId: nextLineId++, sku: POSTAGE_STD, qty: 1, options: {}, fields: {}, locked: true });
+  } else {
+    keep.qty = 1;
+    keep.locked = true;
+  }
+}
+
+/* Swap between the two, both directions. Used by the basket upsell. */
+function setPostage(sku){
+  if (!FOLLOWUP || !POSTAGE_SKUS.includes(sku)) return;
+  cart = cart.filter(l => !POSTAGE_SKUS.includes(l.sku));
+  cart.push({ lineId: nextLineId++, sku: sku, qty: 1, options: {}, fields: {}, locked: true });
+  refresh();
+}
+
 const configKey = (sku, options, fields) =>
   sku + '::' + JSON.stringify(options) + '::' + JSON.stringify(fields);
 
 function addToCart(sku, qty, options, fields){
+  if (FOLLOWUP && POSTAGE_SKUS.includes(sku)) return;   // handled by setPostage
   const key = configKey(sku, options, fields);
   const existing = cart.find(l => configKey(l.sku, l.options, l.fields) === key);
   if (existing) existing.qty += qty;
@@ -979,6 +1964,7 @@ function addToCart(sku, qty, options, fields){
 
 /* ---------- Render product tiles ---------- */
 PRODUCTS.forEach(p => {
+  if (p.hidden) return;                 // POST-STD is carriage, not a product
   const savePct = p.was ? Math.round((1 - p.price/p.was) * 100) : null;
   const el = document.createElement('article');
   el.className = 'card';
@@ -987,6 +1973,9 @@ PRODUCTS.forEach(p => {
   let fieldsHtml = '';
   if (p.options || p.fields){
     fieldsHtml = '<div class="fields">';
+    /* Product note, if it has one. Sits above the choices so it is read before
+       anything is decided, not after. */
+    if (p.note) fieldsHtml += `<p class="field-note">${esc(p.note)}</p>`;
     (p.options || []).forEach(o => {
       fieldsHtml += `<div class="field" data-field="${o.key}">
         <label for="${p.sku}-${o.key}">${esc(o.label)} <span class="req">*</span></label>
@@ -997,13 +1986,25 @@ PRODUCTS.forEach(p => {
       </div>`;
     });
     (p.fields || []).forEach(f => {
+      /* autocomplete/autocapitalize are set deliberately: without them iOS
+         offers its password-and-card suggestion bar above the keyboard, which
+         is a whole extra row of chrome on a form that has nothing to do with
+         credentials. */
+      const attrs = `data-fld="${f.key}" maxlength="${f.max}" autocomplete="off" `
+        + `autocapitalize="${f.multiline ? 'sentences' : 'words'}" spellcheck="${f.multiline}"`;
       const tag = f.multiline
-        ? `<textarea id="${p.sku}-${f.key}" data-fld="${f.key}" maxlength="${f.max}" placeholder="Type here&hellip;"></textarea>`
-        : `<input type="text" id="${p.sku}-${f.key}" data-fld="${f.key}" maxlength="${f.max}" placeholder="Type here&hellip;">`;
-      fieldsHtml += `<div class="field" data-field="${f.key}">
+        ? `<textarea id="${p.sku}-${f.key}" ${attrs} placeholder="Type here&hellip;"></textarea>`
+        : `<input type="text" id="${p.sku}-${f.key}" ${attrs} placeholder="Type here&hellip;">`;
+      const field = `<div class="field" data-field="${f.key}">
         <label for="${p.sku}-${f.key}">${esc(f.label)} ${f.required ? '<span class="req">*</span>' : ''}</label>
         ${tag}
         ${f.max <= 20 ? `<div class="count" id="${p.sku}-${f.key}-count">0 / ${f.max}</div>` : ''}
+      </div>`;
+      /* Required fields are always visible. Optional ones sit behind a toggle
+         so the default form is only the decisions that must be made. */
+      fieldsHtml += f.required ? field : `<div class="opt-block">
+        <button type="button" class="opt-toggle" aria-expanded="false">${esc(f.optCta || 'Add a note')} (optional)</button>
+        <div class="opt-inner">${field}</div>
       </div>`;
     });
     fieldsHtml += '</div>';
@@ -1011,8 +2012,9 @@ PRODUCTS.forEach(p => {
 
   el.innerHTML = `
     <div class="card-img">
-      <img src="${p.img}" alt="${esc(p.name)}" loading="lazy" onerror="this.style.display='none'">
-      <span class="tag${p.tag === 'Offer' ? ' offer' : ''}">${p.tag}</span>
+      <img src="${p.img}" srcset="${PROD_SRCSET(IMG_SLUG[p.sku])}" sizes="${PROD_SIZES}"
+           alt="${esc(p.name)}" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      <span class="tag">${p.tag}</span>
     </div>
     <div class="card-body">
       <h3>${esc(p.name)}</h3>
@@ -1022,19 +2024,217 @@ PRODUCTS.forEach(p => {
         ${p.was ? `<span class="was">${gbp(p.was)}</span><span class="save">Save ${savePct}%</span>` : ''}
         ${p.deal ? `<span class="deal">${esc(p.deal)}</span>` : ''}
       </div>
-      ${fieldsHtml ? `<div class="reveal"><div class="reveal-inner">${fieldsHtml}</div></div>` : ''}
+      ${fieldsHtml}
       <p class="card-err" id="err-${p.sku}"></p>
       <div class="controls">
-        ${fieldsHtml ? `<button class="add personalise" aria-expanded="false">Personalise</button>` : ''}
-        <div class="qty${fieldsHtml ? ' hidden' : ''}" ${p.maxQty === 1 ? 'style="display:none"' : ''}>
+        <div class="qty" ${p.maxQty === 1 ? 'style="display:none"' : ''}>
           <button data-d="-1" aria-label="Decrease quantity">&minus;</button>
           <span id="q-${p.sku}">1</span>
           <button data-d="1" aria-label="Increase quantity">+</button>
         </div>
-        <button class="add tocart${fieldsHtml ? ' hidden' : ''}">Add to cart</button>
+        <button class="add tocart">
+          <span class="l-full">${fieldsHtml ? 'Add to basket' : 'Add to cart'}</span>
+          <span class="l-short">Add</span>
+          <span class="l-done">Added &#10003;</span>
+          <span class="l-tick" aria-label="Added">&#10003;</span>
+        </button>
       </div>
+      ${fieldsHtml ? `<div class="tile-cta"><button class="add personalise" aria-haspopup="dialog" aria-expanded="false">
+          <span class="l-full">Personalise</span>
+          <span class="l-done">Added &#10003;</span>
+        </button></div>` : ''}
     </div>`;
   document.getElementById(p.section).appendChild(el);
+});
+
+/* ---------- Personalisation sheet controller ----------
+   The sheet does not re-render anything. It borrows the card's real .fields
+   and .controls nodes, so all the listeners and validation bound below stay
+   attached and keep working exactly as they did inline. */
+const sheetEl      = document.getElementById('sheet');
+const sheetOverlay = document.getElementById('sheetOverlay');
+const sheetBody    = document.getElementById('sheetBody');
+const sheetFoot    = document.getElementById('sheetFoot');
+const sheetThumb   = document.getElementById('sheetThumb');
+const sheetTitle   = document.getElementById('sheetTitle');
+const sheetPrice   = document.getElementById('sheetPrice');
+let sheetHost = null;          // the card currently borrowed from
+let lastFocus = null;
+let scrollLockY = 0;
+
+/* ---------- iOS keyboard handling ----------
+   A position:fixed element is laid out against the LAYOUT viewport, which does
+   not shrink when the keyboard opens. So "bottom:0" ends up behind the keyboard
+   and iOS scrolls the page to chase the focused field, which drags the whole
+   sheet off the top of the screen. That is why Add to basket was floating in
+   the middle with shop content visible beneath it.
+
+   visualViewport reports the actually-visible rectangle, so we size and
+   position the sheet against that instead. Desktop is left alone entirely. */
+const vv = window.visualViewport;
+
+function syncSheetViewport(){
+  if (!sheetHost) return;
+  if (window.innerWidth >= 620 || !vv){
+    sheetEl.style.top = ''; sheetEl.style.height = '';
+    return;
+  }
+  sheetEl.style.top    = vv.offsetTop + 'px';
+  sheetEl.style.height = vv.height + 'px';
+}
+
+/* iOS fires visualViewport resize repeatedly WHILE the keyboard slides up, and
+   the values in flight are mid-animation. Taking the first one leaves the sheet
+   short, which is what put a strip of shop between it and the keyboard. So
+   re-measure a few times across the animation and take the settled figure. */
+let resyncTimers = [];
+function resyncSoon(){
+  resyncTimers.forEach(clearTimeout);
+  resyncTimers = [80, 200, 400, 650].map(ms => setTimeout(syncSheetViewport, ms));
+}
+if (vv){
+  vv.addEventListener('resize', () => { syncSheetViewport(); resyncSoon(); });
+  vv.addEventListener('scroll', syncSheetViewport);
+}
+
+/* overflow:hidden on body does not hold on iOS. Pinning the body and restoring
+   the scroll position afterwards does. */
+function lockScroll(){
+  scrollLockY = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top   = -scrollLockY + 'px';
+  document.body.style.left  = '0';
+  document.body.style.right = '0';
+  document.body.classList.add('sheet-open');
+}
+function unlockScroll(){
+  document.body.style.position = '';
+  document.body.style.top   = '';
+  document.body.style.left  = '';
+  document.body.style.right = '';
+  document.body.classList.remove('sheet-open');
+  window.scrollTo(0, scrollLockY);
+  if (window.__headerReset) window.__headerReset();
+}
+let pendingRestore = null;     // { card, fields, controls, err }
+let restoreTimer = null;
+
+/* Puts the borrowed nodes back in their original order. .tile-cta never moves,
+   so it is a stable anchor to insert in front of. Runs after the close
+   animation, or immediately if another sheet opens first. */
+function flushRestore(){
+  if (!pendingRestore) return;
+  clearTimeout(restoreTimer);
+  const r = pendingRestore;
+  pendingRestore = null; restoreTimer = null;
+  const body   = r.card.querySelector('.card-body');
+  const anchor = r.card.querySelector('.tile-cta');
+  r.fields.classList.add('hidden');
+  r.controls.classList.add('hidden');
+  body.insertBefore(r.fields, anchor);
+  body.insertBefore(r.err, anchor);
+  body.insertBefore(r.controls, anchor);
+  sheetEl.hidden = true;
+}
+
+function closeSheet(){
+  if (!sheetHost) return;
+  if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  clearTimeout(kbBlur);
+  resyncTimers.forEach(clearTimeout); resyncTimers = [];
+  sheetEl.classList.remove('open');
+  sheetEl.classList.remove('kb');
+  sheetOverlay.classList.remove('open');
+  unlockScroll();
+  restoreTimer = setTimeout(() => {
+    flushRestore();
+    sheetEl.style.top = ''; sheetEl.style.height = '';
+  }, 340);
+  const btn = sheetHost.querySelector('.personalise');
+  if (btn) btn.setAttribute('aria-expanded', 'false');
+  sheetHost = null;
+  if (lastFocus) { lastFocus.focus({ preventScroll:true }); lastFocus = null; }
+}
+
+function openSheet(card, p){
+  if (sheetHost) return;
+  flushRestore();               // never borrow while a restore is still queued
+  sheetHost = card;
+  lastFocus = card.querySelector('.personalise');
+
+  const body     = card.querySelector('.card-body');
+  const fields   = card.querySelector('.fields');
+  const controls = card.querySelector('.controls');
+  const err      = card.querySelector('.card-err');
+  pendingRestore = { card, fields, controls, err };
+
+  sheetThumb.src = p.img;
+  sheetThumb.alt = p.name;
+  sheetTitle.textContent = p.name;
+  const savePct = p.was ? Math.round((1 - p.price/p.was) * 100) : null;
+  sheetPrice.innerHTML = `<span>${gbp(p.price)}</span>`
+    + (p.was ? `<span class="was">${gbp(p.was)}</span><span class="save">Save ${savePct}%</span>` : '')
+    + (p.deal ? `<span class="deal">${esc(p.deal)}</span>` : '');
+
+  sheetBody.appendChild(fields);
+  sheetFoot.appendChild(err);
+  sheetFoot.appendChild(controls);
+
+  track('view_item', { currency:'GBP', value: gaValue(p.price), items: [gaItem(p, 1)] });
+
+  sheetEl.hidden = false;
+  sheetBody.scrollTop = 0;
+  lockScroll();
+  requestAnimationFrame(() => {
+    sheetEl.classList.add('open');
+    sheetOverlay.classList.add('open');
+    syncSheetViewport();
+    /* Deliberately NOT focusing the first field. On iOS, focusing a <select>
+       throws the wheel picker straight up the moment the sheet opens, before
+       anyone has read what they are choosing. Focus goes to the dialog itself
+       so screen readers still announce it. */
+    sheetEl.focus({ preventScroll:true });
+  });
+  card.querySelector('.personalise').setAttribute('aria-expanded', 'true');
+}
+
+/* The keyboard state is now driven by focus rather than by comparing viewport
+   heights. window.innerHeight is not dependable on iOS once the URL bar starts
+   collapsing, so the old ratio test could silently fail to fire - which is why
+   the thumbnail and price were still taking up room with the keyboard open.
+   Selects are excluded deliberately: they raise a wheel picker, not a keyboard. */
+let kbBlur = null;
+sheetBody.addEventListener('focusin', e => {
+  if (!e.target.matches('input[data-fld], textarea[data-fld]')) return;
+  clearTimeout(kbBlur);
+  sheetEl.classList.add('kb');
+  resyncSoon();
+  setTimeout(() => {
+    try { e.target.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (_) {}
+  }, 300);
+});
+sheetBody.addEventListener('focusout', e => {
+  if (!e.target.matches('input[data-fld], textarea[data-fld]')) return;
+  /* Delayed so tabbing straight to the next field does not flicker the header. */
+  clearTimeout(kbBlur);
+  kbBlur = setTimeout(() => {
+    if (!sheetBody.contains(document.activeElement)) {
+      sheetEl.classList.remove('kb');
+      resyncSoon();
+    }
+  }, 120);
+});
+
+document.getElementById('sheetClose').addEventListener('click', closeSheet);
+sheetOverlay.addEventListener('click', closeSheet);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && sheetHost) closeSheet();
+});
+
+/* What was actually put in front of them, and in what order. */
+track('view_item_list', {
+  item_list_name: 'Add-ons',
+  items: PRODUCTS.filter(p => !p.hidden).map((p, i) => gaItem(p, 1, { index: i }))
 });
 
 /* per-card pending qty + character counters */
@@ -1045,112 +2245,216 @@ document.querySelectorAll('.card').forEach(card => {
   const sku = card.dataset.sku;
   const p = PRODUCTS.find(x => x.sku === sku);
 
-  card.querySelectorAll('.qty button').forEach(b => b.addEventListener('click', () => {
+  /* Captured once, before anything can be moved into the sheet. Every lookup
+     below goes through these so it does not matter where the node currently
+     lives in the DOM. */
+  const fieldsEl   = card.querySelector('.fields');
+  const controlsEl = card.querySelector('.controls');
+  const errEl      = card.querySelector('.card-err');
+  const qtyLabel   = card.querySelector('#q-' + sku);
+  const hasFields  = !!fieldsEl;
+
+  /* Personalised products keep their fields and controls out of the tile until
+     the sheet borrows them. */
+  if (hasFields){
+    fieldsEl.classList.add('hidden');
+    controlsEl.classList.add('hidden');
+  }
+
+  controlsEl.querySelectorAll('.qty button').forEach(b => b.addEventListener('click', () => {
     pending[sku] = Math.max(1, pending[sku] + Number(b.dataset.d));
-    card.querySelector('#q-' + sku).textContent = pending[sku];
+    qtyLabel.textContent = pending[sku];
   }));
 
-  card.querySelectorAll('input[maxlength],textarea[maxlength]').forEach(inp => {
-    const counter = card.querySelector('#' + inp.id + '-count');
+  if (hasFields) fieldsEl.querySelectorAll('.opt-toggle').forEach(t => {
+    t.addEventListener('click', () => {
+      const block = t.closest('.opt-block');
+      block.classList.add('open');
+      t.setAttribute('aria-expanded', 'true');
+      const inp = block.querySelector('input[data-fld],textarea[data-fld]');
+      if (inp) inp.focus();
+    });
+  });
+
+  if (hasFields) fieldsEl.querySelectorAll('input[maxlength],textarea[maxlength]').forEach(inp => {
+    const counter = fieldsEl.querySelector('#' + CSS.escape(inp.id) + '-count');
     if (counter) inp.addEventListener('input', () =>
       counter.textContent = inp.value.length + ' / ' + inp.maxLength);
   });
 
   const personaliseBtn = card.querySelector('.personalise');
-  function setOpen(open){
-    card.classList.toggle('open', open);
-    if (!personaliseBtn) return;
-    personaliseBtn.classList.toggle('hidden', open);
-    personaliseBtn.setAttribute('aria-expanded', String(open));
-    const qtyEl = card.querySelector('.qty');
-    if (qtyEl && p.maxQty !== 1) qtyEl.classList.toggle('hidden', !open);
-    card.querySelector('.tocart').classList.toggle('hidden', !open);
-    if (!open){
-      card.querySelector('#err-' + sku).textContent = '';
-      card.querySelectorAll('.field').forEach(f => f.classList.remove('invalid'));
-    }
-  }
   if (personaliseBtn) personaliseBtn.addEventListener('click', () => {
-    setOpen(true);
-    const first = card.querySelector('select, input[data-fld], textarea[data-fld]');
-    if (first) first.focus({ preventScroll: false });
+    errEl.textContent = '';
+    fieldsEl.querySelectorAll('.field').forEach(f => f.classList.remove('invalid'));
+    fieldsEl.classList.remove('hidden');
+    controlsEl.classList.remove('hidden');
+    openSheet(card, p);
   });
 
-  card.querySelector('.tocart').addEventListener('click', () => {
-    const err = card.querySelector('#err-' + sku);
-    err.textContent = '';
-    card.querySelectorAll('.field').forEach(f => f.classList.remove('invalid'));
+  const tocartBtn = controlsEl.querySelector('.tocart');
+  tocartBtn.addEventListener('click', () => {
+    errEl.textContent = '';
+    if (hasFields) fieldsEl.querySelectorAll('.field').forEach(f => f.classList.remove('invalid'));
 
     // collect + validate options
     const options = {};
     let bad = false;
     (p.options || []).forEach(o => {
-      const v = card.querySelector(`[data-opt="${o.key}"]`).value;
-      if (!v){ card.querySelector(`.field[data-field="${o.key}"]`).classList.add('invalid'); bad = true; }
+      const v = fieldsEl.querySelector(`[data-opt="${o.key}"]`).value;
+      if (!v){ fieldsEl.querySelector(`.field[data-field="${o.key}"]`).classList.add('invalid'); bad = true; }
       else options[o.key] = v;
     });
     // collect + validate custom fields
     const fields = {};
     (p.fields || []).forEach(f => {
-      const v = card.querySelector(`[data-fld="${f.key}"]`).value.trim();
-      if (f.required && !v){ card.querySelector(`.field[data-field="${f.key}"]`).classList.add('invalid'); bad = true; }
+      const v = fieldsEl.querySelector(`[data-fld="${f.key}"]`).value.trim();
+      if (f.required && !v){ fieldsEl.querySelector(`.field[data-field="${f.key}"]`).classList.add('invalid'); bad = true; }
       if (v) fields[f.key] = v.slice(0, f.max);
     });
-    if (bad){ err.textContent = 'Please complete the highlighted options first.'; return; }
-
-    // postage: one per order
-    if (p.maxQty === 1 && cart.some(l => l.sku === sku)){
-      err.textContent = 'Postage upgrade is already in your cart - it covers your whole order.';
+    if (bad){
+      errEl.textContent = 'Please complete the highlighted options first.';
+      const firstBad = fieldsEl.querySelector('.field.invalid');
+      if (firstBad) firstBad.scrollIntoView({ block:'center', behavior:'smooth' });
       return;
     }
 
-    addToCart(sku, p.maxQty === 1 ? 1 : pending[sku], options, fields);
+    // postage: one per order
+    if (p.maxQty === 1 && cart.some(l => l.sku === sku)){
+      errEl.textContent = 'Postage upgrade is already in your cart - it covers your whole order.';
+      return;
+    }
+
+    const addQty = p.maxQty === 1 ? 1 : pending[sku];
+    track('add_to_cart', {
+      currency:'GBP', value: gaValue(p.price * addQty),
+      items: [gaItem(p, addQty, { personalised: !!hasFields })]
+    });
+    addToCart(sku, addQty, options, fields);
 
     document.querySelectorAll('.btn-cart .pip').forEach(pp => {
       pp.classList.add('bump'); setTimeout(() => pp.classList.remove('bump'), 220);
     });
     // reset so a second, different personalisation starts clean
-    card.querySelectorAll('input[data-fld],textarea[data-fld]').forEach(i => { i.value = ''; i.dispatchEvent(new Event('input')); });
-    card.querySelectorAll('select[data-opt]').forEach(s => s.value = '');
-    pending[sku] = 1;
-    const q = card.querySelector('#q-' + sku); if (q) q.textContent = '1';
-
-    if (personaliseBtn){
-      // collapse back to compact and confirm on the Personalise button
-      setOpen(false);
-      personaliseBtn.textContent = 'Added \u2713'; personaliseBtn.classList.add('added');
-      setTimeout(() => { personaliseBtn.textContent = 'Personalise'; personaliseBtn.classList.remove('added'); }, 1300);
-    } else {
-      const btn = card.querySelector('.tocart');
-      btn.textContent = 'Added \u2713'; btn.classList.add('added');
-      setTimeout(() => { btn.textContent = 'Add to cart'; btn.classList.remove('added'); }, 1300);
+    if (hasFields){
+      fieldsEl.querySelectorAll('input[data-fld],textarea[data-fld]').forEach(i => { i.value = ''; i.dispatchEvent(new Event('input')); });
+      fieldsEl.querySelectorAll('select[data-opt]').forEach(sel => sel.value = '');
+      fieldsEl.querySelectorAll('.opt-block').forEach(b => {
+        b.classList.remove('open');
+        b.querySelector('.opt-toggle').setAttribute('aria-expanded', 'false');
+      });
     }
+    pending[sku] = 1;
+    if (qtyLabel) qtyLabel.textContent = '1';
+
+    const confirmBtn = personaliseBtn || tocartBtn;
+    if (personaliseBtn) closeSheet();   // the sheet's job is done
+    confirmBtn.classList.add('added');
+    clearTimeout(confirmBtn.__addedTimer);
+    confirmBtn.__addedTimer = setTimeout(() => confirmBtn.classList.remove('added'), 1300);
   });
 });
 
+/* ---------- What closes the gap ----------
+   A progress bar tells someone they are £11.05 short. It does not tell them
+   what to do about it. This picks the single product that would tip them over
+   and hands it to them on one tap.
+
+   HOW IT CHOOSES, and why:
+
+   1. It only ever suggests something that ACTUALLY closes the gap. Suggesting
+      a £9.95 print against an £11.05 shortfall is worse than saying nothing -
+      they add it, nothing unlocks, and the nudge has lied to them.
+
+   2. One-tap products first. Anything with required personalisation cannot be
+      added from a button, it has to open the sheet. The Perfect Match print and
+      frame are the only two with no required fields, which happens to be the
+      same pair that is quickest to produce and carries the best margin. Where
+      merchandising and mechanics agree, take the win.
+
+   3. Then `boost`, then cheapest. boost is a data flag on the product, not a
+      SKU hardcoded in here, so the merchandising order can change without
+      anyone touching this logic.
+
+   4. Postage is never suggested. It is carriage, and in follow-up mode it does
+      not count towards the threshold anyway. */
+function gapFiller(t){
+  if (t.basketDisc > 0) return null;                 // already unlocked
+  const remaining = DISCOUNT_THRESHOLD - t.afterKeyring;
+  if (remaining <= 0) return null;
+
+  const closes = PRODUCTS.filter(p =>
+    !POSTAGE_SKUS.includes(p.sku) && !p.hidden &&
+    p.price >= remaining
+  );
+  if (!closes.length) return null;                   // basket too small for one item to do it
+
+  const needsSheet = p => (p.fields || []).some(f => f.required) || (p.options || []).length > 0;
+  const rank = (a, b) =>
+    (needsSheet(a) ? 1 : 0) - (needsSheet(b) ? 1 : 0) ||   // one-tap first
+    (b.boost || 0) - (a.boost || 0) ||                     // then what we want to sell
+    a.price - b.price;                                     // then the smallest ask
+
+  const p = closes.sort(rank)[0];
+  return {
+    product: p,
+    remaining,
+    oneTap: !needsSheet(p),
+    saving: Math.round((t.afterKeyring + p.price) * DISCOUNT_RATE)
+  };
+}
+
 /* ---------- Totals (mirrored exactly server-side) ---------- */
 function totals(){
-  let sub = 0, count = 0, keyringSub = 0, keyringQty = 0;
+  let sub = 0, count = 0, keyringSub = 0, keyringQty = 0, forcedPostage = 0;
   for (const l of cart){
     const p = PRODUCTS.find(x => x.sku === l.sku);
     sub += p.price * l.qty;
     count += l.qty;
     if (l.sku === KEYRING_SKU){ keyringSub += p.price * l.qty; keyringQty += l.qty; }
+    if (l.locked && POSTAGE_SKUS.includes(l.sku)) forcedPostage += p.price * l.qty;
   }
   const keyringDisc = keyringQty >= KEYRING_DEAL_QTY ? Math.round(keyringSub * KEYRING_DEAL_RATE) : 0;
+  /* Postage we have forced on someone is a carriage charge, not something they
+     chose to buy. It must not count towards the £40 threshold and must not be
+     discounted. Mirrored exactly in addons-create-payment-intent.js. */
   const afterKeyring = sub - keyringDisc;
-  const basketDisc = afterKeyring >= DISCOUNT_THRESHOLD ? Math.round(afterKeyring * DISCOUNT_RATE) : 0;
+  const discountable = afterKeyring - forcedPostage;
+  const basketDisc = discountable >= DISCOUNT_THRESHOLD ? Math.round(discountable * DISCOUNT_RATE) : 0;
   const afterBasket = afterKeyring - basketDisc;
-  const couponDisc = coupon
+  let couponDisc = coupon
     ? (coupon.percentOff ? Math.round(afterBasket * coupon.percentOff / 100)
                          : Math.min(coupon.amountOff, afterBasket))
     : 0;
-  return { sub, keyringDisc, basketDisc, couponDisc,
-           total: afterBasket - couponDisc, count, afterKeyring };
+  /* Stripe's floor is 30p. Cap the discount here exactly as the payment
+     function does, so the total on screen is the total that gets charged. */
+  if (couponDisc > 0 && afterBasket - couponDisc < 30) {
+    couponDisc = Math.max(0, afterBasket - 30);
+  }
+  /* afterKeyring is what the progress strip and the nudge measure against the
+     £40 threshold, so it reports the discountable figure - otherwise forced
+     postage would appear to move someone towards a discount it cannot earn. */
+  return { sub, keyringDisc, basketDisc, couponDisc, forcedPostage,
+           total: afterBasket - couponDisc, count, afterKeyring: discountable };
+}
+
+/* Edge-triggered, not level-triggered: fire once when a discount turns on, not
+   on every basket change while it is on. Without this the £40 event would fire
+   dozens of times per session and the conversion rate would be meaningless. */
+let _discountState = { basket:false, keyring:false, coupon:false };
+function trackDiscountEdges(t){
+  const now = { basket: t.basketDisc > 0, keyring: t.keyringDisc > 0, coupon: t.couponDisc > 0 };
+  if (now.basket && !_discountState.basket)
+    track('discount_unlocked', { discount_type:'basket_40', value: gaValue(t.basketDisc), basket_value: gaValue(t.afterKeyring) });
+  if (!now.basket && _discountState.basket)
+    track('discount_lost', { discount_type:'basket_40', basket_value: gaValue(t.afterKeyring) });
+  if (now.keyring && !_discountState.keyring)
+    track('discount_unlocked', { discount_type:'keyring_3plus', value: gaValue(t.keyringDisc) });
+  _discountState = now;
 }
 
 function refresh(){
   const t = totals();
+  trackDiscountEdges(t);
   saveCart();
   // Deferred Elements: keep the displayed wallet amount in sync with the
   // cart. The charged amount is still computed server-side at confirm time.
@@ -1177,17 +2481,22 @@ function refresh(){
   } else {
     strip.classList.remove('unlocked');
     const rem = DISCOUNT_THRESHOLD - t.afterKeyring;
+    const fill = gapFiller(t);
     document.getElementById('stripText').textContent =
       t.afterKeyring === 0 ? 'Spend \u00A340 or more and get 20% off'
-                           : gbp(rem) + ' away from 20% off';
+      : fill              ? gbp(rem) + ' away \u00B7 add ' + (fill.product.short || 'one more') + ' to unlock 20%'
+                          : gbp(rem) + ' away from 20% off';
   }
   renderSummary();
 }
 
+/* Keep in step with FIELD_LABELS in addons-stripe-webhook.js. Both fall back to
+   the raw key, so a missing entry shows the studio "namePosition" on a picking
+   note rather than "Name position". */
 const FIELD_LABELS = {
   personalisation:'Personalisation',
   notes:'Notes', name:'Name', cardFoil:'Card & foil', frame:'Frame', handFoot:'Hand/Foot',
-  keyringFoil:'Keyring & foil'
+  keyringFoil:'Keyring & foil', namePosition:'Name position', nameFont:'Name font'
 };
 
 const BIN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13a1 1 0 001 1h8a1 1 0 001-1l1-13M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3"/></svg>';
@@ -1195,12 +2504,30 @@ const BIN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 function renderSummary(){
   const t = totals();
 
-  // postage quick-add: visible while there are items but no postage upgrade
-  const hasPostage = cart.some(l => l.sku === 'POST-EXP');
+  /* Postage upsell. Two different jobs depending on the link:
+
+     live      - postage is already free, so this is a straight ADD of the
+                 £3.95 Tracked 24 upgrade.
+     follow-up - £2.95 2nd class is already in and locked, so this is a SWAP to
+                 Tracked 24 and the price shown is the DIFFERENCE, £1.00. Showing
+                 £3.95 there would read as a second charge on top of the £2.95. */
+  const hasExpress = cart.some(l => l.sku === POSTAGE_SKU);
   const upsell = document.getElementById('postageUpsell');
-  upsell.classList.toggle('hidden', hasPostage || cart.length === 0);
+  upsell.classList.toggle('hidden', hasExpress || cart.length === 0);
   const uImg = document.getElementById('upsellImg');
-  if (!uImg.src) uImg.src = PRODUCTS.find(x => x.sku === 'POST-EXP').img;
+  if (!uImg.src) uImg.src = PRODUCTS.find(x => x.sku === POSTAGE_SKU).img;
+
+  const stdPrice = PRODUCTS.find(x => x.sku === POSTAGE_STD).price;
+  const expPrice = PRODUCTS.find(x => x.sku === POSTAGE_SKU).price;
+  const delta = FOLLOWUP ? expPrice - stdPrice : expPrice;
+  const pill = document.querySelector('#postageUpsell .price-pill');
+  if (pill) pill.textContent = '+' + gbp(delta);
+  const uBtn = document.getElementById('upsellAdd');
+  if (uBtn) uBtn.textContent = FOLLOWUP ? 'Upgrade' : 'Add';
+  const uDesc = document.querySelector('#postageUpsell .upsell-info .d');
+  if (uDesc) uDesc.textContent = FOLLOWUP
+    ? 'Swap your 2nd class postage for Tracked 24 and get it the next working day after dispatch'
+    : 'Upgrade to Tracked 24 to get your order the next working day after dispatch';
 
   let html = '';
   for (const l of cart){
@@ -1209,7 +2536,7 @@ function renderSummary(){
       ...Object.entries(l.options).map(([k,v]) => `${FIELD_LABELS[k]||k}: ${esc(v)}`),
       ...Object.entries(l.fields).map(([k,v]) => `${FIELD_LABELS[k]||k}: \u201C${esc(v)}\u201D`)
     ];
-    const stepper = p.maxQty === 1 ? '' : `
+    const stepper = (p.maxQty === 1 || l.locked) ? '' : `
       <span class="line-qty">
         <button data-line="${l.lineId}" data-d="-1" aria-label="Decrease quantity">&minus;</button>
         <span>${l.qty}</span>
@@ -1226,7 +2553,9 @@ function renderSummary(){
       </span>
       <span class="line-right">
         <span class="amt">${gbp(p.price * l.qty)}</span>
-        <button class="bin" data-line="${l.lineId}" aria-label="Remove ${esc(p.name)}">${BIN_SVG}</button>
+        ${l.locked
+          ? '<span class="line-fixed">Included</span>'
+          : `<button class="bin" data-line="${l.lineId}" aria-label="Remove ${esc(p.name)}">${BIN_SVG}</button>`}
       </span>
     </div>`;
   }
@@ -1234,15 +2563,29 @@ function renderSummary(){
   if (t.basketDisc) html += `<div class="line disc"><span class="n">20% discount (\u00A340+)</span><span class="amt">-${gbp(t.basketDisc)}</span></div>`;
   if (t.couponDisc) html += `<div class="line disc"><span class="n">Code ${esc(coupon.code)} (${esc(coupon.label)}) <button class="remove" id="couponRemove">remove</button></span><span class="amt">-${gbp(t.couponDisc)}</span></div>`;
   html += `<div class="line total"><span class="n">Total</span><span class="amt">${gbp(t.total)}</span></div>`;
-  document.getElementById('summary').innerHTML = cart.length ? html : '<div class="line"><span class="n" style="color:var(--muted)">Your cart is empty.</span></div>';
+  document.getElementById('summary').innerHTML = cart.length ? html : '<div class="line"><span class="n" style="color:var(--ink-soft)">Your cart is empty.</span></div>';
 
   // unlock nudge: only while there's a cart but the £40 discount is locked
   const nudge = document.getElementById('unlockNudge');
   const locked = cart.length > 0 && t.basketDisc === 0;
   nudge.classList.toggle('hidden', !locked);
   if (locked){
-    document.getElementById('nudgeText').textContent =
-      'You\u2019re ' + gbp(DISCOUNT_THRESHOLD - t.afterKeyring) + ' away from 20% off';
+    const fill = gapFiller(t);
+    const big = document.getElementById('nudgeText');
+    const small = document.querySelector('#unlockNudge .nudge-text .small');
+    const btn = document.getElementById('nudgeBtn');
+    big.textContent = gbp(DISCOUNT_THRESHOLD - t.afterKeyring) + ' from 20% off';
+    if (fill){
+      if (small) small.textContent =
+        'Add ' + (fill.product.short || 'one more') + ' and 20% comes off everything, saving ' + gbp(fill.saving);
+      btn.textContent = fill.oneTap ? 'Add ' + gbp(fill.product.price) : 'Choose';
+      btn.dataset.gapSku = fill.product.sku;
+      btn.dataset.gapTap = fill.oneTap ? '1' : '0';
+    } else {
+      if (small) small.textContent = 'Spend \u00A340 or more on add-ons';
+      btn.textContent = 'Add more';
+      delete btn.dataset.gapSku;
+    }
     document.getElementById('nudgeFill').style.width =
       Math.min(100, Math.round(t.afterKeyring / DISCOUNT_THRESHOLD * 100)) + '%';
   }
@@ -1258,7 +2601,14 @@ function renderSummary(){
     refresh();
   });
   document.querySelectorAll('.bin').forEach(b => b.addEventListener('click', () => {
-    cart = cart.filter(l => l.lineId !== Number(b.dataset.line)); refresh();
+    const id = Number(b.dataset.line);
+    if (cart.some(l => l.lineId === id && l.locked)) return;
+    const gone = cart.find(l => l.lineId === id);
+    if (gone){
+      const gp = PRODUCTS.find(x => x.sku === gone.sku);
+      track('remove_from_cart', { currency:'GBP', value: gaValue(gp.price * gone.qty), items:[gaItem(gp, gone.qty)] });
+    }
+    cart = cart.filter(l => l.lineId !== id); refresh();
   }));
   document.querySelectorAll('.line-qty button').forEach(b => b.addEventListener('click', () => {
     const l = cart.find(x => x.lineId === Number(b.dataset.line));
@@ -1269,11 +2619,42 @@ function renderSummary(){
 }
 
 document.getElementById('upsellAdd').addEventListener('click', () => {
-  addToCart('POST-EXP', 1, {}, {});
+  const p = PRODUCTS.find(x => x.sku === POSTAGE_SKU);
+  track('postage_upgraded', { currency:'GBP', value: gaValue(p.price), items:[gaItem(p, 1)] });
+  /* In follow-up mode this replaces the locked 2nd class line. In live mode it
+     is an ordinary add, because there is no postage line to replace. */
+  if (FOLLOWUP) setPostage(POSTAGE_SKU);
+  else addToCart(POSTAGE_SKU, 1, {}, {});
 });
 
-document.getElementById('nudgeBtn').addEventListener('click', () => {
-  closePanel();
+document.getElementById('nudgeBtn').addEventListener('click', function(){
+  const sku = this.dataset.gapSku;
+  const p = sku ? PRODUCTS.find(x => x.sku === sku) : null;
+  if (!p){ closePanel(); return; }
+
+  track('gap_filler_taken', {
+    currency:'GBP', value: gaValue(p.price),
+    one_tap: this.dataset.gapTap === '1',
+    items: [gaItem(p, 1)]
+  });
+
+  if (this.dataset.gapTap === '1'){
+    /* Straight in. Goes through addToCart like any other add, so the cart, the
+       totals and the add_to_cart event are all identical to tapping the tile. */
+    addToCart(p.sku, 1, {}, {});
+    track('add_to_cart', { currency:'GBP', value: gaValue(p.price), items:[gaItem(p, 1, { source:'gap_filler' })] });
+    const pip = document.querySelector('.btn-cart .pip');
+    if (pip){ pip.classList.add('bump'); setTimeout(() => pip.classList.remove('bump'), 220); }
+  } else {
+    /* Needs choices made, so hand them the sheet rather than guessing. */
+    closePanel();
+    const card = document.querySelector('.card[data-sku="' + p.sku + '"]');
+    if (card){
+      card.scrollIntoView({ block:'center', behavior:'smooth' });
+      const btn = card.querySelector('.personalise');
+      if (btn) setTimeout(() => btn.click(), 320);
+    }
+  }
 });
 
 /* ---------- Coupon ---------- */
@@ -1316,6 +2697,25 @@ async function applyCoupon(){
   btn.disabled = false;
 }
 document.getElementById('couponApply').addEventListener('click', applyCoupon);
+/* Coupon result, watched rather than wired into applyCoupon so the payment
+   path is untouched. */
+(() => {
+  const msg = document.getElementById('couponMsg');
+  if (!msg || typeof MutationObserver !== 'function') return;
+  new MutationObserver(() => {
+    const text = msg.textContent.trim();
+    if (!text) return;
+    try {
+      const t = totals();
+      if (t.couponDisc > 0 && t.sub > 0 && (t.couponDisc / t.sub) >= 0.9) {
+        sessionStorage.setItem('bfc_test_order', '1');
+      }
+    } catch(e){}
+    track(msg.classList.contains('ok') ? 'coupon_applied' : 'coupon_rejected', {
+      coupon: (document.getElementById('couponInput').value || '').trim().toUpperCase().slice(0, 40)
+    });
+  }).observe(msg, { childList: true, characterData: true, subtree: true });
+})();
 document.getElementById('couponInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') applyCoupon();
 });
@@ -1324,12 +2724,56 @@ document.getElementById('couponInput').addEventListener('keydown', e => {
 const panel = document.getElementById('panel');
 const overlay = document.getElementById('overlay');
 function openPanel(){
+  const t = totals();
+  track('view_cart', {
+    currency:'GBP', value: gaValue(t.total),
+    items: cart.map(l => gaItem(PRODUCTS.find(x => x.sku === l.sku), l.qty))
+  });
   panel.classList.add('open'); overlay.classList.add('open');
   initPaymentSurface(); // mounts wallet buttons immediately (deferred intent)
 }
 function closePanel(){ panel.classList.remove('open'); overlay.classList.remove('open'); }
 document.getElementById('checkoutBtn').addEventListener('click', openPanel);
 document.getElementById('cartBtn').addEventListener('click', openPanel);
+
+/* ---------- Auto-hiding header ----------
+   Slides away on the way down, comes straight back on the way up. The cart
+   count is duplicated in the sticky bar at the bottom, so nothing is lost while
+   it is out of view. */
+(() => {
+  const bar = document.querySelector('header');
+  if (!bar) return;
+  const REVEAL_AT = 90;   // always visible near the top of the page
+  const JITTER    = 6;    // ignore sub-pixel wobble and momentum noise
+  let lastY = Math.max(0, window.scrollY);
+  let queued = false;
+
+  function evaluate(){
+    queued = false;
+    /* While the sheet has the body pinned, scrollY is meaningless - and on
+       close we jump the page back to where it was, which would otherwise read
+       as one enormous scroll and flip the header. */
+    if (document.body.classList.contains('sheet-open')) return;
+
+    const y = Math.max(0, window.scrollY);   // clamp iOS rubber-banding
+    const dy = y - lastY;
+    if (Math.abs(dy) < JITTER) return;
+    bar.classList.toggle('hide', y > REVEAL_AT && dy > 0);
+    lastY = y;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(evaluate);
+  }, { passive: true });
+
+  /* Opening the cart drawer or the sheet should never leave it stranded. */
+  window.__headerReset = () => {
+    bar.classList.remove('hide');
+    lastY = Math.max(0, window.scrollY);
+  };
+})();
 document.getElementById('panelClose').addEventListener('click', closePanel);
 overlay.addEventListener('click', closePanel);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
@@ -1494,6 +2938,7 @@ function currentShippingRate(){
 }
 
 async function createIntent(email, phone){
+  enforcePostage();
   const lines = cart.map(l => ({ sku: l.sku, qty: l.qty, options: l.options, fields: l.fields }));
   const r = await fetch('/.netlify/functions/addons-create-payment-intent', {
     method: 'POST',
@@ -1501,6 +2946,7 @@ async function createIntent(email, phone){
     body: JSON.stringify({ lines, orderRef: ORDER_REF,
                            email: email || PREFILL_EMAIL,
                            phone: phone || '',
+                           followup: FOLLOWUP,
                            couponCode: coupon ? coupon.code : '' })
   });
   if (!r.ok) throw new Error('Could not start checkout');
@@ -1509,6 +2955,12 @@ async function createIntent(email, phone){
 
 async function initPaymentSurface(){
   if (window.__lockedNoPay) return;
+  if (PK_MISSING){
+    document.getElementById('payMsg').textContent =
+      'Payments are switched off on this preview build. Set a Stripe test key to try checkout.';
+    document.getElementById('payMsg').classList.remove('hidden');
+    return;
+  }
   if (elements || totals().count === 0) return;
   try {
     await loadStripeJs();
@@ -1520,8 +2972,8 @@ async function initPaymentSurface(){
       appearance: {
         variables: {
           colorPrimary: '#000000', colorBackground: '#FFFFFF',
-          colorText: '#000000', borderRadius: '12px',
-          fontFamily: 'Figtree, sans-serif'
+          colorText: '#000000', borderRadius: '10px',
+          fontFamily: '"Instrument Sans", sans-serif'
         }
       }
     });
@@ -1564,6 +3016,12 @@ async function initPaymentSurface(){
 
 /* Card fallback: same deferred Elements instance */
 document.getElementById('startCheckout').addEventListener('click', async function(){
+  const t0 = totals();
+  track('begin_checkout', {
+    currency:'GBP', value: gaValue(t0.total),
+    coupon: coupon ? coupon.code : undefined,
+    items: cart.map(l => gaItem(PRODUCTS.find(x => x.sku === l.sku), l.qty))
+  });
   const btn = this;
   btn.disabled = true; btn.textContent = 'Loading secure payment\u2026';
   try {
@@ -1617,6 +3075,12 @@ document.getElementById('startCheckout').addEventListener('click', async functio
 });
 
 document.getElementById('payBtn').addEventListener('click', async function(){
+  const tp = totals();
+  track('add_payment_info', {
+    currency:'GBP', value: gaValue(tp.total),
+    coupon: coupon ? coupon.code : undefined,
+    items: cart.map(l => gaItem(PRODUCTS.find(x => x.sku === l.sku), l.qty))
+  });
   const btn = this;
   btn.disabled = true;
   const msg = document.getElementById('payMsg');
@@ -1630,6 +3094,26 @@ document.getElementById('payBtn').addEventListener('click', async function(){
 
 /* ---------- Success + order-number confirmation ---------- */
 if (params.get('status') === 'success' || params.get('redirect_status') === 'succeeded'){
+  /* Read the basket BEFORE clearing it, or the purchase event has no items. */
+  try {
+    const raw = localStorage.getItem(CART_KEY);
+    const saved = raw ? JSON.parse(raw) : null;
+    const lines = (saved && Array.isArray(saved.cart)) ? saved.cart : [];
+    const items = lines.map(l => {
+      const p = PRODUCTS.find(x => x.sku === l.sku);
+      return p ? gaItem(p, l.qty) : null;
+    }).filter(Boolean);
+    const value = lines.reduce((n, l) => {
+      const p = PRODUCTS.find(x => x.sku === l.sku);
+      return n + (p ? p.price * l.qty : 0);
+    }, 0);
+    track('purchase', {
+      transaction_id: params.get('payment_intent') || ('pi-unknown-' + Date.now()),
+      currency:'GBP', value: gaValue(value), items: items,
+      /* Tagged so QA runs can be filtered out of revenue reporting. */
+      test_order: sessionStorage.getItem('bfc_test_order') === '1' || undefined
+    });
+  } catch(e){ /* never block the confirmation screen */ }
   try { localStorage.removeItem(CART_KEY); } catch(e){}
   document.getElementById('shop').classList.add('hidden');
   document.getElementById('stickyBar').classList.add('hidden');
@@ -1701,6 +3185,7 @@ async function showOrderNumber(){
 }
 
 restoreCart();
+enforcePostage();
 refresh();
 </script>
 </body>

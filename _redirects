@@ -31,10 +31,21 @@
 /bespoke-baby-gallery   /bespoke-baby-gallery.html   200   # Resources | Bespoke Baby Gallery | A growing wall of customer baby keepsake photos
 /faq                    /faq.html             200   # Resources | FAQ
 /find-a-memory-catcher  /find-a-memory-catcher.html 200   # Resources | Find a Memory Catcher | Directory of local in-person Memory Catcher experiences
+# Link-in-bio page for Instagram/Facebook. Ryan, 11/08: list it under Utilities.
+# That puts it in sitemap.xml as well as the human sitemap page, so the noindex
+# it originally carried has been removed - a noindex URL submitted in a sitemap
+# is a contradiction Search Console reports as an error.
+/linktree               /linktree.html        200   # Utilities | Links | Every Bespoke Foil Company link in one place
 /franchise              /franchise.html       200   # Franchise | Memory Catcher™ Franchise | Franchise opportunity - run local baby keepsake experiences
 /franchise-hub          /franchise-hub.html   200   # Franchise | Franchise Hub | One place to explore the opportunity, calculator, map, region search and local finder
 /memory-catcher-hub     /memory-catcher-hub.html   200   # Franchise | The Memory Catcher™ Hub | The franchisee command centre - live commissions, training, tools and an evolving roadmap
-/franchisee-login       /franchisee-login.html   200   # exclude
+# The page carries <meta name="robots" content="noindex">, so listing it in
+# sitemap.xml told Google to index a page that forbids it - reported live on
+# 13/08. The `util` tag keeps it on the human sitemap page, where a franchisee
+# can still find it, and out of sitemap.xml, robots and llms.txt. Swap back to a
+# full category comment once the Hub is built and the noindex comes off.
+/franchisee-login       /franchisee-login.html   200   # util | Memory Catcher hub login
+
 /component-library      /component-library.html   200   # exclude
 /franchise-region       /franchise-region.html 200   # Franchise | Search Franchise Regions
 /memory-catcher-earnings-calculator   /memory-catcher-earnings-calculator.html   200   # Franchise | Franchise Earnings Calculator | Estimate potential Memory Catcher franchise earnings
@@ -45,7 +56,7 @@
 # request resolves to the template; the function fills it and returns a real
 # 404 for any slug with no row.
 /franchises/*   /franchise-region-template.html   200   # exclude
-/franchises-bio/*   /franchise-bio-template.html   200   # exclude
+/franchises-bio/*   /franchise-bio-template.html   200  # exclude
 /contact                /contact.html         200   # Contact | Contact Us
 /privacy-policy         /privacy-policy.html  200   # Contact | Privacy Policy
 /blog                   /blog.html            200   # Resources | Stories & Inspiration | Heartfelt stories, parenting tips and behind-the-scenes moments
@@ -57,6 +68,7 @@
 /memory-catcher-enquiry   /memory-catcher-enquiry.html   200   # util | Memory Catcher - Enquiry Form
 /slot-reservation-form   /slot-reservation-form.html   200   # util | Slot Reservation Form
 /upload-portal-form   /upload-portal-form.html   200   # util | Upload Portal - Form
+/gallery-upload   /gallery-upload.html   200   # util | Ashley Gallery Upload | Drag-and-drop upload straight to the Bespoke Baby Gallery (token-protected, mobile-first)
 /upload-portal-submit     /.netlify/functions/upload-portal-submit     200   # exclude
 /upload-portal-complete   /.netlify/functions/upload-portal-complete   200   # exclude
 /sitemap                /sitemap.html         200   # exclude
@@ -70,6 +82,28 @@
 /add-ons-exclusive-discount-938476-locked   /addons/index.html   200   # exclude
 /add-ons-locked                             /addons/index.html   200   # exclude
 /add-ons-exclusive-discount-938476          /addons/index.html   200   # util | Add-Ons Upsell App
+
+# ---- add-ons app: relative paths resolved (found live 13/08 by Mark's audit) ----
+# The app's own HTML uses RELATIVE paths - `assets/hero-091-1200.webp`,
+# `shared/analytics-addons.js` - because on its subdomain deployment it sits at
+# the site root, where those resolve correctly.
+#
+# Served here at /add-ons-exclusive-discount-938476, the browser resolves them
+# against the VISIBLE url, which is at the root of the main domain. So they land
+# on the main site's /assets/ and /shared/, where the files do not exist: ten
+# broken images and a dead analytics script.
+#
+# Netlify serves an existing static file BEFORE applying a rule without the `!`
+# force flag, so these are pure fallbacks. The main site's own assets are
+# untouched; only a path with no file behind it falls through to the app's
+# folders. Verified: of 38 add-ons assets, the only filename shared with the
+# main site is hero-196-1200.webp, and the two are the same photograph.
+#
+# The tidier long-term fix is to 301 these three routes to the subdomain, which
+# removes the duplicate app entirely. Not done here because the subdomain could
+# not be reached to confirm it serves these exact paths, and this is a live site.
+/shared/analytics-addons.js   /addons/shared/analytics-addons.js   200   # exclude
+/assets/*                     /addons/assets/:splat                200   # exclude
 # Affiliate pages: edge function memory-catcher injects per-franchisee data into the our-kit template
 /memory-catcher/*   /keepsake-standalone.html   200   # exclude
 
@@ -89,6 +123,37 @@
 /franchise-region/west-norfolk-kings-lynn   /franchises/norfolk-west   301
 /franchise-bio/ashley-eccleston   /franchises-bio/ashley-eccleston   301
 
+# ============ Migration link audit 11/08/2026 (MIGRATION-LINK-AUDIT.md) ============
+# Section 1: old URLs with no route - the irreversible ones. Do not remove.
+/blank-2                 /sitemap                 301
+/challenges              /                        301
+/custom-product-page     /product-page/foil-handprint-footprint-kit-baby-keepsake   301
+/home-old                /                        301
+/memory-test             /                        301
+# Vacancies: Ryan 11/08 - NOT being rebuilt. The 301s stay so the old URLs keep
+# their equity instead of 404ing; there is no careers page on the new site, and
+# /franchise is the live "work with BFC" route. Change the target here if a real
+# careers page ever lands.
+/vacancies               /franchise               301
+/vacancy/*               /franchise               301
+# Section 2: internal link targets the new site cannot serve
+/video-guide             /kit-walkthrough-video   301
+/blog/tags/*             /blog                    301
+/category                /product-page/foil-handprint-footprint-kit-baby-keepsake   301
+# Catch-all for every retired Wix store URL (a3/a5 frames, extra prints,
+# keyring, postage upgrades, perfect match, old kit slugs). Placed AFTER the
+# canonical /product-page/... 200 rule above, so the real product page wins
+# first-match and there is no loop.
+/product-page/*          /product-page/foil-handprint-footprint-kit-baby-keepsake   301
+
+# ---- Indexed but NOT in Wix's sitemap, so invisible to the audit (found 11/08)
+# The audit seeds from the old sitemap.xml, so any page Wix indexed but did not
+# declare is outside its coverage. These two were found in Google's index by
+# hand. The full list comes from Search Console -> Pages -> indexed URLs on the
+# OLD property. Add any others here before DNS moves.
+/personalised-foil-print-gifts   /product-page/foil-handprint-footprint-kit-baby-keepsake   301
+/members                 /                        301
+
 # Redirect any accidental .html visits to the clean URL (SEO tidy)
 /our-story.html              /our-story              301
 /contact.html                /contact                301
@@ -96,6 +161,29 @@
 /franchise.html              /franchise              301
 /our-kit.html                /product-page/foil-handprint-footprint-kit-baby-keepsake   301
 /keepsake-standalone.html    /product-page/foil-handprint-footprint-kit-baby-keepsake   301
+
+# ---------------------------------------------------------------------------
+# Legacy static blog files. These pages moved to /post/<slug>, served from
+# Supabase. If a copy of the old .html lingers in the repo it is crawlable at
+# its literal path and becomes a duplicate of the live URL, so every one is
+# 301'd. Harmless if the file is absent - the rule simply never matches.
+# ---------------------------------------------------------------------------
+/post-the-perfect-gift-for-new-mums-and-dads.html   /post/the-perfect-gift-for-new-mums-and-dads   301
+/post-baby-wont-open-hand-for-handprints.html   /post/baby-wont-open-hand-for-handprints   301
+/post-can-you-use-paint-for-baby-handprints.html   /post/can-you-use-paint-for-baby-handprints   301
+/post-create-lasting-memories-with-one-tiny-touch.html   /post/create-lasting-memories-with-one-tiny-touch   301
+/post-tiny-hands-big-emotions-captured-forever.html   /post/tiny-hands-big-emotions-captured-forever   301
+/post-step-by-step-guide-to-a-beautiful-baby-keepsake.html   /post/step-by-step-guide-to-a-beautiful-baby-keepsake   301
+/post-the-must-have-handprint-kit-for-new-parents.html   /post/the-must-have-handprint-kit-for-new-parents   301
+/post-don-t-let-your-memories-fade-away.html   /post/don-t-let-your-memories-fade-away   301
+/post-foil-fusion-the-future-of-baby-keepsakes.html   /post/foil-fusion-the-future-of-baby-keepsakes   301
+/post-foil-fusion-vs-toner-foiling-the-real-difference.html   /post/foil-fusion-vs-toner-foiling-the-real-difference   301
+/post-handprints-or-footprints-newborn.html   /post/handprints-or-footprints-newborn   301
+/post-how-to-take-your-babys-handprints-neatly.html   /post/how-to-take-your-babys-handprints-neatly   301
+/post-why-foil-prints-make-the-ultimate-baby-gift.html   /post/why-foil-prints-make-the-ultimate-baby-gift   301
+/post-capture-baby-s-first-touch-with-foil-prints.html   /post/capture-baby-s-first-touch-with-foil-prints   301
+/post-why-every-parent-needs-a-baby-footprint-keepsake.html   /post/why-every-parent-needs-a-baby-footprint-keepsake   301
+/franchise-region-west-norfolk-kings-lynn.html   /franchises/norfolk-west   301
 /franchise-region-template.html   /franchise-region   301
 /post-template.html              /blog                301
 /faq.html                    /faq                    301

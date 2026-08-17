@@ -1,0 +1,394 @@
+{
+ "note": "Single source of truth for the UGC reel. Add items here, run the build, every page updates.",
+ "heading": "Real families, {forever keepsakes}",
+ "lede": "Moments captured by parents using our kits, and by Memory Catchers taking prints in person across the UK. Plus some sneak peeks of behind the scenes with Ashley...",
+ "renderLimit": 32,
+ "items": [
+  {
+   "type": "image",
+   "src": "/assets/bb-38.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/mc-19.mp4",
+   "poster": "/assets/videos/mc-19-poster-v2.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-09.mp4",
+   "poster": "/assets/videos/bb-vid-09-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-04.mp4",
+   "poster": "/assets/videos/bb-vid-04-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-02.mp4",
+   "poster": "/assets/videos/bb-vid-02-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-41.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-08.mp4",
+   "poster": "/assets/videos/bb-vid-08-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/mc-3.mp4",
+   "poster": "/assets/videos/mc-3-poster-v2.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-04.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-01.mp4",
+   "poster": "/assets/videos/bb-vid-01-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-07.mp4",
+   "poster": "/assets/videos/bb-vid-07-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/mc-2.mp4",
+   "poster": "/assets/videos/mc-2-poster-v2.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-19.webp",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-28.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/mc-25.mp4",
+   "poster": "/assets/videos/mc-25-poster-v2.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-23.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-03.mp4",
+   "poster": "/assets/videos/bb-vid-03-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-33.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/mc-8.mp4",
+   "poster": "/assets/videos/mc-8-poster-v2.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/mc-27.mp4",
+   "poster": "/assets/videos/mc-27-poster-v2.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-14.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-06.mp4",
+   "poster": "/assets/videos/bb-vid-06-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-05.mp4",
+   "poster": "/assets/videos/bb-vid-05-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-09.webp",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-01.mp4",
+   "poster": "/assets/videos/bfc-01-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-02.mp4",
+   "poster": "/assets/videos/bfc-02-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-03.mp4",
+   "poster": "/assets/videos/bfc-03-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-04.mp4",
+   "poster": "/assets/videos/bfc-04-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-05.mp4",
+   "poster": "/assets/videos/bfc-05-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-06.mp4",
+   "poster": "/assets/videos/bfc-06-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-07.mp4",
+   "poster": "/assets/videos/bfc-07-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-08.mp4",
+   "poster": "/assets/videos/bfc-08-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-09.mp4",
+   "poster": "/assets/videos/bfc-09-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-10.mp4",
+   "poster": "/assets/videos/bfc-10-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-11.mp4",
+   "poster": "/assets/videos/bfc-11-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-12.mp4",
+   "poster": "/assets/videos/bfc-12-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-13.mp4",
+   "poster": "/assets/videos/bfc-13-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-14.mp4",
+   "poster": "/assets/videos/bfc-14-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-15.mp4",
+   "poster": "/assets/videos/bfc-15-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-16.mp4",
+   "poster": "/assets/videos/bfc-16-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-17.mp4",
+   "poster": "/assets/videos/bfc-17-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-18.mp4",
+   "poster": "/assets/videos/bfc-18-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-19.mp4",
+   "poster": "/assets/videos/bfc-19-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-20.mp4",
+   "poster": "/assets/videos/bfc-20-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-21.mp4",
+   "poster": "/assets/videos/bfc-21-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-22.mp4",
+   "poster": "/assets/videos/bfc-22-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-23.mp4",
+   "poster": "/assets/videos/bfc-23-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-24.mp4",
+   "poster": "/assets/videos/bfc-24-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-25.mp4",
+   "poster": "/assets/videos/bfc-25-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-26.mp4",
+   "poster": "/assets/videos/bfc-26-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-27.mp4",
+   "poster": "/assets/videos/bfc-27-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-28.mp4",
+   "poster": "/assets/videos/bfc-28-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-29.mp4",
+   "poster": "/assets/videos/bfc-29-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bfc-30.mp4",
+   "poster": "/assets/videos/bfc-30-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-10.mp4",
+   "poster": "/assets/videos/bb-vid-10-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-11.mp4",
+   "poster": "/assets/videos/bb-vid-11-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-12.mp4",
+   "poster": "/assets/videos/bb-vid-12-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-13.mp4",
+   "poster": "/assets/videos/bb-vid-13-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-14.mp4",
+   "poster": "/assets/videos/bb-vid-14-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-15.mp4",
+   "poster": "/assets/videos/bb-vid-15-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-16.mp4",
+   "poster": "/assets/videos/bb-vid-16-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-17.mp4",
+   "poster": "/assets/videos/bb-vid-17-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-18.mp4",
+   "poster": "/assets/videos/bb-vid-18-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-19.mp4",
+   "poster": "/assets/videos/bb-vid-19-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "video",
+   "src": "/assets/videos/bb-vid-20.mp4",
+   "poster": "/assets/videos/bb-vid-20-poster.jpg",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "/assets/bb-44.webp",
+   "alt": "A framed foil handprint and footprint keepsake"
+  }
+ ]
+}

@@ -2,25 +2,34 @@
 <html lang="en-GB">
 
 <head>
-  <script src="/shared/analytics.js"></script>
-  <script src="/shared/trustpilot.js" defer></script>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <script src="/shared/community-signup.js?v=0921b97b" defer></script>
+  <script src="/shared/trustpilot.js?v=6fa7af21" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Our Frames – Bespoke Foil Company Keepsake Collection</title>
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/premium-frames.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/premium-frames.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/premium-frames.jpg">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/premium-frames">
   <meta name="description"
     content="Discover timeless frame styles crafted to elevate your baby keepsake prints. Beautifully finished, ready to gift, and designed to complement any home décor.">
   <link rel="preload" as="image" href="/assets/inc-framed-hr.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
     onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
       rel="stylesheet">
   </noscript>
-  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
   <style>
     /* ===== PREMIUM FRAMES page-specific (fr2- prefix) ===== */
 
@@ -314,20 +323,18 @@
     }
 
     .bespoke-diff-item .ic {
+      /* 05/08: the wrapper used to draw a stone disc, but the supplied SVGs
+         each carry their own - two circles stacked, the inner one visibly
+         off-centre. The wrapper is now just a sizing box. */
       width: 46px;
       height: 46px;
-      border-radius: 50%;
-      background: var(--stone);
-      display: grid;
-      place-items: center
+      display: block
     }
 
-    .bespoke-diff-item .ic svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--ink);
-      stroke-width: 1.6;
-      fill: none
+    .bespoke-diff-item .ic img {
+      width: 46px;
+      height: 46px;
+      display: block
     }
 
     .bespoke-diff-item span {
@@ -510,6 +517,14 @@
       font-size: 14px;
       color: var(--ink-soft)
     }
+/* Etsy beside the hero Trustpilot line - muted, since the Trustpilot half is
+   the linked verifiable claim. flex-wrap lets it drop a line on a phone. */
+.tp-line{flex-wrap: wrap}
+.tp-etsy{color: var(--ink-soft); white-space: nowrap}
+.tp-etsy b{color: var(--ink); font-weight: 600}
+.kb-etsy{display: block; margin-top: 6px; font-size: .92em; color: var(--ink-soft)}
+.kb-etsy b{color: var(--ink); font-weight: 600}
+
 
     .kb-tp a {
       color: var(--stone-text);
@@ -606,7 +621,37 @@
     display: none
   }
 }
-</style>
+
+    /* Five filled stars beside each reviewer name. The previous single glyph was
+       hand-rounded and lopsided - its lower-left arm reached y=17.5 while the
+       upper arms stopped near y=6.8. This is a true pentagram (outer radius
+       10.2, inner at the golden ratio 0.382x). */
+    .kb-name .kb-stars {
+      display: inline-flex;
+      gap: 1px;
+      flex: 0 0 auto
+    }
+
+    .kb-name .kb-stars svg {
+      width: 13px;
+      height: 13px;
+      fill: var(--stone-text)
+    }
+
+  
+    /* 05/08: "Bespoke" set in the handwritten face, matching the Memory Catcher
+       lockup. Sized up because the script runs smaller than the sans at the
+       same px, and nudged down so the baselines sit level. */
+    .bespoke-diff-title b {
+      font-family: var(--script);
+      font-weight: 400;
+      font-size: 1.62em;
+      line-height: 1;
+      position: relative;
+      top: 3px
+    }
+
+  </style>
 </head>
 
 <body>
@@ -614,34 +659,38 @@
   <nav class="nav-menu" id="navMenu" aria-hidden="true">
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
-        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
-        </a>
-        <div class="nav-menu-top-right">
+          <!-- Order: CTA, logo, close. All three are DIRECT children so the
+               existing space-between puts the logo between the other two.
+               .nav-menu-top-right is gone - it nested the CTA one level down,
+               which made that impossible. -->
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
             <span>Order Your Kit</span>
             <span class="sq"><svg viewBox="0 0 24 24">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></span>
           </a>
+          <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
+        </a>
           <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
             <svg viewBox="0 0 24 24">
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
         </div>
-      </div>
       <div class="nav-menu-links">
-        <a href="/" data-page="home">Home</a>
-        <a href="/our-story" data-page="our-story">Our Story</a>
-        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
-        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
-        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-        <a href="/faq" data-page="faq">FAQ</a>
-        <a href="/contact" data-page="contact">Contact</a>
-      </div>
+          <a href="/" data-page="home">Home</a>
+          <a href="/our-story" data-page="our-story">Our Story</a>
+          <a href="/franchise" data-page="franchise">Memory Catcher&trade; Franchise</a>
+          <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology&trade;</a>
+          <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+          <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+          <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+          <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+          <a href="/memory-catcher-hub" data-page="memory-catcher-hub">The Memory Catcher&trade; Hub</a>
+          <a href="/faq" data-page="faq">FAQ</a>
+          <a href="/contact" data-page="contact">Contact</a>
+        </div>
 
       <div class="nav-menu-cta">
         <div class="nav-menu-cta-head">
@@ -674,11 +723,12 @@
 
 
   <div class="announce">
-    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
-    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-  </div>
-
-  <div class="hero-scope">
+      <span class="announce-item"><img src="/assets/tp-stars-5.svg" alt=""><span class="announce-text">Rated <b>Excellent</b> on Trustpilot</span></span>
+      <span class="announce-item"><span class="announce-text">Rated <b>4.9 / 5</b> from <b>over 2,000</b> reviews on Etsy</span></span>
+      <span class="announce-item"><span class="announce-text">Our exclusive <b>Foil Fusion Technology&trade;</b></span></span>
+      <span class="announce-item"><span class="announce-text">Order before <b>12pm</b> on a weekday for same-day dispatch</span></span>
+    </div>
+    <div class="hero-scope">
     <header>
       <div class="nav-row">
         <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -774,19 +824,19 @@
       <p class="bespoke-diff-title">The <b>Bespoke</b> Difference</p>
       <div class="bespoke-diff-items">
         <div class="bespoke-diff-item">
-          <span class="ic"><img src="/assets/icons/diff-safe.svg" width="53" height="53" loading="lazy" alt=""></span>
+          <span class="ic"><img src="/assets/icons/safe-mess-free-v2.svg" width="53" height="53" loading="lazy" alt=""></span>
           <span>Safe &amp; Mess-Free Process</span>
         </div>
         <div class="bespoke-diff-item">
-          <span class="ic"><img src="/assets/icons/eco-friendly.svg" width="53" height="53" loading="lazy" alt=""></span>
+          <span class="ic"><img src="/assets/icons/eco-friendly-v2.svg" width="53" height="53" loading="lazy" alt=""></span>
           <span>Sustainable Gifting Option</span>
         </div>
         <div class="bespoke-diff-item">
-          <span class="ic"><img src="/assets/icons/diff-premium.svg" width="53" height="53" loading="lazy" alt=""></span>
+          <span class="ic"><img src="/assets/icons/last-forever-v2.svg" width="53" height="53" loading="lazy" alt=""></span>
           <span>Always Premium Quality Materials</span>
         </div>
         <div class="bespoke-diff-item">
-          <span class="ic"><img src="/assets/icons/diff-fusion.svg" width="53" height="53" loading="lazy" alt=""></span>
+          <span class="ic"><img src="/assets/icons/foil-fusion-v2.svg" width="53" height="53" loading="lazy" alt=""></span>
           <span>Exclusive Foil Fusion Technology&trade;</span>
         </div>
       </div>
@@ -832,9 +882,7 @@
           <p class="kb-quote">"The kit was incredibly easy to use. I'd given up on a previous casting kit, but this one
             was amazing - even when some footprints smudged, they cleaned up perfectly to show all the true detail of
             Lilly's feet!"</p>
-          <p class="kb-name">Megan <span class="verified"><svg viewBox="0 0 24 24">
-                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
-              </svg></span></p>
+          <p class="kb-name">Megan <span class="kb-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg></span></p>
           <p class="kb-role">Mummy of Lottie &amp; Lilly</p>
         </div>
       </article>
@@ -846,9 +894,7 @@
           <p class="kb-quote">"Honestly couldn't believe how straightforward this was compared to other keepsake methods
             I'd tried. The instructions were crystal clear, and even though I'm not crafty at all, the results were
             perfect. Worth every penny!"</p>
-          <p class="kb-name">Heather <span class="verified"><svg viewBox="0 0 24 24">
-                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
-              </svg></span></p>
+          <p class="kb-name">Heather <span class="kb-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg></span></p>
           <p class="kb-role">Mummy of Arabella &amp; Nova</p>
         </div>
       </article>
@@ -860,14 +906,14 @@
           <p class="kb-quote">"As a first-time mum, I was nervous about doing anything that might upset Myles. This kit
             was perfect - so gentle and quick. The inkless wipes didn't irritate his skin at all, and now we have this
             beautiful keepsake to treasure forever."</p>
-          <p class="kb-name">Charlotte <span class="verified"><svg viewBox="0 0 24 24">
-                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
-              </svg></span></p>
+          <p class="kb-name">Charlotte <span class="kb-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg></span></p>
           <p class="kb-role">Mummy of Myles</p>
         </div>
       </article>
     </div>
-    <p class="kb-tp">Rated <b>Excellent</b> - <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener"><span data-tp-count>72</span> reviews on Trustpilot</a></p>
+    <p class="kb-tp">Rated <b>Excellent</b> - <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener"><span data-tp-count>72</span> reviews on Trustpilot</a>
+      <span class="kb-etsy">Also rated <b data-etsy-score>4.9</b> / 5 from <b data-etsy-count>over 2,000</b> reviews on Etsy since <span data-etsy-since>2018</span>.</span>
+    </p>
   </section>
 
   <!-- ============ JOIN OUR COMMUNITY ============ -->
@@ -887,7 +933,7 @@
   <footer>
     <div class="foot-top">
       <div class="foot-col foot-contact">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <p>Tel: 07506 998934</p>
         <p>Email: hello@thebespokefoilcompany.co.uk</p>
         <div class="foot-social">
@@ -898,14 +944,18 @@
               <path
                 d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
             </svg></a>
-        </div>
+        
+            <a href="https://www.youtube.com/@bespokefoilcompany" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M21.58 7.19a2.51 2.51 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.81.41A2.51 2.51 0 0 0 2.42 7.19 26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.81-.41a2.51 2.51 0 0 0 1.77-1.78A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.42-4.81zM10 15.5v-7l6 3.5z" />
+            </svg></a>
+          </div>
         <p class="f-label">Find Us</p>
         <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
         <p class="f-label">Opening Hours</p>
         <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
       </div>
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h3>Explore</h3>
         <ul>
           <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
           <li><a href="/our-story">Our Story</a></li>
@@ -918,14 +968,14 @@
         </ul>
       </div>
       <div class="foot-col">
-        <h4>Resources</h4>
+        <h3>Resources</h3>
         <ul>
           <li><a href="/faq">FAQ's</a></li>
           <li><a href="/blog">Stories &amp; Inspiration</a></li>
           <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
           <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
         </ul>
-        <h4>Franchise</h4>
+        <h3>Franchise</h3>
         <ul>
           <li><a href="/franchise-hub">Franchise Hub</a></li>
           <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
@@ -937,7 +987,7 @@
         </ul>
       </div>
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <ul>
           <li><a href="/contact">Contact Us</a></li>
           <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -959,12 +1009,33 @@
             <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
           </div>
           <div class="foot-tp">
-            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          <!-- Official TrustBox (Mini). Everything inside the container is the
+               no-JS fallback - the widget replaces it once tp.widget.bootstrap
+               loads. The real figures live there on purpose: AI crawlers never
+               run the widget, so this is what they read. Kept in sync by
+               scripts/build-trustpilot.js from shared/trustpilot.js. -->
+          <div class="trustpilot-widget" data-locale="en-GB" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="5fec7f5644198b00014a524a" data-style-height="100px" data-style-width="200px" data-theme="dark" data-token="39d85b3a-b3ee-4772-ad2c-a59b046a1b1e" data-review-disclaimer="false">
+            <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">
+              <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+              <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews on Trustpilot</span>
+            </a>
           </div>
+          <!-- Etsy sits directly beneath the TrustBox so the two read as one
+               block of proof: a verified rating from one platform, and volume
+               from another. 2,224 is a far bigger number than 72 and does real
+               work here, at the point someone is deciding.
+
+               Unlinked, deliberately, for the same reason as the announce bar:
+               a clickable Etsy link in the footer of every page routes traffic
+               off the site, where the margin is whole, to a marketplace that
+               takes a cut and owns the customer. The claim earns trust here;
+               the link would spend it. The Organization schema's sameAs already
+               connects the two for machines. -->
+          <p class="foot-etsy"><span data-etsy-score>4.9</span> / 5 from <span data-etsy-count>over 2,000</span> reviews on Etsy</p>
         </div>
-      </div>
-    </div>
+        </div><!-- /.foot-right -->
+      </div><!-- /.foot-col -->
+    </div><!-- /.foot-top -->
     <div class="foot-legal">
       <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
         GB419408687.</p>
@@ -1005,6 +1076,7 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
     })();
   </script>
+<script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async data-tp-bootstrap></script>
 </body>
 
 </html>

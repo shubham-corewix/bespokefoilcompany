@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- Internal tool. Never indexed, never in sitemap.xml. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Gallery Upload | Bespoke Foil Company</title>
+  <meta name="description" content="Internal upload tool for the Bespoke Baby Gallery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Nothing+You+Could+Do&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
+  <style>
+    /* =====================================================================
+       ASHLEY GALLERY UPLOAD  -  FRONT END ONLY, NOT YET WIRED
+
+       This is the interface for review. The upload itself is stubbed: files
+       are validated and previewed locally, nothing is sent anywhere. See
+       GALLERY-UPLOAD-SPEC.md for the pipeline Dixit needs to connect.
+
+       Designed for one hand on a phone between classes: big targets, one
+       column, no horizontal scroll, safe-area padding for the notch.
+       ===================================================================== */
+    body {
+      background: var(--porcelain)
+    }
+
+    .gu-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: calc(28px + env(safe-area-inset-top)) 20px calc(40px + env(safe-area-inset-bottom))
+    }
+
+    .gu-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px
+    }
+
+    .gu-head img {
+      height: 18px;
+      width: auto
+    }
+
+    .gu-wrap h1 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: 30px;
+      letter-spacing: -.015em;
+      margin: 14px 0 8px
+    }
+
+    .gu-lede {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: 24px
+    }
+
+    /* ---- drop zone. Tap anywhere on it; drag-and-drop also works on desktop. ---- */
+    .gu-drop {
+      /* MUST be block. <label> is display:inline by default, and an inline box
+         containing block-level children fragments across line boxes - each
+         fragment drawing its own border and radius. That is what broke this
+         panel into three overlapping boxes on first build. */
+      display: block;
+      border: 1.5px dashed var(--stone-text);
+      border-radius: var(--r-img);
+      background: var(--white);
+      padding: 36px 22px;
+      text-align: center;
+      cursor: pointer;
+      transition: background .15s ease, border-color .15s ease
+    }
+
+    .gu-drop.is-over {
+      background: var(--bone);
+      border-color: var(--ink)
+    }
+
+    .gu-drop svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--stone-text);
+      stroke-width: 1.6;
+      fill: none;
+      margin-bottom: 10px
+    }
+
+    .gu-drop b {
+      display: block;
+      font-family: var(--sans);
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px
+    }
+
+    .gu-drop span {
+      font-size: 13.5px;
+      color: var(--ink-faint)
+    }
+
+    .gu-drop input {
+      display: none
+    }
+
+    /* ---- queue ---- */
+    .gu-list {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0;
+      display: grid;
+      gap: 12px
+    }
+
+    .gu-item {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-card);
+      padding: 10px
+    }
+
+    .gu-thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bone);
+      display: grid;
+      place-items: center
+    }
+
+    .gu-thumb img,
+    .gu-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .gu-thumb .gu-noprev {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: .08em;
+      color: var(--ink-faint)
+    }
+
+    .gu-meta {
+      min-width: 0
+    }
+
+    .gu-name {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .gu-sub {
+      font-size: 12.5px;
+      color: var(--ink-faint);
+      margin-top: 2px
+    }
+
+    .gu-cap {
+      grid-column: 1 / -1;
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 14px;
+      padding: 9px 12px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-btn);
+      background: var(--porcelain)
+    }
+
+    .gu-rm {
+      background: none;
+      border: none;
+      font-size: 20px;
+      line-height: 1;
+      color: var(--ink-faint);
+      padding: 6px 8px;
+      cursor: pointer
+    }
+
+    /* Failures must be visible. A file that quietly disappears is the one thing
+       this tool cannot do - she would assume it worked. */
+    .gu-item.is-bad {
+      border-color: #C0392B;
+      background: #FDF3F2
+    }
+
+    .gu-item.is-bad .gu-sub {
+      color: #C0392B;
+      font-weight: 500
+    }
+
+    .gu-actions {
+      margin-top: 24px;
+      display: grid;
+      gap: 10px
+    }
+
+    .gu-actions .cta {
+      justify-content: center
+    }
+
+    .gu-note {
+      margin-top: 18px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--ink-faint)
+    }
+
+    .gu-banner {
+      background: var(--stone);
+      color: var(--ink);
+      border-radius: var(--r-btn);
+      padding: 12px 14px;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 22px
+    }
+
+    .gu-empty {
+      text-align: center;
+      color: var(--ink-faint);
+      font-size: 13.5px;
+      padding: 18px 0
+    }
+  </style>
+</head>
+
+<body>
+  <div class="gu-wrap">
+    <div class="gu-head">
+      <img src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
+    </div>
+
+    <div class="gu-banner">
+      <b>Preview only.</b> Nothing is uploaded yet - this is the interface for sign-off. Files you
+      add here stay on your device.
+    </div>
+
+    <h1>Gallery Upload</h1>
+    <p class="gu-lede">Add photos and videos straight to the Bespoke Baby Gallery. They appear on
+      the wall after the next nightly update.</p>
+
+    <label class="gu-drop" id="guDrop">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 16V4M7 9l5-5 5 5" />
+        <path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
+      </svg>
+      <b>Tap to choose photos or videos</b>
+      <span>Or drag them here. You can pick several at once.</span>
+      <input type="file" id="guInput" accept="image/*,video/*" multiple>
+    </label>
+
+    <ul class="gu-list" id="guList"></ul>
+    <p class="gu-empty" id="guEmpty">Nothing added yet.</p>
+
+    <div class="gu-actions">
+      <button class="cta dark" id="guSend" type="button" disabled>
+        <span class="lbl">Upload to gallery</span>
+        <span class="sq"><svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg></span>
+      </button>
+    </div>
+
+    <p class="gu-note">Captions are optional. If you add one it becomes the image description on
+      the website, which helps people using screen readers and helps the page show up in search.</p>
+  </div>
+
+  <script>
+    /* Front end only. Deliberately no network call - see GALLERY-UPLOAD-SPEC.md.
+       What this DOES do is the validation Dixit's endpoint will need to mirror,
+       so the behaviour is agreed before the pipeline is built. */
+    (function () {
+      var input = document.getElementById('guInput');
+      var drop = document.getElementById('guDrop');
+      var list = document.getElementById('guList');
+      var empty = document.getElementById('guEmpty');
+      var send = document.getElementById('guSend');
+      var queue = [];
+
+      /* iPhones hand over HEIC and .mov by default. The pipeline needs to handle
+         both; flagging them here means Ashley finds out on the spot rather than
+         wondering later why something never appeared. */
+      var HEIC = /\.(heic|heif)$/i;
+      var MOV = /\.(mov|m4v)$/i;
+      var MAX = 200 * 1024 * 1024;
+
+      function human(b) {
+        return b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.round(b / 1024) + ' KB';
+      }
+
+      function check(f) {
+        if (f.size > MAX) return 'Too large (' + human(f.size) + '). Maximum 200 MB.';
+        if (!/^image\//.test(f.type) && !/^video\//.test(f.type) && !HEIC.test(f.name) && !MOV.test(f.name))
+          return 'Not a photo or video.';
+        return null;
+      }
+
+      function note(f) {
+        if (HEIC.test(f.name)) return 'iPhone HEIC photo - will be converted';
+        if (MOV.test(f.name)) return 'iPhone .mov video - will be converted';
+        return null;
+      }
+
+      function render() {
+        list.innerHTML = '';
+        empty.style.display = queue.length ? 'none' : '';
+        send.disabled = !queue.some(function (q) { return !q.error; });
+        queue.forEach(function (q, i) {
+          var li = document.createElement('li');
+          li.className = 'gu-item' + (q.error ? ' is-bad' : '');
+
+          var th = document.createElement('div');
+          th.className = 'gu-thumb';
+          if (!q.error && /^image\//.test(q.file.type)) {
+            var im = document.createElement('img');
+            im.src = URL.createObjectURL(q.file);
+            im.onload = function () { URL.revokeObjectURL(im.src); };
+            th.appendChild(im);
+          } else if (!q.error && /^video\//.test(q.file.type)) {
+            var v = document.createElement('video');
+            v.src = URL.createObjectURL(q.file);
+            v.muted = true; v.playsInline = true;
+            th.appendChild(v);
+          } else {
+            var s = document.createElement('span');
+            s.className = 'gu-noprev';
+            s.textContent = q.error ? 'ERROR' : 'FILE';
+            th.appendChild(s);
+          }
+
+          var meta = document.createElement('div');
+          meta.className = 'gu-meta';
+          var nm = document.createElement('div');
+          nm.className = 'gu-name'; nm.textContent = q.file.name;
+          var sub = document.createElement('div');
+          sub.className = 'gu-sub';
+          sub.textContent = q.error || (human(q.file.size) + (q.note ? ' - ' + q.note : ''));
+          meta.appendChild(nm); meta.appendChild(sub);
+
+          var rm = document.createElement('button');
+          rm.className = 'gu-rm'; rm.type = 'button';
+          rm.setAttribute('aria-label', 'Remove ' + q.file.name);
+          rm.innerHTML = '&times;';
+          rm.onclick = function () { queue.splice(i, 1); render(); };
+
+          li.appendChild(th); li.appendChild(meta); li.appendChild(rm);
+
+          if (!q.error) {
+            var cap = document.createElement('input');
+            cap.className = 'gu-cap'; cap.type = 'text';
+            cap.placeholder = 'Caption (optional)';
+            cap.value = q.caption || '';
+            cap.oninput = function () { q.caption = cap.value; };
+            li.appendChild(cap);
+          }
+          list.appendChild(li);
+        });
+      }
+
+      function add(files) {
+        Array.prototype.forEach.call(files, function (f) {
+          queue.push({ file: f, error: check(f), note: note(f), caption: '' });
+        });
+        render();
+      }
+
+      input.addEventListener('change', function () { add(input.files); input.value = ''; });
+
+      ['dragenter', 'dragover'].forEach(function (e) {
+        drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.add('is-over'); });
+      });
+      ['dragleave', 'drop'].forEach(function (e) {
+        drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.remove('is-over'); });
+      });
+      drop.addEventListener('drop', function (ev) {
+        if (ev.dataTransfer && ev.dataTransfer.files) add(ev.dataTransfer.files);
+      });
+
+      send.addEventListener('click', function () {
+        var ok = queue.filter(function (q) { return !q.error; }).length;
+        alert('Preview only - nothing has been uploaded.\n\n' + ok +
+          ' file' + (ok === 1 ? '' : 's') + ' would be sent to the gallery pipeline.');
+      });
+
+      render();
+    })();
+  </script>
+</body>
+
+</html>

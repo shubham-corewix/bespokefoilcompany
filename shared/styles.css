@@ -178,10 +178,80 @@ a {
     font-weight: 500;
     font-size: 14px;
     text-align: center;
-    padding: 11px 16px;
+    
     display: flex;
     justify-content: center;
     align-items: center;
+}
+/* Three statements stacked in the same box, crossfading. Absolute positioning
+   keeps the bar a fixed height so a longer statement cannot shift the page as it
+   fades in. Pure CSS - see scripts/build-announce.js for why this must never
+   become a JS text swap. */
+.announce {
+    position: relative;
+    min-height: 44px;
+    padding: 0 16px
+}
+
+.announce-item {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    opacity: 0;
+    animation: announce-cycle 28s infinite
+}
+
+.announce-item:nth-child(2) {
+    animation-delay: 7s
+}
+
+.announce-item:nth-child(3) {
+    animation-delay: 14s
+}
+
+.announce-item:nth-child(4) {
+    animation-delay: 21s
+}
+
+/* One flex item, so the container's gap can only ever fall between the image
+   and the text - never between words. Without this, flexbox splits
+   `Rated <b>Excellent</b> on Trustpilot` into three anonymous flex items and
+   adds the 8px gap on top of each ordinary word space. */
+.announce-text {
+    display: inline
+}
+
+/* 28s for four statements: each holds ~5s and fades over ~0.6s. */
+@keyframes announce-cycle {
+    0%, .5% { opacity: 0 }
+    2%, 22% { opacity: 1 }
+    24%, 100% { opacity: 0 }
+}
+
+/* Reduced motion: no cycling at all, just the first statement. The other two
+   stay in the markup, so nothing is lost for crawlers. */
+@media (prefers-reduced-motion: reduce) {
+    .announce-item {
+        animation: none;
+        opacity: 0
+    }
+    .announce-item:first-child {
+        opacity: 1
+    }
+}
+
+@media (max-width: 420px) {
+    .announce {
+        font-size: 12.5px
+    }
+    .announce-item {
+        gap: 6px;
+        padding: 0 10px
+    }
 }
 
 .announce img {
@@ -434,6 +504,39 @@ header.scrolled .cart-btn {
     margin-top: 26px;
     font-size: 14px;
     color: rgba(255, 255, 255, .82);
+}
+/* Etsy figure beside the hero Trustpilot line. Sits INSIDE .tp-jump, so it
+   inherits the link's colour but is muted - the Trustpilot half is the linked,
+   verifiable claim and should stay the louder of the two.
+
+   `flex-wrap` on .tp-line lets this drop to a second line on a narrow phone
+   rather than squeezing the hero. */
+.tp-line {
+    flex-wrap: wrap
+}
+
+.tp-etsy {
+    color: var(--ink-soft);
+    white-space: nowrap
+}
+
+.tp-etsy b {
+    color: var(--ink);
+    font-weight: 600
+}
+
+/* Mid-page line under the testimonial cards. Its own line, not inline, because
+   .kb-tp is a centred sentence and a second clause would double its length. */
+.kb-etsy {
+    display: block;
+    margin-top: 6px;
+    font-size: .92em;
+    color: var(--ink-soft)
+}
+
+.kb-etsy b {
+    color: var(--ink);
+    font-weight: 600
 }
 
 .hero-proof img {
@@ -927,7 +1030,9 @@ dialog.inc::backdrop {
 
 .paymethods img {
     height: 31px;
-    width: auto
+    width: auto;
+    background: var(--white);
+    border-radius: 3px
 }
 
 .timeline {
@@ -995,6 +1100,13 @@ dialog.inc::backdrop {
 
 /* ================= STEPS: from kit to keepsake (lifted from kit page) ================= */
 .steps {
+    /* Single source for the carousel gutter. .steps-head centres itself
+       with these; .steps-track reproduces the same offset with padding.
+       Derived from one pair of numbers so the two cannot drift apart -
+       which is exactly what happened when a fixed pixel offset was copied
+       here from a page with a different container. */
+    --steps-max: 1280px;
+    --steps-pad: 40px;
     background: var(--white);
     border-top: 1px solid var(--hairline);
     padding: 72px 0 80px;
@@ -1002,9 +1114,9 @@ dialog.inc::backdrop {
 }
 
 .steps-head {
-    max-width: 1280px;
+    max-width: var(--steps-max);
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 var(--steps-pad);
     display: grid;
     gap: 28px
 }
@@ -1088,9 +1200,9 @@ dialog.inc::backdrop {
     scroll-snap-type: x mandatory;
     padding-top: 36px;
     padding-bottom: 8px;
-    padding-left: 24px;
+    padding-left: max(var(--steps-pad), calc(50% - var(--steps-max) / 2 + var(--steps-pad)));
     padding-right: 24px;
-    scroll-padding-left: 24px;
+    scroll-padding-left: max(var(--steps-pad), calc(50% - var(--steps-max) / 2 + var(--steps-pad)));
     scrollbar-width: none
 }
 
@@ -1368,6 +1480,21 @@ dialog.inc::backdrop {
     padding: 0 40px;
     text-align: center
 }
+/* Subordinate to the Trustpilot lockup above it, deliberately: one claim is
+   linked and verified, the other is not, so they should not read as equals. */
+.reviews-etsy {
+    margin: 14px auto 0;
+    max-width: 46ch;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    text-align: center
+}
+
+.reviews-etsy b {
+    color: var(--ink);
+    font-weight: 600
+}
 
 .review-track {
     display: flex;
@@ -1568,6 +1695,27 @@ dialog.inc::backdrop {
     min-width: min(420px, 90vw)
 }
 
+/* Status line under the community sign-up. home.html has no inline <style>
+   at all, so everything for it lives here. */
+.community-msg {
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin: 10px 0 0;
+    min-height: 1.3em
+}
+
+.community-msg.is-ok {
+    color: #7bd7ab
+}
+
+.community-msg.is-bad {
+    color: #ffb4ab
+}
+
+/* 16px, not 15: iOS Safari zooms the whole page whenever a focused input,
+   textarea or select computes below 16px. On a long mobile form that throws
+   the layout around mid-entry; in the checkout drawer it pushed the panel
+   off screen. Do not reduce. Site-wide fix, 13/08. */
 .community-form input {
     flex: 1;
     min-width: 200px;
@@ -1575,7 +1723,7 @@ dialog.inc::backdrop {
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: var(--r-btn);
     font-family: var(--sans);
-    font-size: 15px;
+    font-size: 16px;
     background: var(--white);
     color: var(--ink);
 }
@@ -1614,6 +1762,167 @@ dialog.inc::backdrop {
     background: rgba(240, 239, 236, .62)
 }
 
+/* ================= HERO CROSSFADE (home) =================
+   Scoped to .hero-fade, never bare .hero-bg: a single-image hero must not
+   inherit opacity:0 and disappear. Eight slides are stacked and only the one
+   carrying .on is visible; 1.6s is deliberately slow, so it reads as a film
+   dissolve rather than a slideshow. */
+.hero-fade img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.6s ease-in-out;
+    will-change: opacity
+}
+
+.hero-fade img.on {
+    opacity: 1
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .hero-fade img {
+        transition: none
+    }
+}
+
+/* ---- UGC reel ----
+       Same pattern as .mc-videos on /franchise: an infinite marquee of portrait
+       tiles, edges masked so items enter and leave rather than popping. The
+       track is duplicated in the markup so the loop is seamless at -50%.
+       Every tile is lazy: videos carry data-src and only load once observed,
+       photos are loading="lazy", so this section costs nothing until scrolled to. */
+    .ugc {
+      background: var(--porcelain);
+      padding: 72px 0;
+      overflow: hidden
+    }
+
+    .ugc h2 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(26px, 3.6vw, 38px);
+      letter-spacing: -.015em;
+      text-align: center;
+      /* The lede has had `padding: 0 24px` all along; the h2 had nothing, so on
+         a narrow phone the accent could run to the very edge. Matching gutter -
+         cheap insurance rather than shrinking type that is already correct. */
+      padding: 0 24px
+    }
+
+    /* Handwritten accent inside the reel heading. The build wraps `{braces}` in
+       the heading copy with this class.
+
+       word-spacing: the script face carries a 0.515em word space against
+       Fraunces' 0.233em, so "forever keepsakes" had a visible hole in it while
+       the space before it looked tight. Measured off a render and halved, which
+       lands at 0.257em - near enough the serif space that the line reads evenly.
+
+       The foil gradient is lifted verbatim from `h1 .kept` on the product page
+       hero, so the accent shimmers the same way the hero does. `color` is a
+       fallback for anything that lacks -webkit-text-fill-color. */
+    .ugc h2 .ugc-accent {
+      font-family: var(--script);
+      font-size: 1.22em;
+      font-weight: 400;
+      letter-spacing: 0;
+      word-spacing: -.26em;
+      line-height: 1.05;
+      /* Block, not inline-block: drops the accent onto its own line without a
+         <br> in the copy, so it holds at every breakpoint and on every page that
+         carries this component. The h2 is centred, so the block centres too.
+         translateY is gone with it - that nudge existed to sit a script baseline
+         next to a serif one ON THE SAME LINE. On its own line it just lifts the
+         whole word off centre. */
+      display: block;
+      margin-top: .12em;
+      color: var(--stone);
+      background: linear-gradient(100deg, #7d7263 0%, #bead9d 28%, #efe6d6 46%, #f6f1e6 50%, #efe6d6 54%, #bead9d 72%, #7d7263 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: foil 7s ease-in-out infinite
+    }
+
+    .ugc .lede {
+      text-align: center;
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 56ch;
+      margin: 10px auto 40px;
+      padding: 0 24px
+    }
+
+    .ugc-viewport {
+      width: 100%;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)
+    }
+
+    .ugc-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: ugc-scroll 90s linear infinite
+    }
+
+    .ugc:hover .ugc-track {
+      animation-play-state: paused
+    }
+
+    .ugc-item {
+      flex: 0 0 auto;
+      width: 248px;
+      aspect-ratio: 9/16;
+      border-radius: var(--r-card);
+      overflow: hidden;
+      background: var(--bone)
+    }
+
+    .ugc-item video,
+    .ugc-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .ugc-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px
+    }
+
+    @keyframes ugc-scroll {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* Anyone who has asked for less motion gets a static, swipeable rail. */
+    @media(prefers-reduced-motion:reduce) {
+      .ugc-track {
+        animation: none;
+        overflow-x: auto
+      }
+    }
+
+    @media(max-width:600px) {
+      .ugc {
+        padding: 48px 0
+      }
+
+      .ugc-item {
+        width: 176px
+      }
+    }
+
 /* ================= FOOTER (fresh build - four columns + watermark) ================= */
 footer {
     background: var(--ink);
@@ -1630,7 +1939,7 @@ footer {
     grid-template-columns: repeat(4, 1fr);
 }
 
-.foot-col h4 {
+.foot-col h3 {
     font-family: var(--sans);
     font-weight: 600;
     font-size: 13px;
@@ -1640,7 +1949,7 @@ footer {
     margin-bottom: 16px;
 }
 
-.foot-col h4:not(:first-child) {
+.foot-col h3:not(:first-child) {
     margin-top: 26px
 }
 
@@ -1729,6 +2038,21 @@ footer {
     background: var(--white);
 }
 
+/* Klarna ships as a badge: black wordmark on Klarna Pink (#FFA8CD). Set on the
+   img via the src, so one rule covers all three chip components - no :has(),
+   no markup change. The SVG interior is transparent so this paints through it.
+   Amex needs no rule: it paints its own full-bleed blue card, so whatever is
+   behind it never shows.
+
+   07/08: this was originally scoped to `.foot-pay .pay-chip img` alone, which
+   meant the chips under the buy button were never pink on any page using this
+   stylesheet. Caught by the preview's own self-check, not by eye. */
+.foot-pay .pay-chip img[src*="klarna"],
+.f-pay-chip img[src*="klarna"],
+.paymethods img[src*="klarna"] {
+    background: #FFA8CD;
+}
+
 .foot-pay .pay-chip img {
     width: 100%;
     height: 100%;
@@ -1751,6 +2075,55 @@ footer {
     font-size: 12px;
     color: rgba(255, 255, 255, .6)
 }
+
+/* Sits directly under the TrustBox, matching .tp-meta so the two read as one
+   block rather than two separate claims. */
+.foot-etsy {
+    font-size: 12px;
+    color: rgba(255, 255, 255, .6);
+    margin: 2px 0 0
+}
+
+/* The official TrustBox renders an iframe in here. Constrain it so it does not
+   stretch the whole footer column; the height comes from Trustpilot's own
+   data-style-height. The `> a` rule styles the no-JS fallback so it still
+   reads like the badge it replaced. */
+/* TrustBox iframes centre their content in whatever width they are given, so a
+   wide container floats the logo into the middle of the column. Shrink the box
+   to its content and it has nowhere to drift. Deliberately NOT a negative-offset
+   nudge, which breaks on resize. */
+/* The iframe now carries a definite pixel width from data-style-width, set in
+   scripts/build-trustpilot.js. `fit-content` is gone deliberately: it could not
+   work here, because the iframe's own width was a percentage resolving against
+   the very container fit-content was trying to size. A definite width removes
+   the slack the widget was centring itself in.
+
+   align-self stays - it pins the box to the column's left edge. Width controls
+   where the CONTENT sits inside that box. */
+.foot-tp .trustpilot-widget {
+    align-self: flex-start;
+    max-width: 100%
+}
+
+/* Pins the CTA/payment/Trustpilot block to the bottom of the grid row, so its
+   base stays level with the last franchise link even if links are added later.
+   Self-correcting rather than tuned to today's content. */
+.foot-col {
+    display: flex;
+    flex-direction: column
+}
+
+.foot-right {
+    margin-top: auto
+}
+
+.foot-tp .trustpilot-widget>a {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none
+}
+
 
 .foot-legal {
     max-width: 1280px;
@@ -1834,17 +2207,53 @@ footer {
     margin-bottom: 36px;
     gap: 20px
 }
+/* 08/08: the wordmark is 9.89:1 (viewBox 184.5 x 18.65), so at 16px it is 158px
+   wide. The row is CTA 205 + logo 158 + close 44 + gaps 40 = 447px, against
+   354px available on a 390px phone. It overflowed by 93px, which is why the
+   close button landed on top of it - and even at an illegible 8px the row is
+   still 14px too wide. Hidden below 600px, where "Home" one row down does the
+   same job. Above 600px there is room and it stays. */
+@media (max-width: 600px) {
+    .nav-menu-top .mlogo{display: block}
+}
 
-.nav-menu-top-right {
-    display: flex;
-    align-items: center;
-    gap: 18px
+/* CTA and logo together on the left, close pushed right. */
+.nav-menu-top {
+    justify-content: flex-start;
+    gap: 14px
+}
+
+.nav-menu-top .nav-menu-close {
+    margin-left: auto
+}
+
+/* Two 1px rules were stacking above the Memory Catcher block: the last link's
+   border-bottom and .nav-menu-cta's border-top. The divider belongs to the
+   section, so the link loses its rule. */
+.nav-menu-links a:last-child {
+    border-bottom: 0
+}
+
+/* Cards sat flush to the bottom edge. safe-area-inset clears the iOS home
+   indicator on top of the padding. */
+.nav-menu-cards {
+    /* 08/08: 28px -> 48px. With the .nav-menu 40px bottom padding that gives
+   88px of clearance plus the safe-area inset, so the cards no longer read
+   as sitting on the base of the screen. */
+  padding-bottom: calc(48px + env(safe-area-inset-bottom))
 }
 
 .nav-menu-top .mlogo-img {
-    height: 22px;
+    height: 16px;
     width: auto;
     filter: brightness(0) invert(1)
+}
+@media (max-width:600px){
+  /* AFTER the base rule on purpose - media queries add no specificity,
+     so a 12px override written earlier loses to a 16px base rule below
+     it. our-kit.html carries the base rule TWICE, in two <style> blocks,
+     so this must follow the LAST one. */
+  .nav-menu-top .mlogo-img{height: 12px}
 }
 
 .nav-menu-close {
@@ -1923,10 +2332,10 @@ footer {
 .nav-menu-links a {
     font-family: var(--serif);
     font-weight: 340;
-    font-size: clamp(24px, 5.5vw, 30px);
+    font-size: clamp(20px, 4.8vw, 25px);
     color: #fff;
     text-decoration: none;
-    padding: 15px 0;
+    padding: 12px 0;
     border-bottom: 1px solid rgba(255, 255, 255, .12);
     transition: color .2s ease, padding-left .2s ease;
     letter-spacing: -.01em;
@@ -2077,10 +2486,6 @@ body.menu-open {
 }
 
 @media (min-width:1280px) {
-    .steps-track {
-        padding-left: calc(50% - 600px);
-        scroll-padding-left: calc(50% - 600px)
-    }
 }
 
 @media (max-width: 1000px) {
@@ -2436,25 +2841,11 @@ body.menu-open {
         padding: calc(20px + env(safe-area-inset-top)) 20px 28px
     }
 
-    .nav-menu-top {
-        margin-bottom: 22px;
-        flex-wrap: wrap;
-        position: relative
-    }
+    .nav-menu-top{margin-bottom: 22px; gap: 12px}
 
     /* close stays pinned top-right; order button drops to its own full-width row below */
-    .nav-menu-top-right {
-        width: 100%;
-        order: 2;
-        margin-top: 20px
-    }
 
-    .nav-menu-close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        order: 1
-    }
+    .nav-menu-close{position: static; margin-left: auto}
 
     .nav-menu-order {
         margin-bottom: 0;
@@ -2514,4 +2905,9 @@ body.menu-open {
         grid-template-columns: repeat(1, 1fr);
     }
     /* footer */
+}
+@media (max-width:600px){
+  /* The head's own 18px rule lives with the other mobile gutters;
+     this keeps the track in step with it from the same variable. */
+  .steps{--steps-pad: 18px}
 }

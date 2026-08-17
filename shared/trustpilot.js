@@ -27,17 +27,36 @@
 (function () {
   'use strict';
 
-  /* ---- EDIT THESE TWO, NOTHING ELSE ---- */
+  /* ---- EDIT THESE, NOTHING ELSE ---- */
   var SCORE = '4.9';
   var COUNT = '72';
   var CHECKED = '2026-07-31';   // when these were last verified against Trustpilot
-  /* -------------------------------------- */
+
+  /* Etsy lives here too, for the same reason Trustpilot does: the figures now
+     appear in the announce bar AND the footer, built by two different scripts.
+     Held in one place they cannot drift apart. Verified against the live shop
+     page 08/08/2026 - 4.9 from 2,224 reviews, 13,054 sales, on Etsy since 2018.
+
+     ETSY_COUNT is written "over 2,000" on purpose. It stays true as the number
+     grows, so nobody has to remember to update it and it cannot quietly become
+     an unsubstantiated claim. */
+  var ETSY_SCORE = '4.9';
+  var ETSY_COUNT = 'over 2,000';
+  var ETSY_CHECKED = '2026-08-08';
+  /* The year matters more than the count. "72 reviews" looks thin next to
+     established competitors; "since 2018" tells a reader the 72 is a new
+     Trustpilot profile, not a new business. */
+  var ETSY_SINCE = '2018';
+  /* ----------------------------------- */
 
   var PROFILE = 'https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk';
 
   function fill() {
     document.querySelectorAll('[data-tp-score]').forEach(function (el) { el.textContent = SCORE; });
     document.querySelectorAll('[data-tp-count]').forEach(function (el) { el.textContent = COUNT; });
+    document.querySelectorAll('[data-etsy-score]').forEach(function (el) { el.textContent = ETSY_SCORE; });
+    document.querySelectorAll('[data-etsy-count]').forEach(function (el) { el.textContent = ETSY_COUNT; });
+    document.querySelectorAll('[data-etsy-since]').forEach(function (el) { el.textContent = ETSY_SINCE; });
 
     /* Any JSON-LD aggregateRating on the page is rewritten from the same two
        values, so the schema can never drift from what a visitor is reading. */

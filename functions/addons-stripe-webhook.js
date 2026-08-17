@@ -13,35 +13,16 @@
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const crypto = require('crypto');
+const { sendEmail } = require('./_shared/send-email');
 const { buildOrderNumber } = require('./order-number');
 const { renderOrderEmailHtml, renderOrderEmailText } = require('./_shared/render-order-email');
 
 exports.handler = async (event) => {
-  // Stripe POSTs a raw JSON body. Netlify often base64-encodes it; a GET
-  // (browser, health check) or a 301/302 in front of this URL arrives with
-  // no body and Stripe throws "No webhook payload was provided."
-  if (event.httpMethod && event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  }
-
-  const rawBody = event.isBase64Encoded
-    ? Buffer.from(event.body || '', 'base64')
-    : (event.body || '');
-  const sig = event.headers['stripe-signature'] || event.headers['Stripe-Signature'];
-
-  if (!rawBody || !rawBody.length) {
-    console.error('Webhook missing body', {
-      httpMethod: event.httpMethod,
-      isBase64Encoded: event.isBase64Encoded,
-      hasSig: Boolean(sig)
-    });
-    return { statusCode: 400, body: 'No webhook payload was provided' };
-  }
-
+  const sig = event.headers['stripe-signature'];
   let stripeEvent;
   try {
     stripeEvent = stripe.webhooks.constructEvent(
-      rawBody,
+      event.body,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET_ADDON
     );
@@ -110,12 +91,40 @@ exports.handler = async (event) => {
     }
   };
 
-  const sendOrderEmailViaMandrill = async ({ toEmail, subject, html, text, metadata }) => {
+  const sendOrderEmailViaMandrill = async ({ toEmail, subject, html, text, metadata, merge }) => {
+    /* Same gap as the upload portal, found while fixing that one (13/08): the
+       add-ons order confirmation went to the customer only, so head office had
+       no email record of an add-ons sale. */
+    const addonBcc = (process.env.EMAIL_BCC || 'hello@thebespokefoilcompany.co.uk').trim();
+    const addonRecipients = [{ email: toEmail, type: 'to' }];
+    if (addonBcc && addonBcc.toLowerCase() !== String(toEmail).toLowerCase()) {
+      addonRecipients.push({ email: addonBcc, type: 'bcc' });
+    }
+
     const apiKey = process.env.MANDRILL_API_KEY;
     const fromEmail = process.env.EMAIL_FROM;
     if (!apiKey || !fromEmail) {
       console.log('Mandrill skipped: missing MANDRILL_API_KEY or EMAIL_FROM');
       return { skipped: true, reason: 'missing mandrill env vars' };
+    }
+
+    /* bfc-shell when enabled. Same delegation as the kit confirmation: the HTML
+       built above becomes the fallback, so flag off / row missing / template
+       unknown all land on exactly today's email. */
+    if (process.env.EMAIL_SHELL_ENABLED === 'true') {
+      try {
+        const r = await sendEmail({
+          key: 'addons-confirmation',
+          to: addonRecipients,
+          subject,
+          fallbackHtml: html,
+          merge,
+        });
+        console.log(`[addons email] sent via ${r.via}`);
+        return r;
+      } catch (e) {
+        console.error('[addons email] shell path threw, using inline:', e.message);
+      }
     }
 
     const res = await fetch('https://mandrillapp.com/api/1.0/messages/send.json', {
@@ -129,7 +138,7 @@ exports.handler = async (event) => {
           subject,
           html,
           text,
-          to: [{ email: toEmail, type: 'to' }],
+          to: addonRecipients,
           metadata: metadata || {}
         }
       })
@@ -146,7 +155,6 @@ exports.handler = async (event) => {
     if (first && (first.status === 'rejected' || first.status === 'invalid')) {
       throw new Error(`Mandrill ${first.status}: ${first.reject_reason || 'unknown'}`);
     }
-    console.log("email sent successfully");
     return { ok: true, status: first && first.status };
   };
 
@@ -156,6 +164,7 @@ exports.handler = async (event) => {
   const FIELD_LABELS = {
     personalisation: 'Personalisation', notes: 'Notes', name: 'Name',
     cardFoil: 'Card & Foil', frame: 'Frame', handFoot: 'Hand/Foot',
+    namePosition: 'Name Position', nameFont: 'Name Font',
     keyringFoil: 'Keyring & Foil'
   };
 
@@ -167,9 +176,6 @@ exports.handler = async (event) => {
   const orderNumber = buildOrderNumber(pi);
 
   // ---------- 1. ShipStation ----------
-  // Do not return on failure: email/CAPI must still run. Stripe retries if we
-  // end the handler with 500; orderKey + orderEmailSent keep both idempotent.
-  let shipStationFailed = false;
   try {
     const auth = Buffer.from(
       process.env.SHIPSTATION_API_KEY + ':' + process.env.SHIPSTATION_API_SECRET
@@ -208,12 +214,19 @@ exports.handler = async (event) => {
       })),
       amountPaid: pi.amount / 100,
       internalNotes:
+        (pi.metadata.testOrder === 'yes'
+          ? '*** TEST ORDER - DO NOT PRODUCE OR SHIP *** '
+          : '') +
         'Add-ons landing page order.' +
         (orderRef ? ' Linked to original order ' + orderRef + '.' : '') +
         (Number(pi.metadata.basketDisc) > 0 ? ' 20% basket discount applied.' : '') +
         (Number(pi.metadata.keyringDisc) > 0 ? ' Keyring 3+ deal applied.' : '') +
         (pi.metadata.couponCode ? ' Coupon ' + pi.metadata.couponCode + ' applied (-\u00A3' + (Number(pi.metadata.couponDisc)/100).toFixed(2) + ').' : ''),
-      advancedOptions: { source: 'Memory Catcher Add-ons Page' }
+      advancedOptions: {
+        source: pi.metadata.testOrder === 'yes'
+          ? 'TEST ORDER - Memory Catcher Add-ons Page'
+          : 'Memory Catcher Add-ons Page'
+      }
     };
 
     const res = await fetch('https://ssapi.shipstation.com/orders/createorder', {
@@ -227,13 +240,13 @@ exports.handler = async (event) => {
     if (!res.ok) {
       const text = await res.text();
       console.error('ShipStation error:', res.status, text);
-      shipStationFailed = true;
-    } else {
-      console.log('ShipStation order created:', orderNumber);
+      // Return 500 so Stripe retries the webhook - the orderKey keeps it idempotent
+      return { statusCode: 500, body: 'ShipStation failed' };
     }
+    console.log('ShipStation order created:', orderNumber);
   } catch (err) {
     console.error('ShipStation exception:', err.message);
-    shipStationFailed = true;
+    return { statusCode: 500, body: 'ShipStation failed' };
   }
 
   // ---------- 2. Email ----------
@@ -253,7 +266,13 @@ exports.handler = async (event) => {
         const keyringDisc = Number(pi.metadata.keyringDisc || 0) / 100;
         const couponDisc = Number(pi.metadata.couponDisc || 0) / 100;
         const discountAmount = basketDisc + keyringDisc + couponDisc;
-
+        /* Personalisation rows for the confirmation email. Dixit, 13/08.
+           Two corrections on merge: the key below is `personalisation`, not
+           `personalisation_rows`, because that is what the template reads
+           (`data.personalisation`) - as written it would have built the rows
+           and handed them to a template that ignores them. And the label
+           separator was an em dash, which reaches the customer's inbox, so it
+           is a hyphen per house style. */
         const personalisationRows = [];
         items.forEach((it) => {
           const entries = [
@@ -262,7 +281,7 @@ exports.handler = async (event) => {
           ];
           entries.forEach(([k, v]) => {
             const label = FIELD_LABELS[k] || k;
-            const prefixedLabel = items.length > 1 ? `${it.name} — ${label}` : label;
+            const prefixedLabel = items.length > 1 ? `${it.name} - ${label}` : label;
             personalisationRows.push([prefixedLabel, String(v)]);
           });
         });
@@ -292,10 +311,21 @@ exports.handler = async (event) => {
 
         const html = renderOrderEmailHtml(merge);
         const text = renderOrderEmailText(merge);
+        /* "add-ons", not "order": a customer who bought a kit and later bought
+           add-ons has two confirmations in the same inbox. The references
+           already differ and this one carries an ADDON- prefix, so they were
+           never truly ambiguous, but both opened with the same four words.
+           Naming it at the first word rather than the twenty-seventh character
+           is clearer at a glance. Ryan, 12/08. Re-applied 13/08 after merging
+           the current add-ons app, whose copy predates this change. */
         const subject = `Your add-ons are confirmed (#${merge.order_ref})`;
 
         const result = await sendOrderEmailViaMandrill({
           toEmail,
+          /* the payload the inline template renders from, so bfc-shell has the
+             same values - without it the shell path sends a blank email and
+             Mandrill reports success, the one failure the fallback cannot see */
+          merge,
           subject,
           html,
           text,
@@ -353,8 +383,5 @@ exports.handler = async (event) => {
     }
   }
 
-  if (shipStationFailed) {
-    return { statusCode: 500, body: 'ShipStation failed' };
-  }
   return { statusCode: 200, body: 'OK' };
 };

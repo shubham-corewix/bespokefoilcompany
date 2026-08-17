@@ -166,3 +166,28 @@ language sql stable as $$
   where p.outcode = upper(trim(p_outcode))
   order by r.region;
 $$;
+
+
+-- ===========================================================================
+-- blog_posts.featured - added 11/08/2026
+-- ===========================================================================
+--
+-- Dixit's blog hub (blog.html + functions/blog-posts.js, 11/08) selects
+-- `featured` alongside the other card fields. PostgREST rejects the WHOLE
+-- select if any column is unknown, so without this the blog list returns 400
+-- and the page renders empty - not "no featured post", no posts at all.
+--
+-- Idempotent. If the column was already added by hand in the live project
+-- this is a no-op, which is the point: the repo's SQL must always be able to
+-- build the schema the repo's code reads.
+-- ===========================================================================
+
+alter table public.blog_posts
+  add column if not exists featured boolean not null default false;
+
+-- Only one post should carry the flag. A partial unique index enforces that
+-- without blocking the many rows where it is false.
+create unique index if not exists blog_posts_one_featured
+  on public.blog_posts (featured) where featured;
+
+-- select slug, title, featured, published from blog_posts order by published_at desc;

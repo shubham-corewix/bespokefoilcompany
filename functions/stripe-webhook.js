@@ -16,6 +16,9 @@
  * add-ons - verify the webhook delivery log shows 200.
  */
 const { renderOrderEmailHtml, renderOrderEmailText } = require('./_shared/render-order-email');
+const { queueEmail } = require('./_shared/queue-email');
+const { sendEmail } = require('./_shared/send-email');
+const { LIFECYCLE, dedupe } = require('./_shared/lifecycle');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { buildKitOrderNumber } = require('./order-number');
 const crypto = require('crypto');
@@ -128,7 +131,36 @@ async function detectPaymentMethodLabel(paymentIntentId) {
   }
 }
 
-async function sendOrderEmailViaMandrill({ toEmail, subject, html, text, metadata }) {
+async function sendOrderEmailViaMandrill({ toEmail, subject, html, text, metadata, merge }) {
+  /* Route through the shared bfc-shell sender when it is switched on.
+     ------------------------------------------------------------------------
+     Delegating from inside this helper rather than rewriting the call site
+     means the HTML this function already built becomes the fallback. So the old
+     path is not replaced, it becomes the safety net: flag off, email_content
+     row missing, template unknown, or Mandrill rejecting all land back on
+     exactly the email customers get today.
+
+     `send-email.js` returns { via: 'shell' | 'inline' } so the logs say which
+     path actually ran - worth having on the first live send, because a
+     fallback that works silently looks identical to success. */
+  if (process.env.EMAIL_SHELL_ENABLED === 'true') {
+    try {
+      const r = await sendEmail({
+        key: 'order-confirmation',
+        to: [{ email: toEmail, type: 'to' }],
+        subject,
+        fallbackHtml: html,
+        fallbackText: text,
+        merge: merge || {},
+        metadata,
+      });
+      console.log(`[order email] sent via ${r.via}`);
+      return r;
+    } catch (e) {
+      console.error('[order email] shell path threw, using inline:', e.message);
+    }
+  }
+
   const apiKey = process.env.MANDRILL_API_KEY;
   const fromEmail = process.env.EMAIL_FROM;
   const bccEmail = (process.env.EMAIL_BCC || 'hello@thebespokefoilcompany.co.uk').trim();
@@ -240,13 +272,23 @@ exports.handler = async (event) => {
     }
   }
   const addr = ship.address || {};
-  const orderNumber = buildKitOrderNumber(pi);
-  const subtotal = parseInt(m.subtotal_pence || '0', 10) / 100;
-  const postage = parseInt(m.postage_pence || '0', 10) / 100;
 
   /* Build the ShipStation order. Personalisation is NOT collected here -
      the customer completes it later in the upload portal, exactly as today.
      We tag the order so fulfilment knows a portal upload is pending. */
+  /* Declared as a variable, not only as a property.
+     ------------------------------------------------------------------------
+     This used to exist ONLY as the property name below, while the email block
+     further down referenced a bare `orderNumber` identifier. That threw
+     ReferenceError on every single order. The email is wrapped in a
+     non-blocking catch, so the payment went through and ShipStation got the
+     order - the ONLY thing lost was the customer's confirmation email, which
+     is exactly the failure nobody notices from the inside. Live on the Netlify
+     logs three times in seven minutes before it was spotted, 14/08.
+
+     addons-stripe-webhook.js already did it this way. */
+  const orderNumber = buildKitOrderNumber(pi);
+
   const order = {
     orderNumber,
     orderKey: pi.id, // idempotency: ShipStation dedupes repeat webhooks on this
@@ -294,25 +336,25 @@ exports.handler = async (event) => {
   };
 
    // ---------- 1. ShipStation ----------
-  // try {
-  //   const res = await fetch(SHIPSTATION_URL, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: ssAuthHeader(),
-  //     },
-  //     body: JSON.stringify(order),
-  //   });
-  //   if (!res.ok) {
-  //     const text = await res.text();
-  //     console.error('ShipStation rejected order:', res.status, text);
-  //     return { statusCode: 502, body: 'ShipStation error' };
-  //   }
-  //   // return { statusCode: 200, body: 'Order created' };
-  // } catch (err) {
-  //   console.error('ShipStation request failed:', err.message);
-  //   return { statusCode: 502, body: 'ShipStation request failed' };
-  // }
+  try {
+    const res = await fetch(SHIPSTATION_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: ssAuthHeader(),
+      },
+      body: JSON.stringify(order),
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      console.error('ShipStation rejected order:', res.status, text);
+      return { statusCode: 502, body: 'ShipStation error' };
+    }
+    // return { statusCode: 200, body: 'Order created' };
+  } catch (err) {
+    console.error('ShipStation request failed:', err.message);
+    return { statusCode: 502, body: 'ShipStation request failed' };
+  }
 
 
    // ---------- 2. Email (non-blocking) ----------
@@ -327,6 +369,15 @@ exports.handler = async (event) => {
       } else {
         const paymentMethod = await detectPaymentMethodLabel(pi.id);
         const orderQty = parseInt(m.quantity || '1', 10) || 1;
+        /* Derived from metadata, as addons-stripe-webhook.js already does.
+           `subtotal` was referenced twice below and declared nowhere - the
+           second undefined variable in this block, hidden behind the
+           `orderNumber` one because the first ReferenceError stopped execution
+           before it could be reached. Found 14/08 by running the webhook rather
+           than reading it. */
+        const subtotal = (parseInt(m.subtotal_pence || '0', 10)) / 100;
+        const postage = (parseInt(m.postage_pence || '0', 10)) / 100;
+        const orderTotal = pi.amount / 100;
         // unit_price_pence added alongside quantity support; older intents only
         // carry subtotal_pence, which equalled the unit price when qty was always 1.
         const unitPrice = (parseInt(m.unit_price_pence || '0', 10) / 100) || subtotal;
@@ -344,7 +395,16 @@ exports.handler = async (event) => {
           }],
           personalisation: personalisationLines(m),
           subtotal,
-          discount_amount: 0,
+          /* Read from metadata, not hardcoded to zero. create-payment-intent
+             began applying Stripe promotion codes on 13/08 and writes
+             coupon_discount_pence; this line still said 0, so a discounted
+             receipt listed GBP 49.95 + GBP 4.95 and then a total of GBP 44.91.
+             The customer sees a total that does not match the lines above it,
+             with no explanation. Found 14/08. */
+          discount_amount: (parseInt(m.coupon_discount_pence || '0', 10)) / 100,
+          /* The template falls back to a bare "Discount" without this; showing
+             the code the customer typed is clearer on a receipt. */
+          discount_code: m.coupon_code || '',
           postage,
           total: pi.amount / 100,
         };
@@ -360,6 +420,12 @@ exports.handler = async (event) => {
           subject,
           html,
           text,
+          /* The same payload the inline template renders from, so the
+             bfc-shell version has identical values to work with. Without
+             this the shell path sends with an empty merge and Mandrill
+             reports success on a blank email - the one failure the fallback
+             cannot catch, because nothing errors. */
+          merge,
           metadata: { payment_intent_id: pi.id, order_number: orderNumber },
         });
 
@@ -378,6 +444,46 @@ exports.handler = async (event) => {
   }
   // ---------- 3. Meta CAPI (best-effort) ----------
   await sendMetaCapi(pi, email);
+
+  /* Welcome series onto the queue.
+     ------------------------------------------------------------------------
+     Starts at +1 day, not immediately - the order confirmation has just landed
+     and two emails in the same minute reads as a mailing list rather than a
+     purchase.
+
+     Non-blocking and after the response is decided: the payment has succeeded
+     and ShipStation has the order, so a queue failure must not turn a good
+     order into a 500 that Stripe then retries. queueEmail swallows its own
+     errors for the same reason; this try/catch is belt and braces.
+
+     Dedupe is keyed on the order number, which does not change when Stripe
+     retries the webhook. Without it a retry queues the whole series twice. */
+  /* Resolved here rather than reused from the email block above: `toEmail`
+     there is scoped inside an else branch that only runs when the confirmation
+     has not already been sent, so it does not exist at this point. Caught by
+     running the webhook, not by reading it - `node --check` passes on an
+     undefined identifier, which is exactly how order confirmations were broken
+     for every customer on 14/08. */
+  const queueEmailTo = pi.receipt_email || (m && m.customerEmail) || '';
+  const queueName = (pi.shipping && pi.shipping.name) || '';
+
+  if (queueEmailTo) {
+    try {
+      for (const step of LIFECYCLE.ONLINE_BUYER) {
+        await queueEmail({
+          templateKey: step.key,
+          toEmail: queueEmailTo,
+          toName: queueName,
+          merge: { customer_name: queueName.split(' ')[0] || 'there', order_ref: orderNumber },
+          delayDays: step.delayDays,
+          dedupeKey: dedupe(step.key, orderNumber),
+          source: 'stripe-webhook',
+        });
+      }
+    } catch (e) {
+      console.error(`Welcome series not queued for ${orderNumber}:`, e.message);
+    }
+  }
 
   return { statusCode: 200, body: 'Order created' };
 };

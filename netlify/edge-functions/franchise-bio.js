@@ -188,6 +188,22 @@ function buildBioSections(f, covering, fullName, region) {
   return parts.filter(Boolean).join('\n\n      ');
 }
 
+/* ---------------------------------------------------------------------------
+   NOT YET PUBLISHED
+   ---------------------------------------------------------------------------
+   Franchisees whose bio page must not be live yet. Ryan, 14/08: Salamata is
+   signed but not onboarded, so her page comes down until she is.
+
+   A list here rather than a data change, deliberately. The bio page and the
+   affiliate lookup BOTH gate on `active = true` in the franchisees table, so
+   setting her inactive would take her page down AND kill her discount code and
+   commission attribution at the same time. Those are separate decisions and
+   should have separate switches.
+
+   To publish someone: delete their slug from this list. Nothing else.
+   --------------------------------------------------------------------------- */
+const UNPUBLISHED_BIOS = new Set(['salamata-bah']);
+
 export default async (request, context) => {
   const slug = new URL(request.url).pathname.split('/').filter(Boolean).pop() || '';
 
@@ -195,6 +211,9 @@ export default async (request, context) => {
 
   const f = await lookupFranchisee(slug);
   if (!f) return notFound(context);
+  /* Same 404 an unknown slug gets - already the tested path here, so this
+     adds no new behaviour, just one more way to reach it. */
+  if (UNPUBLISHED_BIOS.has(slug)) return notFound(context);
 
   const res = await context.next();
   let html = await res.text();

@@ -2,27 +2,36 @@
 <html lang="en-GB">
 
 <head>
-  <script src="/shared/analytics.js"></script>
-  <script src="/shared/trustpilot.js" defer></script>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <script src="/shared/community-signup.js?v=0921b97b" defer></script>
+  <script src="/shared/trustpilot.js?v=6fa7af21" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Foil Fusion Technology – Bespoke Foil Keepsake Prints</title>
+  <title>Foil Fusion Technology&trade; – Bespoke Foil Keepsake Prints</title>
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/foil-fusion-technology.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/foil-fusion-technology.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/foil-fusion-technology.jpg">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/foil-fusion-technology">
   <meta name="description"
-    content="Discover Foil Fusion Technology, exclusive to Bespoke Foil Company. A flawless, lasting finish that preserves every detail of your baby’s precious memories.">
+    content="Discover Foil Fusion Technology&trade;, exclusive to Bespoke Foil Company. A flawless, lasting finish that preserves every detail of your baby’s precious memories.">
   <link rel="preload" as="image" href="/assets/ff-hero-1600.webp"
     imagesrcset="/assets/ff-hero-1200.webp 1200w, /assets/ff-hero-1600.webp 1600w, /assets/ff-hero-2000.webp 2000w"
     imagesizes="100vw" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
     onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
       rel="stylesheet">
   </noscript>
-  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
   <style>/* ===== FOIL FUSION page-specific ===== */ /* dark photo hero (same style as Contact) */ .ff-hero{
       position: relative;
       min-height: 600px;
@@ -445,6 +454,14 @@
 .kb-name .verified svg{width: 15px; height: 15px; fill: var(--stone-text)}
 .kb-role{font-size: 13px; color: var(--ink-faint); margin-top: 2px}
 .kb-tp{text-align: center; margin-top: 32px; font-size: 14px; color: var(--ink-soft)}
+/* Etsy beside the hero Trustpilot line - muted, since the Trustpilot half is
+   the linked verifiable claim. flex-wrap lets it drop a line on a phone. */
+.tp-line{flex-wrap: wrap}
+.tp-etsy{color: var(--ink-soft); white-space: nowrap}
+.tp-etsy b{color: var(--ink); font-weight: 600}
+.kb-etsy{display: block; margin-top: 6px; font-size: .92em; color: var(--ink-soft)}
+.kb-etsy b{color: var(--ink); font-weight: 600}
+
 .kb-tp a{color: var(--stone-text); text-decoration: underline; text-underline-offset: 3px}
 .know-best{padding: 48px 18px}
 @media(min-width:680px){
@@ -456,7 +473,24 @@
 @media(max-width:600px){
 .know-best{padding: 48px 18px}
 }
-</style>
+
+    /* Five filled stars beside each reviewer name. The previous single glyph was
+       hand-rounded and lopsided - its lower-left arm reached y=17.5 while the
+       upper arms stopped near y=6.8. This is a true pentagram (outer radius
+       10.2, inner at the golden ratio 0.382x). */
+    .kb-name .kb-stars {
+      display: inline-flex;
+      gap: 1px;
+      flex: 0 0 auto
+    }
+
+    .kb-name .kb-stars svg {
+      width: 13px;
+      height: 13px;
+      fill: var(--stone-text)
+    }
+
+  </style>
 </head>
 
 <body>
@@ -465,35 +499,39 @@
   <nav class="nav-menu" id="navMenu" aria-hidden="true">
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
-        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
-        </a>
-        <div class="nav-menu-top-right">
+          <!-- Order: CTA, logo, close. All three are DIRECT children so the
+               existing space-between puts the logo between the other two.
+               .nav-menu-top-right is gone - it nested the CTA one level down,
+               which made that impossible. -->
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
             <span>Order Your Kit</span>
             <span class="sq"><svg viewBox="0 0 24 24">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></span>
           </a>
+          <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
+        </a>
           <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
             <svg viewBox="0 0 24 24">
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
         </div>
-      </div>
 
       <div class="nav-menu-links">
-        <a href="/" data-page="home">Home</a>
-        <a href="/our-story" data-page="our-story">Our Story</a>
-        <a href="/foil-fusion-technology" data-page="foil-fusion-technology" class="current">Foil Fusion Technology</a>
-        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
-        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-        <a href="/faq" data-page="faq">FAQ</a>
-        <a href="/contact" data-page="contact">Contact</a>
-      </div>
+          <a href="/" data-page="home">Home</a>
+          <a href="/our-story" data-page="our-story">Our Story</a>
+          <a href="/franchise" data-page="franchise">Memory Catcher&trade; Franchise</a>
+          <a href="/foil-fusion-technology" data-page="foil-fusion-technology" class="current">Foil Fusion Technology&trade;</a>
+          <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+          <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+          <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+          <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+          <a href="/memory-catcher-hub" data-page="memory-catcher-hub">The Memory Catcher&trade; Hub</a>
+          <a href="/faq" data-page="faq">FAQ</a>
+          <a href="/contact" data-page="contact">Contact</a>
+        </div>
 
       <div class="nav-menu-cta">
         <div class="nav-menu-cta-head">
@@ -526,11 +564,12 @@
 
 
   <div class="announce">
-    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
-    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-  </div>
-
-  <div class="hero-scope">
+      <span class="announce-item"><img src="/assets/tp-stars-5.svg" alt=""><span class="announce-text">Rated <b>Excellent</b> on Trustpilot</span></span>
+      <span class="announce-item"><span class="announce-text">Rated <b>4.9 / 5</b> from <b>over 2,000</b> reviews on Etsy</span></span>
+      <span class="announce-item"><span class="announce-text">Our exclusive <b>Foil Fusion Technology&trade;</b></span></span>
+      <span class="announce-item"><span class="announce-text">Order before <b>12pm</b> on a weekday for same-day dispatch</span></span>
+    </div>
+    <div class="hero-scope">
     <header>
       <div class="nav-row">
         <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -553,7 +592,7 @@
           sizes="100vw" width="2000" height="1334" fetchpriority="high" alt="Foil Fusion craftsmanship in the studio">
       </div>
       <div class="ff-hero-inner">
-        <p class="eyebrow">Foil Fusion Technology</p>
+        <p class="eyebrow">Foil Fusion Technology&trade;</p>
         <h1>Where craftsmanship meets innovation, and memories are made to last</h1>
         <p>At The Bespoke Foil Company, we've reimagined what foil can be, not just a decorative layer but an integral
           part of your keepsake.</p>
@@ -572,7 +611,7 @@
         <p>At The Bespoke Foil Company, everything we do starts with the memory you want to hold onto forever. Whether
           it's a tiny handprint, a name, or a moment in the stars, we believe your keepsake deserves to look as
           beautiful in years to come as it does the day it arrives.</p>
-        <p>That's why we've spent over five years perfecting our exclusive Foil Fusion Technology - a process that goes
+        <p>That's why we've spent over five years perfecting our exclusive Foil Fusion Technology&trade; - a process that goes
           far beyond traditional foil printing methods. It's not just about adding a shiny layer on top of the card.
           It's about creating a seamless, flawless finish that becomes part of the card itself. The difference is
           something you can see, feel, and cherish for a lifetime.</p>
@@ -591,7 +630,7 @@
       <p>Most foiled prints you'll see are created using toner foil methods, where foil is applied over a printed layer
         using glue or toner. While this can look effective at first glance, toner foiling often struggles with fine
         details, leaving patchy speckles, imperfections, and a finish that can lift, peel or fade over time.</p>
-      <p>Our Foil Fusion Technology is different. Instead of sticking foil to the surface, we use intense pressure and
+      <p>Our Foil Fusion Technology&trade; is different. Instead of sticking foil to the surface, we use intense pressure and
         heat to carefully fuse the foil directly into our specially made card. It's a process that demands precision,
         skill, and materials.</p>
     </div>
@@ -623,7 +662,7 @@
       </div>
       <div class="ff-why-text">
         <h2>Why it matters for your memories</h2>
-        <p>Our Foil Fusion Technology isn't about showing off a process. It's about giving your memories the quality
+        <p>Our Foil Fusion Technology&trade; isn't about showing off a process. It's about giving your memories the quality
           they deserve. It's about making sure that the first time your little one clasped your finger, the day you
           named them, or that song you played over and over, are all captured in a way that does justice to how those
           moments made you feel.</p>
@@ -701,9 +740,7 @@
           <p class="kb-quote">"The kit was incredibly easy to use. I'd given up on a previous casting kit, but this one
             was amazing - even when some footprints smudged, they cleaned up perfectly to show all the true detail of
             Lilly's feet!"</p>
-          <p class="kb-name">Megan <span class="verified"><svg viewBox="0 0 24 24">
-                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
-              </svg></span></p>
+          <p class="kb-name">Megan <span class="kb-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg></span></p>
           <p class="kb-role">Mummy of Lottie &amp; Lilly</p>
         </div>
       </article>
@@ -715,9 +752,7 @@
           <p class="kb-quote">"Honestly couldn't believe how straightforward this was compared to other keepsake methods
             I'd tried. The instructions were crystal clear, and even though I'm not crafty at all, the results were
             perfect. Worth every penny!"</p>
-          <p class="kb-name">Heather <span class="verified"><svg viewBox="0 0 24 24">
-                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
-              </svg></span></p>
+          <p class="kb-name">Heather <span class="kb-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg></span></p>
           <p class="kb-role">Mummy of Arabella &amp; Nova</p>
         </div>
       </article>
@@ -729,14 +764,14 @@
           <p class="kb-quote">"As a first-time mum, I was nervous about doing anything that might upset Myles. This kit
             was perfect - so gentle and quick. The inkless wipes didn't irritate his skin at all, and now we have this
             beautiful keepsake to treasure forever."</p>
-          <p class="kb-name">Charlotte <span class="verified"><svg viewBox="0 0 24 24">
-                <path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15l-4.8 2.5.9-5.3L4.3 8.4l5.3-.8z" />
-              </svg></span></p>
+          <p class="kb-name">Charlotte <span class="kb-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.0 1.8 L14.29 8.85 L21.7 8.85 L15.71 13.2 L18.0 20.25 L12.0 15.9 L6.0 20.25 L8.29 13.2 L2.3 8.85 L9.71 8.85 Z"/></svg></span></p>
           <p class="kb-role">Mummy of Myles</p>
         </div>
       </article>
     </div>
-    <p class="kb-tp">Rated <b>Excellent</b> - <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener"><span data-tp-count>72</span> reviews on Trustpilot</a></p>
+    <p class="kb-tp">Rated <b>Excellent</b> - <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener"><span data-tp-count>72</span> reviews on Trustpilot</a>
+      <span class="kb-etsy">Also rated <b data-etsy-score>4.9</b> / 5 from <b data-etsy-count>over 2,000</b> reviews on Etsy since <span data-etsy-since>2018</span>.</span>
+    </p>
   </section>
 
   <section class="reviews" aria-labelledby="reviews-title">
@@ -747,52 +782,430 @@
       <h2 id="reviews-title">Rated Excellent on Trustpilot</h2>
       <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">See all
         reviews on <img src="/assets/tp-brandmark.svg" alt="Trustpilot"></a>
-    </div>
+          <p class="reviews-etsy">We're new to Trustpilot, but not here: rated <b data-etsy-score>4.9</b> / 5 from <b data-etsy-count>over 2,000</b> reviews on Etsy since <span data-etsy-since>2018</span>.</p>
+        </div>
     <div class="review-track" id="revTrack">
       <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Absolutely gorgeous!</h3>
         <p>I met Ashley in a baby class and she took foil prints of my 3 month old. The final print was beyond
-          beautiful! The entire process was smooth and I highly recommend bespoke foil if you'd like to create a lovely
-          memorable keepsake xx</p>
+          beautiful! The entire process was smooth and I highly recommend bespoke foil if you&#x27;d like to create a
+          lovely memorable keepsake xx</p>
         <span class="who">Vaidehi Nene</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Got my print today and all I can say is...</h3>
-        <p>Got my print today and all I can say is "wow" it's absolutely perfect! So happy with it! Never been able to
-          do my daughter's hand print and now I have it, it's perfect thank you so much!! Highly recommend</p>
+        <p>Got my print today and all I can say is &quot;wow&quot; it&#x27;s absolutely perfect! So happy with it! Never
+          been able to do my daughter&#x27;s hand print and now I have it, it&#x27;s perfect thank you so much!! Highly
+          recommend</p>
         <span class="who">Rebecca Burton</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Stunning</h3>
         <p>We are absolutely delighted with our foiled hand and footprint keepsakes. The quality is beautiful, and they
-          perfectly captured those tiny details we'll treasure forever.</p>
+          perfectly captured those tiny details we&#x27;ll treasure forever.&hellip;</p>
         <span class="who">Amy Edgar</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Just perfect from start to finish</h3>
-        <p>Just perfect from start to finish! We saw Ashley face to face at baby class, she was so kind and friendly
-          with my kids! The communication was brilliant and the product is beyond amazing, so special and worth every
-          penny.</p>
+        <p>Just perfect from start to finish! We saw Ashley face to face at baby class she was so kind and friendly with
+          my kids! The communication was brilliant and the product is beyond amazing, so special and worth every penny
+        </p>
         <span class="who">Ella Brough Maclean</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-        <h3>Family run, in the best way</h3>
-        <p>I could not have had a better experience. I was blown away by Ashley's care during the process of ordering
-          and receiving the prints. We had some done for our twins, one of whom we lost, and Ashley took such care of
-          our order.</p>
+        <h3>I&#x27;d seen the company advertised online...</h3>
+        <p>I&#x27;d seen the company advertised online but I thought I&#x27;d struggle to get a perfect print. Ashley
+          was at one of my babies sensory classes and seeing the prints in person instantly made me want to get my
+          babies done.&hellip;</p>
+        <span class="who">Lois</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful gift we thought we wouldn&#x27;t get</h3>
+        <p>My daughter has been trying to get prints of my granddaughters hands and feet for a while and she was upset
+          she was running out of time. I can&#x27;t believe how easily this was done in the right hands.&hellip;</p>
+        <span class="who">nicola</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Exceptional. You can tell this is family run, in the best way!</h3>
+        <p>It could not have had a better experience. I was blown away by Ashley&#x27;s care during the process of
+          ordering and through to receiving the prints. We had some prints done for our twins, one of whom we lost and
+          Ashley took care of our order&hellip;</p>
         <span class="who">Aneka Osborne</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-        <h3>Beautiful prints</h3>
-        <p>I recently received my baby's framed hand and footprints and they are beautiful. The website and instructions
-          to customise the prints were simple and easy to use. I couldn't be happier with the result.</p>
-        <span class="who">Danielle Dolan</span>
+        <h3>Lovely product &amp; great customer service!</h3>
+        <p>Very happy with our print/ frame- outstanding quality and mess-free to produce! Slight adjustment needed with
+          our order once it had arrived, but this was resolved the same day and replacements were sent out very quickly-
+          couldn&#x27;t have&hellip;</p>
+        <span class="who">Rebecca Hart</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful Prints</h3>
+        <p>I have recently received my baby&#x27;s framed hand and footprints from the Bespoke Foil Company and they are
+          beautiful. The website and instructions to customise the prints were simple and easy to use.&hellip;</p>
+        <span class="who">danielle dolan</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>This is the second time I&#x27;ve used The...</h3>
+        <p>This is the second time I&#x27;ve used The Bespoke Foil Company and can&#x27;t recommend the services enough.
+          It&#x27;s the prefect keep sake for your little ones. Both times used for my two daughters. Sienna at 6 months
+          old and Alina at 4 months old.&hellip;</p>
+        <span class="who">Nichola</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Lovely Family Memories</h3>
+        <p>We met Ashley at a baby class she was very welcoming and assisted with getting the prints she was friendly
+          and professional!
+          Once home I uploaded the prints to the website &amp; Ashley took care of the rest.
+          The option to add more&hellip;</p>
+        <span class="who">Hannah Rayer</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Perfect Commemorations for Our Sons’ Births</h3>
+        <p>We couldn’t be happier with our bespoke keepsake marking the birth of our son. This is the second time we’ve
+          ordered from Bespoke Foil Company—one for each of our boys—and their work has been exceptional every
+          time.&hellip;</p>
+        <span class="who">Robert McNeill</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Best product and service out there ❤️</h3>
+        <p>Ashley at Bespoke Foil Company comes out to my baby classes every few months to capture our little one&#x27;s
+          prints and I know it&#x27;s always such a hit with the parents!
+
+          This time I couldn&#x27;t resist and got prints done of my own two little boys&hellip;</p>
+        <span class="who">Chelsea R</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Print &amp; keyring</h3>
+        <p>I recently purchased a hand and foot print keepsake of my baby boy along with a keyring from Bespoke Foil and
+          I couldn&#x27;t be happier with the result.&hellip;</p>
+        <span class="who">Rebecca</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Ashley Is such a lovely person</h3>
+        <p>Ashley Is such a lovely person ! She as done an amazing job with the prints they have turned out so
+          beautifully , The Quality is perfect and I couldn&#x27;t thank her enough.
+          Many thanks Lucy</p>
+        <span class="who">Lucy</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Sibling prints</h3>
+        <p>Lovely experience for my son and daughter. I have never been able to get clear prints of my children&#x27;s
+          hands, but bespoke managed it so easily</p>
+        <span class="who">Danielle Clarkson</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful keepsake</h3>
+        <p>Given to us as a gift. Final product is beautiful.
+
+          Easy to follow instructions are included along with a video showing you how to take the prints and upload
+          images.&hellip;</p>
+        <span class="who">Clairem20</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Fab!</h3>
+        <p>I had my youngest son&#x27;s prints done at a Bloom Baby Class by Ashley. She was really friendly and took
+          some great prints. Ordering was really easy and communication was brilliant, it was such an easy process from
+          start to finish.&hellip;</p>
+        <span class="who">Heather Marshall</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>So happy with my experience</h3>
+        <p>I am really happy with the products and the company was really communicative, thank you for such an amazing
+          keep safe</p>
+        <span class="who">Rhiannon Wiggins</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Amazing business !</h3>
+        <p>Ashley came to one of my baby groups and is an amazing person. We opted for the framed print of our
+          daughter&#x27;s hand and footprint and I was quite dubious as to getting her hand print as I struggle to get
+          her to print her hands.&hellip;</p>
+        <span class="who">Abbie Francis</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>I first used Bespoke Foil Company in...</h3>
+        <p>I first used Bespoke Foil Company in 2022 when I had my little girl and I was so impressed with the quality,
+          I wanted to purchase the same for my boy.&hellip;</p>
+        <span class="who">Hannah Chapman</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Ashley</h3>
+        <p>Ashley, attended my baby sensory class offering the work. Her customer service skills were second to none. So
+          personable and a genuine nice person.&hellip;</p>
+        <span class="who">Gemma Smith</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent company</h3>
+        <p>Great communication with the company.
+          Lovely experience and product. We love our pieces and highly recommend.</p>
+        <span class="who">Ashleigh Simpson-Sorbie</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Highly Recommended</h3>
+        <p>Lovely company who create the most beautiful keepsakes. Absolutely love what I received for my baby boy, they
+          make capturing special moments very easy.&hellip;</p>
+        <span class="who">Gabrielle Gallimore</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful keepsake of my little boy&#x27;s...</h3>
+        <p>Beautiful keepsake of my little boy&#x27;s hand and foot. We got to do this at a baby class, and the
+          instructions afterwards were clear and easy to follow. I was able to preview what it would look like to ensure
+          I was happy with it.&hellip;</p>
+        <span class="who">Rebekah</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>I recently had my baby&#x27;s foot printing...</h3>
+        <p>I recently had my baby&#x27;s foot printing done with Bespoke Foil Company, the printing turned out
+          absolutely beautiful, the details are so clear and delicate, and it perfectly captured my baby&#x27;s tiny
+          footprints.
+          I highly recommend Bespoke&hellip;</p>
+        <span class="who">Jiamin</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Ashley went above and beyond to make...</h3>
+        <p>Ashley went above and beyond to make sure everything was perfect with my order and it really showed. If
+          you&#x27;re looking for premium foil printing with great customer service, I highly recommend them!</p>
+        <span class="who">Chelsea</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Very professional highly recommend</h3>
+        <p>Very professional! Excellent communication! We love the finished product something to keep forever will
+          highly recommend this company !</p>
+        <span class="who">Maisy Clarke</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>The handprints turned out beautiful</h3>
+        <p>The handprints turned out beautiful - not always easy with little hands! A really high quality turnout, thank
+          you.</p>
+        <span class="who">Siobhan</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>S.O. loved it</h3>
+        <p>Amazing, S.O. loved it as gift and the grandparents wanted the second copy. Super easy system to go through
+          and order and speedy delivery.</p>
+        <span class="who">Luke</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Stunning customer service and stunning results</h3>
+        <p>Absolutely phenomenal customer service from start to finish and such a straight forward process! Absolutely
+          stunning results that will be cherished forever! Amazing amazing amazing thank you</p>
+        <span class="who">Ellie Prosser</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Precious memories</h3>
+        <p>I am so so so happy with my purchase. Ashleigh was at a baby group I attend she was so lovely and made me
+          feel so comfortable. We done my daughter&#x27;s foot print and hand print. Everything was explained
+          thoroughly.&hellip;</p>
+        <span class="who">Danielle</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Gorgeous business</h3>
+        <p>Gorgeous business and the owner is lovely was amazing with my little girl and made us feel very comfortable
+          would definitely recommend as the product is beautiful.</p>
+        <span class="who">Diana Fedan</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Fantastic memory framed !</h3>
+        <p>We ordered 5 frames with a handprint of our late Mum. Ashley was lovely throughout the process. The frames
+          arrived on Friday and they are absolutely beautiful.
+          I can&#x27;t recommend this company enough!</p>
+        <span class="who">Michael wood</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Amazing experience</h3>
+        <p>Amazing experience! Ashley was so friendly and helpful and produced an amazing product. Thanks so much!</p>
+        <span class="who">Abbie</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Returning customer!</h3>
+        <p>I have used the Bespoke foil company twice for baby&#x27;s footprint frames and I love them! Ashley is so
+          helpful and approachable! I would definitely recommend her to other mums who want these mementos.</p>
+        <span class="who">Emma K</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Exactly what we wanted</h3>
+        <p>Great communication and instructions. The framed print of hand and foot is exactly as hoped.</p>
+        <span class="who">OH</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Lovely finished product</h3>
+        <p>Lovely finished product. The prints were taken for us at a baby class which was great. The choice to
+          customise the final print was great. Really happy with the quality of my product and would recommend the
+          service to anyone.</p>
+        <span class="who">Vicki Holden</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Lovely keepsakes.</h3>
+        <p>Ashley was very friendly and explained what I needed to do once she&#x27;d done my grandson&#x27;s hand &amp;
+          foot prints.
+
+          It was easy to use their website to upload the photos of the hand and foot prints and choosing the colour and
+          frame I&hellip;</p>
+        <span class="who">Lisa</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Gorgeous keepsake!</h3>
+        <p>I recently received my gorgeous order from The Bespoke Foil Company and it&#x27;s exactly what we hoped for!
+          Ashley took our baby&#x27;s prints at our local sensory class so the whole process was super easy and
+          professional.&hellip;</p>
+        <span class="who">Laura</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Fantastic company - beautiful keepsakes</h3>
+        <p>I&#x27;ve now had foiled hand/foot prints for both of my children from the Bespoke Foil Company and my
+          experience both times has been absolutely first-class.&hellip;</p>
+        <span class="who">CT</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Absolutely gorgeous prints</h3>
+        <p>Absolutely gorgeous prints! We first ordered from Bespoke Foil Company in 2022 for our eldest daughter and
+          were so pleased that we ordered again when our second was born. The packs sent to your home are so easy to
+          use.&hellip;</p>
+        <span class="who">Acasey</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>So beautiful &amp; timeless</h3>
+        <p>So beautiful &amp; timeless - everything I hoped for and more! Ashley was so lovely &amp; patient with my
+          messages. Can&#x27;t stop staring at it, in our home!</p>
+        <span class="who">Lauren Wood</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Recently received my keepsake from the...</h3>
+        <p>Recently received my keepsake from the Bespoke Foil Company and I&#x27;m absolutely delighted with it.
+          Excellent service and high quality product, so lovely being able to choose the foil and frame colour too.
+          Thank you Ashley and team 🥰</p>
+        <span class="who">Harriet Dean</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Highly recommend</h3>
+        <p>Great customer service, I was well informed about where my order was up to which made me feel valued. The
+          prints are amazing and easy to use with very clear instructions.&hellip;</p>
+        <span class="who">Siobhan Kelly</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Foil Handprints</h3>
+        <p>Ashley made me 3 foil hand prints of my mum for myself my sister and my dad of my mum&#x27;s handprint, we
+          sadly lost my mum last month and this has been truly beautiful keepsake for our family.&hellip;</p>
+        <span class="who">Ell Smith</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Foil baby prints</h3>
+        <p>Really good communication with Ashley and lovely preview image sent to check everything was just as we wanted
+          it before it was printed. Additional option of ordering further prints was very helpful.&hellip;</p>
+        <span class="who">josie</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful prints to capture a wonderful memory!</h3>
+        <p>I ordered a print for my first born in 2022 and loved it so much. When my second was born this year, I knew I
+          would order again! There was a small issue with our second print this year but Ashley was so helpful and sent
+          us out a new one&hellip;</p>
+        <span class="who">Alexandra Aspey</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Baby Footprints</h3>
+        <p>We ordered 3 prints and are very pleased with the results. We have twins and ordered a print for ourselves
+          with the babies foot prints and 2 additional prints for the grandparents.&hellip;</p>
+        <span class="who">Ryan Slater</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Just baby hands...but very special</h3>
+        <p>Although I&#x27;m sure everyone&#x27;s baby hands and feet are similar. What a beautiful product they
+          provide. We went for rose gold with white frame which looks fabulous! Everyone comments how nice it looks!
+          Thank you</p>
+        <span class="who">DBT</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Had my beautiful keepsake made after...</h3>
+        <p>Had my beautiful keepsake made after Ashley attended a baby class I go to.
+          I am really pleased with the hand and footprint we had made. Great value for money and mess free ❤️
+          Would highly recommend x</p>
+        <span class="who">Miss Clare Vicary</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Thankyou!</h3>
+        <p>I met Ashley at one of my baby classes and she made the most beautiful keepsakes! I now have my sons
+          footprint on my keys and a beautiful print - treasured item forever! Thank you so much :)</p>
+        <span class="who">Rosie W</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent experience</h3>
+        <p>Excellent experience! Amazing quality foiled prints and such a lovely keepsake to have. Excellent
+          communication and print arrived quickly! Absolutely recommend.</p>
+        <span class="who">Rachel</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Great keepsake</h3>
+        <p>Great customer service and communication. Lovely high quality foiled prints, a great keep sake.</p>
+        <span class="who">Anon</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent service</h3>
+        <p>Excellent service, really friendly and helpful - managed to get the product finished in a very short time
+          frame as travelling out of the country which was much appreciated! Great communication and fantastic
+          quality.&hellip;</p>
+        <span class="who">C Evans</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent product quality</h3>
+        <p>Great customer service. Quick turn around and postage. Excellent product quality. Excellent communication
+          with customers. 100% will use again.</p>
+        <span class="who">Ben Goodwin</span>
       </article>
     </div>
     <div class="reviews-nav">
@@ -820,7 +1233,7 @@
   <footer>
     <div class="foot-top">
       <div class="foot-col foot-contact">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <p>Tel: 07506 998934</p>
         <p>Email: hello@thebespokefoilcompany.co.uk</p>
         <div class="foot-social">
@@ -831,7 +1244,11 @@
               <path
                 d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
             </svg></a>
-        </div>
+        
+            <a href="https://www.youtube.com/@bespokefoilcompany" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M21.58 7.19a2.51 2.51 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.81.41A2.51 2.51 0 0 0 2.42 7.19 26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.81-.41a2.51 2.51 0 0 0 1.77-1.78A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.42-4.81zM10 15.5v-7l6 3.5z" />
+            </svg></a>
+          </div>
         <p class="f-label">Find Us</p>
         <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
         <p class="f-label">Opening Hours</p>
@@ -839,7 +1256,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h3>Explore</h3>
         <ul>
           <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
           <li><a href="/our-story">Our Story</a></li>
@@ -853,14 +1270,14 @@
       </div>
 
       <div class="foot-col">
-        <h4>Resources</h4>
+        <h3>Resources</h3>
         <ul>
           <li><a href="/faq">FAQ's</a></li>
           <li><a href="/blog">Stories &amp; Inspiration</a></li>
           <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
           <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
         </ul>
-        <h4>Franchise</h4>
+        <h3>Franchise</h3>
         <ul>
           <li><a href="/franchise-hub">Franchise Hub</a></li>
           <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
@@ -873,7 +1290,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <ul>
           <li><a href="/contact">Contact Us</a></li>
           <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -895,13 +1312,33 @@
             <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
           </div>
           <div class="foot-tp">
-            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          <!-- Official TrustBox (Mini). Everything inside the container is the
+               no-JS fallback - the widget replaces it once tp.widget.bootstrap
+               loads. The real figures live there on purpose: AI crawlers never
+               run the widget, so this is what they read. Kept in sync by
+               scripts/build-trustpilot.js from shared/trustpilot.js. -->
+          <div class="trustpilot-widget" data-locale="en-GB" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="5fec7f5644198b00014a524a" data-style-height="100px" data-style-width="200px" data-theme="dark" data-token="39d85b3a-b3ee-4772-ad2c-a59b046a1b1e" data-review-disclaimer="false">
+            <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">
+              <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+              <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews on Trustpilot</span>
+            </a>
           </div>
-        </div>
-      </div>
-    </div>
+          <!-- Etsy sits directly beneath the TrustBox so the two read as one
+               block of proof: a verified rating from one platform, and volume
+               from another. 2,224 is a far bigger number than 72 and does real
+               work here, at the point someone is deciding.
 
+               Unlinked, deliberately, for the same reason as the announce bar:
+               a clickable Etsy link in the footer of every page routes traffic
+               off the site, where the margin is whole, to a marketplace that
+               takes a cut and owns the customer. The claim earns trust here;
+               the link would spend it. The Organization schema's sameAs already
+               connects the two for machines. -->
+          <p class="foot-etsy"><span data-etsy-score>4.9</span> / 5 from <span data-etsy-count>over 2,000</span> reviews on Etsy</p>
+        </div>
+        </div><!-- /.foot-right -->
+      </div><!-- /.foot-col -->
+    </div><!-- /.foot-top -->
     <div class="foot-legal">
       <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
         GB419408687.</p>
@@ -952,6 +1389,7 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
     })();
   </script>
+<script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async data-tp-bootstrap></script>
 </body>
 
 </html>

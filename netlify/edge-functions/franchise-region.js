@@ -46,6 +46,38 @@ async function lookupRegion(slug) {
   }
 }
 
+/* Who holds this region, if anyone.
+   ---------------------------------------------------------------------------
+   Read from the franchisee side: `franchisees.map_region_slug` already points at
+   a region, so there is no new column and no second source of truth to keep in
+   step.
+
+   Unpublished bios are excluded for the same reason franchise-bio.js 404s them:
+   sending someone to "view your Memory Catcher" and landing them on a 404 is
+   worse than showing nothing. */
+const UNPUBLISHED_BIOS = new Set(['salamata-bah']);
+
+async function lookupMemoryCatcher(regionSlug) {
+  const url = Netlify.env.get('SUPABASE_URL');
+  const key = Netlify.env.get('SUPABASE_ANON_KEY');
+  if (!url || !key || !regionSlug) return null;
+  try {
+    const res = await fetch(
+      `${url}/rest/v1/franchisees?map_region_slug=eq.${encodeURIComponent(regionSlug)}`
+      + `&active=eq.true&select=slug,name,full_name&limit=1`,
+      { headers: { apikey: key, Authorization: `Bearer ${key}` } }
+    );
+    if (!res.ok) return null;
+    const rows = await res.json();
+    const f = rows[0];
+    if (!f || UNPUBLISHED_BIOS.has(f.slug)) return null;
+    return f;
+  } catch (e) {
+    console.log('[franchise-region] catcher lookup failed:', e.message);
+    return null;
+  }
+}
+
 export default async (request, context) => {
   const slug = new URL(request.url).pathname.split('/').filter(Boolean).pop() || '';
 
@@ -108,6 +140,8 @@ export default async (request, context) => {
     } catch { return `<p>${esc(t)}</p>`; }
   };
 
+  const catcher = r.is_available ? null : await lookupMemoryCatcher(r.slug);
+
   const map = {
     slug: esc(r.slug),
     region: esc(r.region),
@@ -125,6 +159,31 @@ export default async (request, context) => {
     why_area: rich(r.why_area),
     baby_classes_list: rich(r.baby_classes_list),
     bio: r.franchisee_bio ? rich(r.franchisee_bio) : '',
+
+    /* Availability, and what the button does about it.
+       ----------------------------------------------------------------------
+       The template hardcoded "This region is available" and a Register Your
+       Interest button on EVERY region page, so a taken region contradicted its
+       own card in the finder. Spotted on bolton-wigan, 16/08.
+
+       A taken region still gets a page - people want to see the area and who
+       covers it - so the page stays, the status flips, and the button becomes a
+       way through to that Memory Catcher instead of a dead end.
+
+       If a region is taken but no active, published franchisee points at it, the
+       button falls back to Register Your Interest. That is the safe way round:
+       an enquiry someone can answer beats a link to nothing. */
+    /* The hero invited applications on every page too, so a taken region read
+       "Become a Memory Catcher in Bolton and Wigan" above a sidebar saying the
+       region was taken. Two buttons, both hardcoded, both now per region. */
+    hero_heading: r.is_available
+      ? `Become a Memory Catcher in ${esc(r.region)}`
+      : `Memory Catcher in ${esc(r.region)}`,
+    status_class: r.is_available ? 'available' : 'unavailable',
+    status_text: r.is_available ? 'This region is available' : 'This region is taken',
+    cta_href: (!r.is_available && catcher) ? `/franchises-bio/${esc(catcher.slug)}` : '/franchise#register',
+    cta_label: (!r.is_available && catcher) ? 'View the Memory Catcher for this region' : 'Register Your Interest',
+    catcher_name: catcher ? esc(catcher.name || catcher.full_name || '') : '',
   };
   html = html.replace(/\{\{([a-z_]+)\}\}/g, (_, k) => (k in map ? map[k] : ''));
 

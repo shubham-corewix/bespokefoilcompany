@@ -6,7 +6,7 @@
 
 [build]
   publish = "."
-  command = "node scripts/generate-sitemaps.js && node scripts/check-internal-links.js && node scripts/check-analytics.js"
+  command = "node scripts/build-ugc-reel.js && node scripts/build-announce.js && node scripts/build-trustpilot.js && node scripts/build-seo.js && node scripts/generate-sitemaps.js && node scripts/build-og.js && node scripts/stamp-assets.js && node scripts/check-sitemap.js && node scripts/check-footer.js && node scripts/check-forms.js && node scripts/check-internal-links.js && node scripts/check-analytics.js"
 
 # Security + caching headers
 [[headers]]
@@ -76,6 +76,6 @@
   path = "/post/:slug"
   function = "blog-post"
 
-  [[edge_functions]]
+[[edge_functions]]
   path = "/franchises-bio/:slug"
   function = "franchise-bio"

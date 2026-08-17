@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-GB">
   <head>
-    <script src="/shared/analytics.js"></script>
+    <script src="/shared/analytics.js?v=91bdc12e"></script>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -9,7 +9,14 @@
     />
     <meta name="robots" content="noindex, nofollow" />
     <title>Upload Portal | Bespoke Foil Company</title>
-    <meta
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/upload-portal-form.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/upload-portal-form.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/upload-portal-form.jpg">
+<meta
       name="description"
       content="Upload your prints, add personalisation and choose your frame and foil colours ahead of receiving your proof."
     />
@@ -18,7 +25,7 @@
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
       onload="
         this.onload = null;
         this.rel = 'stylesheet';
@@ -26,10 +33,10 @@
     />
     <noscript
       ><link
-        href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
         rel="stylesheet"
     /></noscript>
-    <link rel="stylesheet" href="/shared/styles.css?v=10" />
+    <link rel="stylesheet" href="/shared/styles.css?v=7b77683e" />
     <style>
       /* ============================================================
    UPLOAD PORTAL - multi-step form (focused chrome, no site nav)
@@ -189,7 +196,7 @@
       .frm-select {
         width: 100%;
         font-family: var(--sans);
-        font-size: 15px;
+        font-size: 16px;
         color: var(--ink);
         background: var(--white);
         border: 1px solid var(--hairline);
@@ -245,7 +252,7 @@
         background: var(--white);
         padding: 0 30px 0 12px;
         font-family: var(--sans);
-        font-size: 14px;
+        font-size: 16px;
         color: var(--ink);
         cursor: pointer;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
@@ -919,7 +926,17 @@
     <main class="upf-wrap">
       <div class="upf-card">
         <!-- DIXIT: set data-endpoint to the live submission URL (Zendesk + upload handling). -->
-        <form novalidate id="upfForm" data-endpoint="/upload-portal-submit">
+        <!-- method="post" with NO action, deliberately. The real submit is the JS
+             handler below, which posts JSON to /upload-portal-submit (phase one of
+             the Zendesk flow). This attribute only matters if that handler never
+             attaches - a script error, JS off - in which case a native GET would
+             put the customer's name, email, phone, order number and full postal
+             address into the address bar, and from there into logs and GA4.
+             Pointing it at the function instead would send form-encoded data to a
+             JSON endpoint mid-way through a two-phase upload, which fails in a way
+             that looks like the files were lost. Posting to self discards it
+             harmlessly. -->
+        <form novalidate method="post" id="upfForm" data-endpoint="/upload-portal-submit">
           <!-- ============ WELCOME ============ -->
           <section
             class="upf-step active"

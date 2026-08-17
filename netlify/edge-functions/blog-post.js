@@ -73,9 +73,24 @@ export default async (request, context) => {
   const tagsHtml = tags.map(t => `<span class="post-tag">${esc(t)}</span>`).join('\n');
 
   const faqs = Array.isArray(p.faqs) ? p.faqs : [];
-  const faqsHtml = faqs.map(f =>
+  /* The section heading moves INTO this string so an empty faqs array renders
+     nothing at all. It used to live in the template, which meant a post with no
+     FAQ data showed a bare "FAQs" heading over empty space - which is exactly
+     what shipped. The template comment even said "omit whole block if no FAQs";
+     nothing implemented it. */
+  const faqItems = faqs.map(f =>
     `<details class="post-faq"><summary>${esc(f.q)}</summary><div>${f.a || ''}</div></details>`
   ).join('\n');
+
+  /* Wrap the whole section, heading included, so nothing renders when empty. */
+  const faqsHtml = faqs.length
+    ? `<section class="post-faqs"><h2>FAQs</h2>\n${faqItems}\n</section>`
+    : '';
+
+  /* Same for the closing block - an empty .post-body div still carries margin. */
+  const finalThoughtsHtml = (p_final => p_final
+    ? `<div class="post-body">${p_final}</div>`
+    : '');
 
   /* Structured data. Emitted only when there are FAQs - an empty FAQPage is a
      validation error in Search Console. */
@@ -103,7 +118,10 @@ export default async (request, context) => {
   const relatedHtml = related.map(r =>
     `<a class="pr-card" href="/post/${esc(r.slug)}">` +
     (r.hero_image_path ? `<img src="${esc(r.hero_image_path)}" alt="" loading="lazy">` : '') +
-    `<h3>${esc(r.title)}</h3></a>`
+    /* The template's CSS styles `.pr-card-body` (padding) and
+       `.pr-card-body h3` (Fraunces 340). Emitting a bare <h3> missed both, so
+       titles rendered as unpadded default bold sans. */
+    `<div class="pr-card-body"><h3>${esc(r.title)}</h3></div></a>`
   ).join('\n');
 
   const fmt = (d) => d ? d.toLocaleDateString('en-GB',
@@ -121,7 +139,7 @@ export default async (request, context) => {
     og_image: esc(img),
     hero_image: esc(img),
     body: p.body || '',                      // trusted CMS HTML, injected as-is
-    final_thoughts: p.final_thoughts || '',
+    final_thoughts: finalThoughtsHtml(p.final_thoughts || ''),
     author: esc(p.author || 'The Bespoke Foil Company'),
     author_avatar: esc(p.author_avatar || '/assets/bfc-logo-v2.svg'),
     published_iso: published ? published.toISOString() : '',

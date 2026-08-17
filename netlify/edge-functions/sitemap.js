@@ -69,6 +69,23 @@ function urlBlock({ loc, lastmod, priority }) {
          '  </url>\n';
 }
 
+/* ---------------------------------------------------------------------------
+   NOT YET PUBLISHED
+   ---------------------------------------------------------------------------
+   Kept in step with franchise-bio.js: a slug listed there 404s,
+   so listing it here would advertise a dead URL to Google. Ryan, 14/08: Salamata is
+   signed but not onboarded, so her page comes down until she is.
+
+   A list here rather than a data change, deliberately. The bio page and the
+   affiliate lookup BOTH gate on `active = true` in the franchisees table, so
+   setting her inactive would take her page down AND kill her discount code and
+   commission attribution at the same time. Those are separate decisions and
+   should have separate switches.
+
+   To publish someone: delete their slug from this list. Nothing else.
+   --------------------------------------------------------------------------- */
+const UNPUBLISHED_BIOS = new Set(['salamata-bah']);
+
 export default async (request, context) => {
   const today = new Date().toISOString().slice(0, 10);
 
@@ -104,7 +121,12 @@ export default async (request, context) => {
     priority: 0.6,          // matches CATEGORY_PRIORITY['Stories']
   }));
 
-  const bioUrls = bios.filter((b) => b.slug).map((b) => ({
+  const bioUrls = (bios || [])
+    /* Skip anyone not yet published. franchise-bio.js 404s these slugs, so
+       listing them here would hand Google a dead URL. The two lists must
+       stay in step - both live at the top of their own file. */
+    .filter((b) => b.slug && !UNPUBLISHED_BIOS.has(b.slug))
+    .map((b) => ({
     loc: `/franchises-bio/${b.slug}`,
     lastmod: (b.updated_at || today).slice(0, 10),
     priority: 0.6,

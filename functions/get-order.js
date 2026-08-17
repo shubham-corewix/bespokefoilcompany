@@ -2,7 +2,11 @@
 // Called by the confirmation page with a PaymentIntent ID. Verifies the
 // payment actually succeeded (so a shared/bookmarked success URL can't
 // fake a confirmation) and returns the canonical order number - built
-// with the SAME helper the webhook uses, so it always matches ShipStation.
+// with the SAME helper the ADD-ONS webhook uses, so it always matches
+// ShipStation. Note this returns the ADDON- format: this endpoint serves the
+// add-ons app only. The kit confirmation uses buildKitOrderNumber() via
+// stripe-webhook.js. Wiring the kit pages here would show customers an order
+// number that does not exist in ShipStation.
 //
 // Env: STRIPE_SECRET_KEY
 

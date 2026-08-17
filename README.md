@@ -1,5 +1,7 @@
 # The Bespoke Foil Company - UNIFIED SITE (merged 26/07/2026)
 
+**Build 11/08/2026** - Dixit's dynamic bio system carried over intact; B1 link-audit redirects added; `supabase/franchise-bios.sql` MUST be run before deploy (see runbook B2b).
+
 **Full handover: see DIXIT-HANDOVER.md** - architecture, slug conventions, env vars, ordered go-live sequence, open items, and the hard-won rules. This README is the quick orientation only.
 
 **This repo is now the WHOLE website - one Netlify deploy.** The previously separate deploys have been merged in. Deploys to the main site (takes thebespokefoilcompany.co.uk at cutover).

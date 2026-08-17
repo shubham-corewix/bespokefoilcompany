@@ -2,31 +2,144 @@
 <html lang="en-GB">
 
 <head>
-  <script src="/shared/analytics.js"></script>
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="/shared/checkout.js"></script>
-  <script src="/shared/trustpilot.js" defer></script>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <script src="/shared/community-signup.js?v=0921b97b" defer></script>
+  <script src="/shared/trustpilot.js?v=6fa7af21" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- SEO title + meta description ported from live Wix crawl (Mark, 17/07/2026) -->
   <title>The Bespoke Foil Company: Baby Keepsake Foil Prints</title>
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/home.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/home.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/home.jpg">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/">
   <meta name="description"
     content="Create timeless foil keepsakes with ease. Loved by parents and cherished by families. Capture tiny prints and milestones in beautiful designs made to last.">
-
-  <link rel="preload" as="image" href="/assets/hero-196-1600.webp"
-    imagesrcset="/assets/hero-196-1200.webp 1200w, /assets/hero-196-1600.webp 1600w, /assets/hero-196-2000.webp 2000w"
+  <!-- Preload only the FIRST crossfade slide. The other seven are lazy and
+       arrive as the rotation reaches them. -->
+  <link rel="preload" as="image" href="/assets/hero-slide-196-1800.webp"
+    imagesrcset="/assets/hero-slide-196-1200.webp 1200w, /assets/hero-slide-196-1800.webp 1800w"
     imagesizes="100vw" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://js.stripe.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
     onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
       rel="stylesheet">
   </noscript>
-  <link rel="stylesheet" href="/shared/styles.css?v=10">
+  <link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
+  <style>
+    /* ================================================================
+       ORDER BLOCK - aligned with the product page (Ryan, 12/08)
+       ----------------------------------------------------------------
+       home.html otherwise carries NO local CSS - it is driven entirely by
+       shared/styles.css. These rules are local on purpose: `.note` is a
+       generic name already defined locally (and differently) by
+       keepsake-standalone.html and memory-catcher-earnings-calculator.html,
+       so putting it in the shared sheet would reach pages that never asked
+       for it. Local keeps the blast radius to this page.
+
+       Every rule below is copied verbatim from our-kit.html so the two
+       blocks cannot drift apart visually.
+       ================================================================ */
+
+    /* The card button is the ONLY CTA on this page, so it is the primary
+       one and must be solid. shared/styles.css styles `.card-btn`
+       transparent, which was right while it sat BENEATH a wallet button as
+       the secondary choice. That wallet button was removed on 11/08 (it was
+       a painted Apple mark wired to the ordinary drawer trigger) and this
+       override should have gone in at the same time - without it the only
+       buy button on the site's most important page recedes into the
+       porcelain background. our-kit.html and keepsake-standalone.html both
+       already carry this same override for the same reason.
+
+       If a real inline wallet button is ever added above it (scoped in the
+       runbook), this override comes back OUT and the card button returns to
+       being the secondary, outlined option. */
+    .card-btn{background: var(--ink); color: var(--white); border: 1px solid var(--ink);
+      border-radius: var(--r-btn); font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,.16), 0 6px 18px rgba(0,0,0,.10);}
+    .card-btn:hover{background: #1a1a1a; border-color: #1a1a1a}
+    .card-btn:focus-visible{outline: 2px solid var(--ink); outline-offset: 3px}
+
+    .qty-row{display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--hairline);}
+    .qty-label{font-family: var(--serif); font-weight: 500; font-size: 1.02rem; color: var(--ink)}
+    .qty-stepper{display: inline-flex; align-items: center; gap: 2px; border: 1px solid var(--hairline); border-radius: 999px; background: var(--white); overflow: hidden;}
+    .qty-stepper button{width: 38px; height: 38px; border: 0; background: transparent; font-size: 18px; line-height: 1; color: var(--ink); display: grid; place-items: center; transition: background .15s ease;}
+    .qty-stepper button:hover:not(:disabled){background: var(--porcelain)}
+    .qty-stepper button:disabled{opacity: .3; cursor: default}
+    .qty-stepper span{min-width: 30px; text-align: center; font-size: 15px; font-weight: 600}
+    .postage-nudge{position: relative; overflow: hidden; margin-top: 14px; border: 1px solid var(--hairline); border-radius: var(--r-card); background: var(--white);}
+    .postage-nudge.earned{border-color: var(--stone); background: var(--bone)}
+    .postage-nudge.earned .pn-fill{width: 100%; background: transparent}
+    .postage-nudge.earned .pn-btn{display: none}
+    .pn-fill{position: absolute; inset: 0 auto 0 0; width: 50%; background: var(--bone); transition: width .3s ease;}
+    .pn-body{position: relative; display: flex; align-items: center; gap: 14px; padding: 14px 16px;}
+    .pn-text{flex: 1; min-width: 0}
+    .pn-big{font-size: 14.5px; font-weight: 600; color: var(--ink); line-height: 1.35}
+    .pn-small{font-size: 12.5px; color: var(--ink-faint); margin-top: 2px}
+    .pn-btn{flex: 0 0 auto; background: var(--ink); color: var(--white); border: 0; border-radius: 999px; padding: 9px 18px; font-size: 13.5px; font-weight: 600; transition: opacity .15s ease;}
+    .pn-btn:hover{opacity: .85}
+    .note{margin-top: 26px; background: var(--bone); border-radius: var(--r-card); padding: 18px 20px; font-size: 13px; line-height: 1.6; color: var(--ink-soft);}
+    .note b{color: var(--ink); font-weight: 600; display: block; margin-bottom: 3px; font-size: 13.5px}
+
+    @media(max-width:520px){
+.pn-body{padding: 12px 13px; gap: 10px}
+.pn-big{font-size: 13.5px}
+}
+  </style>
+
+  <script type="application/ld+json" data-bfc-schema>
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "@id": "https://www.thebespokefoilcompany.co.uk/#organization",
+ "name": "The Bespoke Foil Company",
+ "legalName": "The Bespoke Foil Company Ltd",
+ "url": "https://www.thebespokefoilcompany.co.uk/",
+ "logo": "https://www.thebespokefoilcompany.co.uk/assets/og-image.jpg",
+ "description": "Family-run British maker of baby foil handprint and footprint keepsake kits, and home of the Memory Catcher™ Franchise.",
+ "foundingDate": "2017",
+ "areaServed": "GB",
+ "taxID": "GB419408687",
+ "vatID": "GB419408687",
+ "identifier": {
+  "@type": "PropertyValue",
+  "name": "Company number",
+  "value": "12941845"
+ },
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "2nd Floor, Pier House, Wallgate",
+  "addressLocality": "Wigan",
+  "postalCode": "WN3 4AL",
+  "addressCountry": "GB"
+ },
+ "contactPoint": {
+  "@type": "ContactPoint",
+  "contactType": "customer service",
+  "telephone": "+44 7506 998934",
+  "email": "hello@thebespokefoilcompany.co.uk",
+  "areaServed": "GB",
+  "availableLanguage": "English"
+ },
+ "sameAs": [
+  "https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk",
+  "https://www.instagram.com/thebespokefoilco/",
+  "https://www.facebook.com/TheBespokeFoilCompany",
+  "https://www.youtube.com/@bespokefoilcompany",
+  "https://www.etsy.com/shop/BespokeFoilCompany"
+ ]
+}
+</script>
 </head>
 
 <body>
@@ -35,35 +148,39 @@
   <nav class="nav-menu" id="navMenu" aria-hidden="true">
     <div class="nav-menu-inner">
       <div class="nav-menu-top">
-        <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
-          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
-        </a>
-        <div class="nav-menu-top-right">
+          <!-- Order: CTA, logo, close. All three are DIRECT children so the
+               existing space-between puts the logo between the other two.
+               .nav-menu-top-right is gone - it nested the CTA one level down,
+               which made that impossible. -->
           <a class="nav cta on-dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake">
             <span>Order Your Kit</span>
             <span class="sq"><svg viewBox="0 0 24 24">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></span>
           </a>
+          <a href="/" class="mlogo" aria-label="Bespoke Foil Company home">
+          <img class="mlogo-img" src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company">
+        </a>
           <button class="nav-menu-close" id="navMenuClose" aria-label="Close menu">
             <svg viewBox="0 0 24 24">
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           </button>
         </div>
-      </div>
 
       <div class="nav-menu-links">
-        <a href="/" data-page="home" class="current">Home</a>
-        <a href="/our-story" data-page="our-story">Our Story</a>
-        <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology</a>
-        <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
-        <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
-        <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
-        <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
-        <a href="/faq" data-page="faq">FAQ</a>
-        <a href="/contact" data-page="contact">Contact</a>
-      </div>
+          <a href="/" data-page="home" class="current">Home</a>
+          <a href="/our-story" data-page="our-story">Our Story</a>
+          <a href="/franchise" data-page="franchise">Memory Catcher&trade; Franchise</a>
+          <a href="/foil-fusion-technology" data-page="foil-fusion-technology">Foil Fusion Technology&trade;</a>
+          <a href="/eco-friendly" data-page="eco-friendly">Eco-Friendly</a>
+          <a href="/product-page/foil-handprint-footprint-kit-baby-keepsake" data-page="our-kit">Order Your Kit</a>
+          <a href="/blog" data-page="blog">Stories &amp; Inspiration</a>
+          <a href="/bespoke-baby-gallery" data-page="bespoke-baby-gallery">Bespoke Baby Gallery</a>
+          <a href="/memory-catcher-hub" data-page="memory-catcher-hub">The Memory Catcher&trade; Hub</a>
+          <a href="/faq" data-page="faq">FAQ</a>
+          <a href="/contact" data-page="contact">Contact</a>
+        </div>
 
       <div class="nav-menu-cta">
         <div class="nav-menu-cta-head">
@@ -97,11 +214,12 @@
 
   <!-- ============ ANNOUNCEMENT ============ -->
   <div class="announce">
-    <img src="/assets/tp-stars-5.svg" alt="Rated Excellent on Trustpilot">
-    <span>Rated <b>Excellent</b>&nbsp;on Trustpilot</span>
-  </div>
-
-  <!-- ============ HERO SCOPE (header sits over the dark hero) ============ -->
+      <span class="announce-item"><img src="/assets/tp-stars-5.svg" alt=""><span class="announce-text">Rated <b>Excellent</b> on Trustpilot</span></span>
+      <span class="announce-item"><span class="announce-text">Rated <b>4.9 / 5</b> from <b>over 2,000</b> reviews on Etsy</span></span>
+      <span class="announce-item"><span class="announce-text">Our exclusive <b>Foil Fusion Technology&trade;</b></span></span>
+      <span class="announce-item"><span class="announce-text">Order before <b>12pm</b> on a weekday for same-day dispatch</span></span>
+    </div>
+    <!-- ============ HERO SCOPE (header sits over the dark hero) ============ -->
   <div class="hero-scope">
 
     <!-- ============ HEADER ============ -->
@@ -127,12 +245,32 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="hero-bg">
-        <img src="/assets/hero-196-1600.webp"
-          srcset="/assets/hero-196-1200.webp 1200w, /assets/hero-196-1600.webp 1600w, /assets/hero-196-2000.webp 2000w"
-          sizes="100vw" width="2000" height="1333"
-          alt="A parent and baby together at home with a Bespoke Foil Company keepsake" fetchpriority="high">
-      </div>
+      <div class="hero-bg hero-fade" id="heroBg">
+      <img class="on" src="/assets/hero-slide-196-1800.webp"
+        srcset="/assets/hero-slide-196-1200.webp 1200w, /assets/hero-slide-196-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" fetchpriority="high" alt="A parent and baby together at home with a keepsake">
+      <img src="/assets/hero-slide-253-1800.webp"
+        srcset="/assets/hero-slide-253-1200.webp 1200w, /assets/hero-slide-253-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" loading="lazy" decoding="async" alt="A finished foil keepsake on display">
+      <img src="/assets/hero-slide-390-1800.webp"
+        srcset="/assets/hero-slide-390-1200.webp 1200w, /assets/hero-slide-390-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" loading="lazy" decoding="async" alt="A family taking their baby's prints together">
+      <img src="/assets/hero-slide-184-1800.webp"
+        srcset="/assets/hero-slide-184-1200.webp 1200w, /assets/hero-slide-184-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" loading="lazy" decoding="async" alt="A framed foil keepsake on a shelf">
+      <img src="/assets/hero-slide-338-1800.webp"
+        srcset="/assets/hero-slide-338-1200.webp 1200w, /assets/hero-slide-338-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" loading="lazy" decoding="async" alt="A mother and baby making prints at home">
+      <img src="/assets/hero-slide-421-1800.webp"
+        srcset="/assets/hero-slide-421-1200.webp 1200w, /assets/hero-slide-421-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" loading="lazy" decoding="async" alt="A family gathered around the kitchen table">
+      <img src="/assets/hero-slide-169-1800.webp"
+        srcset="/assets/hero-slide-169-1200.webp 1200w, /assets/hero-slide-169-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" loading="lazy" decoding="async" alt="Taking a baby's footprints at home">
+      <img src="/assets/hero-slide-097-1800.webp"
+        srcset="/assets/hero-slide-097-1200.webp 1200w, /assets/hero-slide-097-1800.webp 1800w"
+        sizes="100vw" width="1800" height="1013" loading="lazy" decoding="async" alt="A parent and baby sharing a quiet moment">
+    </div>
       <div class="hero-inner">
         <div class="hero-copy">
           <span class="hero-pill">Foil Hand &amp; Footprint Kits from &pound;34.95</span>
@@ -232,16 +370,39 @@
         </button>
       </div>
 
+      <div class="qty-row">
+        <span class="qty-label">Quantity</span>
+        <div class="qty-stepper" role="group" aria-label="Quantity">
+          <button type="button" id="qtyMinus" aria-label="Decrease quantity">&minus;</button>
+          <span id="qtyVal" aria-live="polite">1</span>
+          <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+
+      <div class="postage-nudge" id="postageNudge">
+        <div class="pn-fill" id="pnFill"></div>
+        <div class="pn-body">
+          <div class="pn-text">
+            <div class="pn-big" id="pnBig">Add a second kit and get FREE postage</div>
+            <div class="pn-small" id="pnSmall">Perfect for gifting</div>
+          </div>
+          <button type="button" class="pn-btn" id="pnBtn">Add</button>
+        </div>
+      </div>
+
       <div class="express">
-        <button class="pay-btn apple" id="expressPay" aria-label="Buy with Apple Pay">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M17.05 12.54c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.8 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.29-1.27 3.15-2.53.99-1.45 1.4-2.85 1.42-2.92-.03-.01-2.72-1.04-2.75-4.13zM14.44 4.9c.72-.87 1.2-2.08 1.07-3.28-1.03.04-2.28.69-3.02 1.55-.66.77-1.24 2-1.09 3.18 1.15.09 2.33-.58 3.04-1.45z" />
-          </svg>
-          Pay
-        </button>
+        <!-- The Apple Pay button that used to sit here was NOT an Apple Pay
+             button. It was a styled button wired to the same trigger list as
+             "Buy now", so tapping the Apple mark opened the checkout drawer
+             rather than the Apple Pay sheet - which is both misleading and a
+             misuse of Apple's mark. Removed 11/08 at Ryan's instruction.
+             Real Apple Pay still works: the drawer mounts Stripe's Express
+             Checkout Element, which renders a genuine Apple Pay button on
+             devices that support it. That is the only place the mark belongs.
+             The product page and keepsake page were already built this way.
+             scripts/check-analytics.js fails the build if it comes back. -->
         <button class="pay-btn card-btn" id="cardPay">Buy now &middot; <span id="cardPrice">&pound;49.95</span></button>
-        <p class="express-note">Checkout in seconds. No account needed.</p>
+        <p class="express-note">Checkout in seconds. Apple Pay, Google Pay &amp; card.</p>
       </div>
 
       <div class="reassure">
@@ -292,6 +453,20 @@
           <div class="lab">Delivers</div>
           <b id="deliverWindow">&ndash;</b>
         </div>
+      </div>
+
+      <!-- Home keeps the personalisation CHOICES off the page deliberately
+           (Ryan, 12/08): this block is an impulse buy, and the colour and
+           wording pickers live on the product page. So the note has to answer
+           the question those pickers would otherwise raise - it says the
+           decision is not needed yet, rather than pointing "above" at fields
+           that do not exist here. Wording matches the gift note on
+           our-kit.html so both pages tell the customer the same story. -->
+      <div class="note">
+        <b>When do I personalise my foil print?</b>
+        There's nothing to decide today. Once your kit arrives, you'll add the
+        names, birth details and all your colour choices in our simple upload
+        portal when you send us your prints.
       </div>
     </div>
   </section>
@@ -419,7 +594,7 @@
         <h2>We donate &pound;1 from<br>every kit to Tommy's.</h2>
         <p>Every order helps fund life-saving research into premature birth, stillbirth and miscarriage. It's a cause
           that means the world to us - and one we're proud to support, thanks to you.</p>
-        <a class="cta on-dark" href="#">
+        <a class="cta on-dark" href="/tommys-charity">
           <span class="lbl">Learn about our work with Tommy's</span>
           <span class="sq"><svg viewBox="0 0 24 24">
               <path d="M5 12h14M13 6l6 6-6 6" />
@@ -430,6 +605,88 @@
   </section>
 
   <!-- ============ REVIEWS (lifted from kit page) ============ -->
+  <!-- ============ UGC REEL ============ -->
+  <section class="ugc">
+    <h2>Real families, <span class="ugc-accent">forever keepsakes</span></h2>
+    <p class="lede">Moments captured by parents using our kits, and by Memory Catchers taking prints in person across the UK. Plus some sneak peeks of behind the scenes with Ashley...</p>
+    <div class="ugc-viewport">
+      <div class="ugc-track" style="animation-duration:120s">
+        <div class="ugc-item"><video data-src="/assets/videos/mc-19.mp4" data-poster="/assets/videos/mc-19-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-04.mp4" data-poster="/assets/videos/bb-vid-04-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-14.mp4" data-poster="/assets/videos/bfc-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-04.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-8.mp4" data-poster="/assets/videos/mc-8-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-09.mp4" data-poster="/assets/videos/bfc-09-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-18.mp4" data-poster="/assets/videos/bb-vid-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-01.mp4" data-poster="/assets/videos/bfc-01-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-19.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-21.mp4" data-poster="/assets/videos/bfc-21-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-14.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-19.mp4" data-poster="/assets/videos/bb-vid-19-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-30.mp4" data-poster="/assets/videos/bfc-30-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-16.mp4" data-poster="/assets/videos/bfc-16-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-24.mp4" data-poster="/assets/videos/bfc-24-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-41.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-06.mp4" data-poster="/assets/videos/bb-vid-06-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-03.mp4" data-poster="/assets/videos/bb-vid-03-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-17.mp4" data-poster="/assets/videos/bfc-17-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-11.mp4" data-poster="/assets/videos/bfc-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-3.mp4" data-poster="/assets/videos/mc-3-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-14.mp4" data-poster="/assets/videos/bb-vid-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-23.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-38.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-09.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-10.mp4" data-poster="/assets/videos/bb-vid-10-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-08.mp4" data-poster="/assets/videos/bfc-08-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-27.mp4" data-poster="/assets/videos/bfc-27-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-20.mp4" data-poster="/assets/videos/bb-vid-20-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-11.mp4" data-poster="/assets/videos/bb-vid-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-28.mp4" data-poster="/assets/videos/bfc-28-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-18.mp4" data-poster="/assets/videos/bfc-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-19.mp4" data-poster="/assets/videos/mc-19-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-04.mp4" data-poster="/assets/videos/bb-vid-04-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-14.mp4" data-poster="/assets/videos/bfc-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-04.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-8.mp4" data-poster="/assets/videos/mc-8-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-09.mp4" data-poster="/assets/videos/bfc-09-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-18.mp4" data-poster="/assets/videos/bb-vid-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-01.mp4" data-poster="/assets/videos/bfc-01-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-19.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-21.mp4" data-poster="/assets/videos/bfc-21-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-14.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-19.mp4" data-poster="/assets/videos/bb-vid-19-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-30.mp4" data-poster="/assets/videos/bfc-30-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-16.mp4" data-poster="/assets/videos/bfc-16-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-24.mp4" data-poster="/assets/videos/bfc-24-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-41.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-06.mp4" data-poster="/assets/videos/bb-vid-06-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-03.mp4" data-poster="/assets/videos/bb-vid-03-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-17.mp4" data-poster="/assets/videos/bfc-17-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-11.mp4" data-poster="/assets/videos/bfc-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-3.mp4" data-poster="/assets/videos/mc-3-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-14.mp4" data-poster="/assets/videos/bb-vid-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-23.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-38.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-09.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-10.mp4" data-poster="/assets/videos/bb-vid-10-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-08.mp4" data-poster="/assets/videos/bfc-08-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-27.mp4" data-poster="/assets/videos/bfc-27-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-20.mp4" data-poster="/assets/videos/bb-vid-20-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-11.mp4" data-poster="/assets/videos/bb-vid-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-28.mp4" data-poster="/assets/videos/bfc-28-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-18.mp4" data-poster="/assets/videos/bfc-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+      </div>
+    </div>
+    <div class="ugc-cta">
+      <a class="cta" href="/bespoke-baby-gallery">
+        <span class="lbl">See the Bespoke Baby Gallery</span>
+        <span class="sq"><svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg></span>
+      </a>
+    </div>
+  </section>
+
   <section class="reviews" aria-labelledby="reviews-title">
     <div class="reviews-head">
       <div class="tp-row">
@@ -438,52 +695,430 @@
       <h2 id="reviews-title">Rated Excellent on Trustpilot</h2>
       <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">See all
         reviews on <img src="/assets/tp-brandmark.svg" alt="Trustpilot"></a>
-    </div>
+          <p class="reviews-etsy">We're new to Trustpilot, but not here: rated <b data-etsy-score>4.9</b> / 5 from <b data-etsy-count>over 2,000</b> reviews on Etsy since <span data-etsy-since>2018</span>.</p>
+        </div>
     <div class="review-track" id="revTrack">
       <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Absolutely gorgeous!</h3>
         <p>I met Ashley in a baby class and she took foil prints of my 3 month old. The final print was beyond
-          beautiful! The entire process was smooth and I highly recommend bespoke foil if you'd like to create a lovely
-          memorable keepsake xx</p>
+          beautiful! The entire process was smooth and I highly recommend bespoke foil if you&#x27;d like to create a
+          lovely memorable keepsake xx</p>
         <span class="who">Vaidehi Nene</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Got my print today and all I can say is...</h3>
-        <p>Got my print today and all I can say is "wow" it's absolutely perfect! So happy with it! Never been able to
-          do my daughter's hand print and now I have it, it's perfect thank you so much!! Highly recommend</p>
+        <p>Got my print today and all I can say is &quot;wow&quot; it&#x27;s absolutely perfect! So happy with it! Never
+          been able to do my daughter&#x27;s hand print and now I have it, it&#x27;s perfect thank you so much!! Highly
+          recommend</p>
         <span class="who">Rebecca Burton</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Stunning</h3>
         <p>We are absolutely delighted with our foiled hand and footprint keepsakes. The quality is beautiful, and they
-          perfectly captured those tiny details we'll treasure forever.</p>
+          perfectly captured those tiny details we&#x27;ll treasure forever.&hellip;</p>
         <span class="who">Amy Edgar</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
         <h3>Just perfect from start to finish</h3>
-        <p>Just perfect from start to finish! We saw Ashley face to face at baby class, she was so kind and friendly
-          with my kids! The communication was brilliant and the product is beyond amazing, so special and worth every
-          penny.</p>
+        <p>Just perfect from start to finish! We saw Ashley face to face at baby class she was so kind and friendly with
+          my kids! The communication was brilliant and the product is beyond amazing, so special and worth every penny
+        </p>
         <span class="who">Ella Brough Maclean</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-        <h3>Family run, in the best way</h3>
-        <p>I could not have had a better experience. I was blown away by Ashley's care during the process of ordering
-          and receiving the prints. We had some done for our twins, one of whom we lost, and Ashley took such care of
-          our order.</p>
+        <h3>I&#x27;d seen the company advertised online...</h3>
+        <p>I&#x27;d seen the company advertised online but I thought I&#x27;d struggle to get a perfect print. Ashley
+          was at one of my babies sensory classes and seeing the prints in person instantly made me want to get my
+          babies done.&hellip;</p>
+        <span class="who">Lois</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful gift we thought we wouldn&#x27;t get</h3>
+        <p>My daughter has been trying to get prints of my granddaughters hands and feet for a while and she was upset
+          she was running out of time. I can&#x27;t believe how easily this was done in the right hands.&hellip;</p>
+        <span class="who">nicola</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Exceptional. You can tell this is family run, in the best way!</h3>
+        <p>It could not have had a better experience. I was blown away by Ashley&#x27;s care during the process of
+          ordering and through to receiving the prints. We had some prints done for our twins, one of whom we lost and
+          Ashley took care of our order&hellip;</p>
         <span class="who">Aneka Osborne</span>
       </article>
-      <article class="review-card">
+          <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
-        <h3>Beautiful prints</h3>
-        <p>I recently received my baby's framed hand and footprints and they are beautiful. The website and instructions
-          to customise the prints were simple and easy to use. I couldn't be happier with the result.</p>
-        <span class="who">Danielle Dolan</span>
+        <h3>Lovely product &amp; great customer service!</h3>
+        <p>Very happy with our print/ frame- outstanding quality and mess-free to produce! Slight adjustment needed with
+          our order once it had arrived, but this was resolved the same day and replacements were sent out very quickly-
+          couldn&#x27;t have&hellip;</p>
+        <span class="who">Rebecca Hart</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful Prints</h3>
+        <p>I have recently received my baby&#x27;s framed hand and footprints from the Bespoke Foil Company and they are
+          beautiful. The website and instructions to customise the prints were simple and easy to use.&hellip;</p>
+        <span class="who">danielle dolan</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>This is the second time I&#x27;ve used The...</h3>
+        <p>This is the second time I&#x27;ve used The Bespoke Foil Company and can&#x27;t recommend the services enough.
+          It&#x27;s the prefect keep sake for your little ones. Both times used for my two daughters. Sienna at 6 months
+          old and Alina at 4 months old.&hellip;</p>
+        <span class="who">Nichola</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Lovely Family Memories</h3>
+        <p>We met Ashley at a baby class she was very welcoming and assisted with getting the prints she was friendly
+          and professional!
+          Once home I uploaded the prints to the website &amp; Ashley took care of the rest.
+          The option to add more&hellip;</p>
+        <span class="who">Hannah Rayer</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Perfect Commemorations for Our Sons’ Births</h3>
+        <p>We couldn’t be happier with our bespoke keepsake marking the birth of our son. This is the second time we’ve
+          ordered from Bespoke Foil Company—one for each of our boys—and their work has been exceptional every
+          time.&hellip;</p>
+        <span class="who">Robert McNeill</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Best product and service out there ❤️</h3>
+        <p>Ashley at Bespoke Foil Company comes out to my baby classes every few months to capture our little one&#x27;s
+          prints and I know it&#x27;s always such a hit with the parents!
+
+          This time I couldn&#x27;t resist and got prints done of my own two little boys&hellip;</p>
+        <span class="who">Chelsea R</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Print &amp; keyring</h3>
+        <p>I recently purchased a hand and foot print keepsake of my baby boy along with a keyring from Bespoke Foil and
+          I couldn&#x27;t be happier with the result.&hellip;</p>
+        <span class="who">Rebecca</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Ashley Is such a lovely person</h3>
+        <p>Ashley Is such a lovely person ! She as done an amazing job with the prints they have turned out so
+          beautifully , The Quality is perfect and I couldn&#x27;t thank her enough.
+          Many thanks Lucy</p>
+        <span class="who">Lucy</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Sibling prints</h3>
+        <p>Lovely experience for my son and daughter. I have never been able to get clear prints of my children&#x27;s
+          hands, but bespoke managed it so easily</p>
+        <span class="who">Danielle Clarkson</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful keepsake</h3>
+        <p>Given to us as a gift. Final product is beautiful.
+
+          Easy to follow instructions are included along with a video showing you how to take the prints and upload
+          images.&hellip;</p>
+        <span class="who">Clairem20</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Fab!</h3>
+        <p>I had my youngest son&#x27;s prints done at a Bloom Baby Class by Ashley. She was really friendly and took
+          some great prints. Ordering was really easy and communication was brilliant, it was such an easy process from
+          start to finish.&hellip;</p>
+        <span class="who">Heather Marshall</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>So happy with my experience</h3>
+        <p>I am really happy with the products and the company was really communicative, thank you for such an amazing
+          keep safe</p>
+        <span class="who">Rhiannon Wiggins</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Amazing business !</h3>
+        <p>Ashley came to one of my baby groups and is an amazing person. We opted for the framed print of our
+          daughter&#x27;s hand and footprint and I was quite dubious as to getting her hand print as I struggle to get
+          her to print her hands.&hellip;</p>
+        <span class="who">Abbie Francis</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>I first used Bespoke Foil Company in...</h3>
+        <p>I first used Bespoke Foil Company in 2022 when I had my little girl and I was so impressed with the quality,
+          I wanted to purchase the same for my boy.&hellip;</p>
+        <span class="who">Hannah Chapman</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Ashley</h3>
+        <p>Ashley, attended my baby sensory class offering the work. Her customer service skills were second to none. So
+          personable and a genuine nice person.&hellip;</p>
+        <span class="who">Gemma Smith</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent company</h3>
+        <p>Great communication with the company.
+          Lovely experience and product. We love our pieces and highly recommend.</p>
+        <span class="who">Ashleigh Simpson-Sorbie</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Highly Recommended</h3>
+        <p>Lovely company who create the most beautiful keepsakes. Absolutely love what I received for my baby boy, they
+          make capturing special moments very easy.&hellip;</p>
+        <span class="who">Gabrielle Gallimore</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful keepsake of my little boy&#x27;s...</h3>
+        <p>Beautiful keepsake of my little boy&#x27;s hand and foot. We got to do this at a baby class, and the
+          instructions afterwards were clear and easy to follow. I was able to preview what it would look like to ensure
+          I was happy with it.&hellip;</p>
+        <span class="who">Rebekah</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>I recently had my baby&#x27;s foot printing...</h3>
+        <p>I recently had my baby&#x27;s foot printing done with Bespoke Foil Company, the printing turned out
+          absolutely beautiful, the details are so clear and delicate, and it perfectly captured my baby&#x27;s tiny
+          footprints.
+          I highly recommend Bespoke&hellip;</p>
+        <span class="who">Jiamin</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Ashley went above and beyond to make...</h3>
+        <p>Ashley went above and beyond to make sure everything was perfect with my order and it really showed. If
+          you&#x27;re looking for premium foil printing with great customer service, I highly recommend them!</p>
+        <span class="who">Chelsea</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Very professional highly recommend</h3>
+        <p>Very professional! Excellent communication! We love the finished product something to keep forever will
+          highly recommend this company !</p>
+        <span class="who">Maisy Clarke</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>The handprints turned out beautiful</h3>
+        <p>The handprints turned out beautiful - not always easy with little hands! A really high quality turnout, thank
+          you.</p>
+        <span class="who">Siobhan</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>S.O. loved it</h3>
+        <p>Amazing, S.O. loved it as gift and the grandparents wanted the second copy. Super easy system to go through
+          and order and speedy delivery.</p>
+        <span class="who">Luke</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Stunning customer service and stunning results</h3>
+        <p>Absolutely phenomenal customer service from start to finish and such a straight forward process! Absolutely
+          stunning results that will be cherished forever! Amazing amazing amazing thank you</p>
+        <span class="who">Ellie Prosser</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Precious memories</h3>
+        <p>I am so so so happy with my purchase. Ashleigh was at a baby group I attend she was so lovely and made me
+          feel so comfortable. We done my daughter&#x27;s foot print and hand print. Everything was explained
+          thoroughly.&hellip;</p>
+        <span class="who">Danielle</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Gorgeous business</h3>
+        <p>Gorgeous business and the owner is lovely was amazing with my little girl and made us feel very comfortable
+          would definitely recommend as the product is beautiful.</p>
+        <span class="who">Diana Fedan</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Fantastic memory framed !</h3>
+        <p>We ordered 5 frames with a handprint of our late Mum. Ashley was lovely throughout the process. The frames
+          arrived on Friday and they are absolutely beautiful.
+          I can&#x27;t recommend this company enough!</p>
+        <span class="who">Michael wood</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Amazing experience</h3>
+        <p>Amazing experience! Ashley was so friendly and helpful and produced an amazing product. Thanks so much!</p>
+        <span class="who">Abbie</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Returning customer!</h3>
+        <p>I have used the Bespoke foil company twice for baby&#x27;s footprint frames and I love them! Ashley is so
+          helpful and approachable! I would definitely recommend her to other mums who want these mementos.</p>
+        <span class="who">Emma K</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Exactly what we wanted</h3>
+        <p>Great communication and instructions. The framed print of hand and foot is exactly as hoped.</p>
+        <span class="who">OH</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Lovely finished product</h3>
+        <p>Lovely finished product. The prints were taken for us at a baby class which was great. The choice to
+          customise the final print was great. Really happy with the quality of my product and would recommend the
+          service to anyone.</p>
+        <span class="who">Vicki Holden</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Lovely keepsakes.</h3>
+        <p>Ashley was very friendly and explained what I needed to do once she&#x27;d done my grandson&#x27;s hand &amp;
+          foot prints.
+
+          It was easy to use their website to upload the photos of the hand and foot prints and choosing the colour and
+          frame I&hellip;</p>
+        <span class="who">Lisa</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Gorgeous keepsake!</h3>
+        <p>I recently received my gorgeous order from The Bespoke Foil Company and it&#x27;s exactly what we hoped for!
+          Ashley took our baby&#x27;s prints at our local sensory class so the whole process was super easy and
+          professional.&hellip;</p>
+        <span class="who">Laura</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Fantastic company - beautiful keepsakes</h3>
+        <p>I&#x27;ve now had foiled hand/foot prints for both of my children from the Bespoke Foil Company and my
+          experience both times has been absolutely first-class.&hellip;</p>
+        <span class="who">CT</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Absolutely gorgeous prints</h3>
+        <p>Absolutely gorgeous prints! We first ordered from Bespoke Foil Company in 2022 for our eldest daughter and
+          were so pleased that we ordered again when our second was born. The packs sent to your home are so easy to
+          use.&hellip;</p>
+        <span class="who">Acasey</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>So beautiful &amp; timeless</h3>
+        <p>So beautiful &amp; timeless - everything I hoped for and more! Ashley was so lovely &amp; patient with my
+          messages. Can&#x27;t stop staring at it, in our home!</p>
+        <span class="who">Lauren Wood</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Recently received my keepsake from the...</h3>
+        <p>Recently received my keepsake from the Bespoke Foil Company and I&#x27;m absolutely delighted with it.
+          Excellent service and high quality product, so lovely being able to choose the foil and frame colour too.
+          Thank you Ashley and team 🥰</p>
+        <span class="who">Harriet Dean</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Highly recommend</h3>
+        <p>Great customer service, I was well informed about where my order was up to which made me feel valued. The
+          prints are amazing and easy to use with very clear instructions.&hellip;</p>
+        <span class="who">Siobhan Kelly</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Foil Handprints</h3>
+        <p>Ashley made me 3 foil hand prints of my mum for myself my sister and my dad of my mum&#x27;s handprint, we
+          sadly lost my mum last month and this has been truly beautiful keepsake for our family.&hellip;</p>
+        <span class="who">Ell Smith</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Foil baby prints</h3>
+        <p>Really good communication with Ashley and lovely preview image sent to check everything was just as we wanted
+          it before it was printed. Additional option of ordering further prints was very helpful.&hellip;</p>
+        <span class="who">josie</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Beautiful prints to capture a wonderful memory!</h3>
+        <p>I ordered a print for my first born in 2022 and loved it so much. When my second was born this year, I knew I
+          would order again! There was a small issue with our second print this year but Ashley was so helpful and sent
+          us out a new one&hellip;</p>
+        <span class="who">Alexandra Aspey</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Baby Footprints</h3>
+        <p>We ordered 3 prints and are very pleased with the results. We have twins and ordered a print for ourselves
+          with the babies foot prints and 2 additional prints for the grandparents.&hellip;</p>
+        <span class="who">Ryan Slater</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Just baby hands...but very special</h3>
+        <p>Although I&#x27;m sure everyone&#x27;s baby hands and feet are similar. What a beautiful product they
+          provide. We went for rose gold with white frame which looks fabulous! Everyone comments how nice it looks!
+          Thank you</p>
+        <span class="who">DBT</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Had my beautiful keepsake made after...</h3>
+        <p>Had my beautiful keepsake made after Ashley attended a baby class I go to.
+          I am really pleased with the hand and footprint we had made. Great value for money and mess free ❤️
+          Would highly recommend x</p>
+        <span class="who">Miss Clare Vicary</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Thankyou!</h3>
+        <p>I met Ashley at one of my baby classes and she made the most beautiful keepsakes! I now have my sons
+          footprint on my keys and a beautiful print - treasured item forever! Thank you so much :)</p>
+        <span class="who">Rosie W</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent experience</h3>
+        <p>Excellent experience! Amazing quality foiled prints and such a lovely keepsake to have. Excellent
+          communication and print arrived quickly! Absolutely recommend.</p>
+        <span class="who">Rachel</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Great keepsake</h3>
+        <p>Great customer service and communication. Lovely high quality foiled prints, a great keep sake.</p>
+        <span class="who">Anon</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent service</h3>
+        <p>Excellent service, really friendly and helpful - managed to get the product finished in a very short time
+          frame as travelling out of the country which was much appreciated! Great communication and fantastic
+          quality.&hellip;</p>
+        <span class="who">C Evans</span>
+      </article>
+          <article class="review-card">
+        <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
+        <h3>Excellent product quality</h3>
+        <p>Great customer service. Quick turn around and postage. Excellent product quality. Excellent communication
+          with customers. 100% will use again.</p>
+        <span class="who">Ben Goodwin</span>
       </article>
     </div>
     <div class="reviews-nav">
@@ -529,7 +1164,7 @@
   <footer>
     <div class="foot-top">
       <div class="foot-col foot-contact">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <p>Tel: 07506 998934</p>
         <p>Email: hello@thebespokefoilcompany.co.uk</p>
         <div class="foot-social">
@@ -540,7 +1175,11 @@
               <path
                 d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm0 1.8a1.7 1.7 0 110 3.4 1.7 1.7 0 010-3.4zM16.5 7a.9.9 0 100 1.8.9.9 0 000-1.8zM7.5 4.5h9A3 3 0 0119.5 7.5v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9a3 3 0 013-3zm0 1.8a1.2 1.2 0 00-1.2 1.2v9a1.2 1.2 0 001.2 1.2h9a1.2 1.2 0 001.2-1.2v-9a1.2 1.2 0 00-1.2-1.2z" />
             </svg></a>
-        </div>
+        
+            <a href="https://www.youtube.com/@bespokefoilcompany" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M21.58 7.19a2.51 2.51 0 0 0-1.77-1.78C18.25 5 12 5 12 5s-6.25 0-7.81.41A2.51 2.51 0 0 0 2.42 7.19 26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .42 4.81 2.51 2.51 0 0 0 1.77 1.78C5.75 19 12 19 12 19s6.25 0 7.81-.41a2.51 2.51 0 0 0 1.77-1.78A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.42-4.81zM10 15.5v-7l6 3.5z" />
+            </svg></a>
+          </div>
         <p class="f-label">Find Us</p>
         <p>2nd Floor, Pier House, Wallgate, Wigan, WN3 4AL</p>
         <p class="f-label">Opening Hours</p>
@@ -548,7 +1187,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h3>Explore</h3>
         <ul>
           <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
           <li><a href="/our-story">Our Story</a></li>
@@ -562,14 +1201,14 @@
       </div>
 
       <div class="foot-col">
-        <h4>Resources</h4>
+        <h3>Resources</h3>
         <ul>
           <li><a href="/faq">FAQ's</a></li>
           <li><a href="/blog">Stories &amp; Inspiration</a></li>
           <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
           <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
         </ul>
-        <h4>Franchise</h4>
+        <h3>Franchise</h3>
         <ul>
           <li><a href="/franchise-hub">Franchise Hub</a></li>
           <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
@@ -582,7 +1221,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <ul>
           <li><a href="/contact">Contact Us</a></li>
           <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -604,30 +1243,50 @@
             <span class="pay-chip"><img src="/assets/pay/paypal.svg" alt="PayPal"></span>
           </div>
           <div class="foot-tp">
-            <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
-            <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews</span>
+          <!-- Official TrustBox (Mini). Everything inside the container is the
+               no-JS fallback - the widget replaces it once tp.widget.bootstrap
+               loads. The real figures live there on purpose: AI crawlers never
+               run the widget, so this is what they read. Kept in sync by
+               scripts/build-trustpilot.js from shared/trustpilot.js. -->
+          <div class="trustpilot-widget" data-locale="en-GB" data-template-id="53aa8807dec7e10d38f59f32" data-businessunit-id="5fec7f5644198b00014a524a" data-style-height="100px" data-style-width="200px" data-theme="dark" data-token="39d85b3a-b3ee-4772-ad2c-a59b046a1b1e" data-review-disclaimer="false">
+            <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">
+              <img class="tp-stars" src="/assets/tp-stars-5.svg" alt="Trustpilot 5 stars">
+              <span class="tp-meta">TrustScore <span data-tp-score>4.9</span> &middot; <span data-tp-count>72</span> reviews on Trustpilot</span>
+            </a>
           </div>
+          <!-- Etsy sits directly beneath the TrustBox so the two read as one
+               block of proof: a verified rating from one platform, and volume
+               from another. 2,224 is a far bigger number than 72 and does real
+               work here, at the point someone is deciding.
+
+               Unlinked, deliberately, for the same reason as the announce bar:
+               a clickable Etsy link in the footer of every page routes traffic
+               off the site, where the margin is whole, to a marketplace that
+               takes a cut and owns the customer. The claim earns trust here;
+               the link would spend it. The Organization schema's sameAs already
+               connects the two for machines. -->
+          <p class="foot-etsy"><span data-etsy-score>4.9</span> / 5 from <span data-etsy-count>over 2,000</span> reviews on Etsy</p>
         </div>
-      </div>
-    </div>
+        </div><!-- /.foot-right -->
+      </div><!-- /.foot-col -->
+    </div><!-- /.foot-top -->
+        <div class="foot-legal">
+          <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
+            GB419408687.</p>
+          <p style="margin-top:6px"><a href="https://www.twinegrowth.com" target="_blank" rel="noopener">Website by Twine Growth</a></p>
+        </div>
+        <!-- Full-bleed wordmark. Sits AFTER .foot-legal so the legal block and the
+             cookie link always sit above it, never against the base of the page. -->
+        <div class="foot-watermark" aria-hidden="true">
+          <img src="/assets/bfc-logo-v2.svg" alt="">
+        </div>
+      </footer>
 
-    <div class="foot-legal">
-      <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:
-        GB419408687.</p>
-      <p style="margin-top:6px"><a href="https://www.twinegrowth.com" target="_blank" rel="noopener">Website by Twine Growth</a></p>
-    </div>
-
-    <div class="foot-watermark" aria-hidden="true">
-      <img src="/assets/bfc-logo-v2.svg" alt="">
-    </div>
-  </footer>
-
-  <!-- ============ WHAT'S INCLUDED LIGHTBOXES (lifted from kit page) ============ -->
   <dialog class="inc" id="inc-foil" aria-labelledby="inc-foil-title">
     <div class="inc-wrap">
       <button class="inc-close" data-close aria-label="Close">&#10005;</button>
-      <div class="inc-photo"><img width="900" height="990" src="/assets/inc-foil-hr.webp"
-          alt="Personalised foil footprints on archival card"></div>
+      <div class="inc-photo"><img src="/assets/inc-foil-hr.webp" alt="Personalised foil footprints on archival card">
+      </div>
       <div class="inc-body">
         <h2 id="inc-foil-title">Foil Print Kit</h2>
         <p class="inc-price">&pound;34.95</p>
@@ -659,11 +1318,10 @@
       </div>
     </div>
   </dialog>
-
   <dialog class="inc" id="inc-framed" aria-labelledby="inc-framed-title">
     <div class="inc-wrap">
       <button class="inc-close" data-close aria-label="Close">&#10005;</button>
-      <div class="inc-photo"><img width="900" height="990" src="/assets/inc-framed-hr.webp"
+      <div class="inc-photo"><img src="/assets/inc-framed-hr.webp"
           alt="Framed foil hand and footprint keepsake with name, date, time and weight"></div>
       <div class="inc-body">
         <h2 id="inc-framed-title">Framed Foil Print Kit</h2>
@@ -699,7 +1357,6 @@
       </div>
     </div>
   </dialog>
-
   <dialog class="inc" id="inc-premium" aria-labelledby="inc-premium-title">
     <div class="inc-wrap">
       <button class="inc-close" data-close aria-label="Close">&#10005;</button>
@@ -740,7 +1397,24 @@
     </div>
   </dialog>
 
-  <script>
+    <!-- Stripe and the checkout module are loaded HERE, not in <head>.
+       ------------------------------------------------------------------
+       Both were render-blocking in the head: PageSpeed measured 1,190ms of
+       render-blocking and 242 KiB of unused JavaScript, with mobile LCP at
+       13.4s. Neither is needed until someone taps a buy button, but sitting in
+       the head they delayed first paint AND competed with the hero image for
+       bandwidth on slow 4G, which is what pushed LCP out.
+
+       MOVED rather than deferred, deliberately. `defer` would break checkout:
+       BFCCheckout.init(...) is called from the inline block directly below, and
+       a deferred module would load AFTER that call and throw "BFCCheckout is
+       not defined". Placing the tags immediately above the call keeps execution
+       order byte-identical to before - nothing in the page references Stripe()
+       or BFCCheckout above this point, which was verified before moving them. -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="/shared/checkout.js?v=72129034"></script>
+
+<script>
     /* ---------- sticky header: glass on scroll, hide on down, reveal on up ---------- */
     (function () {
       const header = document.querySelector('header');
@@ -791,8 +1465,10 @@
     function selectKit(id) {
       kits.forEach(x => x.setAttribute('aria-pressed', x.dataset.kit === id ? 'true' : 'false'));
       selected = { kit: id, price: prices[id] };
-      const cp = document.getElementById('cardPrice');
-      if (cp) cp.textContent = '\u00A3' + selected.price;
+      /* renderQty owns the button price now, because it is unit x quantity.
+         Setting cardPrice here as well would show the unit price for a moment
+         whenever the customer changed kit with 2+ in the basket. */
+      renderQty();
     }
     kits.forEach(k => {
       k.addEventListener('click', e => {
@@ -806,18 +1482,71 @@
     });
 
     /* ---------- checkout ----------
-       Both buttons open the SAME shared drawer as the product page
+       The Buy button opens the SAME shared drawer as the product page
        (shared/checkout.js). Express wallets appear inside the drawer when the
        device has them, so there is no separate express path to maintain here.
        Quantity is drawer-only on this page: the home page has no stepper, so
        the setter simply holds whatever the drawer's own +/- buttons produce. */
+    /* Same three constants as our-kit.html. They exist here only to DRAW the
+       nudge and the button price - create-payment-intent.js remains the single
+       authority on what is actually charged, and it applies free postage at
+       2+ kits or GBP 75+ server-side regardless of what this page shows. */
+    const FREE_POST_QTY = 2;
+    const MAX_QTY = 10;
+
     let qty = 1;
+
+    function renderQty() {
+      const unit = Math.round(parseFloat(prices[selected.kit]) * 100);
+      const sub = unit * qty;
+      const free = qty >= FREE_POST_QTY;
+
+      document.getElementById('qtyVal').textContent = qty;
+      document.getElementById('qtyMinus').disabled = qty <= 1;
+      document.getElementById('qtyPlus').disabled = qty >= MAX_QTY;
+
+      /* Product price only. Postage is revealed in the drawer, where the
+         customer sees the full breakdown before paying (Ryan, 21/07). */
+      document.getElementById('cardPrice').textContent = '\u00A3' + (sub / 100).toFixed(2);
+
+      const nudge = document.getElementById('postageNudge');
+      const big = document.getElementById('pnBig');
+      const small = document.getElementById('pnSmall');
+      const fill = document.getElementById('pnFill');
+
+      if (free) {
+        nudge.classList.add('earned');
+        big.textContent = 'FREE postage unlocked';
+        small.textContent = 'Your kits ship free';
+        fill.style.width = '100%';
+      } else {
+        nudge.classList.remove('earned');
+        big.textContent = 'Add a second kit and get FREE postage';
+        small.textContent = 'Perfect for gifting';
+        fill.style.width = Math.round(qty / FREE_POST_QTY * 100) + '%';
+      }
+    }
+
+    function setQty(n) {
+      qty = Math.max(1, Math.min(MAX_QTY, n));
+      renderQty();
+    }
+    document.getElementById('qtyMinus').addEventListener('click', () => setQty(qty - 1));
+    document.getElementById('qtyPlus').addEventListener('click', () => setQty(qty + 1));
+    document.getElementById('pnBtn').addEventListener('click', () => setQty(FREE_POST_QTY));
+
     BFCCheckout.init({
       getKit: () => selected,
       getQty: () => qty,
-      setQty: n => { qty = n; },
-      triggers: ['#expressPay', '#cardPay'],
+      /* The drawer has its own +/- and calls this back. It MUST re-render, or
+         changing quantity in the drawer leaves the page stepper showing a
+         stale number behind it. That is the documented contract in
+         shared/checkout.js. */
+      setQty: n => { qty = n; renderQty(); },
+      triggers: ['#cardPay'],
     });
+
+    renderQty();
 
     /* Stripe redirects back here with ?paid=1 after a card payment. */
     if (new URLSearchParams(location.search).get('paid') === '1') {
@@ -929,16 +1658,155 @@
       rTrack.scrollTo({ left: Math.min(revPos() + 1, rCards.length - 1) * w, behavior: 'smooth' });
     });
     rTrack.scrollLeft = 0;
-
-    /* ---------- community sign-up (stub - production wires to email platform) ---------- */
-    document.getElementById('communityJoin').addEventListener('click', () => {
-      const email = document.getElementById('communityEmail').value.trim();
-      if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-      // STUB: production posts { email } to the newsletter/Mandrill signup
-      alert('Thanks for joining (preview): ' + email);
-    });
   </script>
+<script>
+  /* Hero crossfade. Slides advance every 4s with a 1.6s dissolve.
+     - pauses when the tab is hidden, so a backgrounded tab is not decoding
+       images nobody is looking at
+     - honours prefers-reduced-motion by never starting
+     - the NEXT slide is nudged into the decoder one beat early, so the fade
+       never begins against an undecoded image */
+  (function () {
+    var wrap = document.getElementById('heroBg');
+    if (!wrap) return;
+    var slides = wrap.querySelectorAll('img');
+    if (slides.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+    var i = 0, timer = null;
+    function show(n) {
+      slides[i].classList.remove('on');
+      i = (n + slides.length) % slides.length;
+      slides[i].classList.add('on');
+      var nx = slides[(i + 1) % slides.length];
+      if (nx.decode) nx.decode().catch(function () { });
+    }
+    function start() { if (!timer) timer = setInterval(function () { show(i + 1); }, 4000); }
+    function stop() { clearInterval(timer); timer = null; }
+
+    document.addEventListener('visibilitychange', function () {
+      document.hidden ? stop() : start();
+    });
+    start();
+  })();
+</script>
+<script type="application/json" data-ugc-pool>[["i","/assets/bb-38.webp",""],["v","/assets/videos/mc-19.mp4","/assets/videos/mc-19-poster-v2.jpg"],["v","/assets/videos/bb-vid-09.mp4","/assets/videos/bb-vid-09-poster.jpg"],["v","/assets/videos/bb-vid-04.mp4","/assets/videos/bb-vid-04-poster.jpg"],["v","/assets/videos/bb-vid-02.mp4","/assets/videos/bb-vid-02-poster.jpg"],["i","/assets/bb-41.webp",""],["v","/assets/videos/bb-vid-08.mp4","/assets/videos/bb-vid-08-poster.jpg"],["v","/assets/videos/mc-3.mp4","/assets/videos/mc-3-poster-v2.jpg"],["i","/assets/bb-04.webp",""],["v","/assets/videos/bb-vid-01.mp4","/assets/videos/bb-vid-01-poster.jpg"],["v","/assets/videos/bb-vid-07.mp4","/assets/videos/bb-vid-07-poster.jpg"],["v","/assets/videos/mc-2.mp4","/assets/videos/mc-2-poster-v2.jpg"],["i","/assets/bb-19.webp",""],["i","/assets/bb-28.webp",""],["v","/assets/videos/mc-25.mp4","/assets/videos/mc-25-poster-v2.jpg"],["i","/assets/bb-23.webp",""],["v","/assets/videos/bb-vid-03.mp4","/assets/videos/bb-vid-03-poster.jpg"],["i","/assets/bb-33.webp",""],["v","/assets/videos/mc-8.mp4","/assets/videos/mc-8-poster-v2.jpg"],["v","/assets/videos/mc-27.mp4","/assets/videos/mc-27-poster-v2.jpg"],["i","/assets/bb-14.webp",""],["v","/assets/videos/bb-vid-06.mp4","/assets/videos/bb-vid-06-poster.jpg"],["v","/assets/videos/bb-vid-05.mp4","/assets/videos/bb-vid-05-poster.jpg"],["i","/assets/bb-09.webp",""],["v","/assets/videos/bfc-01.mp4","/assets/videos/bfc-01-poster.jpg"],["v","/assets/videos/bfc-02.mp4","/assets/videos/bfc-02-poster.jpg"],["v","/assets/videos/bfc-03.mp4","/assets/videos/bfc-03-poster.jpg"],["v","/assets/videos/bfc-04.mp4","/assets/videos/bfc-04-poster.jpg"],["v","/assets/videos/bfc-05.mp4","/assets/videos/bfc-05-poster.jpg"],["v","/assets/videos/bfc-06.mp4","/assets/videos/bfc-06-poster.jpg"],["v","/assets/videos/bfc-07.mp4","/assets/videos/bfc-07-poster.jpg"],["v","/assets/videos/bfc-08.mp4","/assets/videos/bfc-08-poster.jpg"],["v","/assets/videos/bfc-09.mp4","/assets/videos/bfc-09-poster.jpg"],["v","/assets/videos/bfc-10.mp4","/assets/videos/bfc-10-poster.jpg"],["v","/assets/videos/bfc-11.mp4","/assets/videos/bfc-11-poster.jpg"],["v","/assets/videos/bfc-12.mp4","/assets/videos/bfc-12-poster.jpg"],["v","/assets/videos/bfc-13.mp4","/assets/videos/bfc-13-poster.jpg"],["v","/assets/videos/bfc-14.mp4","/assets/videos/bfc-14-poster.jpg"],["v","/assets/videos/bfc-15.mp4","/assets/videos/bfc-15-poster.jpg"],["v","/assets/videos/bfc-16.mp4","/assets/videos/bfc-16-poster.jpg"],["v","/assets/videos/bfc-17.mp4","/assets/videos/bfc-17-poster.jpg"],["v","/assets/videos/bfc-18.mp4","/assets/videos/bfc-18-poster.jpg"],["v","/assets/videos/bfc-19.mp4","/assets/videos/bfc-19-poster.jpg"],["v","/assets/videos/bfc-20.mp4","/assets/videos/bfc-20-poster.jpg"],["v","/assets/videos/bfc-21.mp4","/assets/videos/bfc-21-poster.jpg"],["v","/assets/videos/bfc-22.mp4","/assets/videos/bfc-22-poster.jpg"],["v","/assets/videos/bfc-23.mp4","/assets/videos/bfc-23-poster.jpg"],["v","/assets/videos/bfc-24.mp4","/assets/videos/bfc-24-poster.jpg"],["v","/assets/videos/bfc-25.mp4","/assets/videos/bfc-25-poster.jpg"],["v","/assets/videos/bfc-26.mp4","/assets/videos/bfc-26-poster.jpg"],["v","/assets/videos/bfc-27.mp4","/assets/videos/bfc-27-poster.jpg"],["v","/assets/videos/bfc-28.mp4","/assets/videos/bfc-28-poster.jpg"],["v","/assets/videos/bfc-29.mp4","/assets/videos/bfc-29-poster.jpg"],["v","/assets/videos/bfc-30.mp4","/assets/videos/bfc-30-poster.jpg"],["v","/assets/videos/bb-vid-10.mp4","/assets/videos/bb-vid-10-poster.jpg"],["v","/assets/videos/bb-vid-11.mp4","/assets/videos/bb-vid-11-poster.jpg"],["v","/assets/videos/bb-vid-12.mp4","/assets/videos/bb-vid-12-poster.jpg"],["v","/assets/videos/bb-vid-13.mp4","/assets/videos/bb-vid-13-poster.jpg"],["v","/assets/videos/bb-vid-14.mp4","/assets/videos/bb-vid-14-poster.jpg"],["v","/assets/videos/bb-vid-15.mp4","/assets/videos/bb-vid-15-poster.jpg"],["v","/assets/videos/bb-vid-16.mp4","/assets/videos/bb-vid-16-poster.jpg"],["v","/assets/videos/bb-vid-17.mp4","/assets/videos/bb-vid-17-poster.jpg"],["v","/assets/videos/bb-vid-18.mp4","/assets/videos/bb-vid-18-poster.jpg"],["v","/assets/videos/bb-vid-19.mp4","/assets/videos/bb-vid-19-poster.jpg"],["v","/assets/videos/bb-vid-20.mp4","/assets/videos/bb-vid-20-poster.jpg"],["i","/assets/bb-44.webp","A framed foil handprint and footprint keepsake"]]</script>
+<script data-ugc-reel>
+  /* GENERATED by scripts/build-ugc-reel.js - edit the script, not this. */
+  (function () {
+    var section = document.querySelector('.ugc');
+    var track = section && section.querySelector('.ugc-track');
+    if (!track) return;
+
+    /* ---- rotate: fresh selection from the pool on every page load ----
+       Nothing has been fetched at this point - every tile carries data-src and
+       data-poster - so reassigning them costs no bandwidth. Both halves of the
+       track get the same selection, otherwise the -50% marquee loop jumps. */
+    var tiles = track.querySelectorAll('.ugc-item');
+    var node = document.querySelector('script[data-ugc-pool]');
+    if (node && tiles.length) {
+      try {
+        var pool = JSON.parse(node.textContent);
+        var half = tiles.length / 2;
+        if (pool.length > half && half === Math.floor(half)) {
+          var bag = pool.slice();
+          for (var i = bag.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = bag[i]; bag[i] = bag[j]; bag[j] = t;
+          }
+          var pick = bag.slice(0, half);
+          for (var k = 0; k < tiles.length; k++) {
+            var it = pick[k % half];
+            tiles[k].innerHTML = it[0] === 'v'
+              ? '<video data-src="' + it[1] + '" data-poster="' + it[2] +
+                '" muted loop playsinline preload="none"></video>'
+              : '<img src="' + it[1] + '" loading="lazy" decoding="async" alt="' +
+                it[2] + '">';
+          }
+        }
+      } catch (e) { /* keep the tiles the build rendered */ }
+    }
+
+    var vids = track.querySelectorAll('.ugc-item video');
+    if (!vids.length) return;
+
+    function poster(v) {
+      if (v.dataset.poster) { v.poster = v.dataset.poster; delete v.dataset.poster; }
+    }
+
+    /* No IntersectionObserver: show every poster rather than a wall of blanks. */
+    if (!('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(vids, poster);
+      return;
+    }
+
+    var conn = navigator.connection || {};
+    var frugal = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || '');
+    /* Guarded: if matchMedia is unavailable this would throw and take the whole
+       observer with it, leaving every tile a bare coloured box. */
+    var narrow = false;
+    try { narrow = window.matchMedia('(max-width:600px)').matches; } catch (e) { }
+    var cap = narrow ? 4 : 8;
+
+    var POSTER_MARGIN = 600;   // lead time, in px either side of the viewport
+    var playing = [];
+
+    function stop(v) {
+      var i = playing.indexOf(v);
+      if (i > -1) playing.splice(i, 1);
+      v.pause();
+    }
+    function start(v) {
+      if (playing.indexOf(v) > -1) return;
+      while (playing.length >= cap) stop(playing[0]);
+      if (v.dataset.src) { v.src = v.dataset.src; delete v.dataset.src; }
+      playing.push(v);
+      v.play().catch(function () { });
+    }
+
+    /* One sweep: read every rect first, then act. Reading and writing in the
+       same pass would thrash layout once per tile. */
+    function sweep() {
+      var w = window.innerWidth || document.documentElement.clientWidth;
+      var rects = [];
+      for (var i = 0; i < vids.length; i++) rects.push(vids[i].getBoundingClientRect());
+      for (var j = 0; j < vids.length; j++) {
+        var r = rects[j], v = vids[j];
+        if (r.right > -POSTER_MARGIN && r.left < w + POSTER_MARGIN) poster(v);
+        if (frugal) continue;
+        if (r.right > 0 && r.left < w && r.bottom > 0) start(v);
+        else stop(v);
+      }
+    }
+
+    /* Throttled rAF. rAF rather than setInterval so it pauses in a background
+       tab; throttled because the tiles do not need checking 60 times a second. */
+    var live = false, last = 0;
+    function frame(now) {
+      if (!live) return;
+      if (now - last >= 150) { last = now; sweep(); }
+      requestAnimationFrame(frame);
+    }
+
+    /* The SECTION is static, so IO is reliable here in a way it is not on the
+       tiles themselves. */
+    new IntersectionObserver(function (entries) {
+      var on = entries[0] && entries[0].isIntersecting;
+      if (on && !live) { live = true; last = 0; requestAnimationFrame(frame); }
+      else if (!on && live) {
+        live = false;
+        while (playing.length) stop(playing[0]);
+      }
+    }, { root: null, rootMargin: '200px', threshold: 0 }).observe(section);
+  })();
+</script>
+  <!-- Nav toggle. home.html was the ONLY page of 31 carrying the burger
+       markup without this handler, so the menu button did nothing here
+       and worked everywhere else (Ryan, 12/08). Copied verbatim from
+       contact.html - 30 pages ship an identical copy of this block,
+       which is exactly how one page came to be missed. check-forms.js
+       now fails the build if a burger has no handler; moving this into
+       shared/nav.js is the proper fix and is post-launch work. -->
   <script>
     /* interim nav menu toggle */
     (function () {
@@ -954,6 +1822,7 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
     })();
   </script>
+<script type="text/javascript" src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async data-tp-bootstrap></script>
 </body>
 
 </html>

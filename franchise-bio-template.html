@@ -2,8 +2,8 @@
 <html lang="en-GB">
 
 <head>
-  <script src="/shared/analytics.js"></script>
-  <script src="/shared/trustpilot.js" defer></script>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <script src="/shared/trustpilot.js?v=6fa7af21" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{{seo_title}}</title>
@@ -12,14 +12,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
     onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
       rel="stylesheet">
   </noscript>
-  <link rel="stylesheet" href="/shared/styles.css?v=25">
+  <link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
   <style>
     /* ===== MEMORY CATCHER BIO page-specific ===== */
 
@@ -480,6 +480,68 @@
       text-decoration-color: var(--stone)
     }
 
+    /* Announce bar — inlined so the crossfade works even if shared CSS is
+       cached/missing on edge-served bio pages. Without position:absolute on
+       .announce-item, all four statements render in one row (broken layout). */
+    .announce {
+      background: var(--ink);
+      color: var(--white);
+      font-family: "Figtree", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 44px;
+      padding: 0 16px;
+      z-index: 30
+    }
+
+    .announce-item {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 16px;
+      opacity: 0;
+      animation: announce-cycle 28s infinite
+    }
+
+    .announce-item:nth-child(2) { animation-delay: 7s }
+    .announce-item:nth-child(3) { animation-delay: 14s }
+    .announce-item:nth-child(4) { animation-delay: 21s }
+
+    .announce-text { display: inline }
+
+    @keyframes announce-cycle {
+      0%, .5% { opacity: 0 }
+      2%, 22% { opacity: 1 }
+      24%, 100% { opacity: 0 }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .announce-item { animation: none; opacity: 0 }
+      .announce-item:first-child { opacity: 1 }
+    }
+
+    @media (max-width: 420px) {
+      .announce { font-size: 12.5px }
+      .announce-item { gap: 6px; padding: 0 10px }
+    }
+
+    .announce img {
+      height: 18px;
+      width: auto;
+      display: block;
+      margin-right: 8px
+    }
+
+    .announce b { font-weight: 600 }
+
   </style>
 </head>
 
@@ -582,11 +644,19 @@
   <!-- light header on this page: give it a solid bar since there's no dark hero -->
   <style>
     header {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
       background: var(--porcelain);
       box-shadow: 0 2px 14px -8px rgba(0, 0, 0, .16)
     }
 
     header.scrolled {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       box-shadow: 0 8px 28px -16px rgba(0, 0, 0, .28)
     }
 
@@ -676,7 +746,7 @@
   <footer>
     <div class="foot-top">
       <div class="foot-col foot-contact">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <p>Tel: 07506 998934</p>
         <p>Email: hello@thebespokefoilcompany.co.uk</p>
         <div class="foot-social">
@@ -699,7 +769,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h3>Explore</h3>
         <ul>
           <li><a href="/product-page/foil-handprint-footprint-kit-baby-keepsake">Order Your Kit</a></li>
           <li><a href="/our-story">Our Story</a></li>
@@ -713,14 +783,14 @@
       </div>
 
       <div class="foot-col">
-        <h4>Resources</h4>
+        <h3>Resources</h3>
         <ul>
           <li><a href="/faq">FAQ's</a></li>
           <li><a href="/blog">Stories &amp; Inspiration</a></li>
           <li><a href="/bespoke-baby-gallery">Bespoke Baby Gallery</a></li>
           <li><a href="/kit-walkthrough-video">Kit Walkthrough Video</a></li>
         </ul>
-        <h4>Franchise</h4>
+        <h3>Franchise</h3>
         <ul>
           <li><a href="/franchise-hub">Franchise Hub</a></li>
           <li><a href="/memory-catcher-hub">The Memory Catcher&trade; Hub</a></li>
@@ -733,7 +803,7 @@
       </div>
 
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <ul>
           <li><a href="/contact">Contact Us</a></li>
           <li><a href="/privacy-policy">Privacy Policy</a></li>
@@ -779,6 +849,9 @@
                connects the two for machines. -->
           <p class="foot-etsy"><span data-etsy-score>4.9</span> / 5 from <span data-etsy-count>over 2,000</span> reviews on Etsy</p>
         </div>
+        </div><!-- /.foot-right -->
+      </div><!-- /.foot-col -->
+    </div><!-- /.foot-top -->
 
     <div class="foot-legal">
       <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales | Company No. 12941845. VAT ID:

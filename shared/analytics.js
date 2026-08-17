@@ -19,6 +19,7 @@
   'use strict';
 
   var GA_ID = 'G-L1J1KR2VZZ';
+  var CLARITY_ID = 'y2mf2erlcy';   // Microsoft Clarity, added 15/08
   var STORE = 'bfc-consent';
   var VERSION = 1;              // bump to re-ask everyone after a policy change
 
@@ -71,6 +72,71 @@
   s.async = true;
   s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
   document.head.appendChild(s);
+
+  /* ---------- Microsoft Clarity ----------
+     Session recording and heatmaps. Lives here rather than pasted into 40 pages
+     for the same reason gtag does: one measurement id to keep in step.
+
+     CONSENT. Clarity has its own setting for this, in the dashboard under
+     Settings -> Cookie consent. The code below works with EITHER position, so
+     the choice stays Ryan's and needs no redeploy:
+
+       OFF            Clarity sets cookies from page load, like the Meta Pixel
+                      does today. The banner copy already covers it - "we use
+                      cookies to see how the site is used".
+       ON             No cookies until consentv2 says granted. A denial is not
+                      silence: Clarity drops to no-consent mode, sets nothing,
+                      and treats every page view as a new visitor.
+
+     Note this is enforced for us regardless. Since 31 October 2025 Microsoft
+     applies consent automatically to EEA, UK and Swiss traffic, which is
+     effectively all of ours - so the signal below matters whichever way the
+     dashboard toggle is set.
+
+     Worth saying plainly: this is a step beyond a pixel. Clarity replays what a
+     visitor did - movement, clicks, scrolling. It masks text input by default,
+     so card and address fields are not captured, but it is still a recording of
+     a real person using the site. If any tracking here should require consent
+     first, this is the one, and turning it on is a dashboard toggle. */
+  (function loadClarity() {
+    if (window.clarity) return;                       // already on the page
+    window.clarity = window.clarity || function () {
+      (window.clarity.q = window.clarity.q || []).push(arguments);
+    };
+    var c = document.createElement('script');
+    c.async = true;                                   // never blocks render
+    c.src = 'https://www.clarity.ms/tag/' + CLARITY_ID;
+    document.head.appendChild(c);
+
+    /* consentv2, not the older consent() call.
+       ------------------------------------------------------------------
+       Microsoft deprecated the v1 API; v2 is the current one and takes an
+       explicit state for each storage type rather than a single "granted".
+
+       It is called on DENY as well as grant. Under v2 a denial is a real
+       instruction - Clarity drops to no-consent mode, sets no cookies, and
+       treats every page view as a new visitor - so staying silent is not the
+       same thing as saying no.
+
+       Since 31 October 2025 Microsoft enforces consent automatically for EEA,
+       UK and Swiss traffic, which is effectively all of ours, so this runs
+       whatever the dashboard toggle says.
+
+       One banner choice maps to both storage types: the banner asks a single
+       question, so answering it means the same for analytics and advertising. */
+    function tellClarity(granted) {
+      window.clarity('consentv2', {
+        ad_Storage: granted ? 'granted' : 'denied',
+        analytics_Storage: granted ? 'granted' : 'denied'
+      });
+    }
+    /* Only when a choice has actually been made. No stored decision means the
+       visitor has not answered yet, and Clarity's own default handles that. */
+    if (saved) tellClarity(!!saved.analytics);
+    document.addEventListener('bfc:consent', function (e) {
+      if (e && e.detail) tellClarity(!!e.detail.analytics);
+    });
+  }());
 
   /* ---------------------------------------------------------------------------
      CONSENT BANNER
@@ -134,28 +200,81 @@
     return b;
   }
 
+  /* Keep the banner clear of any bottom-pinned bar.
+     -----------------------------------------------------------------
+     our-kit.html, keepsake-standalone.html and franchise.html each pin a
+     .sticky buy bar to bottom:0. A banner at bottom:16px lands directly
+     on it and intercepts taps meant for Buy now - and because it only
+     closes on Accept or Decline, an undecided visitor keeps it there for
+     the whole session.
+
+     Measured rather than hardcoded, so it cannot drift out of step when
+     that bar's padding or content changes. getBoundingClientRect gives
+     the true height even while the bar is translated off-screen, and 0
+     when the desktop breakpoint sets display:none - which is the right
+     answer for desktop.
+
+     Safe area is added ONLY when there is no bar. The bar's own padding
+     is already calc(12px + env(safe-area-inset-bottom)), so its measured
+     height includes the inset; adding it again would lift the banner by
+     that inset twice. */
+  function place() {
+    if (!el) { return; }
+    var bar = document.querySelector('.sticky');
+    var h = bar ? bar.getBoundingClientRect().height : 0;
+    el.style.bottom = h > 0
+      ? (Math.round(h) + 16) + 'px'
+      : 'calc(16px + env(safe-area-inset-bottom))';
+  }
+
   function open() {
     if (el) { return; }
 
     el = document.createElement('div');
     el.setAttribute('role', 'dialog');
     el.setAttribute('aria-label', 'Cookie choices');
+    /* z-index 150, not 2147483000.
+       ---------------------------------------------------------------
+       The old value put this above EVERY layer on the site, including
+       two that matter more than it does: the checkout drawer and the
+       nav menu, both at 200. On mobile the drawer's panel is anchored
+       to the bottom of the screen, so a banner pinned bottom-left sat
+       on top of the payment form and could take taps meant for the pay
+       button. 150 clears the site header (20) and the sticky buy bar
+       (50) while sitting BELOW anything modal, so an open drawer or
+       menu covers it with its own scrim instead of fighting it.
+
+       Vertical position is set by place() below rather than hardcoded,
+       and safe-area padding has moved out of the card's own padding and
+       into that offset - keeping it here would double up whenever the
+       banner is lifted clear of the screen edge. */
     el.style.cssText =
-      'position:fixed;left:16px;bottom:16px;z-index:2147483000;' +
+      'position:fixed;left:16px;z-index:150;' +
       'width:calc(100vw - 32px);max-width:340px;background:' + WHITE + ';' +
       'border:1px solid ' + LINE + ';border-radius:14px;padding:14px 16px;' +
       'box-shadow:0 14px 36px rgba(0,0,0,.14);' +
-      'font:12.5px/1.5 ' + FONT + ';color:' + SOFT + ';' +
-      'padding-bottom:calc(14px + env(safe-area-inset-bottom));';
+      'font:12.5px/1.5 ' + FONT + ';color:' + SOFT + ';';
+    place();
 
     var p = document.createElement('p');
     p.style.cssText = 'margin:0 0 12px;';
-    p.appendChild(document.createTextNode('We use cookies to see how the site is used. Nothing is stored until you choose. '));
+    /* Copy changed 12/08. It previously said "Nothing is stored until you
+       choose", which was not true: the Meta Pixel loads on our-kit,
+       keepsake-standalone and franchise with no consent gate, so _fbp is
+       written the moment the page loads. Ryan's decision was to keep the
+       Pixel firing and make the wording accurate rather than gate it.
+
+       This stops asserting something false without advertising the gap.
+       If the Pixel is ever brought under the bfc:consent event that
+       already exists, the old sentence becomes true again and can come
+       back. */
+    p.appendChild(document.createTextNode('We use cookies to see how the site is used and to measure our advertising. Choose below, or read our '));
     var a = document.createElement('a');
     a.href = '/privacy-policy';
-    a.textContent = 'Privacy';
+    a.textContent = 'Privacy Policy';
     a.style.cssText = 'color:' + INK + ';text-decoration:underline;text-underline-offset:3px;';
     p.appendChild(a);
+    p.appendChild(document.createTextNode('.'));
 
     var row = document.createElement('div');
     row.style.cssText = 'display:flex;gap:8px;';
@@ -210,6 +329,8 @@
     if (saved) { return; }   // decision already recorded, head script applied it
     open();
   }
+
+  window.addEventListener('resize', place);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);

@@ -2,12 +2,12 @@
 <html lang="en-GB">
 
 <head>
-  <script src="/shared/analytics.js"></script>
-  <script src="/shared/trustpilot.js" defer></script>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <script src="/shared/trustpilot.js?v=6fa7af21" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/product-page/foil-handprint-footprint-kit-baby-keepsake">
+  <link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/memory-catcher/ashley-eccleston">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -17,22 +17,25 @@
   <meta property="og:description"
     content="Preserve their tiny hands and feet forever. Mess-free inkless kit, finished in real metallic foil in our Wigan workshop. Rated Excellent on Trustpilot.">
   <meta property="og:url" content="https://keepsake.thebespokefoilcompany.co.uk/">
-  <meta property="og:image" content="https://keepsake.thebespokefoilcompany.co.uk/assets/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://keepsake.thebespokefoilcompany.co.uk/assets/og-image.jpg">
-  <!-- STANDALONE conversion layout. Deliberately NO site header or footer.
+<meta name="twitter:card" content="summary_large_image">
+<!-- STANDALONE conversion layout. Deliberately NO site header or footer.
      Serves /memory-catcher/* (affiliate pages, edge function makes them noindex)
      and ships separately to keepsake.thebespokefoilcompany.co.uk.
      The integrated version with site chrome lives in our-kit.html. -->
   <title>Baby Memory Kit Bespoke Foil Company Keepsake Prints</title>
-  <meta name="description"
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/keepsake-standalone.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/keepsake-standalone.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/keepsake-standalone.jpg">
+<meta name="description"
     content="Everything you need to capture tiny handprints footprints and milestones in one simple kit. Easy to use beautiful to display and made to be treasured.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://js.stripe.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap"
     rel="stylesheet">
   <!-- Meta Pixel: Bespoke Foil Company dataset (set 17/07/2026) -->
   <script>
@@ -57,7 +60,6 @@
   </script>
   <noscript><img height="1" width="1" style="display:none" alt=""
       src="https://www.facebook.com/tr?id=1115044330715742&amp;ev=PageView&amp;noscript=1" /></noscript>
-  <script src="https://js.stripe.com/v3/"></script>
   <style>
     :root {
       --ink: #000000;
@@ -123,6 +125,18 @@
       align-items: center;
       gap: 0;
     }
+/* Three statements crossfading, all present in the markup. See scripts/build-announce.js. */
+.announce{position: relative; min-height: 44px; padding: 0 16px}
+.announce-item{position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px; opacity: 0; animation: announce-cycle 28s infinite}
+.announce-item:nth-child(2){animation-delay: 7s}
+.announce-item:nth-child(3){animation-delay: 14s}
+.announce-item:nth-child(4){animation-delay: 21s}
+/* one flex item, so the container gap never falls between words */
+.announce-text{display: inline}
+@keyframes announce-cycle{0%,.5%{opacity:0}2%,22%{opacity:1}24%,100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.announce-item{animation:none;opacity:0}.announce-item:first-child{opacity:1}}
+@media (max-width: 420px){.announce{font-size:12.5px}.announce-item{gap:6px;padding:0 10px}}
+
 
     .announce img {
       height: 18px;
@@ -210,9 +224,12 @@
 
     @media (prefers-reduced-motion:reduce) {
 
+      /* Scoped, not global, on this page - so anything animated outside these
+         selectors has to be added by hand. The reel heading accent shimmers. */
       .hero *,
       .kit,
-      .sticky {
+      .sticky,
+      .ugc h2 .ugc-accent {
         animation: none !important;
         transition: none !important
       }
@@ -235,6 +252,17 @@
       color: var(--ink-soft);
       flex-wrap: wrap;
     }
+/* Etsy beside the hero Trustpilot line - muted, since the Trustpilot half is
+   the linked verifiable claim. flex-wrap lets it drop a line on a phone. */
+.tp-line{flex-wrap: wrap}
+/* line-height matched to .tp-line. align-items:center aligns the two BOXES,
+       not the two baselines - with different line-heights the Etsy text rode
+       about a pixel high. Equal line-height makes centring align the text. */
+    .tp-etsy{color: var(--ink-soft); white-space: nowrap; line-height: 1}
+.tp-etsy b{color: var(--ink); font-weight: 600}
+.kb-etsy{display: block; margin-top: 6px; font-size: .92em; color: var(--ink-soft)}
+.kb-etsy b{color: var(--ink); font-weight: 600}
+
 
     .hero-proof .dot {
       width: 3px;
@@ -251,7 +279,8 @@
     .tp-line {
       display: inline-flex;
       align-items: center;
-      gap: 7px
+      gap: 7px;
+      line-height: 1
     }
 
     .tp-line .tp-s {
@@ -1137,8 +1166,7 @@
 
     .paymethods img {
       height: 31px;
-      width: auto
-    }
+      width: auto; background: var(--white); border-radius: 3px}
 
     .cd-label {
       font-size: 12px;
@@ -1158,6 +1186,17 @@
       background: var(--white);
       margin-bottom: 14px;
     }
+/* Memory Catcher code field. Collapsed behind a link by default - an
+   always-visible discount box sends people hunting for a code they do not have,
+   which is a known abandonment path. */
+.cd-codetoggle{background: none; border: 0; padding: 4px 0; margin: 2px 0 0; font: inherit; font-size: 13px; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; cursor: pointer}
+.cd-coderow{display: flex; gap: 8px}
+.cd-code{flex: 1 1 auto; min-width: 0; text-transform: uppercase; width: 100%; height: 44px; border: 1px solid var(--hairline); border-radius: 10px; padding: 0 12px; font: inherit}
+.cd-codeapply{flex: 0 0 auto; padding: 0 16px; height: 44px; border: 1px solid var(--ink); background: var(--white); border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer}
+.cd-codeapply[disabled]{opacity: .5; cursor: default}
+.cd-codemsg{font-size: 13px; margin: 6px 0 0; min-height: 1.2em}
+.cd-codemsg.is-ok{color: #3E8E6B}
+.cd-codemsg.is-bad{color: var(--ink-soft)}
 
     .cd-email:focus {
       outline: none;
@@ -1277,6 +1316,13 @@
 
     /* ---------- steps: from kit to keepsake ---------- */
     .steps {
+    /* Single source for the carousel gutter. .steps-head centres itself
+       with these; .steps-track reproduces the same offset with padding.
+       Derived from one pair of numbers so the two cannot drift apart -
+       which is exactly what happened when a fixed pixel offset was copied
+       here from a page with a different container. */
+    --steps-max: 1180px;
+    --steps-pad: 24px;
       background: var(--white);
       border-top: 1px solid var(--hairline);
       padding: 72px 0 80px;
@@ -1284,9 +1330,9 @@
     }
 
     .steps-head {
-      max-width: 1180px;
+      max-width: var(--steps-max);
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 var(--steps-pad);
       display: grid;
       gap: 28px;
     }
@@ -1387,17 +1433,13 @@
       scroll-snap-type: x mandatory;
       padding-top: 36px;
       padding-bottom: 8px;
-      padding-left: 24px;
+      padding-left: max(var(--steps-pad), calc(50% - var(--steps-max) / 2 + var(--steps-pad)));
       padding-right: 24px;
-      scroll-padding-left: 24px;
+      scroll-padding-left: max(var(--steps-pad), calc(50% - var(--steps-max) / 2 + var(--steps-pad)));
       scrollbar-width: none;
     }
 
     @media (min-width:1180px) {
-      .steps-track {
-        padding-left: calc(50% - 566px);
-        scroll-padding-left: calc(50% - 566px);
-      }
     }
 
     .steps-track::-webkit-scrollbar {
@@ -1650,11 +1692,44 @@
       padding: 80px 24px 88px;
       background: var(--porcelain)
     }
+/* header.scrolled is position:fixed, so an anchor landing flush would put the
+   header over the section's top padding. Clears it. */
+.reviews{scroll-margin-top: 64px}
+/* The hero badge is a jump link now. Inherit everything, show it is clickable. */
+.hero-proof .tp-jump{display: inline-flex; align-items: center; gap: 6px 14px; color: inherit; text-decoration: none; border-radius: 6px}
+    /* Divider between the Trustpilot half and the Etsy half. Its own flex item,
+       so the 14px column-gap sits on BOTH sides of it - the two halves used to
+       touch, because whitespace between flex items is collapsed and the only
+       separator was a middot inside the Etsy span. */
+    /* currentColor, NOT a fixed colour: our-kit has a light hero and takes its
+   text from --ink-soft, keepsake-standalone has a DARK hero and inherits
+   white from shared/styles.css. A hardcoded rgba(0,0,0,.2) was invisible
+   on the dark one. */
+.tp-sep{flex: 0 0 auto; width: 1px; height: 13px; background: currentColor; opacity: .32}
+.hero-proof .tp-jump:hover .tp-line, .hero-proof .tp-jump:focus-visible .tp-line{text-decoration: underline; text-underline-offset: 3px}
+.hero-proof .tp-jump:focus-visible{outline: 2px solid currentColor; outline-offset: 4px}
+/* The proof line is two claims side by side with a divider between them. On a
+   narrow phone that does not fit: the Trustpilot lockup alone is ~225px and the
+   Etsy half is ~230px at 13px. `.tp-jump` already declares a 6px ROW gap, which
+   was dead because nothing ever wrapped. Below 520px, let it wrap and hide the
+   divider - a vertical bar stranded at the end of the first line reads as a
+   rendering fault. The bar stays in the HTML, so the build-trustpilot guard
+   requiring .tp-sep still passes; it is only hidden. */
+@media (max-width: 520px) {
+  .hero-proof .tp-jump{flex-wrap: wrap}
+  .tp-sep{display: none}
+}
+
 
     .reviews-head {
       text-align: center;
       margin-bottom: 44px
     }
+/* subordinate to the Trustpilot lockup - one claim is linked and verified,
+   the other is not, so they should not read as equals */
+.reviews-etsy{margin: 14px auto 0; max-width: 46ch; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); text-align: center}
+.reviews-etsy b{color: var(--ink); font-weight: 600}
+
 
     .reviews-head .tp-row {
       display: flex;
@@ -2562,30 +2637,130 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 10px
     }
-  </style>
-  <script type="application/ld+json">
+  
+/* ---- kit comparison band ---- */
+.kc-band{background: var(--ink); color: #fff; padding: 72px 40px; text-align: center}
+.kc-band .kc-inner{max-width: 940px; margin: 0 auto}
+.kc-band h2{font-family: var(--serif); font-weight: 340; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -.015em; max-width: 720px; margin: 0 auto 16px}
+.kc-band h2 .kc-accent{color: var(--stone)}
+.kc-band .kc-lede{max-width: 620px; margin: 0 auto 36px; font-size: 16px; line-height: 1.65; color: rgba(255, 255, 255, .72)}
+.kc-band .kc-tablelede{max-width: 620px; margin: 0 auto 22px; font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, .55)}
+.kc-compare{max-width: 940px; margin: 0 auto; border: 1px solid rgba(255, 255, 255, .16); border-radius: var(--r-card); overflow: hidden; text-align: left}
+.kc-compare-row{display: grid; grid-template-columns: .85fr 1fr 1fr}
+.kc-compare-row+.kc-compare-row{border-top: 1px solid rgba(255, 255, 255, .12)}
+.kc-compare-cell{padding: 18px 20px; font-size: 14.5px; line-height: 1.5}
+.kc-compare .ours-val, .kc-compare .others-val{display: flex; align-items: flex-start; gap: 11px}
+.kc-compare .v{flex: 1 1 0; min-width: 0}
+.kc-mark{flex: 0 0 auto; width: 17px; height: 17px; margin-top: 3px}
+.kc-mark path{fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round}
+.kc-mark.tick circle{fill: var(--stone)}
+.kc-mark.tick path{stroke: var(--ink)}
+.kc-mark.cross circle, .kc-mark.dash circle{fill: rgba(255, 255, 255, .10)}
+.kc-mark.cross path, .kc-mark.dash path{stroke: rgba(255, 255, 255, .42)}
+.kc-compare-cell:not(:first-child){border-left: 1px solid rgba(255, 255, 255, .12)}
+.kc-compare-head .kc-compare-cell{font-family: var(--serif); font-size: 15px; font-weight: 400; background: rgba(255, 255, 255, .05)}
+.kc-compare-head .ours{color: #fff}
+.kc-compare-head .others{color: rgba(255, 255, 255, .55)}
+.kc-compare .rlabel{font-weight: 600; color: #fff}
+.kc-compare .ours-val{color: #fff}
+.kc-compare .ours-val strong{color: var(--stone); font-weight: 600}
+.kc-compare .others-val{color: rgba(255, 255, 255, .6)}
+.kc-band .kc-foot{max-width: 620px; margin: 28px auto 0; font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, .55)}
+.kc-band /* ---- CTA pill, inlined from shared/styles.css ----
+       This page deliberately does not load the shared stylesheet (see the note
+       further down), so every shared component it uses has to be repeated here.
+       The Choose Your Kit button under the comparison table was copied across
+       WITHOUT this component, leaving only the margin rule below. The result
+       was not subtle: no display:inline-flex meant the label stacked above the
+       square, and no fill:none on the arrow meant the path rendered as a solid
+       black triangle inside a default browser button.
+
+       It went unnoticed because /memory-catcher/<slug> serves THIS page, not
+       our-kit.html, where the same markup renders correctly from the shared
+       sheet. Checking our-kit was checking the wrong file. Found 13/08. */
+    .cta { display: inline-flex; align-items: center; gap: 14px; background: var(--white); color: var(--ink); border: none; border-radius: var(--r-btn); font-family: var(--sans); font-weight: 500; font-size: 15px; padding: 7px 7px 7px 18px; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, background .25s ease, color .25s ease; box-shadow: 0 1px 2px rgba(0, 0, 0, .06); }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 0, 0, .12) }
+    .cta .sq { flex: 0 0 auto; width: 30px; height: 30px; background: var(--stone); border-radius: 7px; display: grid; place-items: center; }
+    .cta .sq svg { width: 14px; height: 14px; stroke: var(--ink); stroke-width: 2; fill: none }
+    .cta.on-dark { box-shadow: 0 0 0 2px var(--white), 0 1px 2px rgba(0, 0, 0, .06) }
+    .cta.on-dark:hover { box-shadow: 0 0 0 2px var(--white), 0 6px 18px rgba(0, 0, 0, .28) }
+    .cta{margin-top: 32px}
+@media (max-width:860px){
+.kc-compare-row{grid-template-columns: .9fr 1fr 1fr}
+.kc-compare-cell{padding: 16px; font-size: 14px}
+}
+@media (max-width:640px){
+.kc-band{padding: 48px 18px}
+.kc-compare-row{grid-template-columns: 1fr}
+.kc-compare-cell:not(:first-child){border-left: none; border-top: 1px solid rgba(255, 255, 255, .1)}
+.kc-compare-head{display: none}
+.kc-compare .rlabel{background: rgba(255, 255, 255, .05); font-family: var(--serif); font-weight: 400; font-size: 15px; color: var(--stone)}
+.kc-compare .ours-val, .kc-compare .others-val{flex-wrap: wrap}
+.kc-compare .ours-val::before, .kc-compare .others-val::before{width: 100%; margin-bottom: 4px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase}
+.kc-compare .ours-val::before{content: "Our kits"; color: var(--stone)}
+.kc-compare .others-val::before{content: "Other kits"; color: rgba(255, 255, 255, .45)}
+}
+
+/* ---- UGC reel ----
+   Inlined rather than inherited: this page does NOT load shared/styles.css
+   (73 selectors would collide), so the rules cannot reach it from there.
+   Kept identical to the shared-sheet copy - if one changes, change both. */
+.ugc{background: var(--porcelain); padding: 72px 0; overflow: hidden}
+.ugc h2{font-family: var(--serif); font-weight: 340; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -.015em; text-align: center; /* match the lede gutter - the h2 had none, so the accent could touch the edge on a narrow phone */ padding: 0 24px}
+/* Handwritten accent in the reel heading. word-spacing halves the script
+   face's 0.515em word space (Fraunces sits at 0.233em), which closes the
+   hole between the two words. Foil gradient lifted from `h1 .kept` so the
+   accent shimmers like the hero. `color` is a fallback for anything
+   without -webkit-text-fill-color. */
+.ugc h2 .ugc-accent{font-family: var(--script); font-size: 1.22em; font-weight: 400; letter-spacing: 0; word-spacing: -.26em; line-height: 1.05; /* block, not inline-block: own line at every breakpoint, no <br> in the copy. translateY dropped - it aligned a script baseline against a serif one on the SAME line, which no longer applies. */ display: block; margin-top: .12em; color: var(--stone); background: linear-gradient(100deg, #7d7263 0%, #bead9d 28%, #efe6d6 46%, #f6f1e6 50%, #efe6d6 54%, #bead9d 72%, #7d7263 100%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: foil 7s ease-in-out infinite}
+.ugc .lede{text-align: center; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); max-width: 56ch; margin: 10px auto 40px; padding: 0 24px}
+.ugc-viewport{width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)}
+.ugc-track{display: flex; gap: 20px; width: max-content; animation: ugc-scroll 90s linear infinite}
+.ugc:hover .ugc-track{animation-play-state: paused}
+.ugc-item{flex: 0 0 auto; width: 248px; aspect-ratio: 9/16; border-radius: var(--r-card); overflow: hidden; background: var(--bone)}
+.ugc-item video, .ugc-item img{width: 100%; height: 100%; object-fit: cover; display: block}
+.ugc-cta{display: flex; justify-content: center; margin-top: 40px}
+@keyframes ugc-scroll {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+@media(prefers-reduced-motion:reduce){
+.ugc-track{animation: none; overflow-x: auto}
+}
+@media(max-width:600px){
+.ugc{padding: 48px 0}
+.ugc-item{width: 176px}
+}
+
+/* Klarna badge pink. On the img via src so it covers every chip variant;
+   Amex needs no rule, it paints its own full-bleed blue card. */
+.pay-chip img[src*="klarna"],.f-pay-chip img[src*="klarna"],.paymethods img[src*="klarna"]{background: #FFA8CD}
+</style>
+  <script type="application/ld+json" data-bfc-schema>
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Foil Hand & Footprint Kit",
-  "description": "Everything you need to capture tiny handprints, footprints and milestones. Baby-safe inkless wipes, reactive paper, and a personalised foil keepsake crafted with Foil Fusion Technology.",
-  "image": "https://www.thebespokefoilcompany.co.uk/assets/og-image.jpg",
-  "url": "https://www.thebespokefoilcompany.co.uk/our-kit",
-  "brand": { "@type": "Brand", "name": "The Bespoke Foil Company" },
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": "GBP",
-    "lowPrice": "34.95",
-    "highPrice": "59.95",
-    "availability": "https://schema.org/InStock",
-    "url": "https://www.thebespokefoilcompany.co.uk/our-kit"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "bestRating": "5",
-    "reviewCount": "72"
-  }
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Foil Hand & Footprint Kit",
+ "description": "Everything you need to capture tiny handprints, footprints and milestones. Baby-safe inkless wipes, reactive paper, and a personalised foil keepsake crafted with Foil Fusion Technology™.",
+ "image": "https://www.thebespokefoilcompany.co.uk/assets/og-image.jpg",
+ "url": "https://www.thebespokefoilcompany.co.uk/product-page/foil-handprint-footprint-kit-baby-keepsake",
+ "brand": {
+  "@type": "Brand",
+  "name": "The Bespoke Foil Company"
+ },
+ "offers": {
+  "@type": "AggregateOffer",
+  "priceCurrency": "GBP",
+  "lowPrice": "34.95",
+  "highPrice": "59.95",
+  "availability": "https://schema.org/InStock",
+  "url": "https://www.thebespokefoilcompany.co.uk/product-page/foil-handprint-footprint-kit-baby-keepsake"
+ }
 }
 </script>
 </head>
@@ -2593,11 +2768,12 @@
 <body>
 
   <div class="announce">
-    <img src="/assets/tp-stars-5.svg" alt="4.9 out of 5 stars on Trustpilot">
-    <span class="txt">Rated Excellent on Trustpilot</span>
-  </div>
-
-  <header>
+      <span class="announce-item"><img src="/assets/tp-stars-5.svg" alt=""><span class="announce-text">Rated <b>Excellent</b> on Trustpilot</span></span>
+      <span class="announce-item"><span class="announce-text">Rated <b>4.9 / 5</b> from <b>over 2,000</b> reviews on Etsy</span></span>
+      <span class="announce-item"><span class="announce-text">Our exclusive <b>Foil Fusion Technology&trade;</b></span></span>
+      <span class="announce-item"><span class="announce-text">Order before <b>12pm</b> on a weekday for same-day dispatch</span></span>
+    </div>
+    <header>
     <div class="logotype"><img src="/assets/bfc-logo-v2.svg" alt="Bespoke Foil Company"></div>
   </header>
 
@@ -2609,11 +2785,18 @@
         <p class="hero-sub">Our Foil Hand &amp; Footprint Kits use our exclusive Foil Fusion Technology&trade; to
           preserve your baby's prints in real foil. Mess&#8209;free, flawless, forever.</p>
         <div class="hero-proof">
-          <span class="tp-line">
-            <img class="tp-s" src="/assets/tp-stars-5.svg" alt="4.9 out of 5 stars">
-            <b>4.9</b> on
-            <img class="tp-b" src="/assets/tp-brandmark.svg" alt="Trustpilot">
-          </span>
+          <!-- Jumps to the reviews section further down the page rather
+               than off to Trustpilot - the reviews block has its own
+               "See all reviews on Trustpilot" link for that. -->
+          <a class="tp-jump" href="#reviews" aria-label="Read our Trustpilot reviews">
+            <span class="tp-line">
+              <img class="tp-s" src="/assets/tp-stars-5.svg" alt="4.9 out of 5 stars">
+              <b data-tp-score>4.9</b> on
+              <img class="tp-b" src="/assets/tp-brandmark.svg" alt="Trustpilot">
+            </span>
+              <span class="tp-sep" aria-hidden="true"></span>
+              <span class="tp-etsy">Rated <b data-etsy-score>4.9</b>/5 <b data-etsy-count>over 2,000</b>+ Etsy reviews</span>
+            </a>
         </div>
         <div class="hero-media">
           <div class="g-stick">
@@ -3017,6 +3200,90 @@
     </div>
   </section>
 
+    <!-- ============ KIT COMPARISON ============
+         Sits directly after the Foil Fusion band and stays dark on purpose,
+         so the two read as one continuous statement before the FAQ lightens
+         the page again. Everything is scoped under .kc-* - the draft used
+         bare .inner/.lede/.accent/.foot, which would have collided with the
+         host page. -->
+    <section class="kc-band" aria-labelledby="kc-heading">
+    <div class="kc-inner">
+      <h2 id="kc-heading">Ten Years Perfecting <span class="kc-accent">Our Experience</span></h2>
+      <p class="kc-lede">Over 10,000 families have trusted us with their prints, and every one of them has shaped
+        the kit you're looking at. We built the foil process, the upload portal and the proofing system ourselves,
+        which is why your proof comes back in a day rather than a week.</p>
+
+      <p class="kc-tablelede">Here is how our Foil Hand &amp; Footprint Kits compare with a standard ink kit.</p>
+
+        <div class="kc-compare">
+        <div class="kc-compare-row kc-compare-head">
+          <div class="kc-compare-cell">&nbsp;</div>
+          <div class="kc-compare-cell ours">Our Foil Hand &amp; Footprint Kits</div>
+          <div class="kc-compare-cell others">Standard Ink Kits</div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">The finished print</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v">Real foil, fused into the card fibres by our <strong>Foil Fusion Technology&trade;</strong> and reproduced at exact life size. It never fades, peels or cracks</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark cross" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></svg><span class="v">Ink on paper, which fades. We have tested the two side by side - in ten years it will not look like it does today</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">On your baby's skin</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v">A <strong>gentle inkless wipe</strong>. No ink, no paint, no residue, safe from day one</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark cross" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></svg><span class="v">Ink or paint pressed onto your newborn's hand, then washed off</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">More than one attempt</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v"><strong>4 sheets and 2 wipes</strong>, and we tidy any smudges before foiling, keeping every tiny line and crease</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark cross" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></svg><span class="v">Usually 2 sheets. One chance, and if it smudges you buy another kit</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">A backup, forever</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v">We <strong>digitise your prints</strong> and send you a PDF to keep. Lose or damage the original and the moment is still safe</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark cross" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></svg><span class="v">One physical copy. If it fades, tears or gets wet, that moment is gone for good</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">See it before it's made</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v">A <strong>free digital proof</strong> within 1 working day, approved by WhatsApp or email, whichever suits you</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark cross" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></svg><span class="v">No proof and no preview. What you press is what you are left with</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">Names, dates and colours</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v">Choose <strong>foil colour, card colour, font and wording</strong> as you upload</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark cross" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.7 8.7l6.6 6.6M15.3 8.7l-6.6 6.6"/></svg><span class="v">Just the print. No names, no dates, no choices</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">Extra copies and keepsakes</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v"><strong>Keyrings</strong> carrying your baby's own prints, plus frame upgrades and a growing keepsake range</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark dash" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.2 12h7.6"/></svg><span class="v">One print, and that is it</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">Video tutorial included</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v">Yes, QR code straight to Ashley's step-by-step guide</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark dash" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.2 12h7.6"/></svg><span class="v">Printed instructions only</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">Premium gift box</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v">On our Premium Kit, a <strong>presentation box</strong> with a keepsake affirmation card, ready to gift</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark dash" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.2 12h7.6"/></svg><span class="v">Usually plain packaging</span></div>
+        </div>
+        <div class="kc-compare-row">
+          <div class="kc-compare-cell rlabel">Supports charity</div>
+          <div class="kc-compare-cell ours-val"><svg class="kc-mark tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7.4 12.3l3.1 3.1 6.1-6.6"/></svg><span class="v"><strong>&pound;1</strong> from every kit goes to Tommy's</span></div>
+          <div class="kc-compare-cell others-val"><svg class="kc-mark dash" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M8.2 12h7.6"/></svg><span class="v">Rarely</span></div>
+        </div>
+      </div>
+
+      <p class="kc-foot">Foil Fusion Technology&trade; was developed in our own workshop and is used on every single print
+        we make.</p>
+
+      <button type="button" class="cta on-dark" data-kc-buy><span class="lbl">Choose Your Kit</span><span class="sq"><svg
+            viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg></span></button>
+    </div>
+  </section>
+
+
   <section class="faq" aria-labelledby="faq-title">
     <div class="faq-grid">
       <div>
@@ -3071,7 +3338,84 @@
     </div>
   </section>
 
-  <section class="reviews" aria-labelledby="reviews-title">
+      <!-- ============ UGC REEL ============
+         Same component as the home page, sitting directly above the
+         Trustpilot band. The gallery CTA is deliberately omitted here:
+         this is a product page and the point is to keep people on it. -->
+    <section class="ugc">
+    <h2>Real families, <span class="ugc-accent">forever keepsakes</span></h2>
+    <p class="lede">Moments captured by parents using our kits, and by Memory Catchers taking prints in person across the UK. Plus some sneak peeks of behind the scenes with Ashley...</p>
+    <div class="ugc-viewport">
+      <div class="ugc-track" style="animation-duration:120s">
+        <div class="ugc-item"><video data-src="/assets/videos/mc-19.mp4" data-poster="/assets/videos/mc-19-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-04.mp4" data-poster="/assets/videos/bb-vid-04-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-14.mp4" data-poster="/assets/videos/bfc-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-04.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-8.mp4" data-poster="/assets/videos/mc-8-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-09.mp4" data-poster="/assets/videos/bfc-09-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-18.mp4" data-poster="/assets/videos/bb-vid-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-01.mp4" data-poster="/assets/videos/bfc-01-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-19.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-21.mp4" data-poster="/assets/videos/bfc-21-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-14.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-19.mp4" data-poster="/assets/videos/bb-vid-19-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-30.mp4" data-poster="/assets/videos/bfc-30-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-16.mp4" data-poster="/assets/videos/bfc-16-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-24.mp4" data-poster="/assets/videos/bfc-24-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-41.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-06.mp4" data-poster="/assets/videos/bb-vid-06-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-03.mp4" data-poster="/assets/videos/bb-vid-03-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-17.mp4" data-poster="/assets/videos/bfc-17-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-11.mp4" data-poster="/assets/videos/bfc-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-3.mp4" data-poster="/assets/videos/mc-3-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-14.mp4" data-poster="/assets/videos/bb-vid-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-23.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-38.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-09.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-10.mp4" data-poster="/assets/videos/bb-vid-10-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-08.mp4" data-poster="/assets/videos/bfc-08-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-27.mp4" data-poster="/assets/videos/bfc-27-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-20.mp4" data-poster="/assets/videos/bb-vid-20-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-11.mp4" data-poster="/assets/videos/bb-vid-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-28.mp4" data-poster="/assets/videos/bfc-28-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-18.mp4" data-poster="/assets/videos/bfc-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-19.mp4" data-poster="/assets/videos/mc-19-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-04.mp4" data-poster="/assets/videos/bb-vid-04-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-14.mp4" data-poster="/assets/videos/bfc-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-04.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-8.mp4" data-poster="/assets/videos/mc-8-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-09.mp4" data-poster="/assets/videos/bfc-09-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-18.mp4" data-poster="/assets/videos/bb-vid-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-01.mp4" data-poster="/assets/videos/bfc-01-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-19.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-21.mp4" data-poster="/assets/videos/bfc-21-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-14.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-19.mp4" data-poster="/assets/videos/bb-vid-19-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-30.mp4" data-poster="/assets/videos/bfc-30-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-16.mp4" data-poster="/assets/videos/bfc-16-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-24.mp4" data-poster="/assets/videos/bfc-24-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-41.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-06.mp4" data-poster="/assets/videos/bb-vid-06-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-03.mp4" data-poster="/assets/videos/bb-vid-03-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-17.mp4" data-poster="/assets/videos/bfc-17-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-11.mp4" data-poster="/assets/videos/bfc-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/mc-3.mp4" data-poster="/assets/videos/mc-3-poster-v2.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-14.mp4" data-poster="/assets/videos/bb-vid-14-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><img src="/assets/bb-23.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-38.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><img src="/assets/bb-09.webp" loading="lazy" decoding="async" alt=""></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-10.mp4" data-poster="/assets/videos/bb-vid-10-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-08.mp4" data-poster="/assets/videos/bfc-08-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-27.mp4" data-poster="/assets/videos/bfc-27-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-20.mp4" data-poster="/assets/videos/bb-vid-20-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bb-vid-11.mp4" data-poster="/assets/videos/bb-vid-11-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-28.mp4" data-poster="/assets/videos/bfc-28-poster.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="ugc-item"><video data-src="/assets/videos/bfc-18.mp4" data-poster="/assets/videos/bfc-18-poster.jpg" muted loop playsinline preload="none"></video></div>
+      </div>
+    </div>
+      </section>
+
+    <section class="reviews" id="reviews" aria-labelledby="reviews-title">
     <div class="reviews-head">
       <div class="tp-row">
         <img src="/assets/tp-stars-5.svg" alt="4.9 out of 5 stars">
@@ -3079,7 +3423,8 @@
       <h2 id="reviews-title">Rated Excellent on Trustpilot</h2>
       <a href="https://uk.trustpilot.com/review/thebespokefoilcompany.co.uk" target="_blank" rel="noopener">See all
         reviews on <img src="/assets/tp-brandmark.svg" alt="Trustpilot"></a>
-    </div>
+          <p class="reviews-etsy">We're new to Trustpilot, but not here: rated <b data-etsy-score>4.9</b> / 5 from <b data-etsy-count>over 2,000</b> reviews on Etsy since <span data-etsy-since>2018</span>.</p>
+        </div>
     <div class="review-track" id="revTrack">
       <article class="review-card">
         <img class="stars" src="/assets/tp-stars-5.svg" alt="5 stars">
@@ -3517,7 +3862,7 @@
 
     <div class="f-cols">
       <div class="f-col">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <p>
           <a class="f-wa" href="https://wa.me/447506998934" target="_blank" rel="noopener"
             aria-label="Message us on WhatsApp">
@@ -3545,14 +3890,14 @@
       </div>
 
       <div class="f-col">
-        <h4>Find us</h4>
+        <h3>Find us</h3>
         <p>2nd Floor, Pier House,<br>Wallgate, Wigan, WN3 4AL</p>
-        <h4 class="f-h4-gap">Opening hours</h4>
+        <h3 class="f-h4-gap">Opening hours</h3>
         <p>Mon - Fri: 9am - 5pm<br>Sat - Sun: Closed</p>
       </div>
 
       <div class="f-col f-col-trust">
-        <h4>Secure payment</h4>
+        <h3>Secure payment</h3>
         <div class="f-pay" aria-label="Accepted payment methods">
           <span class="f-pay-chip"><img src="/assets/pay/klarna.svg" alt="Klarna"></span>
           <span class="f-pay-chip"><img src="/assets/pay/visa.svg" alt="Visa"></span>
@@ -3572,7 +3917,7 @@
     </div>
 
     <div class="f-links">
-      <a href="https://www.thebespokefoilcompany.co.uk" target="_blank" rel="noopener">thebespokefoilcompany.co.uk</a>
+      <a href="/">thebespokefoilcompany.co.uk</a>
     </div>
 
     <div class="f-legal">
@@ -3706,7 +4051,13 @@
     <button class="go" id="stickyGo">Buy now</button>
   </div>
 
-  <script>
+    <!-- Stripe loads here, not in <head>. It was render-blocking above the fold
+       while the code that uses it sits in the inline block below, so it delayed
+       first paint and competed with the hero for bandwidth for no reason.
+       Moved rather than deferred so execution order is unchanged. 14/08. -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+<script>
     /* ---------- gallery: continuous loop ---------- */
     const gal = document.getElementById('gallery');
     const realCount = gal.querySelectorAll('.slide').length;
@@ -4167,6 +4518,15 @@
             qty,
             // Memory Catcher attribution - null on the plain kit page.
             affiliate: (typeof MEMORY_CATCHER !== 'undefined' && MEMORY_CATCHER) ? MEMORY_CATCHER.slug : null,
+            /* The CODE as well as the slug. The slug alone credits the Memory
+               Catcher's commission; it is the CODE that sets free_extra_copy in
+               create-payment-intent - and this page's headline offer is "use the
+               exclusive Memory Catcher code to receive a FREE extra copy of your
+               print". Without this line every customer arriving from a Memory
+               Catcher link was promised an extra print and did not get one.
+               There is no code input on this page, so nothing else could ever
+               have sent it. Found 14/08 in the pre-deploy audit. */
+            affiliateCode: (typeof MEMORY_CATCHER !== 'undefined' && MEMORY_CATCHER) ? MEMORY_CATCHER.code : null,
             personalisation: personalisationPayload(),
             fbp: (document.cookie.match(/_fbp=([^;]+)/) || [])[1] || null,
             fbc: (document.cookie.match(/_fbc=([^;]+)/) || [])[1] || null,
@@ -4424,6 +4784,132 @@
       setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
     }
   </script>
+<script>
+  /* The comparison band's CTA. The draft was a standalone page so it linked to
+     /our-kit; dropped into the product page that points at itself. It now opens
+     the same checkout drawer as every other buy button, falling back to
+     scrolling to the kit selector if the drawer is not ready. */
+  (function () {
+    var b = document.querySelector('[data-kc-buy]');
+    if (!b) return;
+    b.addEventListener('click', function () {
+      var t = document.getElementById('checkoutBtn');
+      if (t) { t.click(); return; }
+      var k = document.getElementById('kits') || document.querySelector('.kit');
+      if (k) k.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  })();
+</script>
+<script type="application/json" data-ugc-pool>[["i","/assets/bb-38.webp",""],["v","/assets/videos/mc-19.mp4","/assets/videos/mc-19-poster-v2.jpg"],["v","/assets/videos/bb-vid-09.mp4","/assets/videos/bb-vid-09-poster.jpg"],["v","/assets/videos/bb-vid-04.mp4","/assets/videos/bb-vid-04-poster.jpg"],["v","/assets/videos/bb-vid-02.mp4","/assets/videos/bb-vid-02-poster.jpg"],["i","/assets/bb-41.webp",""],["v","/assets/videos/bb-vid-08.mp4","/assets/videos/bb-vid-08-poster.jpg"],["v","/assets/videos/mc-3.mp4","/assets/videos/mc-3-poster-v2.jpg"],["i","/assets/bb-04.webp",""],["v","/assets/videos/bb-vid-01.mp4","/assets/videos/bb-vid-01-poster.jpg"],["v","/assets/videos/bb-vid-07.mp4","/assets/videos/bb-vid-07-poster.jpg"],["v","/assets/videos/mc-2.mp4","/assets/videos/mc-2-poster-v2.jpg"],["i","/assets/bb-19.webp",""],["i","/assets/bb-28.webp",""],["v","/assets/videos/mc-25.mp4","/assets/videos/mc-25-poster-v2.jpg"],["i","/assets/bb-23.webp",""],["v","/assets/videos/bb-vid-03.mp4","/assets/videos/bb-vid-03-poster.jpg"],["i","/assets/bb-33.webp",""],["v","/assets/videos/mc-8.mp4","/assets/videos/mc-8-poster-v2.jpg"],["v","/assets/videos/mc-27.mp4","/assets/videos/mc-27-poster-v2.jpg"],["i","/assets/bb-14.webp",""],["v","/assets/videos/bb-vid-06.mp4","/assets/videos/bb-vid-06-poster.jpg"],["v","/assets/videos/bb-vid-05.mp4","/assets/videos/bb-vid-05-poster.jpg"],["i","/assets/bb-09.webp",""],["v","/assets/videos/bfc-01.mp4","/assets/videos/bfc-01-poster.jpg"],["v","/assets/videos/bfc-02.mp4","/assets/videos/bfc-02-poster.jpg"],["v","/assets/videos/bfc-03.mp4","/assets/videos/bfc-03-poster.jpg"],["v","/assets/videos/bfc-04.mp4","/assets/videos/bfc-04-poster.jpg"],["v","/assets/videos/bfc-05.mp4","/assets/videos/bfc-05-poster.jpg"],["v","/assets/videos/bfc-06.mp4","/assets/videos/bfc-06-poster.jpg"],["v","/assets/videos/bfc-07.mp4","/assets/videos/bfc-07-poster.jpg"],["v","/assets/videos/bfc-08.mp4","/assets/videos/bfc-08-poster.jpg"],["v","/assets/videos/bfc-09.mp4","/assets/videos/bfc-09-poster.jpg"],["v","/assets/videos/bfc-10.mp4","/assets/videos/bfc-10-poster.jpg"],["v","/assets/videos/bfc-11.mp4","/assets/videos/bfc-11-poster.jpg"],["v","/assets/videos/bfc-12.mp4","/assets/videos/bfc-12-poster.jpg"],["v","/assets/videos/bfc-13.mp4","/assets/videos/bfc-13-poster.jpg"],["v","/assets/videos/bfc-14.mp4","/assets/videos/bfc-14-poster.jpg"],["v","/assets/videos/bfc-15.mp4","/assets/videos/bfc-15-poster.jpg"],["v","/assets/videos/bfc-16.mp4","/assets/videos/bfc-16-poster.jpg"],["v","/assets/videos/bfc-17.mp4","/assets/videos/bfc-17-poster.jpg"],["v","/assets/videos/bfc-18.mp4","/assets/videos/bfc-18-poster.jpg"],["v","/assets/videos/bfc-19.mp4","/assets/videos/bfc-19-poster.jpg"],["v","/assets/videos/bfc-20.mp4","/assets/videos/bfc-20-poster.jpg"],["v","/assets/videos/bfc-21.mp4","/assets/videos/bfc-21-poster.jpg"],["v","/assets/videos/bfc-22.mp4","/assets/videos/bfc-22-poster.jpg"],["v","/assets/videos/bfc-23.mp4","/assets/videos/bfc-23-poster.jpg"],["v","/assets/videos/bfc-24.mp4","/assets/videos/bfc-24-poster.jpg"],["v","/assets/videos/bfc-25.mp4","/assets/videos/bfc-25-poster.jpg"],["v","/assets/videos/bfc-26.mp4","/assets/videos/bfc-26-poster.jpg"],["v","/assets/videos/bfc-27.mp4","/assets/videos/bfc-27-poster.jpg"],["v","/assets/videos/bfc-28.mp4","/assets/videos/bfc-28-poster.jpg"],["v","/assets/videos/bfc-29.mp4","/assets/videos/bfc-29-poster.jpg"],["v","/assets/videos/bfc-30.mp4","/assets/videos/bfc-30-poster.jpg"],["v","/assets/videos/bb-vid-10.mp4","/assets/videos/bb-vid-10-poster.jpg"],["v","/assets/videos/bb-vid-11.mp4","/assets/videos/bb-vid-11-poster.jpg"],["v","/assets/videos/bb-vid-12.mp4","/assets/videos/bb-vid-12-poster.jpg"],["v","/assets/videos/bb-vid-13.mp4","/assets/videos/bb-vid-13-poster.jpg"],["v","/assets/videos/bb-vid-14.mp4","/assets/videos/bb-vid-14-poster.jpg"],["v","/assets/videos/bb-vid-15.mp4","/assets/videos/bb-vid-15-poster.jpg"],["v","/assets/videos/bb-vid-16.mp4","/assets/videos/bb-vid-16-poster.jpg"],["v","/assets/videos/bb-vid-17.mp4","/assets/videos/bb-vid-17-poster.jpg"],["v","/assets/videos/bb-vid-18.mp4","/assets/videos/bb-vid-18-poster.jpg"],["v","/assets/videos/bb-vid-19.mp4","/assets/videos/bb-vid-19-poster.jpg"],["v","/assets/videos/bb-vid-20.mp4","/assets/videos/bb-vid-20-poster.jpg"],["i","/assets/bb-44.webp","A framed foil handprint and footprint keepsake"]]</script>
+<script data-ugc-reel>
+  /* GENERATED by scripts/build-ugc-reel.js - edit the script, not this. */
+  (function () {
+    var section = document.querySelector('.ugc');
+    var track = section && section.querySelector('.ugc-track');
+    if (!track) return;
+
+    /* ---- rotate: fresh selection from the pool on every page load ----
+       Nothing has been fetched at this point - every tile carries data-src and
+       data-poster - so reassigning them costs no bandwidth. Both halves of the
+       track get the same selection, otherwise the -50% marquee loop jumps. */
+    var tiles = track.querySelectorAll('.ugc-item');
+    var node = document.querySelector('script[data-ugc-pool]');
+    if (node && tiles.length) {
+      try {
+        var pool = JSON.parse(node.textContent);
+        var half = tiles.length / 2;
+        if (pool.length > half && half === Math.floor(half)) {
+          var bag = pool.slice();
+          for (var i = bag.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = bag[i]; bag[i] = bag[j]; bag[j] = t;
+          }
+          var pick = bag.slice(0, half);
+          for (var k = 0; k < tiles.length; k++) {
+            var it = pick[k % half];
+            tiles[k].innerHTML = it[0] === 'v'
+              ? '<video data-src="' + it[1] + '" data-poster="' + it[2] +
+                '" muted loop playsinline preload="none"></video>'
+              : '<img src="' + it[1] + '" loading="lazy" decoding="async" alt="' +
+                it[2] + '">';
+          }
+        }
+      } catch (e) { /* keep the tiles the build rendered */ }
+    }
+
+    var vids = track.querySelectorAll('.ugc-item video');
+    if (!vids.length) return;
+
+    function poster(v) {
+      if (v.dataset.poster) { v.poster = v.dataset.poster; delete v.dataset.poster; }
+    }
+
+    /* No IntersectionObserver: show every poster rather than a wall of blanks. */
+    if (!('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(vids, poster);
+      return;
+    }
+
+    var conn = navigator.connection || {};
+    var frugal = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || '');
+    /* Guarded: if matchMedia is unavailable this would throw and take the whole
+       observer with it, leaving every tile a bare coloured box. */
+    var narrow = false;
+    try { narrow = window.matchMedia('(max-width:600px)').matches; } catch (e) { }
+    var cap = narrow ? 4 : 8;
+
+    var POSTER_MARGIN = 600;   // lead time, in px either side of the viewport
+    var playing = [];
+
+    function stop(v) {
+      var i = playing.indexOf(v);
+      if (i > -1) playing.splice(i, 1);
+      v.pause();
+    }
+    function start(v) {
+      if (playing.indexOf(v) > -1) return;
+      while (playing.length >= cap) stop(playing[0]);
+      if (v.dataset.src) { v.src = v.dataset.src; delete v.dataset.src; }
+      playing.push(v);
+      v.play().catch(function () { });
+    }
+
+    /* One sweep: read every rect first, then act. Reading and writing in the
+       same pass would thrash layout once per tile. */
+    function sweep() {
+      var w = window.innerWidth || document.documentElement.clientWidth;
+      var rects = [];
+      for (var i = 0; i < vids.length; i++) rects.push(vids[i].getBoundingClientRect());
+      for (var j = 0; j < vids.length; j++) {
+        var r = rects[j], v = vids[j];
+        if (r.right > -POSTER_MARGIN && r.left < w + POSTER_MARGIN) poster(v);
+        if (frugal) continue;
+        if (r.right > 0 && r.left < w && r.bottom > 0) start(v);
+        else stop(v);
+      }
+    }
+
+    /* Throttled rAF. rAF rather than setInterval so it pauses in a background
+       tab; throttled because the tiles do not need checking 60 times a second. */
+    var live = false, last = 0;
+    function frame(now) {
+      if (!live) return;
+      if (now - last >= 150) { last = now; sweep(); }
+      requestAnimationFrame(frame);
+    }
+
+    /* The SECTION is static, so IO is reliable here in a way it is not on the
+       tiles themselves. */
+    new IntersectionObserver(function (entries) {
+      var on = entries[0] && entries[0].isIntersecting;
+      if (on && !live) { live = true; last = 0; requestAnimationFrame(frame); }
+      else if (!on && live) {
+        live = false;
+        while (playing.length) stop(playing[0]);
+      }
+    }, { root: null, rootMargin: '200px', threshold: 0 }).observe(section);
+  })();
+</script>
 </body>
 
 </html>

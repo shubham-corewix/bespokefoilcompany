@@ -32,6 +32,7 @@
  */
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { buildKitOrderNumber } = require('./order-number');
 
 const COMMISSION_RATE_BPS = 2000; // 20.00% in basis points - integer maths only
 const CURRENCY = 'gbp';
@@ -148,7 +149,7 @@ async function creditCommission(pi) {
     body: [{
       payment_intent_id: pi.id,
       affiliate_slug: slug,
-      order_number: `KS-${pi.id.slice(-8).toUpperCase()}`, // matches ShipStation
+      order_number: buildKitOrderNumber(pi), // matches ShipStation
       currency: pi.currency || CURRENCY,
       gross_amount_pence: pi.amount_received || pi.amount || 0,
       commissionable_pence: base,
@@ -184,7 +185,7 @@ if (franchiseeId) {
       stream: 'affiliate',
       source: 'website',
       external_id: pi.id,
-      order_name: `KS-${pi.id.slice(-8).toUpperCase()}`,
+      order_name: buildKitOrderNumber(pi),
       occurred_on: occurredOn,
       product: m.product_name || m.sku || 'Kit',
       amount_paid: amountPaid,

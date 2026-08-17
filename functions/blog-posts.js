@@ -35,7 +35,7 @@ function readMinutes(row) {
   return row.read_time || 5;
 }
 
-function mapRow(r) {
+function mapRow(r, index) {
   const image = r.hero_image_path || '';
   return {
     slug: r.slug,
@@ -46,7 +46,7 @@ function mapRow(r) {
     avatar: r.author_avatar || '/assets/ff-ashley-700.webp',
     date: fmtDate(r.published_at),
     read: readMinutes(r),
-    featured: r.featured === true,
+    featured: index === 0,
   };
 }
 

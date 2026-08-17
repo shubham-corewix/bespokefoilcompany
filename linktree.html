@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <script src="/shared/analytics.js?v=91bdc12e"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Listed under Utilities in _redirects (Ryan, 11/08), so it appears in
+       sitemap.xml, the human sitemap page and llms.txt. The noindex this page
+       originally carried was removed at the same time: submitting a noindex URL
+       in a sitemap is a contradiction Search Console flags as an error. To take
+       it back out of search, restore `<meta name="robots" content="noindex,
+       follow">` here, set the _redirects comment back to `# exclude`, and
+       re-add linktree.html to NOINDEX in scripts/build-seo.js. All three, or
+       the signals disagree. -->
+  <title>Links | The Bespoke Foil Company</title>
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/linktree.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/linktree.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/linktree.jpg">
+<link rel="canonical" href="https://www.thebespokefoilcompany.co.uk/linktree">
+  <meta name="description"
+    content="Order your foil hand and footprint kit, explore the Memory Catcher Franchise, or message Ashley directly. Every Bespoke Foil Company link in one place.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Links | The Bespoke Foil Company">
+  <meta property="og:description"
+    content="Turn tiny hands and feet into stunning keepsakes you'll treasure forever.">
+  <meta property="og:url" content="https://www.thebespokefoilcompany.co.uk/linktree">
+<meta property="og:site_name" content="The Bespoke Foil Company">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Nothing+You+Could+Do&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
+  <style>
+    /* =========================================================
+       LINK-IN-BIO PAGE
+       Structure mirrors the Upload Portal's welcome step: centred
+       lockup header, hero image, headline, lede, stacked full-width
+       CTAs. Buttons reuse the shared .cta component so hover, focus
+       and the arrow square stay identical to the rest of the site -
+       only the full-width layout is local to this page.
+       ========================================================= */
+
+    body {
+      background: var(--porcelain);
+    }
+
+    /* ---- header: centred BFC x Memory Catcher lockup, no nav ----
+       position/top/padding are RESET DELIBERATELY, not decoration.
+       shared/styles.css styles the bare `header` element for the main site nav:
+         header { position:absolute; top:44px; left:0; right:0; z-index:20;
+                  padding:16px 0 }
+       That is built to float transparently over a full-bleed hero. Inherited
+       here it took this header out of normal flow and dropped it on top of the
+       image. `.upf-head` on the upload portal only escapes the same rule
+       because it declares position:sticky - the positioning was never optional
+       styling, it was the override. Any header on this site that carries a
+       class must declare its own position; check-footer.js now enforces it. */
+    .lt-head {
+      position: static;
+      top: auto;
+      padding: 0;
+      background: var(--porcelain);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .lt-head-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .lt-lockup {
+      display: flex;
+    }
+
+    .lt-lockup img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+
+    /* ---- shell ---- */
+    .lt-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 8px 20px 64px;
+    }
+
+    .lt-card {
+      width: 100%;
+      max-width: 520px;
+      padding-top: 24px;
+    }
+
+    .lt-media {
+      border-radius: var(--r-img);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .lt-media img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+    }
+
+    .lt-card h1 {
+      font-family: var(--serif);
+      font-weight: 340;
+      font-size: clamp(27px, 4.2vw, 34px);
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      margin-bottom: 14px;
+    }
+
+    .lt-lede {
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 44ch;
+    }
+
+    /* ---- link stack ----
+       .cta is inline-flex and left-aligned by default. Full width plus
+       space-between pushes the arrow square to the right edge, which is
+       the only difference from a normal site button. */
+    .lt-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lt-links .cta {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      font-size: 15px;
+    }
+
+    /* Fourth link sits lighter so the primary three read as the main
+       routes and "book a call" reads as the softer, secondary option. */
+    .cta.stone {
+      background: var(--bone);
+      color: var(--ink);
+      box-shadow: 0 0 0 2px var(--bone), 0 1px 2px rgba(0, 0, 0, .06);
+    }
+
+    .cta.stone .sq {
+      background: var(--stone);
+    }
+
+    .cta.stone:hover {
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 0 0 2px var(--ink), 0 6px 18px rgba(0, 0, 0, .12);
+    }
+
+    /* ---- footer ----
+       background and colour are declared DELIBERATELY, same trap as the header
+       above one tag along: shared/styles.css styles the bare `footer` element
+       for the main site chrome -
+         footer { background:var(--ink); color:rgba(255,255,255,.7);
+                  padding:64px 40px 0 }
+       so a classed footer inherits a black block whatever it says about text.
+       `.upf-foot` on the upload portal escapes it only by declaring
+       `background:transparent`. Here the black band is KEPT - it anchors the
+       page - so the text is set light to match, using the same values as
+       `.foot-legal` on the main site footer. Padding is symmetric so the two
+       lines sit centred in the band rather than riding the top edge.
+       check-footer.js enforces that a classed footer declares a background. */
+    .lt-foot {
+      background: var(--ink);
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.7;
+      text-align: center;
+      color: rgba(255, 255, 255, .55);
+      padding: 30px 20px;
+    }
+
+    .lt-foot > * {
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lt-foot a {
+      color: rgba(255, 255, 255, .7);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .lt-foot a:hover {
+      color: var(--white);
+    }
+
+    .lt-foot-links {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 560px) {
+      .lt-head-inner {
+        padding: 12px 18px;
+      }
+
+      .lt-lockup img {
+        height: 38px;
+      }
+
+      .lt-wrap {
+        padding: 4px 16px 48px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="lt-head">
+    <div class="lt-head-inner">
+      <a class="lt-lockup" href="/" aria-label="Bespoke Foil Company and Memory Catcher home">
+        <img src="/assets/bfc-mc-lockup.svg" alt="Bespoke Foil Company and Memory Catcher" width="209" height="44">
+      </a>
+    </div>
+  </header>
+
+  <main class="lt-wrap">
+    <div class="lt-card">
+      <div class="lt-media">
+        <img src="/assets/hero-slide-097-1200.webp"
+          srcset="/assets/hero-slide-097-1200.webp 1200w, /assets/hero-slide-097-1800.webp 1800w"
+          sizes="(min-width:560px) 520px, 100vw" width="1200" height="675" fetchpriority="high"
+          alt="A mum and her baby looking through their finished foil keepsake prints at home">
+      </div>
+
+      <h1>Turn tiny hands and feet into stunning keepsakes you'll treasure forever</h1>
+
+      <p class="lt-lede">
+        Order your kit, explore our Memory Catcher&trade; Franchise, or say hello to Ashley by
+        clicking below.
+      </p>
+
+      <nav class="lt-links" aria-label="Bespoke Foil Company links">
+        <a class="cta dark" href="/product-page/foil-handprint-footprint-kit-baby-keepsake"
+          data-lt-label="Hand &amp; Footprint Kits">
+          <span class="lbl">Hand &amp; Footprint Kits</span>
+          <span class="sq"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg></span>
+        </a>
+
+        <a class="cta dark" href="/franchise" data-lt-label="Memory Catcher Franchise">
+          <span class="lbl">Memory Catcher&trade; Franchise</span>
+          <span class="sq"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg></span>
+        </a>
+
+        <a class="cta dark" href="https://wa.me/447506998934" target="_blank" rel="noopener"
+          data-lt-label="WhatsApp Message">
+          <span class="lbl">WhatsApp Message</span>
+          <span class="sq"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.42 8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42l-.47-.01c-.16 0-.43.06-.65.31-.23.24-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.2 3.72.59.25 1.04.4 1.4.52.59.18 1.12.16 1.55.1.47-.07 1.46-.6 1.67-1.18.2-.57.2-1.07.14-1.17-.06-.11-.22-.17-.47-.29Z"
+                fill="currentColor" stroke="none" />
+            </svg></span>
+        </a>
+
+        <a class="cta stone" href="/contact" data-lt-label="Book a call with Ashley">
+          <span class="lbl">Book a call with Ashley</span>
+          <span class="sq"><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg></span>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <!-- Legal line is copied verbatim from the main site footer's .foot-legal so
+       the registered details read identically everywhere. Note it says "The
+       Bespoke Foil Company." with no trademark symbol - that is the registered
+       company name in a statutory statement, and it should not be dressed up. -->
+  <footer class="lt-foot">
+    <p>&copy; 2026 The Bespoke Foil Company. Registered in England &amp; Wales |
+      Company No. 12941845. VAT ID: GB419408687.</p>
+    <p class="lt-foot-links"><a href="/privacy-policy">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    /* Which link the bio traffic actually taps. Without this the page is a
+       black box: GA4 records the pageview and then the visit ends, because
+       every route off it is either a new page or an app handoff.
+       Fires through the shared gtag, so Consent Mode still applies. */
+    (function () {
+      document.querySelectorAll('.lt-links a[data-lt-label]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (typeof window.gtag !== 'function') return;
+          window.gtag('event', 'linktree_click', {
+            link_label: a.getAttribute('data-lt-label'),
+            link_url: a.getAttribute('href')
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>

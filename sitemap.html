@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<script src="/shared/analytics.js"></script>
-  <script src="/shared/community-signup.js" defer></script>
+<script src="/shared/analytics.js?v=91bdc12e"></script>
+  <script src="/shared/community-signup.js?v=0921b97b" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- This page lists internal studio tools and is linked from the footer of
+       every page, so Google will find it. "follow" keeps the links crawlable
+       for discovery while the thin page itself stays out of results.
+       It lives HERE, not in sitemap.html: generate-sitemaps.js rebuilds that
+       file from this template on every build, so an edit there is erased on
+       the next deploy. Added 13/08 after exactly that happened. -->
+  <meta name="robots" content="noindex, follow">
 <title>Sitemap | Bespoke Foil Company</title>
+  <meta property="og:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/sitemap.jpg">
+  <meta property="og:image:secure_url" content="https://www.thebespokefoilcompany.co.uk/assets/og/sitemap.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.thebespokefoilcompany.co.uk/assets/og/sitemap.jpg">
 <meta name="description" content="Every page on The Bespoke Foil Company website, categorised to help you find exactly what you're looking for - kits, frames, franchise regions and more.">
 <link rel="preload" as="image" href="/assets/mc-hero-1600.webp" imagesrcset="/assets/mc-hero-1200.webp 1200w, /assets/mc-hero-1600.webp 1600w, /assets/mc-hero-2000.webp 2000w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;0,9..144,560;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="/shared/styles.css?v=25">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,420;1,9..144,340&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/shared/styles.css?v=7b77683e">
 <style>
 /* ===== SITEMAP page-specific ===== */
 
@@ -191,6 +205,7 @@
           <li><a href="/franchise-success">Franchise - Success</a></li>
           <li><a href="/memory-catcher/ashley-eccleston">Memory Catcher - Ashley Eccleston (affiliate example)</a></li>
           <li><a href="/memory-catcher-enquiry">Memory Catcher - Enquiry Form</a></li>
+          <li><a href="/franchisee-login">Memory Catcher hub login</a></li>
           <li><a href="/slot-reservation-form">Slot Reservation Form</a></li>
           <li><a href="/upload-portal-form">Upload Portal - Form</a></li>
           <li><a href="/upload-portal-thank-you">Upload Portal - Thank You</a></li>
@@ -247,7 +262,6 @@
         <h2>Utilities</h2>
         <ul>
           <li><a href="/linktree">Links</a></li>
-          <li><a href="/franchisee-login">Memory Catcher hub login</a></li>
         </ul>
       </div>
   </div>

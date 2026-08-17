@@ -1,121 +1,756 @@
 {
- "generated": "2026-08-06T07:53:12.060Z",
+ "generated": "2026-08-17T06:32:51.732Z",
  "site": "https://www.thebespokefoilcompany.co.uk",
  "urls": [
   {
    "loc": "/",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 1
   },
   {
    "loc": "/eco-friendly",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/foil-fusion-technology",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/product-page/foil-handprint-footprint-kit-baby-keepsake",
-   "lastmod": "2026-08-06",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/our-story",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/premium-frames",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/print-quality-guarantee",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/tommys-charity",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/upload-portal",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/bespoke-baby-gallery",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/faq",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/find-a-memory-catcher",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.7
   },
   {
    "loc": "/kit-walkthrough-video",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/blog",
-   "lastmod": "2026-08-06",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/the-perfect-gift-for-new-mums-and-dads",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/baby-wont-open-hand-for-handprints",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/can-you-use-paint-for-baby-handprints",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/tiny-hands-big-emotions-captured-forever",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/create-lasting-memories-with-one-tiny-touch",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/the-must-have-handprint-kit-for-new-parents",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/step-by-step-guide-to-a-beautiful-baby-keepsake",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/don-t-let-your-memories-fade-away",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/foil-fusion-the-future-of-baby-keepsakes",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/foil-fusion-vs-toner-foiling-the-real-difference",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/handprints-or-footprints-newborn",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/how-to-take-your-babys-handprints-neatly",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/why-foil-prints-make-the-ultimate-baby-gift",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/capture-baby-s-first-touch-with-foil-prints",
+   "lastmod": "2026-08-17",
+   "priority": 0.6
+  },
+  {
+   "loc": "/post/why-every-parent-needs-a-baby-footprint-keepsake",
+   "lastmod": "2026-08-17",
    "priority": 0.6
   },
   {
    "loc": "/memory-catcher-earnings-calculator",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.7
   },
   {
    "loc": "/franchise-hub",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.7
   },
   {
    "loc": "/memory-catcher-region-map",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.7
   },
   {
    "loc": "/franchise",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.8
   },
   {
    "loc": "/franchise-region",
-   "lastmod": "2026-08-06",
+   "lastmod": "2026-08-17",
    "priority": 0.7
   },
   {
    "loc": "/memory-catcher-hub",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.7
   },
   {
-   "loc": "/franchises-bio/ashley-eccleston",
-   "lastmod": "2026-08-06",
+   "loc": "/franchises/aberdeen",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/antrim",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bath",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bedford-luton",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/birmingham",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/blackburn-burnley",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bolton-wigan",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bournemouth-poole",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bradford",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/brighton",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bristol",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/buckinghamshire",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bury-rossendale",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/cambridge",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/cardiff",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/cheshire-east",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/cheshire-west",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/cornwall",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/county-durham",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/coventry",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/cumbria",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/derby",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/derry-northwest",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/doncaster-rotherham",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/down-lisburn",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/dundee",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/kent-east",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/east-sussex",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/edinburgh",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/edinburgh-lothians",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/enfield-north-london",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/exeter",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/fife",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/glasgow",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/gloucester-cheltenham",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/belfast",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/glasgow-greater",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/southampton",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/hampshire-south",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/hertfordshire",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/huddersfield-calderdale",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/hull",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/inverness",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/ipswich-suffolk",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/isle-of-man",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/isle-of-wight",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/lancashire-central",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/lancaster-morecambe",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/leeds",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/leicester",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/lincoln",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/liverpool",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/barnet-enfield",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/brent-harrow",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bromley-bexley",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/camden-haringey",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/croydon",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/ealing-hounslow",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/greenwich-lewisham",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/hackney-islington",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/havering-barking",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/hillingdon-harrow",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/kensington-chelsea-hammersmith",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/kingston-epsom",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/lambeth-southwark",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/nappy-valley",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/richmond-kingston-wimbledon",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/sutton-merton",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/tower-hamlets-newham",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/waltham-forest-redbridge",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/manchester",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/merseyside-south",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/kent-mid",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/mid-ulster",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/newcastle",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/newport",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/devon-north",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/essex-north",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/kent-north",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/bristol-north-somerset",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/north-tyneside",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/north-wales",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/northampton-milton-keynes",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/norwich",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/nottingham",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/oldham-rochdale",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/oxford",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/perth",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/peterborough",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/plymouth",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/reading-basingstoke",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/salisbury-dorset",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/sheffield",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/somerset",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/essex-south",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/south-wales-valleys",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/stirling-falkirk",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/stockport-tameside",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/stoke",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/sunderland-south-tyneside",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/surrey",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/swansea",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/swindon-wiltshire",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/teesside",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/wakefield-barnsley",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/kent-west",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/norfolk-west",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/sussex-west",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/wirral",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/wolverhampton-walsall",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/worcester-hereford",
+   "lastmod": "2026-08-17",
+   "priority": 0.5
+  },
+  {
+   "loc": "/franchises/york-harrogate",
+   "lastmod": "2026-08-17",
    "priority": 0.5
   },
   {
    "loc": "/contact",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.5
   },
   {
    "loc": "/privacy-policy",
-   "lastmod": "2026-08-04",
+   "lastmod": "2026-08-17",
    "priority": 0.5
+  },
+  {
+   "loc": "/linktree",
+   "lastmod": "2026-08-17",
+   "priority": 0.3
   }
  ]
 }
